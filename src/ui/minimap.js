@@ -1,4 +1,5 @@
 import { gameState } from '../systems/state.js';
+import * as THREE from 'three';
 
 export class MinimapRadar {
   constructor() {
@@ -23,17 +24,15 @@ export class MinimapRadar {
 
     const size = 120;
     const center = size / 2;
-    const radarRange = 40.0; // 40m radar radius
+    const radarRange = 40.0;
 
     ctx.clearRect(0, 0, size, size);
 
-    // Radar circular background clip
     ctx.save();
     ctx.beginPath();
     ctx.arc(center, center, center - 2, 0, Math.PI * 2);
     ctx.clip();
 
-    // Radar sweep line animation
     const sweepAngle = (Date.now() * 0.002) % (Math.PI * 2);
     ctx.strokeStyle = 'rgba(95, 230, 180, 0.25)';
     ctx.lineWidth = 2;
@@ -42,7 +41,6 @@ export class MinimapRadar {
     ctx.lineTo(center + Math.cos(sweepAngle) * center, center + Math.sin(sweepAngle) * center);
     ctx.stroke();
 
-    // Radar Concentric Rings
     ctx.strokeStyle = 'rgba(42, 51, 44, 0.6)';
     ctx.lineWidth = 1;
     ctx.beginPath();
@@ -50,10 +48,14 @@ export class MinimapRadar {
     ctx.arc(center, center, center * 0.75, 0, Math.PI * 2);
     ctx.stroke();
 
+    const px = playerPos?.x || 0;
+    const pz = playerPos?.z || 0;
+
     // Draw Ruin Monolith
     if (ruinMonolith) {
-      const dx = ruinMonolith.pos.x - (playerPos?.x || 0);
-      const dz = ruinMonolith.pos.z - (playerPos?.z || 0);
+      const rPos = ruinMonolith.group ? ruinMonolith.group.position : (ruinMonolith.pos || new THREE.Vector3());
+      const dx = rPos.x - px;
+      const dz = rPos.z - pz;
       const dist = Math.sqrt(dx * dx + dz * dz);
       if (dist < radarRange) {
         const mx = center + (dx / radarRange) * (center - 10);
@@ -69,8 +71,9 @@ export class MinimapRadar {
     // Draw Meridian Combine Drones
     if (rivals && rivals.drones) {
       rivals.drones.forEach(d => {
-        const dx = d.group.position.x - (playerPos?.x || 0);
-        const dz = d.group.position.z - (playerPos?.z || 0);
+        const dPos = d?.group ? d.group.position : (d?.pos || new THREE.Vector3());
+        const dx = dPos.x - px;
+        const dz = dPos.z - pz;
         const dist = Math.sqrt(dx * dx + dz * dz);
         if (dist < radarRange) {
           const rx = center + (dx / radarRange) * (center - 10);
@@ -87,14 +90,15 @@ export class MinimapRadar {
     // Draw Wild Fauna Entities
     if (entities && entities.entities) {
       entities.entities.forEach(e => {
-        const dx = e.group.position.x - (playerPos?.x || 0);
-        const dz = e.group.position.z - (playerPos?.z || 0);
+        const ePos = e?.group ? e.group.position : (e?.pos || new THREE.Vector3());
+        const dx = ePos.x - px;
+        const dz = ePos.z - pz;
         const dist = Math.sqrt(dx * dx + dz * dz);
         if (dist < radarRange) {
           const fx = center + (dx / radarRange) * (center - 10);
           const fy = center + (dz / radarRange) * (center - 10);
 
-          ctx.fillStyle = e.data.physical?.coloration?.secondary || '#5fe6b4';
+          ctx.fillStyle = e.data?.physical?.coloration?.secondary || '#5fe6b4';
           ctx.beginPath();
           ctx.arc(fx, fy, 3, 0, Math.PI * 2);
           ctx.fill();

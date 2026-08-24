@@ -154,7 +154,7 @@ export class WorldEngine {
       });
 
       this.terrainMesh = new THREE.Mesh(geometry, terrainMat);
-      this.terrainMesh.position.set(0, 0, 0); // Anchored at origin to prevent noise morphing!
+      this.terrainMesh.position.set(0, 0, 0);
       this.terrainMesh.receiveShadow = true;
       this.scene.add(this.terrainMesh);
 
@@ -302,24 +302,28 @@ export class WorldEngine {
     const centerY = h / 2;
     const scale = 8;
 
+    const px = playerPos?.x || 0;
+    const pz = playerPos?.z || 0;
+
     ctx.strokeStyle = world.ambientLight || '#2a3d2e';
     ctx.lineWidth = 1;
     ctx.beginPath();
     for (let x = -150; x <= 150; x += 20) {
-      const px = centerX + (x - (playerPos?.x || 0)) * scale;
-      ctx.moveTo(px, 0);
-      ctx.lineTo(px, h);
+      const gx = centerX + (x - px) * scale;
+      ctx.moveTo(gx, 0);
+      ctx.lineTo(gx, h);
     }
     for (let z = -150; z <= 150; z += 20) {
-      const py = centerY + (z - (playerPos?.z || 0)) * scale;
-      ctx.moveTo(0, py);
-      ctx.lineTo(w, py);
+      const gy = centerY + (z - pz) * scale;
+      ctx.moveTo(0, gy);
+      ctx.lineTo(w, gy);
     }
     ctx.stroke();
 
     if (ruinMonolith) {
-      const rx = centerX + (ruinMonolith.pos.x - (playerPos?.x || 0)) * scale;
-      const ry = centerY + (ruinMonolith.pos.z - (playerPos?.z || 0)) * scale;
+      const rPos = ruinMonolith.group ? ruinMonolith.group.position : (ruinMonolith.pos || new THREE.Vector3());
+      const rx = centerX + (rPos.x - px) * scale;
+      const ry = centerY + (rPos.z - pz) * scale;
 
       ctx.fillStyle = '#ffc857';
       ctx.beginPath();
@@ -334,13 +338,14 @@ export class WorldEngine {
 
       ctx.fillStyle = '#ece9e0';
       ctx.font = '11px "IBM Plex Mono", monospace';
-      ctx.fillText(`🏛️ ${ruinMonolith.type}`, rx - 40, ry - 28);
+      ctx.fillText(`🏛️ ${ruinMonolith.ruinType || ruinMonolith.type || 'Monolith'}`, rx - 40, ry - 28);
     }
 
     if (rivals && rivals.drones) {
       rivals.drones.forEach(d => {
-        const dx = centerX + (d.group.position.x - (playerPos?.x || 0)) * scale;
-        const dy = centerY + (d.group.position.z - (playerPos?.x || 0)) * scale;
+        const dPos = d.group ? d.group.position : (d.pos || new THREE.Vector3());
+        const dx = centerX + (dPos.x - px) * scale;
+        const dy = centerY + (dPos.z - pz) * scale;
 
         ctx.fillStyle = '#e6a855';
         ctx.beginPath();
@@ -356,10 +361,11 @@ export class WorldEngine {
 
     if (entities && entities.entities) {
       entities.entities.forEach(e => {
-        const ex = centerX + (e.group.position.x - (playerPos?.x || 0)) * scale;
-        const ey = centerY + (e.group.position.z - (playerPos?.z || 0)) * scale;
+        const ePos = e.group ? e.group.position : (e.pos || new THREE.Vector3());
+        const ex = centerX + (ePos.x - px) * scale;
+        const ey = centerY + (ePos.z - pz) * scale;
 
-        const color = e.data.physical?.coloration?.secondary || '#5fe6b4';
+        const color = e.data?.physical?.coloration?.secondary || '#5fe6b4';
         ctx.fillStyle = color;
         ctx.beginPath();
         ctx.arc(ex, ey, 7, 0, Math.PI * 2);
@@ -367,14 +373,14 @@ export class WorldEngine {
 
         ctx.fillStyle = '#ece9e0';
         ctx.font = '10px "Inter", sans-serif';
-        ctx.fillText(e.data.commonName, ex - 20, ey - 10);
+        ctx.fillText(e.data?.commonName || e.name || 'Species', ex - 20, ey - 10);
       });
     }
 
     if (structures && structures.placedStructures) {
       structures.placedStructures.forEach(st => {
-        const sx = centerX + (st.pos.x - (playerPos?.x || 0)) * scale;
-        const sy = centerY + (st.pos.z - (playerPos?.z || 0)) * scale;
+        const sx = centerX + (st.pos.x - px) * scale;
+        const sy = centerY + (st.pos.z - pz) * scale;
 
         ctx.fillStyle = '#5fe6b4';
         ctx.fillRect(sx - 10, sy - 10, 20, 20);
