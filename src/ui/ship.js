@@ -6,6 +6,7 @@ import { gameState } from '../systems/state.js';
 import { soundEngine } from '../audio/sound.js';
 import { FIRSTSEED_THEORIES, loreSystem } from '../systems/lore.js';
 import { wardenProgress } from '../systems/codex.js';
+import { tradeUI } from './tradeModal.js';
 
 export class ShipUI {
   constructor() {
@@ -385,10 +386,15 @@ export class ShipUI {
         </div>
 
         <div class="hauling-section">
-          <h4>Active Pack-Fauna Supply Routes (${routes.length})</h4>
-          <button class="btn-travel" id="btnDeployHauler" style="margin-bottom:12px;padding:10px;">
-            🐪 Deploy Pack-Fauna Hauling Route (+2 Yield/trip)
-          </button>
+          <div style="display:flex;gap:10px;margin-bottom:12px;">
+            <button class="btn-travel" id="btnDeployHauler" style="padding:10px;">
+              🐪 Deploy Pack-Fauna Hauling Route (+2 Yield/trip)
+            </button>
+            <button class="btn-travel" id="btnOpenRefinery" style="padding:10px;background:var(--bg-card-active);border:1px solid var(--border-active);color:var(--accent);">
+              ⚖️ Open Resource Refinery Terminal
+            </button>
+          </div>
+
           <div class="hauling-list">
             ${routes.length === 0 ? '<p class="empty-msg">No active hauling routes. Click above to deploy dociled pack-fauna haulers.</p>' : ''}
             ${routes.map(r => `
@@ -437,6 +443,13 @@ export class ShipUI {
           this.haulingManager.createRoute(start, end, 'Shellgrazer');
           this.renderLogistics(container);
         }
+      };
+    }
+
+    const refBtn = document.getElementById('btnOpenRefinery');
+    if (refBtn) {
+      refBtn.onclick = () => {
+        tradeUI.open();
       };
     }
 

@@ -23,6 +23,7 @@ import { BuildUI } from './ui/buildModal.js';
 import { helpUI } from './ui/helpModal.js';
 import { farmUI } from './ui/farmModal.js';
 import { mapUI } from './ui/mapModal.js';
+import { tradeUI } from './ui/tradeModal.js';
 import { soundEngine } from './audio/sound.js';
 
 class Game {
@@ -52,6 +53,7 @@ class Game {
     helpUI.init();
     farmUI.init();
     mapUI.init();
+    tradeUI.init();
 
     this.hud.init(
       () => this.buildUI.toggle(),
