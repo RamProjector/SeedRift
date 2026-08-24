@@ -9,7 +9,6 @@ import { encounterSystem } from './systems/encounters.js';
 import { storageSystem } from './systems/storage.js';
 import { WorldEngine } from './engine/world.js';
 import { SkyboxEngine } from './engine/skybox.js';
-import { PostProcessingManager } from './engine/shaders.js';
 import { EntityManager } from './engine/entities.js';
 import { PlayerController } from './engine/player.js';
 import { BuildingManager } from './engine/building.js';
@@ -30,7 +29,6 @@ class Game {
     this.container = document.getElementById('canvasContainer');
     this.worldEngine = new WorldEngine(this.container);
     this.skyboxEngine = new SkyboxEngine(this.worldEngine.scene);
-    this.postProcessing = new PostProcessingManager(this.worldEngine.renderer, this.worldEngine.scene, this.worldEngine.camera);
     this.entityManager = new EntityManager(this.worldEngine.scene, this.worldEngine);
     this.player = new PlayerController(this.worldEngine.scene, this.worldEngine.camera, this.worldEngine);
     this.buildingManager = new BuildingManager(this.worldEngine.scene, this.worldEngine);
@@ -131,18 +129,15 @@ class Game {
 
     this.hud.update(deltaSeconds);
 
-    if (this.postProcessing && this.postProcessing.composer && this.worldEngine.hasWebGL) {
-      this.postProcessing.render();
-    } else {
-      this.worldEngine.render(
-        this.player.position,
-        this.player.group.rotation.y,
-        this.entityManager,
-        this.entityManager.ruinMonolith,
-        this.rivalManager,
-        this.buildingManager
-      );
-    }
+    // Direct render ensures bright, clear 3D/2D output with zero black frame buffer issues!
+    this.worldEngine.render(
+      this.player.position,
+      this.player.group.rotation.y,
+      this.entityManager,
+      this.entityManager.ruinMonolith,
+      this.rivalManager,
+      this.buildingManager
+    );
   }
 }
 

@@ -17,7 +17,7 @@ export class WorldEngine {
     this.canvas2D = null;
     this.ctx2D = null;
 
-    // Try WebGL context creation with maximum compatibility
+    // Try WebGL context creation
     const testCanvas = document.createElement('canvas');
     const gl = testCanvas.getContext('webgl2') || testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
 
@@ -31,7 +31,6 @@ export class WorldEngine {
         });
         this.renderer.setSize(width, height);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-        this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
         container.appendChild(this.renderer.domElement);
         this.hasWebGL = true;
       } catch (e) {
@@ -49,18 +48,14 @@ export class WorldEngine {
       container.appendChild(this.canvas2D);
     }
 
-    // Hide fallback error card if present
-    const errCard = document.getElementById('webglErrorFallback');
-    if (errCard) errCard.classList.add('hidden');
-
     // Lights
-    this.hemiLight = new THREE.HemisphereLight('#ffffff', '#334433', 1.0);
+    this.hemiLight = new THREE.HemisphereLight('#ffffff', '#445544', 1.2);
     this.scene.add(this.hemiLight);
 
-    this.ambientLight = new THREE.AmbientLight('#ffffff', 0.8);
+    this.ambientLight = new THREE.AmbientLight('#ffffff', 0.9);
     this.scene.add(this.ambientLight);
 
-    this.sunLight = new THREE.DirectionalLight('#ffffff', 1.4);
+    this.sunLight = new THREE.DirectionalLight('#ffffff', 1.5);
     this.sunLight.position.set(30, 50, 20);
     this.scene.add(this.sunLight);
 
@@ -82,7 +77,7 @@ export class WorldEngine {
     if (this.particleSystem) this.scene.remove(this.particleSystem);
 
     this.scene.background = new THREE.Color(worldData.skyColor || '#1a2b20');
-    this.scene.fog = new THREE.FogExp2(worldData.fogColor || '#1a2b20', 0.003);
+    this.scene.fog = new THREE.FogExp2(worldData.fogColor || '#1a2b20', 0.002);
 
     this.ambientLight.color.set(worldData.ambientLight || '#ffffff');
     this.sunLight.color.set(worldData.sunLight || '#ffffff');
@@ -116,7 +111,7 @@ export class WorldEngine {
 
       const terrainMat = new THREE.MeshStandardMaterial({
         color: new THREE.Color(worldData.groundColor || '#2a3b20'),
-        roughness: 0.7,
+        roughness: 0.6,
         metalness: 0.1
       });
 
@@ -183,7 +178,7 @@ export class WorldEngine {
     const sunAngle = ((time - 6) / 24) * Math.PI * 2;
     this.sunLight.position.x = Math.cos(sunAngle) * 50;
     this.sunLight.position.y = Math.sin(sunAngle) * 50;
-    this.sunLight.intensity = Math.max(0.4, Math.sin(sunAngle) * 1.4);
+    this.sunLight.intensity = Math.max(0.6, Math.sin(sunAngle) * 1.5);
   }
 
   getTerrainHeight(x, z) {
@@ -224,7 +219,6 @@ export class WorldEngine {
       return;
     }
 
-    // 2D Tactical World Renderer Fallback
     const ctx = this.ctx2D;
     if (!ctx) return;
 
@@ -232,16 +226,13 @@ export class WorldEngine {
     const h = this.canvas2D.height;
     const world = gameState.getCurrentWorld();
 
-    // Fill background sky/ground color
     ctx.fillStyle = world.groundColor || '#172b1d';
     ctx.fillRect(0, 0, w, h);
 
-    // Grid scale
     const centerX = w / 2;
     const centerY = h / 2;
-    const scale = 12; // 1 unit = 12 pixels
+    const scale = 12;
 
-    // Draw Terrain Contour Grid
     ctx.strokeStyle = world.ambientLight || '#2a3d2e';
     ctx.lineWidth = 1;
     ctx.beginPath();
@@ -257,7 +248,6 @@ export class WorldEngine {
     }
     ctx.stroke();
 
-    // Draw Firstseed Monolith Ruin
     if (ruinMonolith) {
       const rx = centerX + (ruinMonolith.pos.x - (playerPos?.x || 0)) * scale;
       const ry = centerY + (ruinMonolith.pos.z - (playerPos?.z || 0)) * scale;
@@ -278,7 +268,6 @@ export class WorldEngine {
       ctx.fillText(`🏛️ ${ruinMonolith.type}`, rx - 40, ry - 28);
     }
 
-    // Draw Meridian Combine Drones
     if (rivals && rivals.drones) {
       rivals.drones.forEach(d => {
         const dx = centerX + (d.group.position.x - (playerPos?.x || 0)) * scale;
@@ -296,7 +285,6 @@ export class WorldEngine {
       });
     }
 
-    // Draw Wild Fauna Entities
     if (entities && entities.entities) {
       entities.entities.forEach(e => {
         const ex = centerX + (e.group.position.x - (playerPos?.x || 0)) * scale;
@@ -314,7 +302,6 @@ export class WorldEngine {
       });
     }
 
-    // Draw Placed Habitat Structures
     if (structures && structures.placedStructures) {
       structures.placedStructures.forEach(st => {
         const sx = centerX + (st.pos.x - (playerPos?.x || 0)) * scale;
@@ -329,18 +316,15 @@ export class WorldEngine {
       });
     }
 
-    // Draw Warden Player Character
     ctx.save();
     ctx.translate(centerX, centerY);
     ctx.rotate(playerYaw || 0);
 
-    // Warden Suit Circle
     ctx.fillStyle = '#5fe6b4';
     ctx.beginPath();
     ctx.arc(0, 0, 10, 0, Math.PI * 2);
     ctx.fill();
 
-    // Directional Visor Arrow
     ctx.fillStyle = '#10150F';
     ctx.beginPath();
     ctx.moveTo(-4, -4);
@@ -350,7 +334,6 @@ export class WorldEngine {
 
     ctx.restore();
 
-    // Warden Glow Aura if Glow skin equipped
     if (gameState.hasSplice('s4')) {
       ctx.strokeStyle = 'rgba(95, 230, 180, 0.35)';
       ctx.lineWidth = 3;
@@ -359,7 +342,6 @@ export class WorldEngine {
       ctx.stroke();
     }
 
-    // Canvas Title Overlay
     ctx.fillStyle = '#5fe6b4';
     ctx.font = '600 13px "IBM Plex Mono", monospace';
     ctx.fillText(`📡 TACTICAL SURVEY MAP · ${world.name.toUpperCase()}`, 16, 26);
