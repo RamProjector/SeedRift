@@ -8,16 +8,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css">
+  <script>
+    window.addEventListener('error', function(e) {
+      console.error("GLOBAL ERROR:", e.error || e.message);
+      var errBox = document.getElementById('debugErrorBox');
+      if (!errBox) {
+        errBox = document.createElement('div');
+        errBox.id = 'debugErrorBox';
+        errBox.style.cssText = 'position:fixed;top:10px;left:10px;right:10px;z-index:99999;background:rgba(180,20,20,0.95);color:#fff;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;white-space:pre-wrap;box-shadow:0 10px 30px rgba(0,0,0,0.8);';
+        document.body ? document.body.appendChild(errBox) : window.addEventListener('DOMContentLoaded', function(){ document.body.appendChild(errBox); });
+      }
+      errBox.textContent = "⚠️ Game Engine Error:\n" + (e.error ? (e.error.stack || e.error) : e.message);
+    });
+  </script>
 </head>
 <body>
-  <!-- 3D WebGL Canvas Container -->
+  <!-- 3D / 2D Canvas Container -->
   <div id="canvasContainer"></div>
-
-  <!-- Fallback WebGL Warning (hidden unless WebGL fails) -->
-  <div id="webglErrorFallback" class="webgl-error-card hidden">
-    <h3>⚠️ WebGL Context Notice</h3>
-    <p>3D WebGL rendering is currently running in fallback mode. You can still navigate worlds, manage Weave suit splices, view species in the Codex, and collect planetary samples!</p>
-  </div>
 
   <script type="module" src="/src/main.js"></script>
 </body>

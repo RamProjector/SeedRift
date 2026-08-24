@@ -29,6 +29,10 @@ body, html {
   font-family: 'Inter', sans-serif;
 }
 
+.hidden {
+  display: none !important;
+}
+
 #canvasContainer {
   width: 100vw;
   height: 100vh;
@@ -62,6 +66,7 @@ canvas {
 }
 
 .modal-overlay.hidden {
+  display: none !important;
   opacity: 0;
   pointer-events: none;
 }
@@ -399,7 +404,6 @@ canvas {
   border-radius: 8px;
   padding: 12px;
   margin: 14px 0;
-
   font-size: 13px;
 }
 
@@ -591,7 +595,7 @@ canvas {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  background: rgba(23, 30, 25, 0.75);
+  background: rgba(23, 30, 25, 0.85);
   border: 1px solid var(--border);
   padding: 10px 14px;
   border-radius: 12px;
@@ -636,7 +640,7 @@ canvas {
   top: 16px;
   right: 16px;
   pointer-events: auto;
-  background: rgba(23, 30, 25, 0.75);
+  background: rgba(23, 30, 25, 0.85);
   border: 1px solid var(--border);
   padding: 8px 14px;
   border-radius: 12px;
@@ -723,6 +727,7 @@ canvas {
 }
 
 .scanner-readout-panel.hidden {
+  display: none !important;
   opacity: 0;
   transform: translateX(20px);
   pointer-events: none;
@@ -861,37 +866,6 @@ kbd {
 .toast.fade-out {
   opacity: 0;
   transform: translateY(-10px);
-}
-
-/* Touch Overlay */
-.touch-overlay {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .touch-overlay {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    width: 100%;
-    pointer-events: auto;
-  }
-
-  .touch-actions {
-    display: flex;
-    gap: 8px;
-  }
-
-  .touch-btn {
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    background: rgba(23, 30, 25, 0.85);
-    border: 1px solid var(--border-active);
-    color: var(--accent);
-    font-size: 11px;
-    font-weight: 600;
-  }
 }
 
 /* Construction Modal */
