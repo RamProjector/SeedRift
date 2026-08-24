@@ -20,6 +20,27 @@ export const WORLDS = {
     floraTypes: ["sporeStalk", "shelfBracket", "lichen"],
     faunaTypes: ["grazer", "glider", "hunter"]
   },
+  "thessyras-veil": {
+    id: "thessyras-veil",
+    name: "Thessyra's Veil",
+    type: "Tidally-locked ocean & twilight ice",
+    description: "Life packed into a narrow twilight belt between permanent sunward ocean and frozen darkside ice caps. Home to salt-reef settlements.",
+    signatureEvent: "The Long Tide Shift",
+    gravity: 0.85,
+    daySkyColor: "#427896",
+    nightSkyColor: "#08141f",
+    groundColor: "#2b4554",
+    fogColor: "#2a5469",
+    fogDensity: 0.0018,
+    ambientLight: "#88e0ef",
+    sunLight: "#a6f0ff",
+    hazards: { spores: 0.0, cold: 0.7, heat: 0.0, radiation: 0.1, pressure: 0.0 },
+    ruinType: "Bio-Archive Glacial Sealed Vault",
+    ruinDescription: "A Firstseed Bio-Archive sealed deep under the permanent ice cap.",
+    ruinUnlockSplice: "s1",
+    floraTypes: ["glowCrystal", "iceLichen"],
+    faunaTypes: ["glowBurrower", "scout"]
+  },
   "ashfields-coreth": {
     id: "ashfields-coreth",
     name: "Ashfields of Coreth",

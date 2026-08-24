@@ -24,7 +24,7 @@ export class WorldEngine {
       try {
         this.renderer = new THREE.WebGLRenderer({
           canvas: testCanvas,
-          antialias: true,
+          antialias: false,
           alpha: false,
           powerPreference: "default"
         });
@@ -79,35 +79,26 @@ export class WorldEngine {
     window.addEventListener('resize', () => this.onWindowResize());
   }
 
+  // Balanced Flat Valleys vs Jagged Mountain Crags Noise Generator
   getMultiOctaveNoise(x, z, worldId) {
-    let height = 0;
+    // 1. Smooth Flat Basin / Building Plains Base
+    const smoothValley = this.noise2D(x * 0.004, z * 0.004) * 6.0;
 
-    if (worldId === 'kharon-bloomfields') {
-      const continental = this.noise2D(x * 0.005, z * 0.005) * 18.0;
-      const hills = this.noise2D(x * 0.02, z * 0.02) * 6.0;
-      const detail = this.noise2D(x * 0.08, z * 0.08) * 1.5;
-      height = continental + hills + detail;
+    // 2. Ridge Mask (Exponent mapped so 70% remains flat, 30% forms mountain ridges)
+    const rawRidge = Math.abs(this.noise2D(x * 0.012, z * 0.012));
+    const ridgeMask = Math.pow(rawRidge, 2.5);
 
-    } else if (worldId === 'ashfields-coreth') {
-      const craters = Math.abs(this.noise2D(x * 0.008, z * 0.008)) * 22.0 - 4.0;
-      const ridges = Math.sin(this.noise2D(x * 0.03, z * 0.03) * Math.PI) * 8.0;
-      const detail = this.noise2D(x * 0.1, z * 0.1) * 1.8;
-      height = craters + ridges + detail;
+    // 3. High-Frequency Jagged Mountain Crag Height
+    const jaggedCrag = this.noise2D(x * 0.05, z * 0.05) * 22.0;
 
-    } else if (worldId === 'hollow-steppe') {
-      const rollingHills = this.noise2D(x * 0.006, z * 0.006) * 12.0;
-      const dunes = this.noise2D(x * 0.025, z * 0.025) * 3.5;
-      height = rollingHills + dunes;
+    let height = smoothValley + (ridgeMask * jaggedCrag);
 
-    } else if (worldId === 'pallid-reach') {
-      const plateaus = Math.floor(this.noise2D(x * 0.007, z * 0.007) * 4.0) * 4.0;
-      const crags = this.noise2D(x * 0.04, z * 0.04) * 7.0;
-      height = plateaus + crags;
-
+    if (worldId === 'ashfields-coreth') {
+      height += Math.abs(this.noise2D(x * 0.02, z * 0.02)) * 8.0 - 2.0;
+    } else if (worldId === 'thessyras-veil') {
+      height += Math.floor(this.noise2D(x * 0.015, z * 0.015) * 3.0) * 3.0; // Ice plateaus
     } else if (worldId === 'vantauri-deep') {
-      const trench = this.noise2D(x * 0.005, z * 0.005) * 15.0 - 8.0;
-      const ridges = this.noise2D(x * 0.03, z * 0.03) * 4.0;
-      height = trench + ridges;
+      height -= 12.0; // Abyssal ocean floor depth
     }
 
     return height;
@@ -119,7 +110,7 @@ export class WorldEngine {
     const radius = 800.0;
     const distSq = x * x + z * z;
     const curvatureDrop = distSq / (2.0 * radius);
-    return rawH - curvatureDrop; // Exactly matches 3D visual terrain surface!
+    return rawH - curvatureDrop;
   }
 
   buildWorld(worldData) {
@@ -162,11 +153,11 @@ export class WorldEngine {
       this.terrainMesh.receiveShadow = true;
       this.scene.add(this.terrainMesh);
 
-      if (worldData.id === 'vantauri-deep') {
+      if (worldData.id === 'vantauri-deep' || worldData.id === 'thessyras-veil') {
         const waterGeo = new THREE.PlaneGeometry(size, size);
         waterGeo.rotateX(-Math.PI / 2);
         const waterMat = new THREE.MeshStandardMaterial({
-          color: '#105577',
+          color: worldData.id === 'thessyras-veil' ? '#2a5a73' : '#105577',
           transparent: true,
           opacity: 0.65,
           roughness: 0.1,
@@ -198,7 +189,7 @@ export class WorldEngine {
     let pColor = '#5fe6b4';
     if (worldData.id === 'ashfields-coreth') pColor = '#ff6b35';
     if (worldData.id === 'hollow-steppe') pColor = '#e6c675';
-    if (worldData.id === 'pallid-reach') pColor = '#5fe6d0';
+    if (worldData.id === 'pallid-reach' || worldData.id === 'thessyras-veil') pColor = '#5fe6d0';
     if (worldData.id === 'vantauri-deep') pColor = '#4ce0d2';
 
     const pMat = new THREE.PointsMaterial({
@@ -233,7 +224,7 @@ export class WorldEngine {
     const dayRatio = Math.max(0.0, Math.sin(sunAngle));
 
     this.sunLight.intensity = Math.max(0.5, dayRatio * 3.0);
-    this.hemiLight.intensity = Math.max(0.5, dayRatio * 1.6);
+    this.hemiLight.intensity = Math.max(0.5, dayRatio * 1.4);
     this.ambientLight.intensity = Math.max(0.4, dayRatio * 1.4);
 
     const dayColor = new THREE.Color(worldData.daySkyColor || '#528bb8');
