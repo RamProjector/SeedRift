@@ -15,12 +15,13 @@ export class PlayerController {
 
     this.group = new THREE.Group();
 
+    // Vibrant Metallic Emerald Warden Suit Armor
     const suitMat = new THREE.MeshStandardMaterial({
       color: '#2e7a5c',
       roughness: 0.25,
       metalness: 0.7,
       emissive: '#134030',
-      emissiveIntensity: 0.2
+      emissiveIntensity: 0.3
     });
 
     const trimMat = new THREE.MeshStandardMaterial({
@@ -32,7 +33,7 @@ export class PlayerController {
     const glowCoreMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
       emissive: '#5fe6b4',
-      emissiveIntensity: 1.5,
+      emissiveIntensity: 1.8,
       roughness: 0.1
     });
 
@@ -122,6 +123,8 @@ export class PlayerController {
     this.maxCamDistance = 5.8;
     this.currentCamDistance = 5.8;
     this.shoulderOffset = 1.2;
+
+    this.worldLimit = 300.0; // 600x600 unit planet bound
 
     this.keys = {
       forward: false,
@@ -301,14 +304,12 @@ export class PlayerController {
 
       this.group.rotation.y = Math.atan2(moveInput.x, moveInput.z);
     } else {
-      // Dynamic & Static Friction Stopping Physics
       this.velocity.x *= physicsEngine.dynamicFriction;
       this.velocity.z *= physicsEngine.dynamicFriction;
       if (Math.abs(this.velocity.x) < 0.01) this.velocity.x = 0;
       if (Math.abs(this.velocity.z) < 0.01) this.velocity.z = 0;
     }
 
-    // 4 Sub-stepping solver iterations for Continuous Collision Detection (CCD)
     const prevPos = this.position.clone();
 
     const substepDelta = deltaSeconds / physicsEngine.substeps;
@@ -319,8 +320,20 @@ export class PlayerController {
       collisionEngine.resolveCollisions(this.position, colliders);
     }
 
-    // Apply CCD Path Raycast Solver to prevent tunneling through steep slopes
     physicsEngine.applyContinuousCollisionDetection(prevPos, this.position, this.worldEngine);
+
+    // Columbus Toroidal World Loop Wrapping (Walking in a straight line circles the round planet!)
+    if (this.position.x > this.worldLimit) {
+      this.position.x = -this.worldLimit + (this.position.x - this.worldLimit);
+    } else if (this.position.x < -this.worldLimit) {
+      this.position.x = this.worldLimit + (this.position.x + this.worldLimit);
+    }
+
+    if (this.position.z > this.worldLimit) {
+      this.position.z = -this.worldLimit + (this.position.z - this.worldLimit);
+    } else if (this.position.z < -this.worldLimit) {
+      this.position.z = this.worldLimit + (this.position.z + this.worldLimit);
+    }
 
     let terrainHeight = this.worldEngine.getTerrainHeight(this.position.x, this.position.z);
     if (this.isTunneling) {
@@ -354,7 +367,6 @@ export class PlayerController {
       this.isGrounded = false;
     }
 
-    // Walk Cycle Poses
     if (this.armL && this.armR && this.legL && this.legR) {
       const freq = this.keys.sprint ? 14.0 : 9.0;
       const walkPhase = (this.animTime * freq) % (Math.PI * 2);
@@ -385,7 +397,6 @@ export class PlayerController {
       }
     }
 
-    // Camera Mode Positioning with Spring Arm
     if (this.isFirstPerson) {
       this.camera.position.set(this.position.x, this.position.y + 1.5, this.position.z);
       const lookTarget = new THREE.Vector3(

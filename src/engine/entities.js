@@ -15,6 +15,7 @@ export class EntityManager {
     this.flora = [];
     this.drones = [];
     this.ruinMonolith = null;
+    this.worldLimit = 300.0;
   }
 
   populateWorld(worldData) {
@@ -30,12 +31,19 @@ export class EntityManager {
 
     const speciesList = SPECIES_BY_WORLD[worldData.id] || [];
 
-    // Spawn 36 active creature entities across expanded open world
+    // 1. Immediate Starting Cluster (12 creatures spawned right in front of Warden spawn point!)
     const countToSpawn = Math.min(36, speciesList.length);
     for (let i = 0; i < countToSpawn; i++) {
       const speciesData = speciesList[i % speciesList.length];
-      const x = (Math.random() - 0.5) * 220;
-      const z = (Math.random() - 0.5) * 220;
+
+      // First 12 creatures spawn within 35 meters of player spawn point!
+      let x = (Math.random() - 0.5) * 60;
+      let z = (Math.random() - 0.5) * 60;
+      if (i >= 12) {
+        x = (Math.random() - 0.5) * 350;
+        z = (Math.random() - 0.5) * 350;
+      }
+
       const y = this.worldEngine.getTerrainHeight(x, z);
       const pos = new THREE.Vector3(x, y, z);
 
@@ -54,12 +62,18 @@ export class EntityManager {
       this.entities.push(entity);
     }
 
-    // Spawn 60 flora elements across open terrain & seabed
+    // 2. Spawn 60 Flora Elements (Trees, Spore Stalks, Crystal Nodes)
     const floraTypes = worldData.floraTypes || ['goldenGrass'];
     for (let i = 0; i < 60; i++) {
       const type = floraTypes[i % floraTypes.length];
-      const x = (Math.random() - 0.5) * 240;
-      const z = (Math.random() - 0.5) * 240;
+
+      let x = (Math.random() - 0.5) * 70;
+      let z = (Math.random() - 0.5) * 70;
+      if (i >= 15) {
+        x = (Math.random() - 0.5) * 400;
+        z = (Math.random() - 0.5) * 400;
+      }
+
       const y = this.worldEngine.getTerrainHeight(x, z);
       const pos = new THREE.Vector3(x, y, z);
 
@@ -68,15 +82,17 @@ export class EntityManager {
       this.flora.push(floraEntity);
     }
 
-    const rx = 35;
-    const rz = -45;
+    // 3. Firstseed Monolith Ruin Plaza
+    const rx = 25;
+    const rz = -30;
     const ry = this.worldEngine.getTerrainHeight(rx, rz);
     this.ruinMonolith = new RuinEntity(`ruin_${worldData.id}`, worldData.ruinType, new THREE.Vector3(rx, ry, rz));
     this.scene.add(this.ruinMonolith.group);
 
+    // 4. Meridian Combine Drones
     for (let d = 0; d < 3; d++) {
-      const dx = (Math.random() - 0.5) * 80 + 10;
-      const dz = (Math.random() - 0.5) * 80 - 10;
+      const dx = (Math.random() - 0.5) * 60 + 10;
+      const dz = (Math.random() - 0.5) * 60 - 10;
       const dy = this.worldEngine.getTerrainHeight(dx, dz) + 3.0;
       const drone = new RivalDroneEntity(`drone_${d}`, new THREE.Vector3(dx, dy, dz));
       this.scene.add(drone.group);
@@ -94,7 +110,16 @@ export class EntityManager {
   }
 
   update(deltaSeconds) {
-    this.entities.forEach(e => e.update(deltaSeconds, this.worldEngine));
+    this.entities.forEach(e => {
+      e.update(deltaSeconds, this.worldEngine);
+
+      // Columbus Toroidal World Loop Wrapping for Entities
+      if (e.group.position.x > this.worldLimit) e.group.position.x = -this.worldLimit;
+      if (e.group.position.x < -this.worldLimit) e.group.position.x = this.worldLimit;
+      if (e.group.position.z > this.worldLimit) e.group.position.z = -this.worldLimit;
+      if (e.group.position.z < -this.worldLimit) e.group.position.z = this.worldLimit;
+    });
+
     this.flora.forEach(f => f.update(deltaSeconds, this.worldEngine));
     this.drones.forEach(d => d.update(deltaSeconds, this.worldEngine));
     if (this.ruinMonolith) this.ruinMonolith.update(deltaSeconds, this.worldEngine);
@@ -124,7 +149,7 @@ export class EntityManager {
 
     if (this.ruinMonolith) {
       const dist = playerPos.distanceTo(this.ruinMonolith.group.position);
-      if (dist < minDistance && dist < 15) {
+      if (dist < minDistance && dist < 18) {
         closest = { type: 'ruin', monolith: this.ruinMonolith, distance: dist };
         minDistance = dist;
       }
