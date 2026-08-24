@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { gameState } from '../systems/state.js';
 import { soundEngine } from '../audio/sound.js';
+import { physicsEngine } from './physics.js';
 
 export class PlayerController {
   constructor(scene, camera, worldEngine) {
@@ -61,6 +62,8 @@ export class PlayerController {
 
     this.position = this.group.position;
     this.position.set(0, 2, 0);
+
+    // Physics Velocity Vector
     this.velocity = new THREE.Vector3();
     this.isGrounded = false;
     this.isGliding = false;
@@ -156,9 +159,15 @@ export class PlayerController {
   }
 
   onJump() {
-    if (this.isGrounded) {
+    const isWater = physicsEngine.isUnderwater(this.position);
+
+    if (isWater) {
+      // Hydrodynamic Swim Ascend
+      this.velocity.y = 5.0;
+    } else if (this.isGrounded) {
       const gravityVal = gameState.getCurrentWorld().gravity;
-      this.velocity.y = 8.0 * (1 / Math.sqrt(gravityVal));
+      // Gravity-scaled jump physics
+      this.velocity.y = 8.5 * (1 / Math.sqrt(gravityVal));
       this.isGrounded = false;
       soundEngine.playFootstep();
     } else if (gameState.hasSplice('s3')) {
@@ -175,7 +184,7 @@ export class PlayerController {
     const world = gameState.getCurrentWorld();
     const equipped = gameState.getEquippedSplices();
 
-    let moveSpeed = 6.0;
+    let targetSpeed = 6.5;
     let sprintBonus = 1.0;
     let hasGlow = gameState.hasSplice('s4');
     let hasGlide = gameState.hasSplice('s3');
@@ -183,12 +192,12 @@ export class PlayerController {
     equipped.forEach(s => {
       if (s.statBonus) {
         if (s.statBonus.sprintSpeedBonus) sprintBonus += s.statBonus.sprintSpeedBonus;
-        if (s.statBonus.landSpeed) moveSpeed *= s.statBonus.landSpeed;
+        if (s.statBonus.landSpeed) targetSpeed *= s.statBonus.landSpeed;
       }
     });
 
-    if (this.keys.sprint) moveSpeed *= (1.5 * sprintBonus);
-    if (this.isTunneling) moveSpeed *= 1.4;
+    if (this.keys.sprint) targetSpeed *= (1.5 * sprintBonus);
+    if (this.isTunneling) targetSpeed *= 1.4;
 
     if (hasGlow) {
       this.glowLight.intensity = 1.2;
@@ -203,38 +212,58 @@ export class PlayerController {
       this.isGliding = false;
     }
 
-    const moveDir = new THREE.Vector3();
-    if (this.keys.forward) moveDir.z -= 1;
-    if (this.keys.backward) moveDir.z += 1;
-    if (this.keys.left) moveDir.x -= 1;
-    if (this.keys.right) moveDir.x += 1;
+    // Directional input acceleration vector
+    const moveInput = new THREE.Vector3();
+    if (this.keys.forward) moveInput.z -= 1;
+    if (this.keys.backward) moveInput.z += 1;
+    if (this.keys.left) moveInput.x -= 1;
+    if (this.keys.right) moveInput.x += 1;
 
-    if (moveDir.lengthSq() > 0) {
-      moveDir.normalize();
-      moveDir.applyAxisAngle(new THREE.Vector3(0, 1, 0), this.camYaw);
+    if (moveInput.lengthSq() > 0) {
+      moveInput.normalize();
+      moveInput.applyAxisAngle(new THREE.Vector3(0, 1, 0), this.camYaw);
 
-      this.position.x += moveDir.x * moveSpeed * deltaSeconds;
-      this.position.z += moveDir.z * moveSpeed * deltaSeconds;
+      // Smooth acceleration physics
+      this.velocity.x += moveInput.x * targetSpeed * 12.0 * deltaSeconds;
+      this.velocity.z += moveInput.z * targetSpeed * 12.0 * deltaSeconds;
 
-      this.group.rotation.y = Math.atan2(moveDir.x, moveDir.z);
+      this.group.rotation.y = Math.atan2(moveInput.x, moveInput.z);
     }
 
+    // Ground & Viscous Friction Deceleration
+    const isWater = physicsEngine.isUnderwater(this.position);
+    const friction = isWater ? 0.82 : 0.88;
+
+    this.velocity.x *= friction;
+    this.velocity.z *= friction;
+
+    this.position.x += this.velocity.x * deltaSeconds;
+    this.position.z += this.velocity.z * deltaSeconds;
+
+    // Gravity, Buoyancy & Updraft Physics
     let terrainHeight = this.worldEngine.getTerrainHeight(this.position.x, this.position.z);
     if (this.isTunneling) {
-      terrainHeight -= 1.2; // Submerge underground
+      terrainHeight -= 1.2;
     }
 
-    const gravityAcc = 18.0 * world.gravity;
-
-    if (this.isGliding) {
-      this.velocity.y = -1.2;
+    if (isWater) {
+      // Underwater hydrostatic pressure buoyancy physics
+      if (this.keys.tunnel) this.velocity.y -= 4.0 * deltaSeconds; // Swim dive
+      this.velocity.y *= 0.90; // Water drag
+    } else if (this.isGliding) {
+      // Gliding aerodynamic lift & thermal updrafts
+      const updraft = physicsEngine.getThermalUpdraft(this.position);
+      this.velocity.y = -1.2 + updraft;
     } else {
+      // Planetary Gravity Acceleration
+      const gravityAcc = physicsEngine.getGravity();
       this.velocity.y -= gravityAcc * deltaSeconds;
     }
 
     this.position.y += this.velocity.y * deltaSeconds;
 
-    if (this.position.y <= terrainHeight) {
+    // Terrain Snapping & Footstep Collision
+    if (!isWater && this.position.y <= terrainHeight) {
       this.position.y = terrainHeight;
       this.velocity.y = 0;
       this.isGrounded = true;
@@ -242,10 +271,11 @@ export class PlayerController {
         this.isGliding = false;
         soundEngine.stopGlideWind();
       }
-    } else {
+    } else if (!isWater) {
       this.isGrounded = false;
     }
 
+    // Camera Orbit Follow Vector
     const cx = this.position.x + Math.sin(this.camYaw) * Math.cos(this.camPitch) * this.camDistance;
     const cy = this.position.y + Math.sin(this.camPitch) * this.camDistance + 1.2;
     const cz = this.position.z + Math.cos(this.camYaw) * Math.cos(this.camPitch) * this.camDistance;
