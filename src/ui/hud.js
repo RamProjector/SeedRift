@@ -2,7 +2,6 @@ import { gameState } from '../systems/state.js';
 import { soundEngine } from '../audio/sound.js';
 import { weaveUI } from './weave.js';
 import { shipUI } from './ship.js';
-import { encounterSystem } from '../systems/encounters.js';
 
 export class HUDManager {
   constructor() {
@@ -21,6 +20,9 @@ export class HUDManager {
     this.hudContainer = document.createElement('div');
     this.hudContainer.id = 'hudOverlay';
     this.hudContainer.innerHTML = `
+      <!-- Critical Vitals Vignette Overlay -->
+      <div class="vitals-vignette-overlay" id="vignetteOverlay"></div>
+
       <!-- Vitals Panel (Top-Left) -->
       <div class="hud-vitals-panel">
         <div class="vital-row" id="vitalTemp" title="Core Temperature">
@@ -69,6 +71,7 @@ export class HUDManager {
         <div class="time-clock" id="hudClock">08:00 AM</div>
         <div class="time-details" id="hudWorldDetails">Kharon's Bloomfields · Day 1 (Spring)</div>
         <div class="event-badge hidden" id="hudEventBadge">⚡ EVENT ACTIVE</div>
+        <div id="radarContainer" style="margin-top:8px;"></div>
       </div>
 
       <!-- Center Scanner Crosshair Reticle -->
@@ -352,6 +355,18 @@ export class HUDManager {
     } else {
       radVal.textContent = 'Safe';
       document.getElementById('barRad').style.width = '0%';
+    }
+
+    // Critical Vitals Red/Amber Vignette Trigger
+    const vig = document.getElementById('vignetteOverlay');
+    if (vig) {
+      if (v.health < 35 || v.atmosphere < 25) {
+        vig.className = 'vitals-vignette-overlay active-critical';
+      } else if (v.health < 60) {
+        vig.className = 'vitals-vignette-overlay active-warning';
+      } else {
+        vig.className = 'vitals-vignette-overlay';
+      }
     }
 
     const h = Math.floor(gameState.timeOfDay);

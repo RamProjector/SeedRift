@@ -15,6 +15,7 @@ import { RivalManager } from './engine/rivals.js';
 import { HaulingManager } from './engine/hauling.js';
 import { WeatherSystem } from './engine/weather.js';
 import { HUDManager } from './ui/hud.js';
+import { minimapRadar } from './ui/minimap.js';
 import { weaveUI } from './ui/weave.js';
 import { shipUI } from './ui/ship.js';
 import { BuildUI } from './ui/buildModal.js';
@@ -52,6 +53,9 @@ class Game {
       },
       () => this.buildingManager.cancelPlacement()
     );
+
+    const radarContainer = document.getElementById('radarContainer');
+    if (radarContainer) minimapRadar.init(radarContainer);
 
     const worldData = gameState.getCurrentWorld();
     this.worldEngine.buildWorld(worldData);
@@ -96,6 +100,14 @@ class Game {
     this.rivalManager.update(deltaSeconds);
     this.haulingManager.update(deltaSeconds);
     this.worldEngine.update(deltaSeconds, this.player.position);
+
+    minimapRadar.update(
+      this.player.position,
+      this.player.group.rotation.y,
+      this.entityManager,
+      this.entityManager.ruinMonolith,
+      this.rivalManager
+    );
 
     if (this.buildingManager.isPlacing) {
       this.buildingManager.updatePreview(this.player.position, this.player.group.rotation.y);
