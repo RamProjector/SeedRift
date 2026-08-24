@@ -22,6 +22,7 @@ import { shipUI } from './ui/ship.js';
 import { BuildUI } from './ui/buildModal.js';
 import { helpUI } from './ui/helpModal.js';
 import { farmUI } from './ui/farmModal.js';
+import { mapUI } from './ui/mapModal.js';
 import { soundEngine } from './audio/sound.js';
 
 class Game {
@@ -50,6 +51,7 @@ class Game {
     this.buildUI.init();
     helpUI.init();
     farmUI.init();
+    mapUI.init();
 
     this.hud.init(
       () => this.buildUI.toggle(),

@@ -3,6 +3,7 @@ import { soundEngine } from '../audio/sound.js';
 import { weaveUI } from './weave.js';
 import { shipUI } from './ship.js';
 import { helpUI } from './helpModal.js';
+import { mapUI } from './mapModal.js';
 
 export class HUDManager {
   constructor() {
@@ -213,7 +214,7 @@ export class HUDManager {
       if (gameState.hasSplice('s6')) extraKeys += ' &nbsp;·&nbsp; <kbd>C</kbd> Tunnel';
       if (gameState.hasSplice('s8')) extraKeys += ' &nbsp;·&nbsp; <kbd>Q</kbd> Shockwave';
 
-      prompt.innerHTML = `<kbd>E</kbd> Scan &nbsp;·&nbsp; <kbd>V</kbd> View &nbsp;·&nbsp; <kbd>B</kbd> Build &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Hub${extraKeys}`;
+      prompt.innerHTML = `<kbd>E</kbd> Scan &nbsp;·&nbsp; <kbd>V</kbd> View &nbsp;·&nbsp; <kbd>B</kbd> Build &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Hub &nbsp;·&nbsp; <kbd>N</kbd> Map${extraKeys}`;
       this.scannableTarget = null;
     }
   }

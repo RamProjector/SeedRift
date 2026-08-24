@@ -1,4 +1,5 @@
 import { gameState } from '../systems/state.js';
+import { mapUI } from './mapModal.js';
 import * as THREE from 'three';
 
 export class MinimapRadar {
@@ -13,6 +14,8 @@ export class MinimapRadar {
     this.canvas.width = 120;
     this.canvas.height = 120;
     this.canvas.style.cssText = 'width:120px;height:120px;border-radius:50%;border:1.5px solid var(--border-active);background:rgba(16,21,15,0.85);backdrop-filter:blur(4px);pointer-events:auto;cursor:pointer;';
+
+    this.canvas.onclick = () => mapUI.toggle();
 
     this.ctx = this.canvas.getContext('2d');
     container.appendChild(this.canvas);
@@ -51,7 +54,6 @@ export class MinimapRadar {
     const px = playerPos?.x || 0;
     const pz = playerPos?.z || 0;
 
-    // Draw Ruin Monolith
     if (ruinMonolith) {
       const rPos = ruinMonolith.group ? ruinMonolith.group.position : (ruinMonolith.pos || new THREE.Vector3());
       const dx = rPos.x - px;
@@ -68,7 +70,6 @@ export class MinimapRadar {
       }
     }
 
-    // Draw Meridian Combine Drones
     if (rivals && rivals.drones) {
       rivals.drones.forEach(d => {
         const dPos = d?.group ? d.group.position : (d?.pos || new THREE.Vector3());
@@ -87,7 +88,6 @@ export class MinimapRadar {
       });
     }
 
-    // Draw Wild Fauna Entities
     if (entities && entities.entities) {
       entities.entities.forEach(e => {
         const ePos = e?.group ? e.group.position : (e?.pos || new THREE.Vector3());
@@ -106,7 +106,6 @@ export class MinimapRadar {
       });
     }
 
-    // Draw Player Center Dot & Heading Vector
     ctx.save();
     ctx.translate(center, center);
     ctx.rotate(playerYaw || 0);
