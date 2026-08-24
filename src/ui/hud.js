@@ -2,6 +2,7 @@ import { gameState } from '../systems/state.js';
 import { soundEngine } from '../audio/sound.js';
 import { weaveUI } from './weave.js';
 import { shipUI } from './ship.js';
+import { helpUI } from './helpModal.js';
 
 export class HUDManager {
   constructor() {
@@ -103,7 +104,8 @@ export class HUDManager {
         <div class="quick-nav-buttons">
           <button class="btn-nav" id="btnOpenBuild">🔨 Build [B]</button>
           <button class="btn-nav" id="btnOpenWeave">🧬 Weave [Tab]</button>
-          <button class="btn-nav" id="btnOpenShip">🚀 Command Hub [M]</button>
+          <button class="btn-nav" id="btnOpenShip">🚀 Hub [M]</button>
+          <button class="btn-nav" id="btnOpenHelp">❓ Help [H]</button>
         </div>
       </div>
 
@@ -116,6 +118,7 @@ export class HUDManager {
     document.getElementById('btnOpenBuild').onclick = () => { if (this.onBuildToggleCallback) this.onBuildToggleCallback(); };
     document.getElementById('btnOpenWeave').onclick = () => weaveUI.toggle();
     document.getElementById('btnOpenShip').onclick = () => shipUI.toggle();
+    document.getElementById('btnOpenHelp').onclick = () => helpUI.toggle();
 
     window.addEventListener('keydown', (e) => {
       if (e.code === 'KeyB') {
@@ -205,7 +208,7 @@ export class HUDManager {
       if (gameState.hasSplice('s6')) extraKeys += ' &nbsp;·&nbsp; <kbd>C</kbd> Tunnel';
       if (gameState.hasSplice('s8')) extraKeys += ' &nbsp;·&nbsp; <kbd>Q</kbd> Shockwave';
 
-      prompt.innerHTML = `<kbd>E</kbd> Scan &nbsp;·&nbsp; <kbd>B</kbd> Build &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Hub${extraKeys}`;
+      prompt.innerHTML = `<kbd>E</kbd> Scan &nbsp;·&nbsp; <kbd>B</kbd> Build &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Hub &nbsp;·&nbsp; <kbd>H</kbd> Help${extraKeys}`;
       this.scannableTarget = null;
     }
   }
@@ -229,6 +232,7 @@ export class HUDManager {
 
   openScanReadout(species) {
     soundEngine.playChirp();
+    soundEngine.playCreatureVocal();
     this.activeSpeciesTarget = species;
 
     const readout = document.getElementById('scannerReadout');
@@ -357,7 +361,6 @@ export class HUDManager {
       document.getElementById('barRad').style.width = '0%';
     }
 
-    // Critical Vitals Red/Amber Vignette Trigger
     const vig = document.getElementById('vignetteOverlay');
     if (vig) {
       if (v.health < 35 || v.atmosphere < 25) {

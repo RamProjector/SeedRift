@@ -19,6 +19,7 @@ import { minimapRadar } from './ui/minimap.js';
 import { weaveUI } from './ui/weave.js';
 import { shipUI } from './ui/ship.js';
 import { BuildUI } from './ui/buildModal.js';
+import { helpUI } from './ui/helpModal.js';
 import { soundEngine } from './audio/sound.js';
 
 class Game {
@@ -44,6 +45,7 @@ class Game {
     weaveUI.init();
     shipUI.init((newWorld) => this.onWorldChange(newWorld), this.haulingManager);
     this.buildUI.init();
+    helpUI.init();
 
     this.hud.init(
       () => this.buildUI.toggle(),

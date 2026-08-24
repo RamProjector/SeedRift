@@ -55,9 +55,8 @@ class SoundEngine {
     this.scanOsc.type = 'sine';
     this.scanOsc.frequency.setValueAtTime(380, now);
 
-    // Add gentle LFO vibrato
     const lfo = this.ctx.createOscillator();
-    lfo.frequency.value = 6; // 6Hz pulse
+    lfo.frequency.value = 6;
     const lfoGain = this.ctx.createGain();
     lfoGain.gain.value = 15;
     lfo.connect(this.scanOsc.frequency);
@@ -89,7 +88,7 @@ class SoundEngine {
   playSampleAcquired() {
     if (!this.ctx || this.muted) return;
     this.resume();
-    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+    const notes = [523.25, 659.25, 783.99, 1046.50];
     notes.forEach((freq, idx) => {
       const now = this.ctx.currentTime + idx * 0.08;
       const osc = this.ctx.createOscillator();
@@ -107,6 +106,27 @@ class SoundEngine {
       osc.start(now);
       osc.stop(now + 0.35);
     });
+  }
+
+  playCreatureVocal() {
+    if (!this.ctx || this.muted) return;
+    this.resume();
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(320, now);
+    osc.frequency.exponentialRampToValueAtTime(120, now + 0.25);
+
+    gain.gain.setValueAtTime(0.08, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.25);
   }
 
   playWeaveToggle(equipped) {
@@ -152,24 +172,34 @@ class SoundEngine {
     osc.stop(now + 0.15);
   }
 
-  playFootstep() {
+  playFootstep(surface = 'default') {
     if (!this.ctx || this.muted) return;
     const now = this.ctx.currentTime;
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
 
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(90, now);
-    osc.frequency.exponentialRampToValueAtTime(40, now + 0.05);
+    let freqStart = 90;
+    let freqEnd = 40;
+    if (surface === 'water') {
+      freqStart = 300;
+      freqEnd = 80;
+    } else if (surface === 'ice') {
+      freqStart = 450;
+      freqEnd = 200;
+    }
+
+    osc.type = surface === 'water' ? 'sine' : 'triangle';
+    osc.frequency.setValueAtTime(freqStart, now);
+    osc.frequency.exponentialRampToValueAtTime(freqEnd, now + 0.06);
 
     gain.gain.setValueAtTime(0.05, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
 
     osc.connect(gain);
     gain.connect(this.ctx.destination);
 
     osc.start(now);
-    osc.stop(now + 0.05);
+    osc.stop(now + 0.06);
   }
 
   startGlideWind() {
