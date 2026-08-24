@@ -40,7 +40,7 @@ export class SkyboxEngine {
     this.stars = new THREE.Points(geometry, starMat);
     this.group.add(this.stars);
 
-    // Celestial Moons (Sovereign Natural Satellites driving orbital tides)
+    // Solid Celestial Moons
     const moon1Geo = new THREE.SphereGeometry(14, 24, 24);
     const moon1Mat = new THREE.MeshStandardMaterial({
       color: '#8ce6f0',
