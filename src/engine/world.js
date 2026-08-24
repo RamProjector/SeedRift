@@ -71,6 +71,7 @@ export class WorldEngine {
     this.terrainMesh = null;
     this.waterMesh = null;
     this.particleSystem = null;
+    this.surfaceDecorations = [];
 
     if (window.ResizeObserver && container) {
       const ro = new ResizeObserver(() => this.onWindowResize());
@@ -79,16 +80,10 @@ export class WorldEngine {
     window.addEventListener('resize', () => this.onWindowResize());
   }
 
-  // Balanced Flat Valleys vs Jagged Mountain Crags Noise Generator
   getMultiOctaveNoise(x, z, worldId) {
-    // 1. Smooth Flat Basin / Building Plains Base
     const smoothValley = this.noise2D(x * 0.004, z * 0.004) * 6.0;
-
-    // 2. Ridge Mask (Exponent mapped so 70% remains flat, 30% forms mountain ridges)
     const rawRidge = Math.abs(this.noise2D(x * 0.012, z * 0.012));
     const ridgeMask = Math.pow(rawRidge, 2.5);
-
-    // 3. High-Frequency Jagged Mountain Crag Height
     const jaggedCrag = this.noise2D(x * 0.05, z * 0.05) * 22.0;
 
     let height = smoothValley + (ridgeMask * jaggedCrag);
@@ -96,9 +91,9 @@ export class WorldEngine {
     if (worldId === 'ashfields-coreth') {
       height += Math.abs(this.noise2D(x * 0.02, z * 0.02)) * 8.0 - 2.0;
     } else if (worldId === 'thessyras-veil') {
-      height += Math.floor(this.noise2D(x * 0.015, z * 0.015) * 3.0) * 3.0; // Ice plateaus
+      height += Math.floor(this.noise2D(x * 0.015, z * 0.015) * 3.0) * 3.0;
     } else if (worldId === 'vantauri-deep') {
-      height -= 12.0; // Abyssal ocean floor depth
+      height -= 12.0;
     }
 
     return height;
@@ -117,6 +112,8 @@ export class WorldEngine {
     if (this.terrainMesh) this.scene.remove(this.terrainMesh);
     if (this.waterMesh) this.scene.remove(this.waterMesh);
     if (this.particleSystem) this.scene.remove(this.particleSystem);
+    this.surfaceDecorations.forEach(d => this.scene.remove(d));
+    this.surfaceDecorations = [];
 
     this.scene.background = new THREE.Color(worldData.daySkyColor || '#528bb8');
     this.scene.fog = new THREE.FogExp2(worldData.fogColor || '#456a73', 0.0018);
@@ -152,6 +149,21 @@ export class WorldEngine {
       this.terrainMesh.position.set(0, 0, 0);
       this.terrainMesh.receiveShadow = true;
       this.scene.add(this.terrainMesh);
+
+      // Populate Surface Rocks & Fallen Boulders
+      const rockMat = new THREE.MeshStandardMaterial({ color: '#2a3b32', roughness: 0.8 });
+      for (let r = 0; r < 50; r++) {
+        const rx = (Math.random() - 0.5) * 220;
+        const rz = (Math.random() - 0.5) * 220;
+        const ry = this.getTerrainHeight(rx, rz);
+
+        const rockGeo = new THREE.DodecahedronGeometry(Math.random() * 0.8 + 0.4);
+        const rock = new THREE.Mesh(rockGeo, rockMat);
+        rock.position.set(rx, ry + 0.2, rz);
+        rock.rotation.set(Math.random(), Math.random(), Math.random());
+        this.scene.add(rock);
+        this.surfaceDecorations.push(rock);
+      }
 
       if (worldData.id === 'vantauri-deep' || worldData.id === 'thessyras-veil') {
         const waterGeo = new THREE.PlaneGeometry(size, size);
