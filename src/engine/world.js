@@ -17,7 +17,6 @@ export class WorldEngine {
     this.canvas2D = null;
     this.ctx2D = null;
 
-    // Try WebGL context creation
     const testCanvas = document.createElement('canvas');
     const gl = testCanvas.getContext('webgl2') || testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
 
@@ -48,16 +47,28 @@ export class WorldEngine {
       container.appendChild(this.canvas2D);
     }
 
-    // Lights
-    this.hemiLight = new THREE.HemisphereLight('#ffffff', '#445544', 1.2);
+    // Hemispheric & Ambient Lighting
+    this.hemiLight = new THREE.HemisphereLight('#ffffff', '#445544', 1.4);
     this.scene.add(this.hemiLight);
 
-    this.ambientLight = new THREE.AmbientLight('#ffffff', 0.9);
+    this.ambientLight = new THREE.AmbientLight('#ffffff', 1.2);
     this.scene.add(this.ambientLight);
 
-    this.sunLight = new THREE.DirectionalLight('#ffffff', 1.5);
-    this.sunLight.position.set(30, 50, 20);
+    // Directional Sunlight
+    this.sunLight = new THREE.DirectionalLight('#ffffff', 2.8);
+    this.sunLight.position.set(30, 80, 20);
     this.scene.add(this.sunLight);
+
+    // Physical 3D Sun Mesh in Sky
+    const sunGeo = new THREE.SphereGeometry(6, 24, 24);
+    const sunMat = new THREE.MeshStandardMaterial({
+      color: '#ffea9f',
+      emissive: '#ffea9f',
+      emissiveIntensity: 2.5,
+      roughness: 0.1
+    });
+    this.sunMesh = new THREE.Mesh(sunGeo, sunMat);
+    this.scene.add(this.sunMesh);
 
     this.noise2D = createNoise2D();
     this.terrainMesh = null;
@@ -76,14 +87,16 @@ export class WorldEngine {
     if (this.waterMesh) this.scene.remove(this.waterMesh);
     if (this.particleSystem) this.scene.remove(this.particleSystem);
 
-    this.scene.background = new THREE.Color(worldData.skyColor || '#1a2b20');
-    this.scene.fog = new THREE.FogExp2(worldData.fogColor || '#1a2b20', 0.002);
+    this.scene.background = new THREE.Color(worldData.daySkyColor || '#528bb8');
+    this.scene.fog = new THREE.FogExp2(worldData.fogColor || '#456a73', 0.002);
 
     this.ambientLight.color.set(worldData.ambientLight || '#ffffff');
     this.sunLight.color.set(worldData.sunLight || '#ffffff');
+    this.sunMesh.material.color.set(worldData.sunLight || '#ffea9f');
+    this.sunMesh.material.emissive.set(worldData.sunLight || '#ffea9f');
 
     if (this.hasWebGL) {
-      const size = 120;
+      const size = 140;
       const segments = 64;
       const geometry = new THREE.PlaneGeometry(size, size, segments, segments);
       geometry.rotateX(-Math.PI / 2);
@@ -110,8 +123,8 @@ export class WorldEngine {
       geometry.computeVertexNormals();
 
       const terrainMat = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(worldData.groundColor || '#2a3b20'),
-        roughness: 0.6,
+        color: new THREE.Color(worldData.groundColor || '#3d6332'),
+        roughness: 0.5,
         metalness: 0.1
       });
 
@@ -154,6 +167,42 @@ export class WorldEngine {
   }
 
   update(deltaSeconds, playerPos) {
+    const worldData = gameState.getCurrentWorld();
+    const time = gameState.timeOfDay; // 0 to 24 hours
+
+    // Calculate Sun Angle & Trajectory across the sky
+    const sunAngle = ((time - 6) / 24) * Math.PI * 2; // Sunrise at 6am, Noon at 12pm
+    const sunDistance = 180;
+
+    const px = playerPos ? playerPos.x : 0;
+    const py = playerPos ? playerPos.y : 0;
+    const pz = playerPos ? playerPos.z : 0;
+
+    const sunX = Math.cos(sunAngle) * sunDistance;
+    const sunY = Math.sin(sunAngle) * sunDistance;
+    const sunZ = Math.sin(sunAngle * 0.5) * 60;
+
+    this.sunLight.position.set(px + sunX, py + Math.max(10, sunY), pz + sunZ);
+    this.sunMesh.position.set(px + sunX, py + sunY, pz + sunZ);
+
+    // Daytime Ratio (0.0 at night, 1.0 at noon)
+    const dayRatio = Math.max(0.0, Math.sin(sunAngle));
+
+    // Dynamic Sunlight Intensity
+    this.sunLight.intensity = Math.max(0.4, dayRatio * 2.8);
+    this.hemiLight.intensity = Math.max(0.4, dayRatio * 1.4);
+    this.ambientLight.intensity = Math.max(0.3, dayRatio * 1.2);
+
+    // Dynamic Sky Color Transition (Lerp between daySkyColor and nightSkyColor)
+    const dayColor = new THREE.Color(worldData.daySkyColor || '#528bb8');
+    const nightColor = new THREE.Color(worldData.nightSkyColor || '#0f1724');
+    const currentSkyColor = nightColor.clone().lerp(dayColor, dayRatio);
+
+    this.scene.background = currentSkyColor;
+    if (this.scene.fog) {
+      this.scene.fog.color = currentSkyColor;
+    }
+
     if (this.particleSystem) {
       const pos = this.particleSystem.geometry.attributes.position;
       for (let i = 0; i < pos.count; i++) {
@@ -173,12 +222,6 @@ export class WorldEngine {
       }
       pos.needsUpdate = true;
     }
-
-    const time = gameState.timeOfDay;
-    const sunAngle = ((time - 6) / 24) * Math.PI * 2;
-    this.sunLight.position.x = Math.cos(sunAngle) * 50;
-    this.sunLight.position.y = Math.sin(sunAngle) * 50;
-    this.sunLight.intensity = Math.max(0.6, Math.sin(sunAngle) * 1.5);
   }
 
   getTerrainHeight(x, z) {
