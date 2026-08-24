@@ -4,6 +4,10 @@ import { gameState } from '../systems/state.js';
 export class PhysicsEngine {
   constructor() {
     this.gravityBase = 18.0;
+    this.substeps = 4; // 4 Sub-stepping solver iterations per frame
+    this.dynamicFriction = 0.85;
+    this.staticFriction = 0.95;
+    this.restitution = 0.05; // Low bounciness stops ground jitter
   }
 
   getGravity() {
@@ -27,7 +31,6 @@ export class PhysicsEngine {
     return world.id === 'vantauri-deep' && pos.y < 3.0;
   }
 
-  // Calculate Terrain Surface Normal Vector for Gravity Magnetization
   getTerrainNormal(x, z, worldEngine) {
     if (!worldEngine) return new THREE.Vector3(0, 1, 0);
 
@@ -39,27 +42,50 @@ export class PhysicsEngine {
     const vecRight = new THREE.Vector3(delta, hRight - hCenter, 0);
     const vecForward = new THREE.Vector3(0, hForward - hCenter, delta);
 
-    // Cross product gives surface normal vector
     const normal = new THREE.Vector3().crossVectors(vecForward, vecRight).normalize();
     return normal;
   }
 
-  // Align Object Quaternion to Terrain Surface Normal Vector (Gravity Magnetization)
   alignToTerrainNormal(objectGroup, position, yaw, worldEngine) {
     if (!objectGroup || !worldEngine) return;
 
     const normal = this.getTerrainNormal(position.x, position.z, worldEngine);
 
-    // Base orientation from yaw
     const yawQuaternion = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), yaw);
-
-    // Normal alignment quaternion
     const up = new THREE.Vector3(0, 1, 0);
     const normalQuaternion = new THREE.Quaternion().setFromUnitVectors(up, normal);
 
-    // Combine yaw and normal alignment
     const finalQuaternion = normalQuaternion.multiply(yawQuaternion);
-    objectGroup.quaternion.slerp(finalQuaternion, 0.2); // Smooth magnetization
+    objectGroup.quaternion.slerp(finalQuaternion, 0.2);
+  }
+
+  // Continuous Collision Detection (CCD) Raycast Path Solver
+  applyContinuousCollisionDetection(prevPos, nextPos, worldEngine) {
+    if (!worldEngine) return nextPos;
+
+    // Raycast path vector from prevPos to nextPos
+    const rayDir = new THREE.Vector3().subVectors(nextPos, prevPos);
+    const rayLength = rayDir.length();
+
+    if (rayLength > 0.001) {
+      rayDir.normalize();
+
+      // Check sub-step points along motion path
+      const steps = 4;
+      for (let i = 1; i <= steps; i++) {
+        const t = i / steps;
+        const testPoint = new THREE.Vector3().lerpVectors(prevPos, nextPos, t);
+        const groundY = worldEngine.getTerrainHeight(testPoint.x, testPoint.z);
+
+        // Tunneling prevention: if sub-step penetrates below terrain, clamp immediately
+        if (testPoint.y < groundY) {
+          nextPos.y = groundY;
+          break;
+        }
+      }
+    }
+
+    return nextPos;
   }
 }
 

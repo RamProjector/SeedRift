@@ -10,7 +10,6 @@ export class PlayerController {
     this.camera = camera;
     this.worldEngine = worldEngine;
 
-    // FOV 75 degrees for panoramic open-world exploration
     this.camera.fov = 75;
     this.camera.updateProjectionMatrix();
 
@@ -37,32 +36,27 @@ export class PlayerController {
       roughness: 0.1
     });
 
-    // Torso
     const torsoGeo = new THREE.CapsuleGeometry(0.38, 0.85, 8, 16);
     this.torso = new THREE.Mesh(torsoGeo, suitMat);
     this.torso.position.y = 0.85;
     this.torso.castShadow = true;
     this.group.add(this.torso);
 
-    // Chest Core
     const coreGeo = new THREE.OctahedronGeometry(0.12);
     const core = new THREE.Mesh(coreGeo, glowCoreMat);
     core.position.set(0, 1.05, 0.38);
     this.group.add(core);
 
-    // Visor
     const headGeo = new THREE.SphereGeometry(0.28, 16, 16);
     this.head = new THREE.Mesh(headGeo, glowCoreMat);
     this.head.position.set(0, 1.48, 0.05);
     this.group.add(this.head);
 
-    // Thruster Pack
     const packGeo = new THREE.BoxGeometry(0.42, 0.65, 0.28);
     const pack = new THREE.Mesh(packGeo, trimMat);
     pack.position.set(0, 0.95, -0.28);
     this.group.add(pack);
 
-    // Wings
     const wingGeo = new THREE.PlaneGeometry(1.6, 0.8);
     const wingMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
@@ -77,7 +71,6 @@ export class PlayerController {
     this.wings.rotation.x = Math.PI / 4;
     this.group.add(this.wings);
 
-    // Arms & Thighs
     this.armL = new THREE.Group();
     const armGeo = new THREE.CylinderGeometry(0.08, 0.06, 0.6);
     const armLMesh = new THREE.Mesh(armGeo, suitMat);
@@ -93,7 +86,6 @@ export class PlayerController {
     this.armR.position.set(-0.44, 1.15, 0);
     this.group.add(this.armR);
 
-    // Legs
     this.legL = new THREE.Group();
     const legGeo = new THREE.CylinderGeometry(0.1, 0.07, 0.65);
     const legLMesh = new THREE.Mesh(legGeo, suitMat);
@@ -125,7 +117,6 @@ export class PlayerController {
     this.isFirstPerson = false;
     this.animTime = 0;
 
-    // Camera Orbit & Spring Arm
     this.camYaw = 0;
     this.camPitch = 0.2;
     this.maxCamDistance = 5.8;
@@ -310,14 +301,26 @@ export class PlayerController {
 
       this.group.rotation.y = Math.atan2(moveInput.x, moveInput.z);
     } else {
-      this.velocity.x = 0;
-      this.velocity.z = 0;
+      // Dynamic & Static Friction Stopping Physics
+      this.velocity.x *= physicsEngine.dynamicFriction;
+      this.velocity.z *= physicsEngine.dynamicFriction;
+      if (Math.abs(this.velocity.x) < 0.01) this.velocity.x = 0;
+      if (Math.abs(this.velocity.z) < 0.01) this.velocity.z = 0;
     }
 
-    this.position.x += this.velocity.x * deltaSeconds;
-    this.position.z += this.velocity.z * deltaSeconds;
+    // 4 Sub-stepping solver iterations for Continuous Collision Detection (CCD)
+    const prevPos = this.position.clone();
 
-    collisionEngine.resolveCollisions(this.position, colliders);
+    const substepDelta = deltaSeconds / physicsEngine.substeps;
+    for (let step = 0; step < physicsEngine.substeps; step++) {
+      this.position.x += (this.velocity.x * substepDelta);
+      this.position.z += (this.velocity.z * substepDelta);
+
+      collisionEngine.resolveCollisions(this.position, colliders);
+    }
+
+    // Apply CCD Path Raycast Solver to prevent tunneling through steep slopes
+    physicsEngine.applyContinuousCollisionDetection(prevPos, this.position, this.worldEngine);
 
     let terrainHeight = this.worldEngine.getTerrainHeight(this.position.x, this.position.z);
     if (this.isTunneling) {
@@ -351,15 +354,12 @@ export class PlayerController {
       this.isGrounded = false;
     }
 
-    // 4-Pose Fundamental Walk Cycle Animation Mechanics (Contact, Down, Passing, Up)
+    // Walk Cycle Poses
     if (this.armL && this.armR && this.legL && this.legR) {
       const freq = this.keys.sprint ? 14.0 : 9.0;
       const walkPhase = (this.animTime * freq) % (Math.PI * 2);
 
-      // Contact Pose (phase = 0 or PI): Stride extension
       const strideAngle = Math.sin(walkPhase) * (isMoving ? 0.65 : 0.04);
-
-      // Down & Up Poses (phase = PI/4 or 3PI/4): Body weight absorption dip & push-off rise
       const verticalWeightDip = Math.sin(walkPhase * 2.0) * (isMoving ? 0.06 : 0.01);
 
       if (this.torso) {
@@ -385,7 +385,7 @@ export class PlayerController {
       }
     }
 
-    // Camera Mode Positioning with Spring Arm Collision Detection
+    // Camera Mode Positioning with Spring Arm
     if (this.isFirstPerson) {
       this.camera.position.set(this.position.x, this.position.y + 1.5, this.position.z);
       const lookTarget = new THREE.Vector3(
@@ -397,12 +397,10 @@ export class PlayerController {
     } else {
       const rightVector = new THREE.Vector3(1, 0, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), this.camYaw);
 
-      // Ideal Camera Target
       const targetCamX = this.position.x + Math.sin(this.camYaw) * Math.cos(this.camPitch) * this.maxCamDistance + rightVector.x * this.shoulderOffset;
       const targetCamY = this.position.y + Math.sin(this.camPitch) * this.maxCamDistance + 1.3;
       const targetCamZ = this.position.z + Math.cos(this.camYaw) * Math.cos(this.camPitch) * this.maxCamDistance + rightVector.z * this.shoulderOffset;
 
-      // Spring Arm Terrain Raycast: Prevent Camera Clipping through Mountains
       const camTerrainY = this.worldEngine.getTerrainHeight(targetCamX, targetCamZ);
       const effectiveY = Math.max(camTerrainY + 0.6, targetCamY);
 
