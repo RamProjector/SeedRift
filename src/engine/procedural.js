@@ -84,14 +84,14 @@ export class ProceduralMeshGenerator {
     // 1. Gliders / Flying Fauna
     if (name.includes('drift') || name.includes('moth') || name.includes('fin') || name.includes('flyer') || name.includes('flicker')) {
       const thoraxGeo = new THREE.ConeGeometry(height * 0.35, length, 12);
-      thoraxGeo.rotateX(Math.PI / 2);
+      thoraxGeo.rotateX(-Math.PI / 2); // Cone tip points FORWARD along -Z
       const thorax = new THREE.Mesh(thoraxGeo, mat);
       group.add(thorax);
 
       const wingShape = new THREE.Shape();
       wingShape.moveTo(0, 0);
-      wingShape.quadraticCurveTo(length * 0.8, height * 1.6, length * 1.6, height * 0.9);
-      wingShape.quadraticCurveTo(length * 0.8, -height * 0.6, 0, 0);
+      wingShape.quadraticCurveTo(height * 1.5, length * 0.4, height * 2.0, -length * 0.2);
+      wingShape.quadraticCurveTo(height * 1.0, -length * 0.8, 0, 0);
 
       const wingGeo = new THREE.ShapeGeometry(wingShape);
       const wingMat = new THREE.MeshStandardMaterial({
@@ -99,39 +99,40 @@ export class ProceduralMeshGenerator {
         emissive: new THREE.Color(secondary),
         emissiveIntensity: 0.9,
         transparent: true,
-        opacity: 0.8,
+        opacity: 0.85,
         side: THREE.DoubleSide
       });
 
       const wingLeft = new THREE.Mesh(wingGeo, wingMat);
-      wingLeft.rotation.x = Math.PI / 6;
+      wingLeft.position.set(0.1, 0, 0);
       wingLeft.name = 'wingLeft';
       group.add(wingLeft);
 
       const wingRight = new THREE.Mesh(wingGeo, wingMat);
-      wingRight.scale.y = -1;
-      wingRight.rotation.x = -Math.PI / 6;
+      wingRight.scale.x = -1;
+      wingRight.position.set(-0.1, 0, 0);
       wingRight.name = 'wingRight';
       group.add(wingRight);
 
-      // Landing Legs
       for (let i = 0; i < 2; i++) {
         const legGeo = new THREE.CylinderGeometry(0.03, 0.02, height * 0.5);
         const leg = new THREE.Mesh(legGeo, armorMat);
         const side = (i === 0) ? 1 : -1;
-        leg.position.set(side * 0.15, -height * 0.2, 0);
+        leg.position.set(side * 0.15, -height * 0.25, 0);
         group.add(leg);
       }
 
       const antGeo = new THREE.CylinderGeometry(0.02, 0.04, height * 0.9);
+      antGeo.rotateX(Math.PI / 3);
+
       const antL = new THREE.Mesh(antGeo, glowMat);
-      antL.position.set(0.1, height * 0.2, length * 0.4);
-      antL.rotation.z = -0.4;
+      antL.position.set(0.12, height * 0.2, -length * 0.4);
+      antL.rotation.y = -0.2;
       group.add(antL);
 
       const antR = new THREE.Mesh(antGeo, glowMat);
-      antR.position.set(-0.1, height * 0.2, length * 0.4);
-      antR.rotation.z = 0.4;
+      antR.position.set(-0.12, height * 0.2, -length * 0.4);
+      antR.rotation.y = 0.2;
       group.add(antR);
 
     // 2. Shelled Burrowers / Armored Scrappers
@@ -154,7 +155,6 @@ export class ProceduralMeshGenerator {
         group.add(node);
       }
 
-      // 4 Heavy Digging Legs with Claws
       for (let i = 0; i < 4; i++) {
         const legGroup = new THREE.Group();
         const legGeo = new THREE.CylinderGeometry(0.08, 0.05, height * 0.5, 8);

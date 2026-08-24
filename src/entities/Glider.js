@@ -5,7 +5,7 @@ export class GliderEntity extends BaseEntity {
   constructor(id, speciesData, pos) {
     super(id, speciesData.commonName, pos, 1.0);
     this.data = speciesData;
-    this.speed = 2.5;
+    this.speed = 2.8;
     this.wanderTimer = Math.random() * 5;
     this.targetPos = pos.clone();
     this.hoverAltitude = 5.0 + Math.random() * 3.0;
@@ -31,18 +31,21 @@ export class GliderEntity extends BaseEntity {
     const glowMat = new THREE.MeshStandardMaterial({
       color: new THREE.Color(secondary),
       emissive: new THREE.Color(secondary),
-      emissiveIntensity: 1.0
+      emissiveIntensity: 1.2,
+      roughness: 0.1
     });
 
+    // Sleek Aerodynamic Thorax aligned along Z-axis (Forward is -Z)
     const thoraxGeo = new THREE.ConeGeometry(height * 0.35, length, 12);
-    thoraxGeo.rotateX(Math.PI / 2);
+    thoraxGeo.rotateX(-Math.PI / 2); // Cone tip points FORWARD along -Z
     const thorax = new THREE.Mesh(thoraxGeo, mat);
     this.group.add(thorax);
 
+    // Bilateral Wings extending along X-axis (Left +X, Right -X)
     const wingShape = new THREE.Shape();
     wingShape.moveTo(0, 0);
-    wingShape.quadraticCurveTo(length * 0.8, height * 1.6, length * 1.6, height * 0.9);
-    wingShape.quadraticCurveTo(length * 0.8, -height * 0.6, 0, 0);
+    wingShape.quadraticCurveTo(height * 1.5, length * 0.4, height * 2.0, -length * 0.2);
+    wingShape.quadraticCurveTo(height * 1.0, -length * 0.8, 0, 0);
 
     const wingGeo = new THREE.ShapeGeometry(wingShape);
     const wingMat = new THREE.MeshStandardMaterial({
@@ -50,29 +53,43 @@ export class GliderEntity extends BaseEntity {
       emissive: new THREE.Color(secondary),
       emissiveIntensity: 0.9,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.85,
       side: THREE.DoubleSide
     });
 
+    // Left Wing (+X)
     this.wingL = new THREE.Mesh(wingGeo, wingMat);
-    this.wingL.rotation.x = Math.PI / 6;
+    this.wingL.position.set(0.1, 0, 0);
     this.group.add(this.wingL);
 
+    // Right Wing (-X)
     this.wingR = new THREE.Mesh(wingGeo, wingMat);
-    this.wingR.scale.y = -1;
-    this.wingR.rotation.x = -Math.PI / 6;
+    this.wingR.scale.x = -1;
+    this.wingR.position.set(-0.1, 0, 0);
     this.group.add(this.wingR);
 
+    // Forward Antennae (projecting along -Z)
     const antGeo = new THREE.CylinderGeometry(0.02, 0.04, height * 0.9);
+    antGeo.rotateX(Math.PI / 3);
+
     const antL = new THREE.Mesh(antGeo, glowMat);
-    antL.position.set(0.1, height * 0.2, length * 0.4);
-    antL.rotation.z = -0.4;
+    antL.position.set(0.12, height * 0.2, -length * 0.4);
+    antL.rotation.y = -0.2;
     this.group.add(antL);
 
     const antR = new THREE.Mesh(antGeo, glowMat);
-    antR.position.set(-0.1, height * 0.2, length * 0.4);
-    antR.rotation.z = 0.4;
+    antR.position.set(-0.12, height * 0.2, -length * 0.4);
+    antR.rotation.y = 0.2;
     this.group.add(antR);
+
+    // Delicate Landing Legs
+    for (let i = 0; i < 2; i++) {
+      const legGeo = new THREE.CylinderGeometry(0.03, 0.02, height * 0.5);
+      const leg = new THREE.Mesh(legGeo, mat);
+      const side = (i === 0) ? 1 : -1;
+      leg.position.set(side * 0.15, -height * 0.25, 0);
+      this.group.add(leg);
+    }
   }
 
   update(deltaSeconds, worldEngine) {
@@ -80,13 +97,13 @@ export class GliderEntity extends BaseEntity {
 
     if (worldEngine) {
       const terrainH = worldEngine.getTerrainHeight(this.group.position.x, this.group.position.z);
-      this.group.position.y = terrainH + this.hoverAltitude + Math.sin(this.animTime * 2.0) * 0.5;
+      this.group.position.y = terrainH + this.hoverAltitude + Math.sin(this.animTime * 2.5) * 0.4;
     }
 
     this.wanderTimer -= deltaSeconds;
     if (this.wanderTimer <= 0) {
-      const rx = this.group.position.x + (Math.random() - 0.5) * 35;
-      const rz = this.group.position.z + (Math.random() - 0.5) * 35;
+      const rx = this.group.position.x + (Math.random() - 0.5) * 40;
+      const rz = this.group.position.z + (Math.random() - 0.5) * 40;
 
       this.targetPos.set(rx, 0, rz);
       this.wanderTimer = Math.random() * 6 + 4;
@@ -101,11 +118,18 @@ export class GliderEntity extends BaseEntity {
     if (dir.length() > 0.2) {
       dir.normalize();
       this.group.position.addScaledVector(dir, this.speed * deltaSeconds);
-      this.group.rotation.y = Math.atan2(dir.x, dir.z);
+
+      // Point head/nose (-Z) directly toward movement direction
+      const forwardAngle = Math.atan2(dir.x, dir.z) + Math.PI;
+      this.group.rotation.y = forwardAngle;
+
+      // Add banking roll into flight turns
+      this.group.rotation.z = Math.sin(this.animTime * 3.0) * 0.1;
     }
 
+    // High-Frequency Flapping Wing Animation
     if (this.wingL && this.wingR) {
-      const flap = Math.sin(this.animTime * 10.0) * 0.45;
+      const flap = Math.sin(this.animTime * 12.0) * 0.45;
       this.wingL.rotation.z = flap;
       this.wingR.rotation.z = -flap;
     }
