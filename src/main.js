@@ -102,8 +102,9 @@ class Game {
     this.skyboxEngine.update(deltaSeconds);
     wardenProgress.checkRankUpgrade();
 
-    this.player.update(deltaSeconds);
-    this.entityManager.update(deltaSeconds, this.player.position);
+    const colliders = this.entityManager.getColliders();
+    this.player.update(deltaSeconds, colliders);
+    this.entityManager.update(deltaSeconds);
     this.rivalManager.update(deltaSeconds);
     this.haulingManager.update(deltaSeconds);
     this.worldEngine.update(deltaSeconds, this.player.position);
@@ -129,7 +130,6 @@ class Game {
 
     this.hud.update(deltaSeconds);
 
-    // Direct render ensures bright, clear 3D/2D output with zero black frame buffer issues!
     this.worldEngine.render(
       this.player.position,
       this.player.group.rotation.y,

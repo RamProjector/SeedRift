@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { gameState } from '../systems/state.js';
 import { soundEngine } from '../audio/sound.js';
 import { physicsEngine } from './physics.js';
+import { collisionEngine } from './collision.js';
 
 export class PlayerController {
   constructor(scene, camera, worldEngine) {
@@ -11,6 +12,7 @@ export class PlayerController {
 
     this.group = new THREE.Group();
 
+    // Torso
     const torsoGeo = new THREE.CapsuleGeometry(0.35, 0.8, 8, 16);
     const suitMat = new THREE.MeshStandardMaterial({
       color: '#1a2b22',
@@ -22,6 +24,7 @@ export class PlayerController {
     torso.castShadow = true;
     this.group.add(torso);
 
+    // Visor
     const headGeo = new THREE.SphereGeometry(0.28, 16, 16);
     const visorMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
@@ -30,16 +33,18 @@ export class PlayerController {
       roughness: 0.1,
       metalness: 0.9
     });
-    const head = new THREE.Mesh(headGeo, visorMat);
-    head.position.set(0, 1.45, 0.05);
-    this.group.add(head);
+    this.head = new THREE.Mesh(headGeo, visorMat);
+    this.head.position.set(0, 1.45, 0.05);
+    this.group.add(this.head);
 
+    // Backpack
     const packGeo = new THREE.BoxGeometry(0.4, 0.6, 0.25);
     const packMat = new THREE.MeshStandardMaterial({ color: '#2a3b30', metalness: 0.9 });
     const pack = new THREE.Mesh(packGeo, packMat);
     pack.position.set(0, 0.95, -0.25);
     this.group.add(pack);
 
+    // Wings
     const wingGeo = new THREE.PlaneGeometry(1.6, 0.8);
     const wingMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
@@ -54,6 +59,38 @@ export class PlayerController {
     this.wings.rotation.x = Math.PI / 4;
     this.group.add(this.wings);
 
+    // Arms
+    this.armL = new THREE.Group();
+    const armGeo = new THREE.CylinderGeometry(0.08, 0.06, 0.6);
+    const armLMesh = new THREE.Mesh(armGeo, suitMat);
+    armLMesh.position.y = -0.3;
+    this.armL.add(armLMesh);
+    this.armL.position.set(0.42, 1.15, 0);
+    this.group.add(this.armL);
+
+    this.armR = new THREE.Group();
+    const armRMesh = new THREE.Mesh(armGeo, suitMat);
+    armRMesh.position.y = -0.3;
+    this.armR.add(armRMesh);
+    this.armR.position.set(-0.42, 1.15, 0);
+    this.group.add(this.armR);
+
+    // Legs
+    this.legL = new THREE.Group();
+    const legGeo = new THREE.CylinderGeometry(0.1, 0.07, 0.65);
+    const legLMesh = new THREE.Mesh(legGeo, suitMat);
+    legLMesh.position.y = -0.32;
+    this.legL.add(legLMesh);
+    this.legL.position.set(0.18, 0.45, 0);
+    this.group.add(this.legL);
+
+    this.legR = new THREE.Group();
+    const legRMesh = new THREE.Mesh(legGeo, suitMat);
+    legRMesh.position.y = -0.32;
+    this.legR.add(legRMesh);
+    this.legR.position.set(-0.18, 0.45, 0);
+    this.group.add(this.legR);
+
     this.glowLight = new THREE.PointLight('#5fe6b4', 0, 15);
     this.glowLight.position.set(0, 1.2, 0);
     this.group.add(this.glowLight);
@@ -67,6 +104,7 @@ export class PlayerController {
     this.isGrounded = false;
     this.isGliding = false;
     this.isTunneling = false;
+    this.animTime = 0;
 
     this.camYaw = 0;
     this.camPitch = 0.3;
@@ -190,7 +228,8 @@ export class PlayerController {
     }
   }
 
-  update(deltaSeconds) {
+  update(deltaSeconds, colliders = []) {
+    this.animTime += deltaSeconds;
     const world = gameState.getCurrentWorld();
     const equipped = gameState.getEquippedSplices();
 
@@ -222,30 +261,33 @@ export class PlayerController {
       this.isGliding = false;
     }
 
-    // Directional input
     const moveInput = new THREE.Vector3(0, 0, 0);
     if (this.keys.forward) moveInput.z -= 1;
     if (this.keys.backward) moveInput.z += 1;
     if (this.keys.left) moveInput.x -= 1;
     if (this.keys.right) moveInput.x += 1;
 
+    let isMoving = false;
+
     if (moveInput.lengthSq() > 0) {
+      isMoving = true;
       moveInput.normalize();
       moveInput.applyAxisAngle(new THREE.Vector3(0, 1, 0), this.camYaw);
 
-      // Direct, crisp velocity response (zero drift when key released!)
       this.velocity.x = moveInput.x * targetSpeed;
       this.velocity.z = moveInput.z * targetSpeed;
 
       this.group.rotation.y = Math.atan2(moveInput.x, moveInput.z);
     } else {
-      // Immediate full stop when no direction keys are pressed
       this.velocity.x = 0;
       this.velocity.z = 0;
     }
 
     this.position.x += this.velocity.x * deltaSeconds;
     this.position.z += this.velocity.z * deltaSeconds;
+
+    // Resolve Bounding Box Collisions against world objects & structures
+    collisionEngine.resolveCollisions(this.position, colliders);
 
     let terrainHeight = this.worldEngine.getTerrainHeight(this.position.x, this.position.z);
     if (this.isTunneling) {
@@ -277,6 +319,30 @@ export class PlayerController {
       }
     } else if (!isWater) {
       this.isGrounded = false;
+    }
+
+    // Player Limb Skeletal Animations (Walk/Run Swing & Gliding pose)
+    if (this.armL && this.armR && this.legL && this.legR) {
+      const swingFreq = this.keys.sprint ? 14.0 : 9.0;
+      const swing = Math.sin(this.animTime * swingFreq) * (isMoving ? 0.6 : 0.04);
+
+      if (this.isGliding) {
+        this.armL.rotation.z = -1.2;
+        this.armR.rotation.z = 1.2;
+        this.legL.rotation.x = 0.3;
+        this.legR.rotation.x = 0.3;
+      } else {
+        this.armL.rotation.z = 0;
+        this.armR.rotation.z = 0;
+        this.armL.rotation.x = swing;
+        this.armR.rotation.x = -swing;
+        this.legL.rotation.x = -swing;
+        this.legR.rotation.x = swing;
+      }
+
+      if (this.head) {
+        this.head.position.y = 1.45 + Math.sin(this.animTime * 4.0) * 0.02;
+      }
     }
 
     const cx = this.position.x + Math.sin(this.camYaw) * Math.cos(this.camPitch) * this.camDistance;
