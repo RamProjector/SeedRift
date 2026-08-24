@@ -28,10 +28,8 @@ class Game {
   }
 
   init() {
-    // 1. Initialize Systems
     ecologySim.init();
 
-    // 2. Initialize UI Modals
     weaveUI.init();
     shipUI.init((newWorld) => this.onWorldChange(newWorld));
     this.buildUI.init();
@@ -45,7 +43,6 @@ class Game {
       () => this.buildingManager.cancelPlacement()
     );
 
-    // 3. Build initial world
     const worldData = gameState.getCurrentWorld();
     this.worldEngine.buildWorld(worldData);
     this.entityManager.populateWorld(worldData);
@@ -56,7 +53,6 @@ class Game {
       soundEngine.resume();
     }, { once: true });
 
-    // 4. Start game loop
     requestAnimationFrame((t) => this.loop(t));
   }
 
@@ -74,37 +70,38 @@ class Game {
     const deltaSeconds = Math.min(0.1, (currentTime - this.lastTime) / 1000);
     this.lastTime = currentTime;
 
-    // 1. Systems Update
     gameState.updateTime(deltaSeconds * 0.8);
     gameState.updateExtractors(deltaSeconds);
     ecologySim.update(deltaSeconds);
     vitalsSystem.update(deltaSeconds);
     eventSystem.update(deltaSeconds);
 
-    // 2. Player & Entities Update
     this.player.update(deltaSeconds);
     this.entityManager.update(deltaSeconds, this.player.position);
     this.rivalManager.update(deltaSeconds);
     this.worldEngine.update(deltaSeconds, this.player.position);
 
-    // 3. Construction update
     if (this.buildingManager.isPlacing) {
       this.buildingManager.updatePreview(this.player.position, this.player.group.rotation.y);
     }
     this.buildingManager.updateStructures(deltaSeconds, this.player.position);
 
-    // 4. Scanner Raycast Check
     const scannable = this.entityManager.getNearestScannable(
       this.player.position,
       this.rivalManager
     );
     this.hud.updateScannable(scannable, this.buildingManager.isPlacing);
 
-    // 5. HUD Update
     this.hud.update(deltaSeconds);
 
-    // 6. Render Scene
-    this.worldEngine.render();
+    this.worldEngine.render(
+      this.player.position,
+      this.player.group.rotation.y,
+      this.entityManager,
+      this.entityManager.ruinMonolith,
+      this.rivalManager,
+      this.buildingManager
+    );
   }
 }
 
@@ -114,10 +111,6 @@ function start() {
     game.init();
   } catch (err) {
     console.error("Game Init Failed:", err);
-    var errBox = document.getElementById('debugErrorBox') || document.createElement('div');
-    errBox.style.cssText = 'position:fixed;top:10px;left:10px;right:10px;z-index:99999;background:rgba(180,20,20,0.95);color:#fff;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;white-space:pre-wrap;';
-    errBox.textContent = "⚠️ Game Engine Initialization Error:\n" + (err.stack || err.message || err);
-    document.body.appendChild(errBox);
   }
 }
 
