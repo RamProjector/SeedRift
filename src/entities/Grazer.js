@@ -11,6 +11,7 @@ export class GrazerEntity extends BaseEntity {
     this.actionState = 'IDLE';
     this.actionTimer = Math.random() * 4;
     this.targetPos = pos.clone();
+    this.velocity = new THREE.Vector3();
 
     this.buildModel();
     this.updateBoundingBox();
@@ -43,7 +44,6 @@ export class GrazerEntity extends BaseEntity {
       roughness: 0.1
     });
 
-    // Body
     const bodyGeo = new THREE.CapsuleGeometry(height * 0.38, length * 0.65, 8, 16);
     bodyGeo.rotateX(Math.PI / 2);
     const body = new THREE.Mesh(bodyGeo, mat);
@@ -58,7 +58,6 @@ export class GrazerEntity extends BaseEntity {
       this.group.add(plate);
     }
 
-    // Head
     const headGeo = new THREE.SphereGeometry(height * 0.32, 12, 12);
     this.head = new THREE.Mesh(headGeo, mat);
     this.head.position.set(0, height * 0.7, length * 0.48);
@@ -74,7 +73,6 @@ export class GrazerEntity extends BaseEntity {
     this.mandR.position.set(-0.12, -0.1, 0.25);
     this.head.add(this.mandR);
 
-    // Procedural IK Legs with World Space Foot Anchoring
     this.ikLegs = [];
     for (let i = 0; i < 4; i++) {
       const legGroup = new THREE.Group();
@@ -124,12 +122,12 @@ export class GrazerEntity extends BaseEntity {
       }
     }
 
+    const prevPos = this.group.position.clone();
     const dir = new THREE.Vector3().subVectors(this.targetPos, this.group.position);
     dir.y = 0;
     const dist = dir.length();
-    const isMoving = (this.actionState === 'WALKING' && dist > 0.2);
 
-    if (isMoving) {
+    if (this.actionState === 'WALKING' && dist > 0.2) {
       dir.normalize();
       this.group.position.addScaledVector(dir, this.speed * deltaSeconds);
       this.group.rotation.y = Math.atan2(dir.x, dir.z);
@@ -143,8 +141,12 @@ export class GrazerEntity extends BaseEntity {
       physicsEngine.alignToTerrainNormal(this.group, this.group.position, yaw, worldEngine);
     }
 
-    // Gait Conductor Update with World Space Foot Anchoring (Zero Foot Sliding)
-    this.gaitConductor.update(deltaSeconds, this.group.position, this.group.rotation.y, isMoving, this.speed, worldEngine);
+    // Calculate actual velocity magnitude (Decouples input from animation!)
+    this.velocity.subVectors(this.group.position, prevPos).divideScalar(Math.max(0.001, deltaSeconds));
+    const velocityMag = this.velocity.length();
+
+    // Gait Conductor Update with Velocity Listener
+    this.gaitConductor.update(deltaSeconds, this.group.position, this.group.rotation.y, velocityMag, this.speed, worldEngine);
 
     if (this.actionState === 'GRAZING') {
       if (this.head) {

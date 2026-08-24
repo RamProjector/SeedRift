@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 
-// Quadratic Bezier Curve for Natural Arc Foot Steps
 export function computeBezierStepArc(p0, p1, p2, t) {
   const oneMinusT = 1.0 - t;
   const term0 = oneMinusT * oneMinusT;
@@ -14,20 +13,19 @@ export function computeBezierStepArc(p0, p1, p2, t) {
   );
 }
 
-// Procedural Leg Inverse Kinematics & World Space Foot Anchoring State Machine
 export class ProceduralLegIK {
   constructor(legGroup, hipOffset, maxLegLength = 1.2) {
     this.legGroup = legGroup;
     this.hipOffset = hipOffset.clone();
     this.maxLegLength = maxLegLength;
 
-    this.state = 'PLANTED'; // PLANTED, LIFTING, MOVING, PLANTING
+    this.state = 'PLANTED'; // PLANTED, LIFTING, MOVING, PLANTING, HOPPING
     this.worldAnchor = new THREE.Vector3();
     this.stepStart = new THREE.Vector3();
     this.stepTarget = new THREE.Vector3();
     this.stepControlPoint = new THREE.Vector3();
     this.stepProgress = 0.0;
-    this.stepDuration = 0.18; // 180ms step duration
+    this.stepDuration = 0.18;
   }
 
   initAnchor(bodyPos, bodyYaw, worldEngine) {
@@ -37,14 +35,14 @@ export class ProceduralLegIK {
     this.state = 'PLANTED';
   }
 
-  triggerStep(targetWorldPos, stepHeight = 0.4) {
+  triggerStep(targetWorldPos, stepHeight = 0.45, duration = 0.18) {
     if (this.state !== 'PLANTED') return;
 
     this.state = 'LIFTING';
+    this.stepDuration = duration;
     this.stepStart.copy(this.worldAnchor);
     this.stepTarget.copy(targetWorldPos);
 
-    // Bezier Control Point P1 elevated above midpoint
     this.stepControlPoint.lerpVectors(this.stepStart, this.stepTarget, 0.5);
     this.stepControlPoint.y = Math.max(this.stepStart.y, this.stepTarget.y) + stepHeight;
 
@@ -55,11 +53,9 @@ export class ProceduralLegIK {
     const hipWorld = new THREE.Vector3().copy(this.hipOffset).applyAxisAngle(new THREE.Vector3(0, 1, 0), bodyYaw).add(bodyPos);
 
     if (this.state === 'PLANTED') {
-      // Lock leg foot strictly to WorldAnchor (Zero Moonwalking / Foot Sliding!)
       const footLocal = new THREE.Vector3().subVectors(this.worldAnchor, hipWorld);
       this.legGroup.position.copy(footLocal);
 
-      // Clamp leg length constraint
       if (footLocal.length() > this.maxLegLength) {
         footLocal.normalize().multiplyScalar(this.maxLegLength);
         this.legGroup.position.copy(footLocal);
@@ -74,13 +70,11 @@ export class ProceduralLegIK {
         this.state = 'MOVING';
       }
 
-      // Bezier Arc Step Interpolation
       const currentFootWorld = computeBezierStepArc(this.stepStart, this.stepControlPoint, this.stepTarget, this.stepProgress);
       const footLocal = new THREE.Vector3().subVectors(currentFootWorld, hipWorld);
       this.legGroup.position.copy(footLocal);
 
     } else if (this.state === 'PLANTING') {
-      // Raycast down to terrain surface impact
       const groundY = worldEngine ? worldEngine.getTerrainHeight(this.stepTarget.x, this.stepTarget.z) : bodyPos.y;
       this.worldAnchor.set(this.stepTarget.x, groundY, this.stepTarget.z);
 
@@ -91,40 +85,55 @@ export class ProceduralLegIK {
   }
 }
 
-// Central Gait Conductor (The Brain coordinating alternating leg steps)
+// Central Gait Conductor (Brain Decoupling Locomotion Velocity from Animation)
 export class GaitConductor {
   constructor(legs) {
-    this.legs = legs; // Array of ProceduralLegIK
+    this.legs = legs;
     this.activeLegIndex = 0;
-    this.stepThreshold = 1.1; // Distance before triggering next step
+    this.baseStepThreshold = 1.0;
+    this.stability = 1.0; // Stability Index (1.0 = stable, 0.0 = staggered)
   }
 
   init(bodyPos, bodyYaw, worldEngine) {
     this.legs.forEach(leg => leg.initAnchor(bodyPos, bodyYaw, worldEngine));
   }
 
-  update(deltaSeconds, bodyPos, bodyYaw, isMoving, speed, worldEngine) {
+  update(deltaSeconds, bodyPos, bodyYaw, velocityMagnitude, speed, worldEngine) {
+    // Decouple input from animation: Listen strictly to actual Velocity Magnitude!
+    const isMoving = velocityMagnitude > 0.1;
+
+    // Calculate GaitBlend (0.0 = Walk, 1.0 = Sprint)
+    const walkSpeed = 3.0;
+    const runSpeed = 10.0;
+    const gaitBlend = THREE.MathUtils.clamp((speed - walkSpeed) / (runSpeed - walkSpeed), 0.0, 1.0);
+
+    // Dynamic Step Threshold & Height scaling
+    const currentThreshold = this.baseStepThreshold + (gaitBlend * 0.8);
+    const currentStepHeight = 0.35 + (gaitBlend * 0.35);
+    const currentStepDuration = 0.20 - (gaitBlend * 0.08); // Faster steps at sprint speed
+
     const activeLeg = this.legs[this.activeLegIndex];
 
     if (isMoving && activeLeg.state === 'PLANTED') {
       const hipWorld = new THREE.Vector3().copy(activeLeg.hipOffset).applyAxisAngle(new THREE.Vector3(0, 1, 0), bodyYaw).add(bodyPos);
       const distToAnchor = hipWorld.distanceTo(activeLeg.worldAnchor);
 
-      if (distToAnchor > this.stepThreshold) {
-        // Calculate step target lead position ahead of body velocity
-        const leadDist = Math.min(1.8, speed * 0.25);
+      if (distToAnchor > currentThreshold) {
+        const leadDist = Math.min(2.2, speed * 0.25);
         const forwardDir = new THREE.Vector3(0, 0, -1).applyAxisAngle(new THREE.Vector3(0, 1, 0), bodyYaw);
         const targetWorldPos = new THREE.Vector3().copy(hipWorld).addScaledVector(forwardDir, leadDist);
         targetWorldPos.y = worldEngine ? worldEngine.getTerrainHeight(targetWorldPos.x, targetWorldPos.z) : bodyPos.y;
 
-        activeLeg.triggerStep(targetWorldPos, 0.45);
+        // Environmental Obstacle Hopping
+        const obstacleAhead = worldEngine ? (worldEngine.getTerrainHeight(targetWorldPos.x, targetWorldPos.z) - bodyPos.y) : 0;
+        const finalStepHeight = obstacleAhead > 0.5 ? currentStepHeight + 0.5 : currentStepHeight;
 
-        // Advance conductor queue to alternate leg
+        activeLeg.triggerStep(targetWorldPos, finalStepHeight, currentStepDuration);
+
         this.activeLegIndex = (this.activeLegIndex + 1) % this.legs.length;
       }
     }
 
-    // Update all legs
     this.legs.forEach(leg => leg.update(deltaSeconds, bodyPos, bodyYaw, worldEngine));
   }
 }
