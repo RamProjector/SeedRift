@@ -57,7 +57,8 @@ class Game {
         const res = this.buildingManager.confirmPlacement(this.player.position, this.player.group.rotation.y);
         if (res && res.msg) this.hud.showToast(res.msg, res.success ? 'info' : 'warn');
       },
-      () => this.buildingManager.cancelPlacement()
+      () => this.buildingManager.cancelPlacement(),
+      () => this.player.toggleFirstPerson()
     );
 
     const radarContainer = document.getElementById('radarContainer');

@@ -36,10 +36,10 @@ export class PlayerController {
 
     // Torso Capsule
     const torsoGeo = new THREE.CapsuleGeometry(0.38, 0.85, 8, 16);
-    const torso = new THREE.Mesh(torsoGeo, suitMat);
-    torso.position.y = 0.85;
-    torso.castShadow = true;
-    this.group.add(torso);
+    this.torso = new THREE.Mesh(torsoGeo, suitMat);
+    this.torso.position.y = 0.85;
+    this.torso.castShadow = true;
+    this.group.add(this.torso);
 
     // Glowing Chest Core Indicator
     const coreGeo = new THREE.OctahedronGeometry(0.12);
@@ -74,7 +74,7 @@ export class PlayerController {
     this.wings.rotation.x = Math.PI / 4;
     this.group.add(this.wings);
 
-    // Jointed Arms with Pauldrons
+    // Jointed Arms
     this.armL = new THREE.Group();
     const armGeo = new THREE.CylinderGeometry(0.08, 0.06, 0.6);
     const armLMesh = new THREE.Mesh(armGeo, suitMat);
@@ -119,11 +119,14 @@ export class PlayerController {
     this.isGrounded = false;
     this.isGliding = false;
     this.isTunneling = false;
+    this.isFirstPerson = false;
     this.animTime = 0;
 
+    // Camera Orbit & Over-the-Shoulder Framing
     this.camYaw = 0;
-    this.camPitch = 0.3;
-    this.camDistance = 6.5;
+    this.camPitch = 0.2; // Allows looking up (-1.3 to +1.4)
+    this.camDistance = 5.5;
+    this.shoulderOffset = 1.2; // Offsets player model to left side of screen!
 
     this.keys = {
       forward: false,
@@ -160,6 +163,9 @@ export class PlayerController {
       if (code === 'KeyA' || code === 'ArrowLeft') this.keys.left = true;
       if (code === 'KeyD' || code === 'ArrowRight') this.keys.right = true;
       if (code === 'ShiftLeft' || code === 'ShiftRight') this.keys.sprint = true;
+      if (code === 'KeyV') {
+        this.toggleFirstPerson();
+      }
       if (code === 'KeyC' || code === 'ControlLeft') {
         this.toggleTunneling();
       }
@@ -199,13 +205,20 @@ export class PlayerController {
         const dx = e.clientX - prevX;
         const dy = e.clientY - prevY;
         this.camYaw -= dx * 0.005;
-        this.camPitch = Math.max(0.05, Math.min(1.2, this.camPitch + dy * 0.005));
+        // Expanded pitch range allows looking straight up into the sky!
+        this.camPitch = Math.max(-1.3, Math.min(1.4, this.camPitch + dy * 0.005));
         prevX = e.clientX;
         prevY = e.clientY;
       }
     });
 
     window.addEventListener('mouseup', () => { isDragging = false; });
+  }
+
+  toggleFirstPerson() {
+    this.isFirstPerson = !this.isFirstPerson;
+    this.group.visible = !this.isFirstPerson; // Hide player model in 1st person
+    soundEngine.playChirp();
   }
 
   toggleTunneling() {
@@ -358,11 +371,32 @@ export class PlayerController {
       }
     }
 
-    const cx = this.position.x + Math.sin(this.camYaw) * Math.cos(this.camPitch) * this.camDistance;
-    const cy = this.position.y + Math.sin(this.camPitch) * this.camDistance + 1.2;
-    const cz = this.position.z + Math.cos(this.camYaw) * Math.cos(this.camPitch) * this.camDistance;
+    // Camera Mode Positioning
+    if (this.isFirstPerson) {
+      // First-Person Mode: Camera at eye level
+      this.camera.position.set(this.position.x, this.position.y + 1.5, this.position.z);
+      const lookTarget = new THREE.Vector3(
+        this.position.x - Math.sin(this.camYaw) * Math.cos(this.camPitch) * 10,
+        this.position.y + 1.5 - Math.sin(this.camPitch) * 10,
+        this.position.z - Math.cos(this.camYaw) * Math.cos(this.camPitch) * 10
+      );
+      this.camera.lookAt(lookTarget);
+    } else {
+      // Over-the-Shoulder Battle Royale Third-Person Framing:
+      // Player character sits on left side of screen, right shoulder offset clears reticle!
+      const rightVector = new THREE.Vector3(1, 0, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), this.camYaw);
 
-    this.camera.position.set(cx, cy, cz);
-    this.camera.lookAt(this.position.x, this.position.y + 1.2, this.position.z);
+      const cx = this.position.x + Math.sin(this.camYaw) * Math.cos(this.camPitch) * this.camDistance + rightVector.x * this.shoulderOffset;
+      const cy = this.position.y + Math.sin(this.camPitch) * this.camDistance + 1.3;
+      const cz = this.position.z + Math.cos(this.camYaw) * Math.cos(this.camPitch) * this.camDistance + rightVector.z * this.shoulderOffset;
+
+      this.camera.position.set(cx, cy, cz);
+      const lookTarget = new THREE.Vector3(
+        this.position.x + rightVector.x * (this.shoulderOffset * 0.3),
+        this.position.y + 1.3,
+        this.position.z + rightVector.z * (this.shoulderOffset * 0.3)
+      );
+      this.camera.lookAt(lookTarget);
+    }
   }
 }

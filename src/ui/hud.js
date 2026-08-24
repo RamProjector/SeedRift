@@ -11,17 +11,18 @@ export class HUDManager {
     this.onBuildToggleCallback = null;
     this.onConfirmBuildCallback = null;
     this.onCancelBuildCallback = null;
+    this.onViewToggleCallback = null;
   }
 
-  init(onBuildToggle, onConfirmBuild, onCancelBuild) {
+  init(onBuildToggle, onConfirmBuild, onCancelBuild, onViewToggle) {
     this.onBuildToggleCallback = onBuildToggle;
     this.onConfirmBuildCallback = onConfirmBuild;
     this.onCancelBuildCallback = onCancelBuild;
+    this.onViewToggleCallback = onViewToggle;
 
     this.hudContainer = document.createElement('div');
     this.hudContainer.id = 'hudOverlay';
     this.hudContainer.innerHTML = `
-      <!-- Critical Vitals Vignette Overlay -->
       <div class="vitals-vignette-overlay" id="vignetteOverlay"></div>
 
       <!-- Vitals Panel (Top-Left) -->
@@ -102,6 +103,7 @@ export class HUDManager {
         </div>
 
         <div class="quick-nav-buttons">
+          <button class="btn-nav" id="btnToggleView">📷 View [V]</button>
           <button class="btn-nav" id="btnOpenBuild">🔨 Build [B]</button>
           <button class="btn-nav" id="btnOpenWeave">🧬 Weave [Tab]</button>
           <button class="btn-nav" id="btnOpenShip">🚀 Hub [M]</button>
@@ -115,6 +117,7 @@ export class HUDManager {
 
     document.body.appendChild(this.hudContainer);
 
+    document.getElementById('btnToggleView').onclick = () => { if (this.onViewToggleCallback) this.onViewToggleCallback(); };
     document.getElementById('btnOpenBuild').onclick = () => { if (this.onBuildToggleCallback) this.onBuildToggleCallback(); };
     document.getElementById('btnOpenWeave').onclick = () => weaveUI.toggle();
     document.getElementById('btnOpenShip').onclick = () => shipUI.toggle();
@@ -210,7 +213,7 @@ export class HUDManager {
       if (gameState.hasSplice('s6')) extraKeys += ' &nbsp;·&nbsp; <kbd>C</kbd> Tunnel';
       if (gameState.hasSplice('s8')) extraKeys += ' &nbsp;·&nbsp; <kbd>Q</kbd> Shockwave';
 
-      prompt.innerHTML = `<kbd>E</kbd> Scan &nbsp;·&nbsp; <kbd>B</kbd> Build &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Hub &nbsp;·&nbsp; <kbd>H</kbd> Help${extraKeys}`;
+      prompt.innerHTML = `<kbd>E</kbd> Scan &nbsp;·&nbsp; <kbd>V</kbd> View &nbsp;·&nbsp; <kbd>B</kbd> Build &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Hub${extraKeys}`;
       this.scannableTarget = null;
     }
   }
