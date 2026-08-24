@@ -10,9 +10,12 @@ export class PlayerController {
     this.camera = camera;
     this.worldEngine = worldEngine;
 
+    // FOV 75 degrees for panoramic open-world exploration
+    this.camera.fov = 75;
+    this.camera.updateProjectionMatrix();
+
     this.group = new THREE.Group();
 
-    // Vibrant Metallic Emerald Warden Suit Armor
     const suitMat = new THREE.MeshStandardMaterial({
       color: '#2e7a5c',
       roughness: 0.25,
@@ -34,32 +37,32 @@ export class PlayerController {
       roughness: 0.1
     });
 
-    // Torso Capsule
+    // Torso
     const torsoGeo = new THREE.CapsuleGeometry(0.38, 0.85, 8, 16);
     this.torso = new THREE.Mesh(torsoGeo, suitMat);
     this.torso.position.y = 0.85;
     this.torso.castShadow = true;
     this.group.add(this.torso);
 
-    // Glowing Chest Core Indicator
+    // Chest Core
     const coreGeo = new THREE.OctahedronGeometry(0.12);
     const core = new THREE.Mesh(coreGeo, glowCoreMat);
     core.position.set(0, 1.05, 0.38);
     this.group.add(core);
 
-    // Visor Helmet
+    // Visor
     const headGeo = new THREE.SphereGeometry(0.28, 16, 16);
     this.head = new THREE.Mesh(headGeo, glowCoreMat);
     this.head.position.set(0, 1.48, 0.05);
     this.group.add(this.head);
 
-    // Backpack Thruster Rig
+    // Thruster Pack
     const packGeo = new THREE.BoxGeometry(0.42, 0.65, 0.28);
     const pack = new THREE.Mesh(packGeo, trimMat);
     pack.position.set(0, 0.95, -0.28);
     this.group.add(pack);
 
-    // Glide Wings
+    // Wings
     const wingGeo = new THREE.PlaneGeometry(1.6, 0.8);
     const wingMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
@@ -74,7 +77,7 @@ export class PlayerController {
     this.wings.rotation.x = Math.PI / 4;
     this.group.add(this.wings);
 
-    // Jointed Arms
+    // Arms & Thighs
     this.armL = new THREE.Group();
     const armGeo = new THREE.CylinderGeometry(0.08, 0.06, 0.6);
     const armLMesh = new THREE.Mesh(armGeo, suitMat);
@@ -90,7 +93,7 @@ export class PlayerController {
     this.armR.position.set(-0.44, 1.15, 0);
     this.group.add(this.armR);
 
-    // Jointed Legs
+    // Legs
     this.legL = new THREE.Group();
     const legGeo = new THREE.CylinderGeometry(0.1, 0.07, 0.65);
     const legLMesh = new THREE.Mesh(legGeo, suitMat);
@@ -122,11 +125,12 @@ export class PlayerController {
     this.isFirstPerson = false;
     this.animTime = 0;
 
-    // Camera Orbit & Over-the-Shoulder Framing
+    // Camera Orbit & Spring Arm
     this.camYaw = 0;
-    this.camPitch = 0.2; // Allows looking up (-1.3 to +1.4)
-    this.camDistance = 5.5;
-    this.shoulderOffset = 1.2; // Offsets player model to left side of screen!
+    this.camPitch = 0.2;
+    this.maxCamDistance = 5.8;
+    this.currentCamDistance = 5.8;
+    this.shoulderOffset = 1.2;
 
     this.keys = {
       forward: false,
@@ -205,7 +209,6 @@ export class PlayerController {
         const dx = e.clientX - prevX;
         const dy = e.clientY - prevY;
         this.camYaw -= dx * 0.005;
-        // Expanded pitch range allows looking straight up into the sky!
         this.camPitch = Math.max(-1.3, Math.min(1.4, this.camPitch + dy * 0.005));
         prevX = e.clientX;
         prevY = e.clientY;
@@ -217,7 +220,7 @@ export class PlayerController {
 
   toggleFirstPerson() {
     this.isFirstPerson = !this.isFirstPerson;
-    this.group.visible = !this.isFirstPerson; // Hide player model in 1st person
+    this.group.visible = !this.isFirstPerson;
     soundEngine.playChirp();
   }
 
@@ -348,9 +351,20 @@ export class PlayerController {
       this.isGrounded = false;
     }
 
+    // 4-Pose Fundamental Walk Cycle Animation Mechanics (Contact, Down, Passing, Up)
     if (this.armL && this.armR && this.legL && this.legR) {
-      const swingFreq = this.keys.sprint ? 14.0 : 9.0;
-      const swing = Math.sin(this.animTime * swingFreq) * (isMoving ? 0.6 : 0.04);
+      const freq = this.keys.sprint ? 14.0 : 9.0;
+      const walkPhase = (this.animTime * freq) % (Math.PI * 2);
+
+      // Contact Pose (phase = 0 or PI): Stride extension
+      const strideAngle = Math.sin(walkPhase) * (isMoving ? 0.65 : 0.04);
+
+      // Down & Up Poses (phase = PI/4 or 3PI/4): Body weight absorption dip & push-off rise
+      const verticalWeightDip = Math.sin(walkPhase * 2.0) * (isMoving ? 0.06 : 0.01);
+
+      if (this.torso) {
+        this.torso.position.y = 0.85 + verticalWeightDip;
+      }
 
       if (this.isGliding) {
         this.armL.rotation.z = -1.2;
@@ -360,20 +374,19 @@ export class PlayerController {
       } else {
         this.armL.rotation.z = 0;
         this.armR.rotation.z = 0;
-        this.armL.rotation.x = swing;
-        this.armR.rotation.x = -swing;
-        this.legL.rotation.x = -swing;
-        this.legR.rotation.x = swing;
+        this.armL.rotation.x = strideAngle;
+        this.armR.rotation.x = -strideAngle;
+        this.legL.rotation.x = -strideAngle;
+        this.legR.rotation.x = strideAngle;
       }
 
       if (this.head) {
-        this.head.position.y = 1.48 + Math.sin(this.animTime * 4.0) * 0.02;
+        this.head.position.y = 1.48 + verticalWeightDip + Math.sin(this.animTime * 4.0) * 0.02;
       }
     }
 
-    // Camera Mode Positioning
+    // Camera Mode Positioning with Spring Arm Collision Detection
     if (this.isFirstPerson) {
-      // First-Person Mode: Camera at eye level
       this.camera.position.set(this.position.x, this.position.y + 1.5, this.position.z);
       const lookTarget = new THREE.Vector3(
         this.position.x - Math.sin(this.camYaw) * Math.cos(this.camPitch) * 10,
@@ -382,15 +395,18 @@ export class PlayerController {
       );
       this.camera.lookAt(lookTarget);
     } else {
-      // Over-the-Shoulder Battle Royale Third-Person Framing:
-      // Player character sits on left side of screen, right shoulder offset clears reticle!
       const rightVector = new THREE.Vector3(1, 0, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), this.camYaw);
 
-      const cx = this.position.x + Math.sin(this.camYaw) * Math.cos(this.camPitch) * this.camDistance + rightVector.x * this.shoulderOffset;
-      const cy = this.position.y + Math.sin(this.camPitch) * this.camDistance + 1.3;
-      const cz = this.position.z + Math.cos(this.camYaw) * Math.cos(this.camPitch) * this.camDistance + rightVector.z * this.shoulderOffset;
+      // Ideal Camera Target
+      const targetCamX = this.position.x + Math.sin(this.camYaw) * Math.cos(this.camPitch) * this.maxCamDistance + rightVector.x * this.shoulderOffset;
+      const targetCamY = this.position.y + Math.sin(this.camPitch) * this.maxCamDistance + 1.3;
+      const targetCamZ = this.position.z + Math.cos(this.camYaw) * Math.cos(this.camPitch) * this.maxCamDistance + rightVector.z * this.shoulderOffset;
 
-      this.camera.position.set(cx, cy, cz);
+      // Spring Arm Terrain Raycast: Prevent Camera Clipping through Mountains
+      const camTerrainY = this.worldEngine.getTerrainHeight(targetCamX, targetCamZ);
+      const effectiveY = Math.max(camTerrainY + 0.6, targetCamY);
+
+      this.camera.position.set(targetCamX, effectiveY, targetCamZ);
       const lookTarget = new THREE.Vector3(
         this.position.x + rightVector.x * (this.shoulderOffset * 0.3),
         this.position.y + 1.3,
