@@ -69,8 +69,8 @@ export class ProceduralMeshGenerator {
     });
 
     const armorMat = new THREE.MeshStandardMaterial({
-      color: new THREE.Color('#2a4e3b'),
-      roughness: 0.2,
+      color: new THREE.Color('#224433'),
+      roughness: 0.25,
       metalness: 0.7
     });
 
@@ -114,6 +114,15 @@ export class ProceduralMeshGenerator {
       wingRight.name = 'wingRight';
       group.add(wingRight);
 
+      // Landing Legs
+      for (let i = 0; i < 2; i++) {
+        const legGeo = new THREE.CylinderGeometry(0.03, 0.02, height * 0.5);
+        const leg = new THREE.Mesh(legGeo, armorMat);
+        const side = (i === 0) ? 1 : -1;
+        leg.position.set(side * 0.15, -height * 0.2, 0);
+        group.add(leg);
+      }
+
       const antGeo = new THREE.CylinderGeometry(0.02, 0.04, height * 0.9);
       const antL = new THREE.Mesh(antGeo, glowMat);
       antL.position.set(0.1, height * 0.2, length * 0.4);
@@ -145,6 +154,25 @@ export class ProceduralMeshGenerator {
         group.add(node);
       }
 
+      // 4 Heavy Digging Legs with Claws
+      for (let i = 0; i < 4; i++) {
+        const legGroup = new THREE.Group();
+        const legGeo = new THREE.CylinderGeometry(0.08, 0.05, height * 0.5, 8);
+        const legMesh = new THREE.Mesh(legGeo, armorMat);
+        legMesh.position.y = -height * 0.25;
+        legGroup.add(legMesh);
+
+        const clawGeo = new THREE.ConeGeometry(0.06, 0.2, 6);
+        const claw = new THREE.Mesh(clawGeo, glowMat);
+        claw.position.set(0, -height * 0.5, 0.08);
+        legGroup.add(claw);
+
+        const side = (i % 2 === 0) ? 1 : -1;
+        const front = (i < 2) ? 1 : -1;
+        legGroup.position.set(side * length * 0.32, height * 0.35, front * length * 0.32);
+        group.add(legGroup);
+      }
+
     // 3. Stalkers / Hunters / Predators
     } else if (name.includes('stalker') || name.includes('hunter') || name.includes('scout') || name.includes('runner') || morphology.includes('predator')) {
       const bodyGeo = new THREE.BoxGeometry(length * 0.45, height * 0.45, length * 1.1);
@@ -168,13 +196,16 @@ export class ProceduralMeshGenerator {
       }
 
       for (let i = 0; i < 4; i++) {
+        const legGroup = new THREE.Group();
         const legGeo = new THREE.CylinderGeometry(0.06, 0.03, height * 0.9);
         const leg = new THREE.Mesh(legGeo, armorMat);
+        leg.position.y = -height * 0.45;
+        legGroup.add(leg);
+
         const side = (i % 2 === 0) ? 1 : -1;
         const front = (i < 2) ? 1 : -1;
-        leg.position.set(side * length * 0.28, height * 0.28, front * length * 0.35);
-        leg.rotation.z = side * 0.25;
-        group.add(leg);
+        legGroup.position.set(side * length * 0.28, height * 0.55, front * length * 0.35);
+        group.add(legGroup);
       }
 
     // 4. Quadruped Grazers / Megafauna
@@ -191,12 +222,16 @@ export class ProceduralMeshGenerator {
       group.add(head);
 
       for (let i = 0; i < 4; i++) {
+        const legGroup = new THREE.Group();
         const legGeo = new THREE.CylinderGeometry(0.07, 0.04, height * 0.65);
         const leg = new THREE.Mesh(legGeo, armorMat);
+        leg.position.y = -height * 0.32;
+        legGroup.add(leg);
+
         const side = (i % 2 === 0) ? 1 : -1;
         const front = (i < 2) ? 1 : -1;
-        leg.position.set(side * height * 0.32, height * 0.32, front * length * 0.32);
-        group.add(leg);
+        legGroup.position.set(side * height * 0.32, height * 0.55, front * length * 0.32);
+        group.add(legGroup);
       }
 
       for (let j = 0; j < 4; j++) {
@@ -267,7 +302,6 @@ export class ProceduralMeshGenerator {
       }
 
     } else if (type === 'seaWeed' || type === 'reefCoral') {
-      // Oceanic Reef Coral & Kelp
       const stemGeo = new THREE.CylinderGeometry(0.15 * scale, 0.35 * scale, 6 * scale, 8);
       const kelpMat = new THREE.MeshStandardMaterial({
         color: '#106680',
