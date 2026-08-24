@@ -23,13 +23,14 @@ export class EntityManager {
 
     const speciesList = SPECIES_BY_WORLD[worldData.id] || [];
 
-    const countToSpawn = Math.min(18, speciesList.length);
+    // Spawn 24 active creature entities across expanded open world
+    const countToSpawn = Math.min(24, speciesList.length);
     for (let i = 0; i < countToSpawn; i++) {
       const speciesData = speciesList[i % speciesList.length];
       const meshGroup = ProceduralMeshGenerator.createCreatureMesh(speciesData);
 
-      const x = (Math.random() - 0.5) * 60;
-      const z = (Math.random() - 0.5) * 60;
+      const x = (Math.random() - 0.5) * 160;
+      const z = (Math.random() - 0.5) * 160;
       const y = this.worldEngine.getTerrainHeight(x, z);
 
       meshGroup.position.set(x, y, z);
@@ -48,12 +49,13 @@ export class EntityManager {
       });
     }
 
+    // Spawn 40 flora elements across open terrain
     const floraTypes = worldData.floraTypes || ['goldenGrass'];
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 40; i++) {
       const type = floraTypes[i % floraTypes.length];
       const floraMesh = ProceduralMeshGenerator.createFloraMesh(type, Math.random() * 0.5 + 0.8);
-      const x = (Math.random() - 0.5) * 70;
-      const z = (Math.random() - 0.5) * 70;
+      const x = (Math.random() - 0.5) * 180;
+      const z = (Math.random() - 0.5) * 180;
       const y = this.worldEngine.getTerrainHeight(x, z);
 
       floraMesh.position.set(x, y, z);
@@ -62,8 +64,8 @@ export class EntityManager {
     }
 
     const ruinGroup = ProceduralMeshGenerator.createFirstseedMonolith(worldData.ruinType);
-    const rx = 15;
-    const rz = -20;
+    const rx = 35;
+    const rz = -45;
     const ry = this.worldEngine.getTerrainHeight(rx, rz);
     ruinGroup.position.set(rx, ry, rz);
     this.scene.add(ruinGroup);
@@ -82,7 +84,7 @@ export class EntityManager {
 
       if (e.trophic === 'predator' || e.trophic === 'secondary') {
         let nearestPrey = null;
-        let minDist = 12.0;
+        let minDist = 14.0;
 
         for (let j = 0; j < this.entities.length; j++) {
           const prey = this.entities[j];
@@ -106,8 +108,8 @@ export class EntityManager {
 
       e.wanderTimer -= deltaSeconds;
       if (e.wanderTimer <= 0) {
-        const rx = e.group.position.x + (Math.random() - 0.5) * 20;
-        const rz = e.group.position.z + (Math.random() - 0.5) * 20;
+        const rx = e.group.position.x + (Math.random() - 0.5) * 30;
+        const rz = e.group.position.z + (Math.random() - 0.5) * 30;
         const ry = this.worldEngine.getTerrainHeight(rx, rz);
 
         const name = e.data.commonName.toLowerCase();
@@ -148,7 +150,7 @@ export class EntityManager {
 
   getNearestScannable(playerPos, rivalManager) {
     let closest = null;
-    let minDistance = 15;
+    let minDistance = 18;
 
     for (const e of this.entities) {
       const dist = playerPos.distanceTo(e.group.position);
@@ -158,11 +160,10 @@ export class EntityManager {
       }
     }
 
-    // Check Flora Foraging
     for (const f of this.flora) {
       if (!f.harvested) {
         const dist = playerPos.distanceTo(f.pos);
-        if (dist < minDistance && dist < 10) {
+        if (dist < minDistance && dist < 12) {
           closest = { type: 'flora', flora: f, distance: dist };
           minDistance = dist;
         }
@@ -171,7 +172,7 @@ export class EntityManager {
 
     if (this.ruinMonolith) {
       const dist = playerPos.distanceTo(this.ruinMonolith.pos);
-      if (dist < minDistance && dist < 12) {
+      if (dist < minDistance && dist < 15) {
         closest = { type: 'ruin', monolith: this.ruinMonolith, distance: dist };
         minDistance = dist;
       }

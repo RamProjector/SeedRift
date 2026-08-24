@@ -54,13 +54,12 @@ export class WorldEngine {
     this.ambientLight = new THREE.AmbientLight('#ffffff', 1.2);
     this.scene.add(this.ambientLight);
 
-    // Directional Sunlight
     this.sunLight = new THREE.DirectionalLight('#ffffff', 2.8);
-    this.sunLight.position.set(30, 80, 20);
+    this.sunLight.position.set(30, 120, 20);
     this.scene.add(this.sunLight);
 
-    // Physical 3D Sun Mesh in Sky
-    const sunGeo = new THREE.SphereGeometry(6, 24, 24);
+    // Physical 3D Sun Mesh
+    const sunGeo = new THREE.SphereGeometry(10, 24, 24);
     const sunMat = new THREE.MeshStandardMaterial({
       color: '#ffea9f',
       emissive: '#ffea9f',
@@ -74,6 +73,7 @@ export class WorldEngine {
     this.terrainMesh = null;
     this.waterMesh = null;
     this.particleSystem = null;
+    this.lastChunkCenter = new THREE.Vector2(0, 0);
 
     if (window.ResizeObserver && container) {
       const ro = new ResizeObserver(() => this.onWindowResize());
@@ -82,13 +82,53 @@ export class WorldEngine {
     window.addEventListener('resize', () => this.onWindowResize());
   }
 
+  // Multi-Octave Fractal Noise for Dynamic Open-World Terrain
+  getMultiOctaveNoise(x, z, worldId) {
+    let height = 0;
+
+    if (worldId === 'kharon-bloomfields') {
+      // Tall spore plateaus & deep fungal hollows
+      const continental = this.noise2D(x * 0.005, z * 0.005) * 18.0;
+      const hills = this.noise2D(x * 0.02, z * 0.02) * 6.0;
+      const detail = this.noise2D(x * 0.08, z * 0.08) * 1.5;
+      height = continental + hills + detail;
+
+    } else if (worldId === 'ashfields-coreth') {
+      // Cratered volcanic ridges & sharp lava tubes
+      const craters = Math.abs(this.noise2D(x * 0.008, z * 0.008)) * 22.0 - 4.0;
+      const ridges = Math.sin(this.noise2D(x * 0.03, z * 0.03) * Math.PI) * 8.0;
+      const detail = this.noise2D(x * 0.1, z * 0.1) * 1.8;
+      height = craters + ridges + detail;
+
+    } else if (worldId === 'hollow-steppe') {
+      // Rolling golden grassland hills & sweeping valleys
+      const rollingHills = this.noise2D(x * 0.006, z * 0.006) * 12.0;
+      const dunes = this.noise2D(x * 0.025, z * 0.025) * 3.5;
+      height = rollingHills + dunes;
+
+    } else if (worldId === 'pallid-reach') {
+      // Irradiated ice plateaus & jagged crystal crags
+      const plateaus = Math.floor(this.noise2D(x * 0.007, z * 0.007) * 4.0) * 4.0;
+      const crags = this.noise2D(x * 0.04, z * 0.04) * 7.0;
+      height = plateaus + crags;
+
+    } else if (worldId === 'vantauri-deep') {
+      // Oceanic abyssal trench floor & underwater coral ridges
+      const trench = this.noise2D(x * 0.005, z * 0.005) * 15.0 - 8.0;
+      const ridges = this.noise2D(x * 0.03, z * 0.03) * 4.0;
+      height = trench + ridges;
+    }
+
+    return height;
+  }
+
   buildWorld(worldData) {
     if (this.terrainMesh) this.scene.remove(this.terrainMesh);
     if (this.waterMesh) this.scene.remove(this.waterMesh);
     if (this.particleSystem) this.scene.remove(this.particleSystem);
 
     this.scene.background = new THREE.Color(worldData.daySkyColor || '#528bb8');
-    this.scene.fog = new THREE.FogExp2(worldData.fogColor || '#456a73', 0.002);
+    this.scene.fog = new THREE.FogExp2(worldData.fogColor || '#456a73', 0.0018);
 
     this.ambientLight.color.set(worldData.ambientLight || '#ffffff');
     this.sunLight.color.set(worldData.sunLight || '#ffffff');
@@ -96,40 +136,53 @@ export class WorldEngine {
     this.sunMesh.material.emissive.set(worldData.sunLight || '#ffea9f');
 
     if (this.hasWebGL) {
-      const size = 140;
-      const segments = 64;
+      // Extended Vast Planetary Grid (500 x 500 units)
+      const size = 500;
+      const segments = 128;
       const geometry = new THREE.PlaneGeometry(size, size, segments, segments);
       geometry.rotateX(-Math.PI / 2);
 
       const pos = geometry.attributes.position;
+      const radius = 800.0; // Round planet horizon curvature radius
+
       for (let i = 0; i < pos.count; i++) {
         const x = pos.getX(i);
         const z = pos.getZ(i);
 
-        let h = 0;
-        if (worldData.id === 'kharon-bloomfields') {
-          h = this.noise2D(x * 0.02, z * 0.02) * 3.5 + this.noise2D(x * 0.08, z * 0.08) * 0.8;
-        } else if (worldData.id === 'ashfields-coreth') {
-          h = Math.abs(this.noise2D(x * 0.03, z * 0.03)) * 5.0 - 1.0;
-        } else if (worldData.id === 'hollow-steppe') {
-          h = this.noise2D(x * 0.015, z * 0.015) * 2.0;
-        } else if (worldData.id === 'pallid-reach') {
-          h = this.noise2D(x * 0.04, z * 0.04) * 4.0;
-        } else if (worldData.id === 'vantauri-deep') {
-          h = this.noise2D(x * 0.02, z * 0.02) * 2.5 - 3.0;
-        }
-        pos.setY(i, h);
+        let h = this.getMultiOctaveNoise(x, z, worldData.id);
+
+        // Planetary Horizon Curvature Math: curve terrain downward at distance
+        const distFromCenter = Math.sqrt(x * x + z * z);
+        const curvatureDrop = (distFromCenter * distFromCenter) / (2.0 * radius);
+        pos.setY(i, h - curvatureDrop);
       }
       geometry.computeVertexNormals();
 
       const terrainMat = new THREE.MeshStandardMaterial({
         color: new THREE.Color(worldData.groundColor || '#3d6332'),
-        roughness: 0.5,
+        roughness: 0.6,
         metalness: 0.1
       });
 
       this.terrainMesh = new THREE.Mesh(geometry, terrainMat);
+      this.terrainMesh.receiveShadow = true;
       this.scene.add(this.terrainMesh);
+
+      // Ocean Surface Plane for Vantauri Deep
+      if (worldData.id === 'vantauri-deep') {
+        const waterGeo = new THREE.PlaneGeometry(size, size);
+        waterGeo.rotateX(-Math.PI / 2);
+        const waterMat = new THREE.MeshStandardMaterial({
+          color: '#105577',
+          transparent: true,
+          opacity: 0.65,
+          roughness: 0.1,
+          metalness: 0.8
+        });
+        this.waterMesh = new THREE.Mesh(waterGeo, waterMat);
+        this.waterMesh.position.y = 3.0;
+        this.scene.add(this.waterMesh);
+      }
     }
 
     this.buildParticles(worldData);
@@ -137,14 +190,14 @@ export class WorldEngine {
 
   buildParticles(worldData) {
     if (!this.hasWebGL) return;
-    const count = 250;
+    const count = 400;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
 
     for (let i = 0; i < count; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 80;
-      positions[i * 3 + 1] = Math.random() * 20;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 80;
+      positions[i * 3] = (Math.random() - 0.5) * 200;
+      positions[i * 3 + 1] = Math.random() * 30;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 200;
     }
 
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -157,7 +210,7 @@ export class WorldEngine {
 
     const pMat = new THREE.PointsMaterial({
       color: new THREE.Color(pColor),
-      size: 0.35,
+      size: 0.4,
       transparent: true,
       opacity: 0.75
     });
@@ -168,11 +221,10 @@ export class WorldEngine {
 
   update(deltaSeconds, playerPos) {
     const worldData = gameState.getCurrentWorld();
-    const time = gameState.timeOfDay; // 0 to 24 hours
+    const time = gameState.timeOfDay;
 
-    // Calculate Sun Angle & Trajectory across the sky
-    const sunAngle = ((time - 6) / 24) * Math.PI * 2; // Sunrise at 6am, Noon at 12pm
-    const sunDistance = 180;
+    const sunAngle = ((time - 6) / 24) * Math.PI * 2;
+    const sunDistance = 280;
 
     const px = playerPos ? playerPos.x : 0;
     const py = playerPos ? playerPos.y : 0;
@@ -180,20 +232,17 @@ export class WorldEngine {
 
     const sunX = Math.cos(sunAngle) * sunDistance;
     const sunY = Math.sin(sunAngle) * sunDistance;
-    const sunZ = Math.sin(sunAngle * 0.5) * 60;
+    const sunZ = Math.sin(sunAngle * 0.5) * 100;
 
     this.sunLight.position.set(px + sunX, py + Math.max(10, sunY), pz + sunZ);
     this.sunMesh.position.set(px + sunX, py + sunY, pz + sunZ);
 
-    // Daytime Ratio (0.0 at night, 1.0 at noon)
     const dayRatio = Math.max(0.0, Math.sin(sunAngle));
 
-    // Dynamic Sunlight Intensity
     this.sunLight.intensity = Math.max(0.4, dayRatio * 2.8);
     this.hemiLight.intensity = Math.max(0.4, dayRatio * 1.4);
     this.ambientLight.intensity = Math.max(0.3, dayRatio * 1.2);
 
-    // Dynamic Sky Color Transition (Lerp between daySkyColor and nightSkyColor)
     const dayColor = new THREE.Color(worldData.daySkyColor || '#528bb8');
     const nightColor = new THREE.Color(worldData.nightSkyColor || '#0f1724');
     const currentSkyColor = nightColor.clone().lerp(dayColor, dayRatio);
@@ -203,6 +252,19 @@ export class WorldEngine {
       this.scene.fog.color = currentSkyColor;
     }
 
+    // Dynamic Terrain Center Shifting for Seamless Infinite Planetary Navigation
+    if (this.terrainMesh && playerPos) {
+      if (Math.abs(playerPos.x - this.lastChunkCenter.x) > 60 || Math.abs(playerPos.z - this.lastChunkCenter.y) > 60) {
+        this.terrainMesh.position.x = playerPos.x;
+        this.terrainMesh.position.z = playerPos.z;
+        if (this.waterMesh) {
+          this.waterMesh.position.x = playerPos.x;
+          this.waterMesh.position.z = playerPos.z;
+        }
+        this.lastChunkCenter.set(playerPos.x, playerPos.z);
+      }
+    }
+
     if (this.particleSystem) {
       const pos = this.particleSystem.geometry.attributes.position;
       for (let i = 0; i < pos.count; i++) {
@@ -210,11 +272,11 @@ export class WorldEngine {
         let x = pos.getX(i);
 
         y += deltaSeconds * 0.8;
-        if (y > 22) y = 0.5;
+        if (y > 30) y = 0.5;
 
         if (playerPos) {
-          if (Math.abs(x - playerPos.x) > 40) {
-            x = playerPos.x + (Math.random() - 0.5) * 60;
+          if (Math.abs(x - playerPos.x) > 100) {
+            x = playerPos.x + (Math.random() - 0.5) * 180;
           }
         }
         pos.setY(i, y);
@@ -226,19 +288,7 @@ export class WorldEngine {
 
   getTerrainHeight(x, z) {
     const world = gameState.getCurrentWorld();
-    let h = 0;
-    if (world.id === 'kharon-bloomfields') {
-      h = this.noise2D(x * 0.02, z * 0.02) * 3.5 + this.noise2D(x * 0.08, z * 0.08) * 0.8;
-    } else if (world.id === 'ashfields-coreth') {
-      h = Math.abs(this.noise2D(x * 0.03, z * 0.03)) * 5.0 - 1.0;
-    } else if (world.id === 'hollow-steppe') {
-      h = this.noise2D(x * 0.015, z * 0.015) * 2.0;
-    } else if (world.id === 'pallid-reach') {
-      h = this.noise2D(x * 0.04, z * 0.04) * 4.0;
-    } else if (world.id === 'vantauri-deep') {
-      h = this.noise2D(x * 0.02, z * 0.02) * 2.5 - 3.0;
-    }
-    return h;
+    return this.getMultiOctaveNoise(x, z, world.id);
   }
 
   onWindowResize() {
@@ -274,17 +324,17 @@ export class WorldEngine {
 
     const centerX = w / 2;
     const centerY = h / 2;
-    const scale = 12;
+    const scale = 8;
 
     ctx.strokeStyle = world.ambientLight || '#2a3d2e';
     ctx.lineWidth = 1;
     ctx.beginPath();
-    for (let x = -60; x <= 60; x += 10) {
+    for (let x = -150; x <= 150; x += 20) {
       const px = centerX + (x - (playerPos?.x || 0)) * scale;
       ctx.moveTo(px, 0);
       ctx.lineTo(px, h);
     }
-    for (let z = -60; z <= 60; z += 10) {
+    for (let z = -150; z <= 150; z += 20) {
       const py = centerY + (z - (playerPos?.z || 0)) * scale;
       ctx.moveTo(0, py);
       ctx.lineTo(w, py);
