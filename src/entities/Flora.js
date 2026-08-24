@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { BaseEntity } from './BaseEntity.js';
+import { physicsEngine } from '../engine/physics.js';
 
 export class FloraEntity extends BaseEntity {
   constructor(id, type, pos, scale = 1.0) {
@@ -15,7 +16,6 @@ export class FloraEntity extends BaseEntity {
   buildModel() {
     const scale = this.scale;
 
-    // 1. Root System Lattice Anchoring Plant to Planetary Crust
     const rootMat = new THREE.MeshStandardMaterial({ color: '#1f2d1e', roughness: 0.9 });
     for (let i = 0; i < 4; i++) {
       const rootGeo = new THREE.CylinderGeometry(0.15 * scale, 0.35 * scale, 1.8 * scale, 8);
@@ -27,7 +27,6 @@ export class FloraEntity extends BaseEntity {
       this.group.add(root);
     }
 
-    // 2. Trunk & Canopy / Crystal / Vent Structure
     if (this.type === 'sporeStalk') {
       const trunkGeo = new THREE.CylinderGeometry(0.4 * scale, 0.8 * scale, 12 * scale, 12);
       const trunkMat = new THREE.MeshStandardMaterial({ color: '#2a442e', roughness: 0.8 });
@@ -80,13 +79,14 @@ export class FloraEntity extends BaseEntity {
   update(deltaSeconds, worldEngine) {
     super.update(deltaSeconds, worldEngine);
 
-    // Anchor strictly to terrain height at current X,Z
     if (worldEngine) {
       const terrainH = worldEngine.getTerrainHeight(this.group.position.x, this.group.position.z);
       this.group.position.y = terrainH;
+
+      const yaw = this.group.rotation.y;
+      physicsEngine.alignToTerrainNormal(this.group, this.group.position, yaw, worldEngine);
     }
 
-    // Gentle wind sway
     const sway = Math.sin(this.animTime * 1.5) * 0.04;
     this.group.rotation.z = sway;
   }
