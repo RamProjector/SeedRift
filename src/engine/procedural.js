@@ -57,6 +57,14 @@ export class ProceduralMeshGenerator {
     const height = Math.max(0.8, Math.min(4.0, phys.size?.height || 1.2));
     const morphology = (phys.morphology || '').toLowerCase();
     const name = speciesData.commonName.toLowerCase();
+    const worldId = speciesData.world || 'kharon-bloomfields';
+
+    // Biome-Specific Emissive Glow Accents
+    let biomeGlowHex = secondary;
+    if (worldId === 'ashfields-coreth') biomeGlowHex = '#ff4500'; // Volcanic Magma Glow
+    if (worldId === 'pallid-reach') biomeGlowHex = '#5fe6d0'; // Radiation Cyan Glow
+    if (worldId === 'vantauri-deep') biomeGlowHex = '#4ce0d2'; // Ocean Bioluminescent Glow
+    if (worldId === 'hollow-steppe') biomeGlowHex = '#ffea9f'; // Golden Amber Glow
 
     const tex = createProceduralTexture(primary, secondary, color.pattern || 'striped');
     const mat = new THREE.MeshStandardMaterial({
@@ -64,8 +72,8 @@ export class ProceduralMeshGenerator {
       color: new THREE.Color(primary),
       roughness: 0.35,
       metalness: 0.3,
-      emissive: new THREE.Color(secondary),
-      emissiveIntensity: 0.25
+      emissive: new THREE.Color(biomeGlowHex),
+      emissiveIntensity: 0.35
     });
 
     const armorMat = new THREE.MeshStandardMaterial({
@@ -75,16 +83,16 @@ export class ProceduralMeshGenerator {
     });
 
     const glowMat = new THREE.MeshStandardMaterial({
-      color: new THREE.Color(secondary),
-      emissive: new THREE.Color(secondary),
-      emissiveIntensity: 1.3,
+      color: new THREE.Color(biomeGlowHex),
+      emissive: new THREE.Color(biomeGlowHex),
+      emissiveIntensity: 1.4,
       roughness: 0.1
     });
 
     // 1. Gliders / Flying Fauna
     if (name.includes('drift') || name.includes('moth') || name.includes('fin') || name.includes('flyer') || name.includes('flicker')) {
       const thoraxGeo = new THREE.ConeGeometry(height * 0.35, length, 12);
-      thoraxGeo.rotateX(-Math.PI / 2); // Cone tip points FORWARD along -Z
+      thoraxGeo.rotateX(-Math.PI / 2);
       const thorax = new THREE.Mesh(thoraxGeo, mat);
       group.add(thorax);
 
@@ -95,9 +103,9 @@ export class ProceduralMeshGenerator {
 
       const wingGeo = new THREE.ShapeGeometry(wingShape);
       const wingMat = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(secondary),
-        emissive: new THREE.Color(secondary),
-        emissiveIntensity: 0.9,
+        color: new THREE.Color(biomeGlowHex),
+        emissive: new THREE.Color(biomeGlowHex),
+        emissiveIntensity: 1.0,
         transparent: true,
         opacity: 0.85,
         side: THREE.DoubleSide
