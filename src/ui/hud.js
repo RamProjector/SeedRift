@@ -6,12 +6,17 @@ import { shipUI } from './ship.js';
 export class HUDManager {
   constructor() {
     this.hudContainer = null;
-    this.isScanning = false;
-    this.scanProgress = 0;
-    this.scanTarget = null;
+    this.scannableTarget = null;
+    this.onBuildToggleCallback = null;
+    this.onConfirmBuildCallback = null;
+    this.onCancelBuildCallback = null;
   }
 
-  init() {
+  init(onBuildToggle, onConfirmBuild, onCancelBuild) {
+    this.onBuildToggleCallback = onBuildToggle;
+    this.onConfirmBuildCallback = onConfirmBuild;
+    this.onCancelBuildCallback = onCancelBuild;
+
     this.hudContainer = document.createElement('div');
     this.hudContainer.id = 'hudOverlay';
     this.hudContainer.innerHTML = `
@@ -69,7 +74,6 @@ export class HUDManager {
       <div class="scanner-reticle" id="scannerReticle">
         <div class="reticle-ring"></div>
         <div class="reticle-dot"></div>
-        <div class="scan-progress-bar" id="scanProgressFill"></div>
       </div>
 
       <!-- Right Scanner Readout Panel -->
@@ -93,43 +97,38 @@ export class HUDManager {
         </div>
 
         <div class="quick-nav-buttons">
-          <button class="btn-nav" id="btnOpenWeave">🧬 The Weave [Tab]</button>
+          <button class="btn-nav" id="btnOpenBuild">🔨 Build [B]</button>
+          <button class="btn-nav" id="btnOpenWeave">🧬 Weave [Tab]</button>
           <button class="btn-nav" id="btnOpenShip">🚀 Command Hub [M]</button>
         </div>
       </div>
 
       <!-- Toast Notification Container -->
       <div class="notification-container" id="toastContainer"></div>
-
-      <!-- Mobile Virtual Touch Controls -->
-      <div class="touch-overlay" id="touchOverlay">
-        <div class="virtual-joystick" id="vJoystick">
-          <div class="joystick-knob" id="vKnob"></div>
-        </div>
-        <div class="touch-actions">
-          <button class="touch-btn" id="tBtnScan">🔍 SCAN</button>
-          <button class="touch-btn" id="tBtnJump">🦘 JUMP</button>
-          <button class="touch-btn" id="tBtnWeave">🧬 WEAVE</button>
-        </div>
-      </div>
     `;
 
     document.body.appendChild(this.hudContainer);
 
     // Nav button events
+    document.getElementById('btnOpenBuild').onclick = () => { if (this.onBuildToggleCallback) this.onBuildToggleCallback(); };
     document.getElementById('btnOpenWeave').onclick = () => weaveUI.toggle();
     document.getElementById('btnOpenShip').onclick = () => shipUI.toggle();
-    document.getElementById('tBtnWeave').onclick = () => weaveUI.toggle();
 
     // Key shortcut listeners
     window.addEventListener('keydown', (e) => {
-      if (e.code === 'Tab') {
+      if (e.code === 'KeyB') {
+        if (this.onBuildToggleCallback) this.onBuildToggleCallback();
+      } else if (e.code === 'Tab') {
         e.preventDefault();
         weaveUI.toggle();
       } else if (e.code === 'KeyM') {
         shipUI.toggle();
       } else if (e.code === 'KeyE') {
         this.triggerScanAction();
+      } else if (e.code === 'Enter') {
+        if (this.onConfirmBuildCallback) this.onConfirmBuildCallback();
+      } else if (e.code === 'Escape') {
+        if (this.onCancelBuildCallback) this.onCancelBuildCallback();
       }
     });
 
@@ -137,7 +136,6 @@ export class HUDManager {
       this.executeSampleExtraction();
     };
 
-    // Listen for custom respawn & event window signals
     window.addEventListener('seedrift-respawn', (e) => {
       this.showToast(e.detail.msg, 'warn');
     });
@@ -166,9 +164,15 @@ export class HUDManager {
     }, 3500);
   }
 
-  updateScannable(scannable) {
+  updateScannable(scannable, isBuildingPlacement = false) {
     const prompt = document.getElementById('contextPrompt');
     const reticle = document.getElementById('scannerReticle');
+
+    if (isBuildingPlacement) {
+      reticle.classList.remove('locked');
+      prompt.innerHTML = `<kbd>Enter</kbd> Confirm Ghost Structure Placement &nbsp;·&nbsp; <kbd>Esc</kbd> Cancel Construction`;
+      return;
+    }
 
     if (scannable) {
       reticle.classList.add('locked');
@@ -177,18 +181,20 @@ export class HUDManager {
         prompt.innerHTML = `<kbd>E</kbd> Scan & Extract Sample from <strong>${name}</strong> (${Math.round(scannable.distance)}m)`;
       } else if (scannable.type === 'ruin') {
         prompt.innerHTML = `<kbd>E</kbd> Access Firstseed Ancient Monolith Terminal`;
+      } else if (scannable.type === 'rival') {
+        prompt.innerHTML = `<kbd>E</kbd> Intercept Meridian Combine Survey Drone`;
       }
       this.scannableTarget = scannable;
     } else {
       reticle.classList.remove('locked');
-      prompt.innerHTML = `<kbd>E</kbd> Activate Bio-Scanner &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Ship Hub`;
+      prompt.innerHTML = `<kbd>E</kbd> Bio-Scanner &nbsp;·&nbsp; <kbd>B</kbd> Build &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Command Hub`;
       this.scannableTarget = null;
     }
   }
 
   triggerScanAction() {
     if (!this.scannableTarget) {
-      this.showToast("No scannable biological target or ruin in range.", "info");
+      this.showToast("No scannable biological target, ruin, or drone in range.", "info");
       return;
     }
 
@@ -198,6 +204,8 @@ export class HUDManager {
     } else if (this.scannableTarget.type === 'ruin') {
       const monolith = this.scannableTarget.monolith;
       this.openRuinReadout(monolith);
+    } else if (this.scannableTarget.type === 'rival') {
+      this.openRivalReadout();
     }
   }
 
@@ -246,14 +254,42 @@ export class HUDManager {
     readout.classList.remove('hidden');
   }
 
+  openRivalReadout() {
+    soundEngine.playChirp();
+    const readout = document.getElementById('scannerReadout');
+
+    document.getElementById('readoutTitle').textContent = "Meridian Combine Drone";
+    document.getElementById('readoutSciName').textContent = "Automated Survey Rig 09-B";
+    document.getElementById('readoutBadge').textContent = "Rival Faction";
+    document.getElementById('readoutDesc').textContent = "A high-speed Meridian Combine extraction drone running non-compliant mineral survey sweeps.";
+
+    const statsEl = document.getElementById('readoutStats');
+    statsEl.innerHTML = `
+      <div><strong>Faction:</strong> Meridian Combine</div>
+      <div><strong>Status:</strong> Surveying Crust</div>
+    `;
+
+    const btn = document.getElementById('btnExtractSample');
+    btn.textContent = "📡 Hack Drone Core (+1 Ancient DNA)";
+    this.activeSpeciesTarget = { isRival: true };
+
+    readout.classList.remove('hidden');
+  }
+
   executeSampleExtraction() {
     const readout = document.getElementById('scannerReadout');
     readout.classList.add('hidden');
 
     if (!this.activeSpeciesTarget) return;
 
+    if (this.activeSpeciesTarget.isRival) {
+      gameState.extractedResources.ancientDNA += 1;
+      soundEngine.playSampleAcquired();
+      this.showToast("📡 Intercepted Meridian Drone Core! Acquired +1 Ancient DNA sample.", "event");
+      return;
+    }
+
     if (this.activeSpeciesTarget.isRuin) {
-      // Unlock Ruin Splice
       const sId = this.activeSpeciesTarget.ruinUnlockSplice;
       const splice = gameState.splices.find(s => s.id === sId);
       if (splice) {
@@ -279,7 +315,6 @@ export class HUDManager {
     const v = gameState.vitals;
     const world = gameState.getCurrentWorld();
 
-    // 1. Update Vitals UI
     document.getElementById('valTemp').textContent = `${Math.round(v.temp)}°C`;
     document.getElementById('barTemp').style.width = `${Math.min(100, Math.max(0, (v.temp / 60) * 100))}%`;
 
@@ -304,7 +339,6 @@ export class HUDManager {
       document.getElementById('barRad').style.width = '0%';
     }
 
-    // 2. Update Clock
     const h = Math.floor(gameState.timeOfDay);
     const m = Math.floor((gameState.timeOfDay % 1) * 60);
     const ampm = h >= 12 ? 'PM' : 'AM';

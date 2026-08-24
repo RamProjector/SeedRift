@@ -10,11 +10,9 @@ export class EntityManager {
     this.entities = [];
     this.flora = [];
     this.ruinMonolith = null;
-    this.scanTarget = null;
   }
 
   populateWorld(worldData) {
-    // Clear previous entities
     this.entities.forEach(e => this.scene.remove(e.group));
     this.flora.forEach(f => this.scene.remove(f.group));
     if (this.ruinMonolith) this.scene.remove(this.ruinMonolith.group);
@@ -25,13 +23,11 @@ export class EntityManager {
 
     const speciesList = SPECIES_BY_WORLD[worldData.id] || [];
 
-    // 1. Spawn subset of 12-18 creatures
     const countToSpawn = Math.min(18, speciesList.length);
     for (let i = 0; i < countToSpawn; i++) {
       const speciesData = speciesList[i % speciesList.length];
       const meshGroup = ProceduralMeshGenerator.createCreatureMesh(speciesData);
 
-      // Random placement around scene
       const x = (Math.random() - 0.5) * 60;
       const z = (Math.random() - 0.5) * 60;
       const y = this.worldEngine.getTerrainHeight(x, z);
@@ -49,7 +45,6 @@ export class EntityManager {
       });
     }
 
-    // 2. Spawn Flora
     const floraTypes = worldData.floraTypes || ['goldenGrass'];
     for (let i = 0; i < 25; i++) {
       const type = floraTypes[i % floraTypes.length];
@@ -63,7 +58,6 @@ export class EntityManager {
       this.flora.push({ group: floraMesh, type });
     }
 
-    // 3. Spawn Firstseed Monolith Ruin
     const ruinGroup = ProceduralMeshGenerator.createFirstseedMonolith(worldData.ruinType);
     const rx = 15;
     const rz = -20;
@@ -80,16 +74,13 @@ export class EntityManager {
   }
 
   update(deltaSeconds, playerPos) {
-    // 1. Creature AI & Animations
     this.entities.forEach(e => {
       e.wanderTimer -= deltaSeconds;
       if (e.wanderTimer <= 0) {
-        // Pick new wander target near current pos
         const rx = e.group.position.x + (Math.random() - 0.5) * 20;
         const rz = e.group.position.z + (Math.random() - 0.5) * 20;
         const ry = this.worldEngine.getTerrainHeight(rx, rz);
 
-        // Flier / Glider altitude boost
         const name = e.data.commonName.toLowerCase();
         let altBoost = 0;
         if (name.includes('drift') || name.includes('moth') || name.includes('fin') || name.includes('flyer')) {
@@ -99,7 +90,6 @@ export class EntityManager {
         e.wanderTimer = Math.random() * 6 + 4;
       }
 
-      // Smooth move towards target
       const dir = new THREE.Vector3().subVectors(e.targetPos, e.group.position);
       const dist = dir.length();
       if (dist > 0.2) {
@@ -108,7 +98,6 @@ export class EntityManager {
         e.group.rotation.y = Math.atan2(dir.x, dir.z);
       }
 
-      // Wing flapping for gliders
       const wingL = e.group.getObjectByName('wingLeft');
       const wingR = e.group.getObjectByName('wingRight');
       if (wingL && wingR) {
@@ -118,7 +107,6 @@ export class EntityManager {
       }
     });
 
-    // 2. Ruin Monolith rotation
     if (this.ruinMonolith) {
       const ring1 = this.ruinMonolith.group.getObjectByName('glyphRing1');
       const ring2 = this.ruinMonolith.group.getObjectByName('glyphRing2');
@@ -129,12 +117,10 @@ export class EntityManager {
     }
   }
 
-  // Find nearest creature or ruin in front of camera/player for scanner reticle
-  getNearestScannable(playerPos, cameraDir) {
+  getNearestScannable(playerPos, rivalManager) {
     let closest = null;
-    let minDistance = 15; // scan range limit
+    let minDistance = 15;
 
-    // Check creatures
     for (const e of this.entities) {
       const dist = playerPos.distanceTo(e.group.position);
       if (dist < minDistance) {
@@ -143,11 +129,18 @@ export class EntityManager {
       }
     }
 
-    // Check Ruin Monolith
     if (this.ruinMonolith) {
       const dist = playerPos.distanceTo(this.ruinMonolith.pos);
       if (dist < minDistance && dist < 12) {
         closest = { type: 'ruin', monolith: this.ruinMonolith, distance: dist };
+        minDistance = dist;
+      }
+    }
+
+    if (rivalManager) {
+      const riv = rivalManager.getNearestRival(playerPos);
+      if (riv && riv.distance < minDistance) {
+        closest = { type: 'rival', drone: riv.drone, distance: riv.distance };
       }
     }
 
