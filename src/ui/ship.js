@@ -11,15 +11,13 @@ export class ShipUI {
     this.isOpen = false;
     this.activeTab = 'starmap';
     this.selectedSpecies = ALL_SPECIES[0];
-    this.codexScene = null;
-    this.codexCamera = null;
-    this.codexRenderer = null;
-    this.codexMeshGroup = null;
     this.onWorldChangeCallback = null;
+    this.haulingManager = null;
   }
 
-  init(onWorldChange) {
+  init(onWorldChange, haulingManager) {
     this.onWorldChangeCallback = onWorldChange;
+    this.haulingManager = haulingManager;
 
     this.modalEl = document.createElement('div');
     this.modalEl.id = 'shipModal';
@@ -32,7 +30,7 @@ export class ShipUI {
             <button class="ship-tab active" data-tab="starmap">🪐 Star Map</button>
             <button class="ship-tab" data-tab="biolab">🔬 Bio-Lab</button>
             <button class="ship-tab" data-tab="codex">📖 Species Codex (${ALL_SPECIES.length})</button>
-            <button class="ship-tab" data-tab="logistics">⚙️ Logistics</button>
+            <button class="ship-tab" data-tab="logistics">⚙️ Logistics & Hauling</button>
           </div>
           <button class="btn-close-modal" id="closeShipBtn">✕ Close Command Hub</button>
         </div>
@@ -138,7 +136,6 @@ export class ShipUI {
 
     container.innerHTML = html;
 
-    // Card click events
     container.querySelectorAll('.world-card').forEach(card => {
       card.onclick = () => {
         const id = card.dataset.id;
@@ -161,7 +158,6 @@ export class ShipUI {
   renderBioLab(container) {
     const samples = gameState.samplesCollected;
     const unlocked = gameState.splices.filter(s => s.unlocked);
-    const locked = gameState.splices.filter(s => !s.unlocked);
 
     let html = `
       <div class="biolab-container">
@@ -293,7 +289,6 @@ export class ShipUI {
       </div>
     `;
 
-    // Render 3D Canvas
     setTimeout(() => {
       const viewport = document.getElementById('specimen3DCanvas');
       if (viewport) {
@@ -330,11 +325,11 @@ export class ShipUI {
   renderLogistics(container) {
     const ext = gameState.extractors;
     const res = gameState.extractedResources;
+    const routes = this.haulingManager?.routes || [];
 
     let html = `
       <div class="logistics-screen">
-        <h3>Automated Planetary Resource Harvesters</h3>
-        <p>Extractors operate continuously on discovered worlds, harvesting organic spores and minerals for Weave synthesis.</p>
+        <h3>Automated Logistics & Pack-Fauna Supply Lines</h3>
 
         <div class="resource-counter">
           <div class="res-box">🌾 Spores: <strong>${Math.floor(res.spores)}</strong></div>
@@ -343,7 +338,27 @@ export class ShipUI {
           <div class="res-box">⚡ Ancient DNA: <strong>${Math.floor(res.ancientDNA)}</strong></div>
         </div>
 
+        <div class="hauling-section">
+          <h4>Active Pack-Fauna Supply Routes (${routes.length})</h4>
+          <button class="btn-travel" id="btnDeployHauler" style="margin-bottom:12px;padding:10px;">
+            🐪 Deploy Pack-Fauna Hauling Route (+2 Yield/trip)
+          </button>
+          <div class="hauling-list">
+            ${routes.length === 0 ? '<p class="empty-msg">No active hauling routes. Click above to deploy dociled pack-fauna haulers.</p>' : ''}
+            ${routes.map(r => `
+              <div class="extractor-card">
+                <div>
+                  <strong>${r.speciesName} Supply Line</strong>
+                  <div>Status: Transferring cargo (${Math.round(r.progress * 100)}%)</div>
+                </div>
+                <div>Yield: +${r.yieldRate}/trip</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
         <div class="extractor-list">
+          <h4>Planetary Harvesters</h4>
           ${Object.entries(ext).map(([wId, data]) => {
             const w = WORLDS[wId];
             return `
@@ -366,6 +381,18 @@ export class ShipUI {
     `;
 
     container.innerHTML = html;
+
+    const deployBtn = document.getElementById('btnDeployHauler');
+    if (deployBtn) {
+      deployBtn.onclick = () => {
+        if (this.haulingManager) {
+          const start = new THREE.Vector3(15, 0, -20);
+          const end = new THREE.Vector3(-10, 0, 10);
+          this.haulingManager.createRoute(start, end, 'Shellgrazer');
+          this.renderLogistics(container);
+        }
+      };
+    }
 
     container.querySelectorAll('.btn-toggle-ext').forEach(btn => {
       btn.onclick = () => {

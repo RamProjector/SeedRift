@@ -7,6 +7,7 @@ import { EntityManager } from './engine/entities.js';
 import { PlayerController } from './engine/player.js';
 import { BuildingManager } from './engine/building.js';
 import { RivalManager } from './engine/rivals.js';
+import { HaulingManager } from './engine/hauling.js';
 import { HUDManager } from './ui/hud.js';
 import { weaveUI } from './ui/weave.js';
 import { shipUI } from './ui/ship.js';
@@ -21,6 +22,7 @@ class Game {
     this.player = new PlayerController(this.worldEngine.scene, this.worldEngine.camera, this.worldEngine);
     this.buildingManager = new BuildingManager(this.worldEngine.scene, this.worldEngine);
     this.rivalManager = new RivalManager(this.worldEngine.scene, this.worldEngine);
+    this.haulingManager = new HaulingManager(this.worldEngine.scene, this.worldEngine);
 
     this.hud = new HUDManager();
     this.buildUI = new BuildUI(this.buildingManager);
@@ -31,7 +33,7 @@ class Game {
     ecologySim.init();
 
     weaveUI.init();
-    shipUI.init((newWorld) => this.onWorldChange(newWorld));
+    shipUI.init((newWorld) => this.onWorldChange(newWorld), this.haulingManager);
     this.buildUI.init();
 
     this.hud.init(
@@ -79,6 +81,7 @@ class Game {
     this.player.update(deltaSeconds);
     this.entityManager.update(deltaSeconds, this.player.position);
     this.rivalManager.update(deltaSeconds);
+    this.haulingManager.update(deltaSeconds);
     this.worldEngine.update(deltaSeconds, this.player.position);
 
     if (this.buildingManager.isPlacing) {

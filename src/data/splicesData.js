@@ -141,5 +141,31 @@ export const INITIAL_SPLICES = [
     equipped: false,
     unlocked: false,
     statBonus: { scannerRangeBonus: 2.5, revealRuins: true }
+  },
+  {
+    id: "s12",
+    name: "Primordial Catalytic Lattice",
+    source: "De-Extinction Synthesis · Firstseed Bio-Archive",
+    speciesId: "deext-catalyst",
+    effect: "Doubles resource yield from all planetary extractors and farm plots.",
+    cost: 3,
+    category: "Ancestral",
+    tradeoff: "Increased suit power consumption.",
+    equipped: false,
+    unlocked: true,
+    statBonus: { resourceYieldMultiplier: 2.0 }
+  },
+  {
+    id: "s13",
+    name: "Leviathan Hydro-Siphon",
+    source: "De-Extinction Synthesis · Abyssal Vault",
+    speciesId: "deext-leviathan",
+    effect: "Infinite underwater oxygen supply and maximum swimming velocity.",
+    cost: 3,
+    category: "Ancestral",
+    tradeoff: "None",
+    equipped: false,
+    unlocked: false,
+    statBonus: { infiniteOxygen: true, swimSpeed: 3.0 }
   }
 ];
