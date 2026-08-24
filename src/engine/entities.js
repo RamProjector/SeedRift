@@ -58,7 +58,7 @@ export class EntityManager {
 
       floraMesh.position.set(x, y, z);
       this.scene.add(floraMesh);
-      this.flora.push({ group: floraMesh, type, pos: new THREE.Vector3(x, y, z) });
+      this.flora.push({ group: floraMesh, type, pos: new THREE.Vector3(x, y, z), harvested: false });
     }
 
     const ruinGroup = ProceduralMeshGenerator.createFirstseedMonolith(worldData.ruinType);
@@ -77,11 +77,9 @@ export class EntityManager {
   }
 
   update(deltaSeconds, playerPos) {
-    // Dynamic Predator-Prey Pursuit AI
     for (let i = 0; i < this.entities.length; i++) {
       const e = this.entities[i];
 
-      // Check predator pursuit
       if (e.trophic === 'predator' || e.trophic === 'secondary') {
         let nearestPrey = null;
         let minDist = 12.0;
@@ -98,9 +96,7 @@ export class EntityManager {
         }
 
         if (nearestPrey) {
-          // Pursue prey
           e.targetPos.copy(nearestPrey.group.position);
-          // Prey flees
           nearestPrey.targetPos.addScaledVector(
             new THREE.Vector3().subVectors(nearestPrey.group.position, e.group.position).normalize(),
             4.0
@@ -159,6 +155,17 @@ export class EntityManager {
       if (dist < minDistance) {
         closest = { type: 'creature', entity: e, distance: dist };
         minDistance = dist;
+      }
+    }
+
+    // Check Flora Foraging
+    for (const f of this.flora) {
+      if (!f.harvested) {
+        const dist = playerPos.distanceTo(f.pos);
+        if (dist < minDistance && dist < 10) {
+          closest = { type: 'flora', flora: f, distance: dist };
+          minDistance = dist;
+        }
       }
     }
 

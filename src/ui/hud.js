@@ -196,6 +196,8 @@ export class HUDManager {
       if (scannable.type === 'creature') {
         const name = scannable.entity.data.commonName;
         prompt.innerHTML = `<kbd>E</kbd> Scan & Extract Sample from <strong>${name}</strong> (${Math.round(scannable.distance)}m)`;
+      } else if (scannable.type === 'flora') {
+        prompt.innerHTML = `<kbd>E</kbd> Forage Wild Flora <strong>${scannable.flora.type}</strong> (${Math.round(scannable.distance)}m)`;
       } else if (scannable.type === 'ruin') {
         prompt.innerHTML = `<kbd>E</kbd> Access Firstseed Ancient Monolith Terminal`;
       } else if (scannable.type === 'rival') {
@@ -215,13 +217,15 @@ export class HUDManager {
 
   triggerScanAction() {
     if (!this.scannableTarget) {
-      this.showToast("No scannable biological target, ruin, or drone in range.", "info");
+      this.showToast("No scannable biological target, flora, ruin, or drone in range.", "info");
       return;
     }
 
     if (this.scannableTarget.type === 'creature') {
       const sp = this.scannableTarget.entity.data;
       this.openScanReadout(sp);
+    } else if (this.scannableTarget.type === 'flora') {
+      this.openFloraReadout(this.scannableTarget.flora);
     } else if (this.scannableTarget.type === 'ruin') {
       const monolith = this.scannableTarget.monolith;
       this.openRuinReadout(monolith);
@@ -250,6 +254,29 @@ export class HUDManager {
     `;
 
     document.getElementById('btnExtractSample').textContent = "🧪 Extract Non-Lethal Sample";
+    readout.classList.remove('hidden');
+  }
+
+  openFloraReadout(floraObj) {
+    soundEngine.playChirp();
+    const readout = document.getElementById('scannerReadout');
+    const world = gameState.getCurrentWorld();
+
+    document.getElementById('readoutTitle').textContent = `Wild Flora: ${floraObj.type}`;
+    document.getElementById('readoutSciName').textContent = "Photosynthetic Alien Flora";
+    document.getElementById('readoutBadge').textContent = "Producer";
+    document.getElementById('readoutDesc').textContent = "Native flora containing raw organic compounds and spore samples.";
+
+    const statsEl = document.getElementById('readoutStats');
+    statsEl.innerHTML = `
+      <div><strong>Kingdom:</strong> Flora</div>
+      <div><strong>Yield:</strong> +5 Organics & +3 Spores</div>
+    `;
+
+    const btn = document.getElementById('btnExtractSample');
+    btn.textContent = "🌾 Forage & Collect Organic Material";
+    this.activeSpeciesTarget = { isFlora: true, floraObj };
+
     readout.classList.remove('hidden');
   }
 
@@ -303,6 +330,15 @@ export class HUDManager {
     readout.classList.add('hidden');
 
     if (!this.activeSpeciesTarget) return;
+
+    if (this.activeSpeciesTarget.isFlora) {
+      this.activeSpeciesTarget.floraObj.harvested = true;
+      gameState.extractedResources.organics += 5;
+      gameState.extractedResources.spores += 3;
+      soundEngine.playSampleAcquired();
+      this.showToast(`🌾 Foraged ${this.activeSpeciesTarget.floraObj.type}! Collected +5 Organics & +3 Spores.`, 'event');
+      return;
+    }
 
     if (this.activeSpeciesTarget.isRival) {
       gameState.extractedResources.ancientDNA += 1;
