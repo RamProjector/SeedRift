@@ -24,6 +24,7 @@ import { helpUI } from './ui/helpModal.js';
 import { farmUI } from './ui/farmModal.js';
 import { mapUI } from './ui/mapModal.js';
 import { tradeUI } from './ui/tradeModal.js';
+import { settingsUI } from './ui/settingsModal.js';
 import { soundEngine } from './audio/sound.js';
 
 class Game {
@@ -54,6 +55,7 @@ class Game {
     farmUI.init();
     mapUI.init();
     tradeUI.init();
+    settingsUI.init();
 
     this.hud.init(
       () => this.buildUI.toggle(),

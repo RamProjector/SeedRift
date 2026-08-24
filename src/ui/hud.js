@@ -3,7 +3,7 @@ import { soundEngine } from '../audio/sound.js';
 import { weaveUI } from './weave.js';
 import { shipUI } from './ship.js';
 import { helpUI } from './helpModal.js';
-import { mapUI } from './mapModal.js';
+import { settingsUI } from './settingsModal.js';
 
 export class HUDManager {
   constructor() {
@@ -109,6 +109,7 @@ export class HUDManager {
           <button class="btn-nav" id="btnOpenWeave">🧬 Weave [Tab]</button>
           <button class="btn-nav" id="btnOpenShip">🚀 Hub [M]</button>
           <button class="btn-nav" id="btnOpenHelp">❓ Help [H]</button>
+          <button class="btn-nav" id="btnOpenSettings">⚙️ [O]</button>
         </div>
       </div>
 
@@ -123,6 +124,7 @@ export class HUDManager {
     document.getElementById('btnOpenWeave').onclick = () => weaveUI.toggle();
     document.getElementById('btnOpenShip').onclick = () => shipUI.toggle();
     document.getElementById('btnOpenHelp').onclick = () => helpUI.toggle();
+    document.getElementById('btnOpenSettings').onclick = () => settingsUI.toggle();
 
     window.addEventListener('keydown', (e) => {
       if (e.code === 'KeyB') {
@@ -214,7 +216,7 @@ export class HUDManager {
       if (gameState.hasSplice('s6')) extraKeys += ' &nbsp;·&nbsp; <kbd>C</kbd> Tunnel';
       if (gameState.hasSplice('s8')) extraKeys += ' &nbsp;·&nbsp; <kbd>Q</kbd> Shockwave';
 
-      prompt.innerHTML = `<kbd>E</kbd> Scan &nbsp;·&nbsp; <kbd>V</kbd> View &nbsp;·&nbsp; <kbd>B</kbd> Build &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Hub &nbsp;·&nbsp; <kbd>N</kbd> Map${extraKeys}`;
+      prompt.innerHTML = `<kbd>E</kbd> Scan &nbsp;·&nbsp; <kbd>V</kbd> View &nbsp;·&nbsp; <kbd>B</kbd> Build &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Hub &nbsp;·&nbsp; <kbd>O</kbd> Opt${extraKeys}`;
       this.scannableTarget = null;
     }
   }
