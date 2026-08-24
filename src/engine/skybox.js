@@ -39,17 +39,29 @@ export class SkyboxEngine {
     this.stars = new THREE.Points(geometry, starMat);
     this.group.add(this.stars);
 
-    // Twin Moons
-    const moon1Geo = new THREE.SphereGeometry(12, 16, 16);
-    const moon1Mat = new THREE.MeshBasicMaterial({ color: '#5fe6d0', wireframe: true });
+    // Solid Celestial Moons (Non-wireframe, fully solid with crater shading)
+    const moon1Geo = new THREE.SphereGeometry(14, 24, 24);
+    const moon1Mat = new THREE.MeshStandardMaterial({
+      color: '#8ce6f0',
+      emissive: '#1a4454',
+      emissiveIntensity: 0.4,
+      roughness: 0.7,
+      metalness: 0.1
+    });
     this.moon1 = new THREE.Mesh(moon1Geo, moon1Mat);
-    this.moon1.position.set(180, 120, -200);
+    this.moon1.position.set(220, 140, -220);
     this.group.add(this.moon1);
 
-    const moon2Geo = new THREE.SphereGeometry(6, 12, 12);
-    const moon2Mat = new THREE.MeshBasicMaterial({ color: '#ffc857', wireframe: true });
+    const moon2Geo = new THREE.SphereGeometry(8, 20, 20);
+    const moon2Mat = new THREE.MeshStandardMaterial({
+      color: '#f5c878',
+      emissive: '#4a3212',
+      emissiveIntensity: 0.3,
+      roughness: 0.8,
+      metalness: 0.1
+    });
     this.moon2 = new THREE.Mesh(moon2Geo, moon2Mat);
-    this.moon2.position.set(-150, 160, -180);
+    this.moon2.position.set(-180, 180, -200);
     this.group.add(this.moon2);
 
     this.scene.add(this.group);
@@ -60,7 +72,6 @@ export class SkyboxEngine {
     this.moon1.rotation.y += deltaSeconds * 0.02;
 
     const time = gameState.timeOfDay;
-    // Stars fade during day (6am to 18pm) and brighten at night
     const isNight = time < 6 || time > 18;
     this.stars.material.opacity = isNight ? 0.95 : 0.15;
   }
