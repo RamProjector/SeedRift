@@ -1,0 +1,2316 @@
+[
+  {
+    "id": "ashfields-coreth-0000",
+    "scientificName": "Photocampor robustus",
+    "commonName": "Feldspar Stalker",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Testaforma",
+      "class": "TestAuctorae",
+      "order": "Fossorales",
+      "family": "AshfieldsFungal-analogidae",
+      "genus": "Photocampor"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "ashfields-coreth-0010",
+        "ashfields-coreth-0012",
+        "ashfields-coreth-0013"
+      ],
+      "habitat": {
+        "biome": "mineral-deposit",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.11,
+        "length": 0.9,
+        "height": 0.66
+      },
+      "morphology": "Procedurally generated producer with adaptive features for mineral deposit environment.",
+      "coloration": {
+        "primary": "#B49040",
+        "secondary": "#8A3A2A",
+        "pattern": "Adaptive coloration for mineral deposit camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "small-group",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.026,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 3762,
+        "ashfields-coreth-region-2": 3617,
+        "ashfields-coreth-region-3": 3177
+      },
+      "mvp": 548,
+      "extinctionThreshold": 164,
+      "seasonalModifiers": {
+        "spring": 1.09,
+        "summer": 1.2,
+        "autumn": 0.92,
+        "winter": 0.72
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A mineral deposit producer that forms the base of the food web through chemovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0000.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0000.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A mineral deposit producer that forms the base of the food web through chemovore metabolism."
+  },
+  {
+    "id": "ashfields-coreth-0001",
+    "scientificName": "Abyssconchaon fortis",
+    "commonName": "Geode Burrower",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "flora",
+      "phylum": "Testaforma",
+      "class": "TestAuctorae",
+      "order": "Fossorales",
+      "family": "AshfieldsFloraidae",
+      "genus": "Abyssconchaon"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [],
+      "habitat": {
+        "biome": "cooled-lava-flow",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.04,
+        "length": 0.64,
+        "height": 0.19
+      },
+      "morphology": "Procedurally generated producer with adaptive features for cooled lava flow environment.",
+      "coloration": {
+        "primary": "#C4A050",
+        "secondary": "#7A2A1A",
+        "pattern": "Adaptive coloration for cooled lava flow camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.043,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 9871,
+        "ashfields-coreth-region-2": 9938,
+        "ashfields-coreth-region-3": 10326
+      },
+      "mvp": 1350,
+      "extinctionThreshold": 405,
+      "seasonalModifiers": {
+        "spring": 1.05,
+        "summer": 1.05,
+        "autumn": 0.89,
+        "winter": 0.75
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A cooled lava flow producer that forms the base of the food web through chemovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0001.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0001.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A cooled lava flow producer that forms the base of the food web through chemovore metabolism."
+  },
+  {
+    "id": "ashfields-coreth-0002",
+    "scientificName": "Laminachemous fragilis",
+    "commonName": "Scorch Grazer",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "microbial",
+      "phylum": "Planiforma",
+      "class": "PlanAuctorae",
+      "order": "Mediales",
+      "family": "AshfieldsMicrobialidae",
+      "genus": "Laminachemous"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "ashfields-coreth-0010",
+        "ashfields-coreth-0011",
+        "ashfields-coreth-0012"
+      ],
+      "habitat": {
+        "biome": "geothermal-pool",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 24832.34,
+        "length": 42.78,
+        "height": 17.57
+      },
+      "morphology": "Procedurally generated producer with adaptive features for geothermal pool environment.",
+      "coloration": {
+        "primary": "#B49040",
+        "secondary": "#7A2A1A",
+        "pattern": "Adaptive coloration for geothermal pool camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "colony",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.02,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 0,
+        "ashfields-coreth-region-2": 0,
+        "ashfields-coreth-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.15,
+        "summer": 1.03,
+        "autumn": 0.81,
+        "winter": 0.61
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A geothermal pool producer that forms the base of the food web through chemovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0002.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0002.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A geothermal pool producer that forms the base of the food web through chemovore metabolism."
+  },
+  {
+    "id": "ashfields-coreth-0003",
+    "scientificName": "Flotapusilles giganteus",
+    "commonName": "Vent root",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "microbial",
+      "phylum": "Pelagoforma",
+      "class": "PelaAuctorae",
+      "order": "Terrales",
+      "family": "AshfieldsMicrobialidae",
+      "genus": "Flotapusilles"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "ashfields-coreth-0010"
+      ],
+      "habitat": {
+        "biome": "obsidian-forest",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 3.42,
+        "length": 1.83,
+        "height": 1.06
+      },
+      "morphology": "Procedurally generated producer with adaptive features for obsidian forest environment.",
+      "coloration": {
+        "primary": "#D4B060",
+        "secondary": "#9A4A3A",
+        "pattern": "Adaptive coloration for obsidian forest camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "small-group",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.033,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 107,
+        "ashfields-coreth-region-2": 117,
+        "ashfields-coreth-region-3": 122
+      },
+      "mvp": 17,
+      "extinctionThreshold": 5,
+      "seasonalModifiers": {
+        "spring": 0.9,
+        "summer": 1.3,
+        "autumn": 1.09,
+        "winter": 0.85
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A obsidian forest producer that forms the base of the food web through chemovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0003.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0003.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A obsidian forest producer that forms the base of the food web through chemovore metabolism."
+  },
+  {
+    "id": "ashfields-coreth-0004",
+    "scientificName": "Crustamedies timidus",
+    "commonName": "Scorch Walker",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Testaforma",
+      "class": "TestAuctorae",
+      "order": "Terrales",
+      "family": "AshfieldsFungal-analogidae",
+      "genus": "Crustamedies"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "ashfields-coreth-0013",
+        "ashfields-coreth-0015"
+      ],
+      "habitat": {
+        "biome": "sulfur-flat",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 9600.3,
+        "length": 36.3,
+        "height": 27.87
+      },
+      "morphology": "Procedurally generated producer with adaptive features for sulfur flat environment.",
+      "coloration": {
+        "primary": "#D4B060",
+        "secondary": "#9A4A3A",
+        "pattern": "Adaptive coloration for sulfur flat camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "small-group",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.043,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 0,
+        "ashfields-coreth-region-2": 0,
+        "ashfields-coreth-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.0,
+        "summer": 1.21,
+        "autumn": 1.01,
+        "winter": 0.79
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A sulfur flat producer that forms the base of the food web through chemovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0004.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0004.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A sulfur flat producer that forms the base of the food web through chemovore metabolism."
+  },
+  {
+    "id": "ashfields-coreth-0005",
+    "scientificName": "Primdiscois magnificus",
+    "commonName": "Flame Stalker",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Planiforma",
+      "class": "PlanAuctorae",
+      "order": "Terrales",
+      "family": "AshfieldsFungal-analogidae",
+      "genus": "Primdiscois"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [],
+      "habitat": {
+        "biome": "geothermal-pool",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.1,
+        "length": 0.27,
+        "height": 0.62
+      },
+      "morphology": "Procedurally generated producer with adaptive features for geothermal pool environment.",
+      "coloration": {
+        "primary": "#A48030",
+        "secondary": "#9A4A3A",
+        "pattern": "Adaptive coloration for geothermal pool camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.033,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 2314,
+        "ashfields-coreth-region-2": 2005,
+        "ashfields-coreth-region-3": 2326
+      },
+      "mvp": 304,
+      "extinctionThreshold": 91,
+      "seasonalModifiers": {
+        "spring": 1.18,
+        "summer": 1.02,
+        "autumn": 1.07,
+        "winter": 0.75
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A geothermal pool producer that forms the base of the food web through chemovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0005.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0005.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A geothermal pool producer that forms the base of the food web through chemovore metabolism."
+  },
+  {
+    "id": "ashfields-coreth-0006",
+    "scientificName": "Lucsteppeor timidus",
+    "commonName": "Vent graze",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fauna",
+      "phylum": "Sphaeroforma",
+      "class": "SphaAuctorae",
+      "order": "Fossorales",
+      "family": "AshfieldsFaunaidae",
+      "genus": "Lucsteppeor"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "ashfields-coreth-0014"
+      ],
+      "habitat": {
+        "biome": "sulfur-flat",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.13,
+        "length": 0.66,
+        "height": 0.6
+      },
+      "morphology": "Procedurally generated producer with adaptive features for sulfur flat environment.",
+      "coloration": {
+        "primary": "#A48030",
+        "secondary": "#8A3A2A",
+        "pattern": "Adaptive coloration for sulfur flat camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "small-group",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.041,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 3189,
+        "ashfields-coreth-region-2": 4066,
+        "ashfields-coreth-region-3": 3661
+      },
+      "mvp": 551,
+      "extinctionThreshold": 165,
+      "seasonalModifiers": {
+        "spring": 0.93,
+        "summer": 1.18,
+        "autumn": 0.99,
+        "winter": 0.72
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A sulfur flat producer that forms the base of the food web through chemovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0006.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0006.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A sulfur flat producer that forms the base of the food web through chemovore metabolism."
+  },
+  {
+    "id": "ashfields-coreth-0007",
+    "scientificName": "Hexamesoes singularis",
+    "commonName": "Vent stalk",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fauna",
+      "phylum": "Hexapoda",
+      "class": "HexaAuctorae",
+      "order": "Arborales",
+      "family": "AshfieldsFaunaidae",
+      "genus": "Hexamesoes"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [],
+      "habitat": {
+        "biome": "cooled-lava-flow",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.2,
+        "length": 0.49,
+        "height": 0.69
+      },
+      "morphology": "Procedurally generated producer with adaptive features for cooled lava flow environment.",
+      "coloration": {
+        "primary": "#B49040",
+        "secondary": "#6A1A0A",
+        "pattern": "Adaptive coloration for cooled lava flow camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.046,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 1331,
+        "ashfields-coreth-region-2": 1267,
+        "ashfields-coreth-region-3": 1140
+      },
+      "mvp": 183,
+      "extinctionThreshold": 54,
+      "seasonalModifiers": {
+        "spring": 1.2,
+        "summer": 1.1,
+        "autumn": 1.07,
+        "winter": 0.71
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A cooled lava flow producer that forms the base of the food web through chemovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0007.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0007.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A cooled lava flow producer that forms the base of the food web through chemovore metabolism."
+  },
+  {
+    "id": "ashfields-coreth-0008",
+    "scientificName": "Heliohypogor hypogensis",
+    "commonName": "Basalt Burrower",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fauna",
+      "phylum": "Cristalloforma",
+      "class": "CrisAuctorae",
+      "order": "Pelagiales",
+      "family": "AshfieldsFaunaidae",
+      "genus": "Heliohypogor"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "ashfields-coreth-0011",
+        "ashfields-coreth-0012",
+        "ashfields-coreth-0014"
+      ],
+      "habitat": {
+        "biome": "sulfur-flat",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 2736.92,
+        "length": 15.37,
+        "height": 18.78
+      },
+      "morphology": "Procedurally generated producer with adaptive features for sulfur flat environment.",
+      "coloration": {
+        "primary": "#C4A050",
+        "secondary": "#9A4A3A",
+        "pattern": "Adaptive coloration for sulfur flat camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "small-group",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.02,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 0,
+        "ashfields-coreth-region-2": 0,
+        "ashfields-coreth-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.11,
+        "summer": 1.06,
+        "autumn": 1.01,
+        "winter": 0.6
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A sulfur flat producer that forms the base of the food web through chemovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0008.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0008.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A sulfur flat producer that forms the base of the food web through chemovore metabolism."
+  },
+  {
+    "id": "ashfields-coreth-0009",
+    "scientificName": "Terrachemous annuus",
+    "commonName": "Sear Runner",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "microbial",
+      "phylum": "Fossoria",
+      "class": "FossAuctorae",
+      "order": "Mediales",
+      "family": "AshfieldsMicrobialidae",
+      "genus": "Terrachemous"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "ashfields-coreth-0011",
+        "ashfields-coreth-0015"
+      ],
+      "habitat": {
+        "biome": "active-vent-field",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 198.82,
+        "length": 6.8,
+        "height": 8.45
+      },
+      "morphology": "Procedurally generated producer with adaptive features for active vent field environment.",
+      "coloration": {
+        "primary": "#C4A050",
+        "secondary": "#9A4A3A",
+        "pattern": "Adaptive coloration for active vent field camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "herd",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.014,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 8,
+        "ashfields-coreth-region-2": 8,
+        "ashfields-coreth-region-3": 8
+      },
+      "mvp": 1,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.07,
+        "summer": 1.15,
+        "autumn": 1.08,
+        "winter": 0.83
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A active vent field producer that forms the base of the food web through chemovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0009.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0009.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A active vent field producer that forms the base of the food web through chemovore metabolism."
+  },
+  {
+    "id": "ashfields-coreth-0010",
+    "scientificName": "Grandiquadriis robustus",
+    "commonName": "Obsidian Glider",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Quadrupeda",
+      "class": "QuadHerbivora",
+      "order": "Terrales",
+      "family": "AshfieldsFungal-analogidae",
+      "genus": "Grandiquadriis"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "ashfields-coreth-0003",
+        "ashfields-coreth-0000",
+        "ashfields-coreth-0002"
+      ],
+      "predators": [
+        "ashfields-coreth-0016"
+      ],
+      "habitat": {
+        "biome": "sulfur-flat",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 3347.22,
+        "length": 22.48,
+        "height": 5.39
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for sulfur flat environment.",
+      "coloration": {
+        "primary": "#B49040",
+        "secondary": "#8A3A2A",
+        "pattern": "Adaptive coloration for sulfur flat camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "solitary",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 2.82
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.026,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 0,
+        "ashfields-coreth-region-2": 0,
+        "ashfields-coreth-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.04,
+        "summer": 1.25,
+        "autumn": 1.01,
+        "winter": 0.74
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A sulfur flat herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0010.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0010.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A sulfur flat herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "ashfields-coreth-0011",
+    "scientificName": "Glaucgemma elegans",
+    "commonName": "Geode Weaver",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "microbial",
+      "phylum": "Cristalloforma",
+      "class": "CrisHerbivora",
+      "order": "Fossorales",
+      "family": "AshfieldsMicrobialidae",
+      "genus": "Glaucgemma"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "ashfields-coreth-0009",
+        "ashfields-coreth-0002",
+        "ashfields-coreth-0008"
+      ],
+      "predators": [
+        "ashfields-coreth-0016",
+        "ashfields-coreth-0018",
+        "ashfields-coreth-0019"
+      ],
+      "habitat": {
+        "biome": "ash-dune",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.02,
+        "length": 0.33,
+        "height": 0.3
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for ash dune environment.",
+      "coloration": {
+        "primary": "#C4A050",
+        "secondary": "#6A1A0A",
+        "pattern": "Adaptive coloration for ash dune camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 4.99
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.033,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 15228,
+        "ashfields-coreth-region-2": 15738,
+        "ashfields-coreth-region-3": 14652
+      },
+      "mvp": 2132,
+      "extinctionThreshold": 639,
+      "seasonalModifiers": {
+        "spring": 1.19,
+        "summer": 1.2,
+        "autumn": 0.9,
+        "winter": 0.76
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A ash dune herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0011.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0011.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A ash dune herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "ashfields-coreth-0012",
+    "scientificName": "Hexaarchaeoes grazans",
+    "commonName": "Vent graze",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "flora",
+      "phylum": "Hexapoda",
+      "class": "HexaHerbivora",
+      "order": "Litorales",
+      "family": "AshfieldsFloraidae",
+      "genus": "Hexaarchaeoes"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "ashfields-coreth-0008",
+        "ashfields-coreth-0000",
+        "ashfields-coreth-0002"
+      ],
+      "predators": [
+        "ashfields-coreth-0020"
+      ],
+      "habitat": {
+        "biome": "sulfur-flat",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 94.01,
+        "length": 7.56,
+        "height": 6.52
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for sulfur flat environment.",
+      "coloration": {
+        "primary": "#C4A050",
+        "secondary": "#8A3A2A",
+        "pattern": "Adaptive coloration for sulfur flat camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "colony",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 2.1
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.028,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 17,
+        "ashfields-coreth-region-2": 15,
+        "ashfields-coreth-region-3": 18
+      },
+      "mvp": 2,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.94,
+        "summer": 1.15,
+        "autumn": 1.0,
+        "winter": 0.63
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A sulfur flat herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0012.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0012.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A sulfur flat herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "ashfields-coreth-0013",
+    "scientificName": "Fungigrandies communis",
+    "commonName": "Vent scratch",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fauna",
+      "phylum": "Mycelida",
+      "class": "MyceHerbivora",
+      "order": "Arborales",
+      "family": "AshfieldsFaunaidae",
+      "genus": "Fungigrandies"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "ashfields-coreth-0000",
+        "ashfields-coreth-0002",
+        "ashfields-coreth-0004"
+      ],
+      "predators": [
+        "ashfields-coreth-0016",
+        "ashfields-coreth-0017",
+        "ashfields-coreth-0018"
+      ],
+      "habitat": {
+        "biome": "ash-dune",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 489.36,
+        "length": 10.93,
+        "height": 4.05
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for ash dune environment.",
+      "coloration": {
+        "primary": "#A48030",
+        "secondary": "#8A3A2A",
+        "pattern": "Adaptive coloration for ash dune camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 0.94
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.038,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 9,
+        "ashfields-coreth-region-2": 7,
+        "ashfields-coreth-region-3": 8
+      },
+      "mvp": 1,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.91,
+        "summer": 1.05,
+        "autumn": 0.84,
+        "winter": 0.82
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A ash dune herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0013.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0013.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A ash dune herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "ashfields-coreth-0014",
+    "scientificName": "Parvipenduis minutus",
+    "commonName": "Mineral Borer",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "flora",
+      "phylum": "Pelagoforma",
+      "class": "PelaHerbivora",
+      "order": "Fossorales",
+      "family": "AshfieldsFloraidae",
+      "genus": "Parvipenduis"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "ashfields-coreth-0002",
+        "ashfields-coreth-0008",
+        "ashfields-coreth-0006"
+      ],
+      "predators": [
+        "ashfields-coreth-0017",
+        "ashfields-coreth-0019",
+        "ashfields-coreth-0020"
+      ],
+      "habitat": {
+        "biome": "mineral-deposit",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.01,
+        "length": 0.2,
+        "height": 0.33
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for mineral deposit environment.",
+      "coloration": {
+        "primary": "#A48030",
+        "secondary": "#6A1A0A",
+        "pattern": "Adaptive coloration for mineral deposit camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "herd",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 14.62,
+        "run": 27.02
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.017,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 31300,
+        "ashfields-coreth-region-2": 32753,
+        "ashfields-coreth-region-3": 30295
+      },
+      "mvp": 4220,
+      "extinctionThreshold": 1266,
+      "seasonalModifiers": {
+        "spring": 1.14,
+        "summer": 1.03,
+        "autumn": 1.0,
+        "winter": 0.78
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A mineral deposit herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0014.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0014.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A mineral deposit herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "ashfields-coreth-0015",
+    "scientificName": "Flavoctopoda fortis",
+    "commonName": "Cinder Burrower",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Octopoda",
+      "class": "OctoHerbivora",
+      "order": "Pelagiales",
+      "family": "AshfieldsFungal-analogidae",
+      "genus": "Flavoctopoda"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "ashfields-coreth-0009",
+        "ashfields-coreth-0000",
+        "ashfields-coreth-0004"
+      ],
+      "predators": [
+        "ashfields-coreth-0017",
+        "ashfields-coreth-0018",
+        "ashfields-coreth-0019"
+      ],
+      "habitat": {
+        "biome": "obsidian-forest",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.07,
+        "length": 0.52,
+        "height": 0.13
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for obsidian forest environment.",
+      "coloration": {
+        "primary": "#D4B060",
+        "secondary": "#6A1A0A",
+        "pattern": "Adaptive coloration for obsidian forest camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "solitary",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 10.74,
+        "run": 8.86
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.033,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 5606,
+        "ashfields-coreth-region-2": 5710,
+        "ashfields-coreth-region-3": 5299
+      },
+      "mvp": 775,
+      "extinctionThreshold": 232,
+      "seasonalModifiers": {
+        "spring": 1.18,
+        "summer": 1.21,
+        "autumn": 1.0,
+        "winter": 0.87
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A obsidian forest herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0015.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0015.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A obsidian forest herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "ashfields-coreth-0016",
+    "scientificName": "Solumpteroon humiensis",
+    "commonName": "Quartz Grazer",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fauna",
+      "phylum": "Alaforma",
+      "class": "AlafCarnivora",
+      "order": "Litorales",
+      "family": "AshfieldsFaunaidae",
+      "genus": "Solumpteroon"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "ashfields-coreth-0010",
+        "ashfields-coreth-0011",
+        "ashfields-coreth-0013"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "mineral-deposit",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 200.94,
+        "length": 4.63,
+        "height": 7.73
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for mineral deposit environment.",
+      "coloration": {
+        "primary": "#C4A050",
+        "secondary": "#8A3A2A",
+        "pattern": "Adaptive coloration for mineral deposit camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 3.35,
+        "run": 10.31
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.037,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 5,
+        "ashfields-coreth-region-2": 5,
+        "ashfields-coreth-region-3": 4
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.18,
+        "summer": 1.12,
+        "autumn": 1.09,
+        "winter": 0.89
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A mineral deposit predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0016.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0016.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A mineral deposit predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "ashfields-coreth-0017",
+    "scientificName": "Predatpelagor singularis",
+    "commonName": "Sear Swimmer",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fauna",
+      "phylum": "Fossoria",
+      "class": "FossCarnivora",
+      "order": "Fossorales",
+      "family": "AshfieldsFaunaidae",
+      "genus": "Predatpelagor"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "ashfields-coreth-0014",
+        "ashfields-coreth-0013",
+        "ashfields-coreth-0015"
+      ],
+      "predators": [
+        "ashfields-coreth-0021"
+      ],
+      "habitat": {
+        "biome": "ash-dune",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.66,
+        "length": 0.53,
+        "height": 1.0
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for ash dune environment.",
+      "coloration": {
+        "primary": "#D4B060",
+        "secondary": "#6A1A0A",
+        "pattern": "Adaptive coloration for ash dune camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 3.12
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.047,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 379,
+        "ashfields-coreth-region-2": 267,
+        "ashfields-coreth-region-3": 328
+      },
+      "mvp": 49,
+      "extinctionThreshold": 14,
+      "seasonalModifiers": {
+        "spring": 0.91,
+        "summer": 1.28,
+        "autumn": 0.98,
+        "winter": 0.83
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A ash dune predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0017.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0017.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A ash dune predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "ashfields-coreth-0018",
+    "scientificName": "Vorignisor grazans",
+    "commonName": "Vent forage",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Fossoria",
+      "class": "FossCarnivora",
+      "order": "Mediales",
+      "family": "AshfieldsFungal-analogidae",
+      "genus": "Vorignisor"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "ashfields-coreth-0011",
+        "ashfields-coreth-0015",
+        "ashfields-coreth-0013"
+      ],
+      "predators": [
+        "ashfields-coreth-0021"
+      ],
+      "habitat": {
+        "biome": "active-vent-field",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 354.73,
+        "length": 7.49,
+        "height": 6.58
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for active vent field environment.",
+      "coloration": {
+        "primary": "#D4B060",
+        "secondary": "#6A1A0A",
+        "pattern": "Adaptive coloration for active vent field camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "solitary",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 2.59
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.024,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 7,
+        "ashfields-coreth-region-2": 7,
+        "ashfields-coreth-region-3": 5
+      },
+      "mvp": 1,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.97,
+        "summer": 1.19,
+        "autumn": 1.08,
+        "winter": 0.67
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A active vent field predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0018.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0018.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A active vent field predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "ashfields-coreth-0019",
+    "scientificName": "Vorhypogor vulgaris",
+    "commonName": "Sear Builder",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fauna",
+      "phylum": "Segmentata",
+      "class": "SegmCarnivora",
+      "order": "Pelagiales",
+      "family": "AshfieldsFaunaidae",
+      "genus": "Vorhypogor"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "ashfields-coreth-0014",
+        "ashfields-coreth-0011",
+        "ashfields-coreth-0015"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "sulfur-flat",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.79,
+        "length": 0.56,
+        "height": 0.47
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for sulfur flat environment.",
+      "coloration": {
+        "primary": "#D4B060",
+        "secondary": "#8A3A2A",
+        "pattern": "Adaptive coloration for sulfur flat camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "colony",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 7.0,
+        "run": 26.24
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.041,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 234,
+        "ashfields-coreth-region-2": 249,
+        "ashfields-coreth-region-3": 275
+      },
+      "mvp": 34,
+      "extinctionThreshold": 10,
+      "seasonalModifiers": {
+        "spring": 1.09,
+        "summer": 1.28,
+        "autumn": 1.02,
+        "winter": 0.65
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A sulfur flat predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0019.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0019.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A sulfur flat predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "ashfields-coreth-0020",
+    "scientificName": "Megavitriis elegans",
+    "commonName": "Basalt Builder",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fauna",
+      "phylum": "Cristalloforma",
+      "class": "CrisCarnivora",
+      "order": "Pelagiales",
+      "family": "AshfieldsFaunaidae",
+      "genus": "Megavitriis"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "ashfields-coreth-0014",
+        "ashfields-coreth-0015",
+        "ashfields-coreth-0012"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "sulfur-flat",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 28.56,
+        "length": 4.9,
+        "height": 3.8
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for sulfur flat environment.",
+      "coloration": {
+        "primary": "#B49040",
+        "secondary": "#7A2A1A",
+        "pattern": "Adaptive coloration for sulfur flat camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 4.27
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.013,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 63,
+        "ashfields-coreth-region-2": 83,
+        "ashfields-coreth-region-3": 69
+      },
+      "mvp": 11,
+      "extinctionThreshold": 3,
+      "seasonalModifiers": {
+        "spring": 1.13,
+        "summer": 1.13,
+        "autumn": 0.92,
+        "winter": 0.8
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A sulfur flat predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0020.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0020.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A sulfur flat predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "ashfields-coreth-0021",
+    "scientificName": "Sporimicroes cyanatus",
+    "commonName": "Pumice Stalker",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Mycelida",
+      "class": "MyceDominantia",
+      "order": "Mediales",
+      "family": "AshfieldsFungal-analogidae",
+      "genus": "Sporimicroes"
+    },
+    "ecology": {
+      "trophicLevel": "apex-predator",
+      "diet": [
+        "ashfields-coreth-0017",
+        "ashfields-coreth-0018",
+        "ashfields-coreth-0013",
+        "ashfields-coreth-0014"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "obsidian-forest",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 129.94,
+        "length": 4.37,
+        "height": 2.68
+      },
+      "morphology": "Procedurally generated apex-predator with adaptive features for obsidian forest environment.",
+      "coloration": {
+        "primary": "#C4A050",
+        "secondary": "#9A4A3A",
+        "pattern": "Adaptive coloration for obsidian forest camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "small-group",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 3.14,
+        "run": 2.32
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.044,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 19,
+        "ashfields-coreth-region-2": 19,
+        "ashfields-coreth-region-3": 24
+      },
+      "mvp": 3,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.16,
+        "summer": 1.28,
+        "autumn": 1.1,
+        "winter": 0.74
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "An apex predator of the obsidian forest biome, with no natural enemies and significant ecological impact."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0021.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0021.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "An apex predator of the obsidian forest biome, with no natural enemies and significant ecological impact."
+  },
+  {
+    "id": "ashfields-coreth-0022",
+    "scientificName": "Octomagnies vulgaris",
+    "commonName": "Vent gnaw",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "flora",
+      "phylum": "Octopoda",
+      "class": "OctoSaprophyta",
+      "order": "Litorales",
+      "family": "AshfieldsFloraidae",
+      "genus": "Octomagnies"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "ash-dune",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.05,
+        "length": 0.42,
+        "height": 0.45
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for ash dune environment.",
+      "coloration": {
+        "primary": "#D4B060",
+        "secondary": "#6A1A0A",
+        "pattern": "Adaptive coloration for ash dune camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "colony",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.041,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 9836,
+        "ashfields-coreth-region-2": 7210,
+        "ashfields-coreth-region-3": 7690
+      },
+      "mvp": 1246,
+      "extinctionThreshold": 373,
+      "seasonalModifiers": {
+        "spring": 1.11,
+        "summer": 1.19,
+        "autumn": 0.88,
+        "winter": 0.71
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the ash dune biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0022.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0022.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the ash dune biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "ashfields-coreth-0023",
+    "scientificName": "Octopusilles rarus",
+    "commonName": "Basalt Spinner",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "microbial",
+      "phylum": "Octopoda",
+      "class": "OctoSaprophyta",
+      "order": "Litorales",
+      "family": "AshfieldsMicrobialidae",
+      "genus": "Octopusilles"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "geothermal-pool",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.0,
+        "length": 0.13,
+        "height": 0.04
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for geothermal pool environment.",
+      "coloration": {
+        "primary": "#D4B060",
+        "secondary": "#7A2A1A",
+        "pattern": "Adaptive coloration for geothermal pool camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "colony",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.036,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 21393,
+        "ashfields-coreth-region-2": 27387,
+        "ashfields-coreth-region-3": 24034
+      },
+      "mvp": 3548,
+      "extinctionThreshold": 1064,
+      "seasonalModifiers": {
+        "spring": 0.94,
+        "summer": 1.12,
+        "autumn": 1.07,
+        "winter": 0.78
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the geothermal pool biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0023.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0023.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the geothermal pool biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "ashfields-coreth-0024",
+    "scientificName": "Minimsporiis fragilis",
+    "commonName": "Crystal Grazer",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "flora",
+      "phylum": "Mycelida",
+      "class": "MyceSaprophyta",
+      "order": "Fossorales",
+      "family": "AshfieldsFloraidae",
+      "genus": "Minimsporiis"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "ash-dune",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.0,
+        "length": 0.19,
+        "height": 0.07
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for ash dune environment.",
+      "coloration": {
+        "primary": "#D4B060",
+        "secondary": "#8A3A2A",
+        "pattern": "Adaptive coloration for ash dune camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "herd",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.042,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 46048,
+        "ashfields-coreth-region-2": 55005,
+        "ashfields-coreth-region-3": 51899
+      },
+      "mvp": 7729,
+      "extinctionThreshold": 2318,
+      "seasonalModifiers": {
+        "spring": 1.02,
+        "summer": 1.28,
+        "autumn": 1.06,
+        "winter": 0.61
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the ash dune biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0024.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0024.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the ash dune biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "ashfields-coreth-0025",
+    "scientificName": "Necroignisor communis",
+    "commonName": "Ore Weaver",
+    "world": "ashfields-coreth",
+    "taxonomy": {
+      "metabolicDomain": "chemovore",
+      "kingdom": "fauna",
+      "phylum": "Longiforma",
+      "class": "LongMicrobiota",
+      "order": "Litorales",
+      "family": "AshfieldsFaunaidae",
+      "genus": "Necroignisor"
+    },
+    "ecology": {
+      "trophicLevel": "microbial",
+      "diet": [],
+      "predators": [],
+      "habitat": {
+        "biome": "sulfur-flat",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1.4,
+        "length": 1.69,
+        "height": 0.98
+      },
+      "morphology": "Procedurally generated microbial with adaptive features for sulfur flat environment.",
+      "coloration": {
+        "primary": "#D4B060",
+        "secondary": "#8A3A2A",
+        "pattern": "Adaptive coloration for sulfur flat camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "herd",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.016,
+      "carryingCapacity": {
+        "ashfields-coreth-region-1": 344,
+        "ashfields-coreth-region-2": 388,
+        "ashfields-coreth-region-3": 352
+      },
+      "mvp": 57,
+      "extinctionThreshold": 17,
+      "seasonalModifiers": {
+        "spring": 0.95,
+        "summer": 1.18,
+        "autumn": 1.05,
+        "winter": 0.8
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A microbial organism in the sulfur flat biome, playing a role in decomposition and nutrient cycling."
+    },
+    "assets": {
+      "modelPath": "models/creatures/ashfields-coreth-0025.glb",
+      "texturePath": "textures/creatures/ashfields-coreth-0025.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A microbial organism in the sulfur flat biome, playing a role in decomposition and nutrient cycling."
+  }
+]

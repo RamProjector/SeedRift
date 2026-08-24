@@ -1,0 +1,2395 @@
+[
+  {
+    "id": "pallid-reach-0000",
+    "scientificName": "Crystalradious erythroescens",
+    "commonName": "Glow Burrower",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "fauna",
+      "phylum": "Cristalloforma",
+      "class": "CrisAuctorae",
+      "order": "Mediales",
+      "family": "PallidFaunaidae",
+      "genus": "Crystalradious"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "pallid-reach-0012",
+        "pallid-reach-0014"
+      ],
+      "habitat": {
+        "biome": "glow-field",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 4.61,
+        "length": 3.0,
+        "height": 1.88
+      },
+      "morphology": "Procedurally generated producer with adaptive features for glow field environment.",
+      "coloration": {
+        "primary": "#A4A098",
+        "secondary": "#3A6AC6",
+        "pattern": "Adaptive coloration for glow field camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.015,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 168,
+        "pallid-reach-region-2": 230,
+        "pallid-reach-region-3": 207
+      },
+      "mvp": 31,
+      "extinctionThreshold": 9,
+      "seasonalModifiers": {
+        "spring": 1.04,
+        "summer": 1.04,
+        "autumn": 0.98,
+        "winter": 0.85
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A glow field producer that forms the base of the food web through radiovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0000.glb",
+      "texturePath": "textures/creatures/pallid-reach-0000.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A glow field producer that forms the base of the food web through radiovore metabolism."
+  },
+  {
+    "id": "pallid-reach-0001",
+    "scientificName": "Caeruterraa perennis",
+    "commonName": "Ruin scout",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "flora",
+      "phylum": "Fossoria",
+      "class": "FossAuctorae",
+      "order": "Arborales",
+      "family": "PallidFloraidae",
+      "genus": "Caeruterraa"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "pallid-reach-0010"
+      ],
+      "habitat": {
+        "biome": "shadow-canyon",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 288.21,
+        "length": 8.73,
+        "height": 6.7
+      },
+      "morphology": "Procedurally generated producer with adaptive features for shadow canyon environment.",
+      "coloration": {
+        "primary": "#D4D0C8",
+        "secondary": "#6A9AF6",
+        "pattern": "Adaptive coloration for shadow canyon camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.036,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 11,
+        "pallid-reach-region-2": 9,
+        "pallid-reach-region-3": 8
+      },
+      "mvp": 1,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.11,
+        "summer": 1.09,
+        "autumn": 0.91,
+        "winter": 0.65
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A shadow canyon producer that forms the base of the food web through radiovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0001.glb",
+      "texturePath": "textures/creatures/pallid-reach-0001.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A shadow canyon producer that forms the base of the food web through radiovore metabolism."
+  },
+  {
+    "id": "pallid-reach-0002",
+    "scientificName": "Lucnivalior perennis",
+    "commonName": "Glow Climber",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "flora",
+      "phylum": "Segmentata",
+      "class": "SegmAuctorae",
+      "order": "Fossorales",
+      "family": "PallidFloraidae",
+      "genus": "Lucnivalior"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [],
+      "habitat": {
+        "biome": "shadow-canyon",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1069.39,
+        "length": 12.06,
+        "height": 10.19
+      },
+      "morphology": "Procedurally generated producer with adaptive features for shadow canyon environment.",
+      "coloration": {
+        "primary": "#C4C0B8",
+        "secondary": "#5A8AE6",
+        "pattern": "Adaptive coloration for shadow canyon camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "solitary",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.042,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 4,
+        "pallid-reach-region-2": 5,
+        "pallid-reach-region-3": 5
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.08,
+        "summer": 1.21,
+        "autumn": 0.82,
+        "winter": 0.72
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A shadow canyon producer that forms the base of the food web through radiovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0002.glb",
+      "texturePath": "textures/creatures/pallid-reach-0002.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A shadow canyon producer that forms the base of the food web through radiovore metabolism."
+  },
+  {
+    "id": "pallid-reach-0003",
+    "scientificName": "Cavernpteroon minutus",
+    "commonName": "Ruin scratch",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "fauna",
+      "phylum": "Alaforma",
+      "class": "AlafAuctorae",
+      "order": "Mediales",
+      "family": "PallidFaunaidae",
+      "genus": "Cavernpteroon"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [],
+      "habitat": {
+        "biome": "shadow-canyon",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 3535.86,
+        "length": 29.58,
+        "height": 18.32
+      },
+      "morphology": "Procedurally generated producer with adaptive features for shadow canyon environment.",
+      "coloration": {
+        "primary": "#C4C0B8",
+        "secondary": "#4A7AD6",
+        "pattern": "Adaptive coloration for shadow canyon camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "herd",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.03,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 2,
+        "pallid-reach-region-2": 1,
+        "pallid-reach-region-3": 2
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.11,
+        "summer": 1.18,
+        "autumn": 1.0,
+        "winter": 0.71
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A shadow canyon producer that forms the base of the food web through radiovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0003.glb",
+      "texturePath": "textures/creatures/pallid-reach-0003.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A shadow canyon producer that forms the base of the food web through radiovore metabolism."
+  },
+  {
+    "id": "pallid-reach-0004",
+    "scientificName": "Minutgemmis singularis",
+    "commonName": "Wraith Strider",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "flora",
+      "phylum": "Cristalloforma",
+      "class": "CrisAuctorae",
+      "order": "Fossorales",
+      "family": "PallidFloraidae",
+      "genus": "Minutgemmis"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "pallid-reach-0013",
+        "pallid-reach-0014"
+      ],
+      "habitat": {
+        "biome": "dust-basin",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 14382.65,
+        "length": 31.68,
+        "height": 28.83
+      },
+      "morphology": "Procedurally generated producer with adaptive features for dust basin environment.",
+      "coloration": {
+        "primary": "#D4D0C8",
+        "secondary": "#3A6AC6",
+        "pattern": "Adaptive coloration for dust basin camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "herd",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.013,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 0,
+        "pallid-reach-region-2": 0,
+        "pallid-reach-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.99,
+        "summer": 1.28,
+        "autumn": 1.04,
+        "winter": 0.89
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A dust basin producer that forms the base of the food web through radiovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0004.glb",
+      "texturePath": "textures/creatures/pallid-reach-0004.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A dust basin producer that forms the base of the food web through radiovore metabolism."
+  },
+  {
+    "id": "pallid-reach-0005",
+    "scientificName": "Vitrihelious minutus",
+    "commonName": "Ruin forage",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "fauna",
+      "phylum": "Cristalloforma",
+      "class": "CrisAuctorae",
+      "order": "Pelagiales",
+      "family": "PallidFaunaidae",
+      "genus": "Vitrihelious"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "pallid-reach-0009",
+        "pallid-reach-0010",
+        "pallid-reach-0012"
+      ],
+      "habitat": {
+        "biome": "radiation-crater",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 2552.15,
+        "length": 21.38,
+        "height": 7.75
+      },
+      "morphology": "Procedurally generated producer with adaptive features for radiation crater environment.",
+      "coloration": {
+        "primary": "#B4B0A8",
+        "secondary": "#4A7AD6",
+        "pattern": "Adaptive coloration for radiation crater camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "small-group",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.013,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 0,
+        "pallid-reach-region-2": 0,
+        "pallid-reach-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.18,
+        "summer": 1.14,
+        "autumn": 0.91,
+        "winter": 0.87
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A radiation crater producer that forms the base of the food web through radiovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0005.glb",
+      "texturePath": "textures/creatures/pallid-reach-0005.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A radiation crater producer that forms the base of the food web through radiovore metabolism."
+  },
+  {
+    "id": "pallid-reach-0006",
+    "scientificName": "Pusillpterois actinoans",
+    "commonName": "Pulse Weaver",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Alaforma",
+      "class": "AlafAuctorae",
+      "order": "Fossorales",
+      "family": "PallidFungal-analogidae",
+      "genus": "Pusillpterois"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "pallid-reach-0011",
+        "pallid-reach-0012",
+        "pallid-reach-0013"
+      ],
+      "habitat": {
+        "biome": "dust-basin",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 8215.01,
+        "length": 24.55,
+        "height": 15.13
+      },
+      "morphology": "Procedurally generated producer with adaptive features for dust basin environment.",
+      "coloration": {
+        "primary": "#A4A098",
+        "secondary": "#3A6AC6",
+        "pattern": "Adaptive coloration for dust basin camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "herd",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.041,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 1,
+        "pallid-reach-region-2": 0,
+        "pallid-reach-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.05,
+        "summer": 1.12,
+        "autumn": 1.03,
+        "winter": 0.64
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A dust basin producer that forms the base of the food web through radiovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0006.glb",
+      "texturePath": "textures/creatures/pallid-reach-0006.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A dust basin producer that forms the base of the food web through radiovore metabolism."
+  },
+  {
+    "id": "pallid-reach-0007",
+    "scientificName": "Sulfurarboror vulgaris",
+    "commonName": "Specter Burrower",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "flora",
+      "phylum": "Natantia",
+      "class": "NataAuctorae",
+      "order": "Litorales",
+      "family": "PallidFloraidae",
+      "genus": "Sulfurarboror"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "pallid-reach-0009",
+        "pallid-reach-0010",
+        "pallid-reach-0011"
+      ],
+      "habitat": {
+        "biome": "crystal-formation",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.11,
+        "length": 0.82,
+        "height": 0.55
+      },
+      "morphology": "Procedurally generated producer with adaptive features for crystal formation environment.",
+      "coloration": {
+        "primary": "#B4B0A8",
+        "secondary": "#4A7AD6",
+        "pattern": "Adaptive coloration for crystal formation camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "colony",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.027,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 2186,
+        "pallid-reach-region-2": 1732,
+        "pallid-reach-region-3": 1614
+      },
+      "mvp": 277,
+      "extinctionThreshold": 83,
+      "seasonalModifiers": {
+        "spring": 1.03,
+        "summer": 1.23,
+        "autumn": 0.91,
+        "winter": 0.72
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A crystal formation producer that forms the base of the food web through radiovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0007.glb",
+      "texturePath": "textures/creatures/pallid-reach-0007.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A crystal formation producer that forms the base of the food web through radiovore metabolism."
+  },
+  {
+    "id": "pallid-reach-0008",
+    "scientificName": "Melanflotaa glaucescens",
+    "commonName": "Specter Weaver",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Pelagoforma",
+      "class": "PelaAuctorae",
+      "order": "Litorales",
+      "family": "PallidFungal-analogidae",
+      "genus": "Melanflotaa"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "pallid-reach-0009",
+        "pallid-reach-0011",
+        "pallid-reach-0014"
+      ],
+      "habitat": {
+        "biome": "radiation-crater",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 4069.87,
+        "length": 17.36,
+        "height": 11.2
+      },
+      "morphology": "Procedurally generated producer with adaptive features for radiation crater environment.",
+      "coloration": {
+        "primary": "#D4D0C8",
+        "secondary": "#6A9AF6",
+        "pattern": "Adaptive coloration for radiation crater camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "colony",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.02,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 0,
+        "pallid-reach-region-2": 0,
+        "pallid-reach-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.15,
+        "summer": 1.03,
+        "autumn": 1.02,
+        "winter": 0.68
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A radiation crater producer that forms the base of the food web through radiovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0008.glb",
+      "texturePath": "textures/creatures/pallid-reach-0008.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A radiation crater producer that forms the base of the food web through radiovore metabolism."
+  },
+  {
+    "id": "pallid-reach-0009",
+    "scientificName": "Terrterraon fortis",
+    "commonName": "Ruin stalk",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "flora",
+      "phylum": "Fossoria",
+      "class": "FossHerbivora",
+      "order": "Pelagiales",
+      "family": "PallidFloraidae",
+      "genus": "Terrterraon"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "pallid-reach-0007",
+        "pallid-reach-0008",
+        "pallid-reach-0005"
+      ],
+      "predators": [
+        "pallid-reach-0015",
+        "pallid-reach-0016",
+        "pallid-reach-0017"
+      ],
+      "habitat": {
+        "biome": "glow-field",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 973.95,
+        "length": 7.28,
+        "height": 12.84
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for glow field environment.",
+      "coloration": {
+        "primary": "#D4D0C8",
+        "secondary": "#3A6AC6",
+        "pattern": "Adaptive coloration for glow field camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 1.25,
+        "run": 6.91
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.022,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 0,
+        "pallid-reach-region-2": 0,
+        "pallid-reach-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.98,
+        "summer": 1.19,
+        "autumn": 0.88,
+        "winter": 0.73
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A glow field herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0009.glb",
+      "texturePath": "textures/creatures/pallid-reach-0009.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A glow field herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "pallid-reach-0010",
+    "scientificName": "Pelagimedies primimus",
+    "commonName": "Wave Walker",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "fauna",
+      "phylum": "Natantia",
+      "class": "NataHerbivora",
+      "order": "Arborales",
+      "family": "PallidFaunaidae",
+      "genus": "Pelagimedies"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "pallid-reach-0005",
+        "pallid-reach-0007",
+        "pallid-reach-0001"
+      ],
+      "predators": [
+        "pallid-reach-0016",
+        "pallid-reach-0018"
+      ],
+      "habitat": {
+        "biome": "crystal-formation",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.42,
+        "length": 0.53,
+        "height": 1.08
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for crystal formation environment.",
+      "coloration": {
+        "primary": "#A4A098",
+        "secondary": "#6A9AF6",
+        "pattern": "Adaptive coloration for crystal formation camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "colony",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 1.96,
+        "run": 28.36
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.044,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 566,
+        "pallid-reach-region-2": 651,
+        "pallid-reach-region-3": 528
+      },
+      "mvp": 93,
+      "extinctionThreshold": 27,
+      "seasonalModifiers": {
+        "spring": 0.91,
+        "summer": 1.2,
+        "autumn": 1.06,
+        "winter": 0.7
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A crystal formation herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0010.glb",
+      "texturePath": "textures/creatures/pallid-reach-0010.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A crystal formation herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "pallid-reach-0011",
+    "scientificName": "Sporigigantes minutus",
+    "commonName": "Glow Crawler",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "microbial",
+      "phylum": "Mycelida",
+      "class": "MyceHerbivora",
+      "order": "Terrales",
+      "family": "PallidMicrobialidae",
+      "genus": "Sporigigantes"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "pallid-reach-0006",
+        "pallid-reach-0008",
+        "pallid-reach-0007"
+      ],
+      "predators": [
+        "pallid-reach-0019"
+      ],
+      "habitat": {
+        "biome": "bleached-flat",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1.82,
+        "length": 2.06,
+        "height": 1.17
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for bleached flat environment.",
+      "coloration": {
+        "primary": "#A4A098",
+        "secondary": "#6A9AF6",
+        "pattern": "Adaptive coloration for bleached flat camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "herd",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 2.51
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.029,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 70,
+        "pallid-reach-region-2": 71,
+        "pallid-reach-region-3": 59
+      },
+      "mvp": 9,
+      "extinctionThreshold": 2,
+      "seasonalModifiers": {
+        "spring": 0.9,
+        "summer": 1.28,
+        "autumn": 1.08,
+        "winter": 0.74
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A bleached flat herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0011.glb",
+      "texturePath": "textures/creatures/pallid-reach-0011.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A bleached flat herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "pallid-reach-0012",
+    "scientificName": "Megaglobis rarus",
+    "commonName": "Trace Stalker",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Sphaeroforma",
+      "class": "SphaHerbivora",
+      "order": "Fossorales",
+      "family": "PallidFungal-analogidae",
+      "genus": "Megaglobis"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "pallid-reach-0000",
+        "pallid-reach-0006",
+        "pallid-reach-0005"
+      ],
+      "predators": [
+        "pallid-reach-0015",
+        "pallid-reach-0016",
+        "pallid-reach-0017"
+      ],
+      "habitat": {
+        "biome": "bleached-flat",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.14,
+        "length": 0.83,
+        "height": 0.62
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for bleached flat environment.",
+      "coloration": {
+        "primary": "#D4D0C8",
+        "secondary": "#6A9AF6",
+        "pattern": "Adaptive coloration for bleached flat camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "solitary",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 1.16
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.03,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 832,
+        "pallid-reach-region-2": 831,
+        "pallid-reach-region-3": 916
+      },
+      "mvp": 127,
+      "extinctionThreshold": 38,
+      "seasonalModifiers": {
+        "spring": 1.0,
+        "summer": 1.05,
+        "autumn": 1.09,
+        "winter": 0.61
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A bleached flat herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0012.glb",
+      "texturePath": "textures/creatures/pallid-reach-0012.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A bleached flat herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "pallid-reach-0013",
+    "scientificName": "Xanthohexaa perennis",
+    "commonName": "Shade Crawler",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "fauna",
+      "phylum": "Hexapoda",
+      "class": "HexaHerbivora",
+      "order": "Terrales",
+      "family": "PallidFaunaidae",
+      "genus": "Xanthohexaa"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "pallid-reach-0005",
+        "pallid-reach-0006",
+        "pallid-reach-0004"
+      ],
+      "predators": [
+        "pallid-reach-0015",
+        "pallid-reach-0018"
+      ],
+      "habitat": {
+        "biome": "shadow-canyon",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 617.31,
+        "length": 13.36,
+        "height": 3.44
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for shadow canyon environment.",
+      "coloration": {
+        "primary": "#C4C0B8",
+        "secondary": "#4A7AD6",
+        "pattern": "Adaptive coloration for shadow canyon camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "herd",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 0.34
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.015,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 2,
+        "pallid-reach-region-2": 2,
+        "pallid-reach-region-3": 2
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.13,
+        "summer": 1.07,
+        "autumn": 1.03,
+        "winter": 0.73
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A shadow canyon herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0013.glb",
+      "texturePath": "textures/creatures/pallid-reach-0013.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A shadow canyon herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "pallid-reach-0014",
+    "scientificName": "Nivalifungion annuus",
+    "commonName": "Glow Grazer",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "fauna",
+      "phylum": "Mycelida",
+      "class": "MyceHerbivora",
+      "order": "Pelagiales",
+      "family": "PallidFaunaidae",
+      "genus": "Nivalifungion"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "pallid-reach-0008",
+        "pallid-reach-0000",
+        "pallid-reach-0004"
+      ],
+      "predators": [
+        "pallid-reach-0017"
+      ],
+      "habitat": {
+        "biome": "bleached-flat",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.22,
+        "length": 0.39,
+        "height": 0.63
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for bleached flat environment.",
+      "coloration": {
+        "primary": "#B4B0A8",
+        "secondary": "#4A7AD6",
+        "pattern": "Adaptive coloration for bleached flat camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "solitary",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 1.63,
+        "run": 11.28
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.012,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 914,
+        "pallid-reach-region-2": 1203,
+        "pallid-reach-region-3": 867
+      },
+      "mvp": 161,
+      "extinctionThreshold": 48,
+      "seasonalModifiers": {
+        "spring": 1.14,
+        "summer": 1.14,
+        "autumn": 0.98,
+        "winter": 0.71
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A bleached flat herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0014.glb",
+      "texturePath": "textures/creatures/pallid-reach-0014.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A bleached flat herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "pallid-reach-0015",
+    "scientificName": "Parvisporiis communis",
+    "commonName": "Ruin prowl",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "fauna",
+      "phylum": "Mycelida",
+      "class": "MyceCarnivora",
+      "order": "Pelagiales",
+      "family": "PallidFaunaidae",
+      "genus": "Parvisporiis"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "pallid-reach-0009",
+        "pallid-reach-0012",
+        "pallid-reach-0013"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "glow-field",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 6.8,
+        "length": 2.21,
+        "height": 2.42
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for glow field environment.",
+      "coloration": {
+        "primary": "#B4B0A8",
+        "secondary": "#5A8AE6",
+        "pattern": "Adaptive coloration for glow field camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "herd",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 5.46
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.03,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 34,
+        "pallid-reach-region-2": 32,
+        "pallid-reach-region-3": 32
+      },
+      "mvp": 4,
+      "extinctionThreshold": 1,
+      "seasonalModifiers": {
+        "spring": 1.07,
+        "summer": 1.16,
+        "autumn": 0.9,
+        "winter": 0.74
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A glow field predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0015.glb",
+      "texturePath": "textures/creatures/pallid-reach-0015.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A glow field predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "pallid-reach-0016",
+    "scientificName": "Subterminimes modestus",
+    "commonName": "Ruin prowl",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "microbial",
+      "phylum": "Fossoria",
+      "class": "FossCarnivora",
+      "order": "Litorales",
+      "family": "PallidMicrobialidae",
+      "genus": "Subterminimes"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "pallid-reach-0009",
+        "pallid-reach-0010",
+        "pallid-reach-0012"
+      ],
+      "predators": [
+        "pallid-reach-0019"
+      ],
+      "habitat": {
+        "biome": "bleached-flat",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1.45,
+        "length": 0.65,
+        "height": 0.64
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for bleached flat environment.",
+      "coloration": {
+        "primary": "#A4A098",
+        "secondary": "#3A6AC6",
+        "pattern": "Adaptive coloration for bleached flat camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "solitary",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 2.81
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.048,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 247,
+        "pallid-reach-region-2": 313,
+        "pallid-reach-region-3": 241
+      },
+      "mvp": 44,
+      "extinctionThreshold": 13,
+      "seasonalModifiers": {
+        "spring": 0.95,
+        "summer": 1.01,
+        "autumn": 0.83,
+        "winter": 0.66
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A bleached flat predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0016.glb",
+      "texturePath": "textures/creatures/pallid-reach-0016.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A bleached flat predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "pallid-reach-0017",
+    "scientificName": "Lutemycoa fortis",
+    "commonName": "Ghost Spinner",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "fauna",
+      "phylum": "Mycelida",
+      "class": "MyceCarnivora",
+      "order": "Terrales",
+      "family": "PallidFaunaidae",
+      "genus": "Lutemycoa"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "pallid-reach-0014",
+        "pallid-reach-0009",
+        "pallid-reach-0012"
+      ],
+      "predators": [
+        "pallid-reach-0019"
+      ],
+      "habitat": {
+        "biome": "dust-basin",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.86,
+        "length": 1.73,
+        "height": 0.48
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for dust basin environment.",
+      "coloration": {
+        "primary": "#D4D0C8",
+        "secondary": "#3A6AC6",
+        "pattern": "Adaptive coloration for dust basin camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "colony",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 2.36,
+        "run": 3.32
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.048,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 439,
+        "pallid-reach-region-2": 532,
+        "pallid-reach-region-3": 515
+      },
+      "mvp": 75,
+      "extinctionThreshold": 22,
+      "seasonalModifiers": {
+        "spring": 1.07,
+        "summer": 1.17,
+        "autumn": 1.02,
+        "winter": 0.83
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A dust basin predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0017.glb",
+      "texturePath": "textures/creatures/pallid-reach-0017.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A dust basin predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "pallid-reach-0018",
+    "scientificName": "Pyroarthroon modestus",
+    "commonName": "Ruin root",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Segmentata",
+      "class": "SegmCarnivora",
+      "order": "Litorales",
+      "family": "PallidFungal-analogidae",
+      "genus": "Pyroarthroon"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "pallid-reach-0013",
+        "pallid-reach-0009",
+        "pallid-reach-0010"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "ruin-cluster",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 2.64,
+        "length": 2.72,
+        "height": 0.77
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for ruin cluster environment.",
+      "coloration": {
+        "primary": "#D4D0C8",
+        "secondary": "#5A8AE6",
+        "pattern": "Adaptive coloration for ruin cluster camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "solitary",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 4.78
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.048,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 315,
+        "pallid-reach-region-2": 270,
+        "pallid-reach-region-3": 281
+      },
+      "mvp": 43,
+      "extinctionThreshold": 12,
+      "seasonalModifiers": {
+        "spring": 0.9,
+        "summer": 1.01,
+        "autumn": 0.89,
+        "winter": 0.6
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A ruin cluster predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0018.glb",
+      "texturePath": "textures/creatures/pallid-reach-0018.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A ruin cluster predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "pallid-reach-0019",
+    "scientificName": "Carnnemoror fragilis",
+    "commonName": "Wraith Borer",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "flora",
+      "phylum": "Segmentata",
+      "class": "SegmDominantia",
+      "order": "Terrales",
+      "family": "PallidFloraidae",
+      "genus": "Carnnemoror"
+    },
+    "ecology": {
+      "trophicLevel": "apex-predator",
+      "diet": [
+        "pallid-reach-0017",
+        "pallid-reach-0016",
+        "pallid-reach-0012",
+        "pallid-reach-0011"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "dust-basin",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1545.49,
+        "length": 6.97,
+        "height": 4.14
+      },
+      "morphology": "Procedurally generated apex-predator with adaptive features for dust basin environment.",
+      "coloration": {
+        "primary": "#D4D0C8",
+        "secondary": "#5A8AE6",
+        "pattern": "Adaptive coloration for dust basin camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "small-group",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 0.36
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.017,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 3,
+        "pallid-reach-region-2": 3,
+        "pallid-reach-region-3": 3
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.15,
+        "summer": 1.21,
+        "autumn": 0.97,
+        "winter": 0.87
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "An apex predator of the dust basin biome, with no natural enemies and significant ecological impact."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0019.glb",
+      "texturePath": "textures/creatures/pallid-reach-0019.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "An apex predator of the dust basin biome, with no natural enemies and significant ecological impact."
+  },
+  {
+    "id": "pallid-reach-0020",
+    "scientificName": "Globdecompus minutus",
+    "commonName": "Core Hunter",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "flora",
+      "phylum": "Sphaeroforma",
+      "class": "SphaSaprophyta",
+      "order": "Terrales",
+      "family": "PallidFloraidae",
+      "genus": "Globdecompus"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "crystal-formation",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.02,
+        "length": 0.18,
+        "height": 0.28
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for crystal formation environment.",
+      "coloration": {
+        "primary": "#B4B0A8",
+        "secondary": "#4A7AD6",
+        "pattern": "Adaptive coloration for crystal formation camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "colony",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.028,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 4155,
+        "pallid-reach-region-2": 5535,
+        "pallid-reach-region-3": 4848
+      },
+      "mvp": 759,
+      "extinctionThreshold": 227,
+      "seasonalModifiers": {
+        "spring": 1.08,
+        "summer": 1.15,
+        "autumn": 0.87,
+        "winter": 0.69
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the crystal formation biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0020.glb",
+      "texturePath": "textures/creatures/pallid-reach-0020.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the crystal formation biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "pallid-reach-0021",
+    "scientificName": "Conchadecompus timidus",
+    "commonName": "Ruin root",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "flora",
+      "phylum": "Testaforma",
+      "class": "TestSaprophyta",
+      "order": "Litorales",
+      "family": "PallidFloraidae",
+      "genus": "Conchadecompus"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "radiation-crater",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.08,
+        "length": 0.6,
+        "height": 0.14
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for radiation crater environment.",
+      "coloration": {
+        "primary": "#B4B0A8",
+        "secondary": "#6A9AF6",
+        "pattern": "Adaptive coloration for radiation crater camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.023,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 4619,
+        "pallid-reach-region-2": 4260,
+        "pallid-reach-region-3": 5710
+      },
+      "mvp": 771,
+      "extinctionThreshold": 231,
+      "seasonalModifiers": {
+        "spring": 1.18,
+        "summer": 1.03,
+        "autumn": 1.0,
+        "winter": 0.73
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the radiation crater biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0021.glb",
+      "texturePath": "textures/creatures/pallid-reach-0021.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the radiation crater biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "pallid-reach-0022",
+    "scientificName": "Viridgemma communis",
+    "commonName": "Glow Climber",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "flora",
+      "phylum": "Cristalloforma",
+      "class": "CrisSaprophyta",
+      "order": "Litorales",
+      "family": "PallidFloraidae",
+      "genus": "Viridgemma"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "ruin-cluster",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 2.26,
+        "length": 2.02,
+        "height": 1.44
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for ruin cluster environment.",
+      "coloration": {
+        "primary": "#D4D0C8",
+        "secondary": "#3A6AC6",
+        "pattern": "Adaptive coloration for ruin cluster camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "colony",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.014,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 538,
+        "pallid-reach-region-2": 384,
+        "pallid-reach-region-3": 513
+      },
+      "mvp": 71,
+      "extinctionThreshold": 21,
+      "seasonalModifiers": {
+        "spring": 1.04,
+        "summer": 1.01,
+        "autumn": 0.86,
+        "winter": 0.76
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the ruin cluster biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0022.glb",
+      "texturePath": "textures/creatures/pallid-reach-0022.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the ruin cluster biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "pallid-reach-0023",
+    "scientificName": "Meditestudois rarus",
+    "commonName": "Flux Browser",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Testaforma",
+      "class": "TestSaprophyta",
+      "order": "Arborales",
+      "family": "PallidFungal-analogidae",
+      "genus": "Meditestudois"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "ruin-cluster",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.0,
+        "length": 0.03,
+        "height": 0.07
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for ruin cluster environment.",
+      "coloration": {
+        "primary": "#B4B0A8",
+        "secondary": "#3A6AC6",
+        "pattern": "Adaptive coloration for ruin cluster camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "small-group",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.049,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 799439,
+        "pallid-reach-region-2": 673238,
+        "pallid-reach-region-3": 718358
+      },
+      "mvp": 113153,
+      "extinctionThreshold": 33945,
+      "seasonalModifiers": {
+        "spring": 0.93,
+        "summer": 1.09,
+        "autumn": 1.06,
+        "winter": 0.76
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the ruin cluster biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0023.glb",
+      "texturePath": "textures/creatures/pallid-reach-0023.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the ruin cluster biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "pallid-reach-0024",
+    "scientificName": "Globgrandies modestus",
+    "commonName": "Specter Runner",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "microbial",
+      "phylum": "Sphaeroforma",
+      "class": "SphaMicrobiota",
+      "order": "Arborales",
+      "family": "PallidMicrobialidae",
+      "genus": "Globgrandies"
+    },
+    "ecology": {
+      "trophicLevel": "microbial",
+      "diet": [],
+      "predators": [],
+      "habitat": {
+        "biome": "shadow-canyon",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 2.73,
+        "length": 1.89,
+        "height": 1.13
+      },
+      "morphology": "Procedurally generated microbial with adaptive features for shadow canyon environment.",
+      "coloration": {
+        "primary": "#B4B0A8",
+        "secondary": "#3A6AC6",
+        "pattern": "Adaptive coloration for shadow canyon camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "colony",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.015,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 399,
+        "pallid-reach-region-2": 420,
+        "pallid-reach-region-3": 429
+      },
+      "mvp": 67,
+      "extinctionThreshold": 20,
+      "seasonalModifiers": {
+        "spring": 1.12,
+        "summer": 1.16,
+        "autumn": 1.0,
+        "winter": 0.86
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A microbial organism in the shadow canyon biome, playing a role in decomposition and nutrient cycling."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0024.glb",
+      "texturePath": "textures/creatures/pallid-reach-0024.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A microbial organism in the shadow canyon biome, playing a role in decomposition and nutrient cycling."
+  },
+  {
+    "id": "pallid-reach-0025",
+    "scientificName": "Necronivalior velox",
+    "commonName": "Glow Nibbler",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "flora",
+      "phylum": "Planiforma",
+      "class": "PlanMicrobiota",
+      "order": "Pelagiales",
+      "family": "PallidFloraidae",
+      "genus": "Necronivalior"
+    },
+    "ecology": {
+      "trophicLevel": "microbial",
+      "diet": [],
+      "predators": [],
+      "habitat": {
+        "biome": "crystal-formation",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 2.42,
+        "length": 2.17,
+        "height": 1.72
+      },
+      "morphology": "Procedurally generated microbial with adaptive features for crystal formation environment.",
+      "coloration": {
+        "primary": "#A4A098",
+        "secondary": "#6A9AF6",
+        "pattern": "Adaptive coloration for crystal formation camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.015,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 441,
+        "pallid-reach-region-2": 486,
+        "pallid-reach-region-3": 561
+      },
+      "mvp": 71,
+      "extinctionThreshold": 21,
+      "seasonalModifiers": {
+        "spring": 1.0,
+        "summer": 1.26,
+        "autumn": 1.02,
+        "winter": 0.83
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A microbial organism in the crystal formation biome, playing a role in decomposition and nutrient cycling."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0025.glb",
+      "texturePath": "textures/creatures/pallid-reach-0025.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A microbial organism in the crystal formation biome, playing a role in decomposition and nutrient cycling."
+  },
+  {
+    "id": "pallid-reach-0026",
+    "scientificName": "Modestquadriis giganteus",
+    "commonName": "Rad Grazer",
+    "world": "pallid-reach",
+    "taxonomy": {
+      "metabolicDomain": "radiovore",
+      "kingdom": "microbial",
+      "phylum": "Quadrupeda",
+      "class": "QuadMicrobiota",
+      "order": "Mediales",
+      "family": "PallidMicrobialidae",
+      "genus": "Modestquadriis"
+    },
+    "ecology": {
+      "trophicLevel": "microbial",
+      "diet": [],
+      "predators": [],
+      "habitat": {
+        "biome": "bleached-flat",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.02,
+        "length": 0.46,
+        "height": 0.43
+      },
+      "morphology": "Procedurally generated microbial with adaptive features for bleached flat environment.",
+      "coloration": {
+        "primary": "#D4D0C8",
+        "secondary": "#3A6AC6",
+        "pattern": "Adaptive coloration for bleached flat camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "solitary",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.03,
+      "carryingCapacity": {
+        "pallid-reach-region-1": 11860,
+        "pallid-reach-region-2": 10381,
+        "pallid-reach-region-3": 12472
+      },
+      "mvp": 1639,
+      "extinctionThreshold": 491,
+      "seasonalModifiers": {
+        "spring": 0.94,
+        "summer": 1.06,
+        "autumn": 0.81,
+        "winter": 0.83
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A microbial organism in the bleached flat biome, playing a role in decomposition and nutrient cycling."
+    },
+    "assets": {
+      "modelPath": "models/creatures/pallid-reach-0026.glb",
+      "texturePath": "textures/creatures/pallid-reach-0026.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A microbial organism in the bleached flat biome, playing a role in decomposition and nutrient cycling."
+  }
+]

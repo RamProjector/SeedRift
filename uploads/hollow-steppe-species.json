@@ -1,0 +1,2505 @@
+[
+  {
+    "id": "hollow-steppe-0000",
+    "scientificName": "Mycolithous fortis",
+    "commonName": "graze-Runner",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fauna",
+      "phylum": "Mycelida",
+      "class": "MyceAuctorae",
+      "order": "Mediales",
+      "family": "HollowFaunaidae",
+      "genus": "Mycolithous"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "hollow-steppe-0013",
+        "hollow-steppe-0014"
+      ],
+      "habitat": {
+        "biome": "rolling-hills",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.06,
+        "length": 0.29,
+        "height": 0.58
+      },
+      "morphology": "Procedurally generated producer with adaptive features for rolling hills environment.",
+      "coloration": {
+        "primary": "#A89870",
+        "secondary": "#6A8A4C",
+        "pattern": "Adaptive coloration for rolling hills camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "solitary",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.027,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 5301,
+        "hollow-steppe-region-2": 5622,
+        "hollow-steppe-region-3": 5591
+      },
+      "mvp": 776,
+      "extinctionThreshold": 232,
+      "seasonalModifiers": {
+        "spring": 1.03,
+        "summer": 1.08,
+        "autumn": 1.06,
+        "winter": 0.83
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A rolling hills producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0000.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0000.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A rolling hills producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "hollow-steppe-0001",
+    "scientificName": "Sphaersulfurus fragilis",
+    "commonName": "Flat Burrower",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Sphaeroforma",
+      "class": "SphaAuctorae",
+      "order": "Pelagiales",
+      "family": "HollowFloraidae",
+      "genus": "Sphaersulfurus"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "hollow-steppe-0013",
+        "hollow-steppe-0016"
+      ],
+      "habitat": {
+        "biome": "river-valley",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.0,
+        "length": 0.22,
+        "height": 0.08
+      },
+      "morphology": "Procedurally generated producer with adaptive features for river valley environment.",
+      "coloration": {
+        "primary": "#B8A87A",
+        "secondary": "#6A8A4C",
+        "pattern": "Adaptive coloration for river valley camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.045,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 54382,
+        "hollow-steppe-region-2": 58542,
+        "hollow-steppe-region-3": 55995
+      },
+      "mvp": 7354,
+      "extinctionThreshold": 2206,
+      "seasonalModifiers": {
+        "spring": 1.01,
+        "summer": 1.14,
+        "autumn": 1.05,
+        "winter": 0.65
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A river valley producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0001.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0001.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A river valley producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "hollow-steppe-0002",
+    "scientificName": "Bathyalrotundon timidus",
+    "commonName": "browse-Strider",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Sphaeroforma",
+      "class": "SphaAuctorae",
+      "order": "Litorales",
+      "family": "HollowFloraidae",
+      "genus": "Bathyalrotundon"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "hollow-steppe-0012",
+        "hollow-steppe-0015",
+        "hollow-steppe-0017"
+      ],
+      "habitat": {
+        "biome": "scattered-woodland",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 5586.35,
+        "length": 14.29,
+        "height": 25.81
+      },
+      "morphology": "Procedurally generated producer with adaptive features for scattered woodland environment.",
+      "coloration": {
+        "primary": "#A89870",
+        "secondary": "#9ABA7C",
+        "pattern": "Adaptive coloration for scattered woodland camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "solitary",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.028,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 0,
+        "hollow-steppe-region-2": 0,
+        "hollow-steppe-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.98,
+        "summer": 1.07,
+        "autumn": 0.97,
+        "winter": 0.68
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A scattered woodland producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0002.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0002.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A scattered woodland producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "hollow-steppe-0003",
+    "scientificName": "Flotalucus elegans",
+    "commonName": "Steppe Builder",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fauna",
+      "phylum": "Pelagoforma",
+      "class": "PelaAuctorae",
+      "order": "Pelagiales",
+      "family": "HollowFaunaidae",
+      "genus": "Flotalucus"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "hollow-steppe-0018"
+      ],
+      "habitat": {
+        "biome": "rolling-hills",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 6485.74,
+        "length": 13.21,
+        "height": 22.01
+      },
+      "morphology": "Procedurally generated producer with adaptive features for rolling hills environment.",
+      "coloration": {
+        "primary": "#C4B896",
+        "secondary": "#6A8A4C",
+        "pattern": "Adaptive coloration for rolling hills camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "colony",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.016,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 1,
+        "hollow-steppe-region-2": 0,
+        "hollow-steppe-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.9,
+        "summer": 1.22,
+        "autumn": 1.02,
+        "winter": 0.89
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A rolling hills producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0003.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0003.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A rolling hills producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "hollow-steppe-0004",
+    "scientificName": "Platisulfurus communis",
+    "commonName": "Pale Glider",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Planiforma",
+      "class": "PlanAuctorae",
+      "order": "Pelagiales",
+      "family": "HollowFloraidae",
+      "genus": "Platisulfurus"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "hollow-steppe-0014",
+        "hollow-steppe-0016"
+      ],
+      "habitat": {
+        "biome": "river-valley",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 4.56,
+        "length": 1.44,
+        "height": 0.62
+      },
+      "morphology": "Procedurally generated producer with adaptive features for river valley environment.",
+      "coloration": {
+        "primary": "#A89870",
+        "secondary": "#9ABA7C",
+        "pattern": "Adaptive coloration for river valley camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "colony",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.018,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 172,
+        "hollow-steppe-region-2": 218,
+        "hollow-steppe-region-3": 184
+      },
+      "mvp": 28,
+      "extinctionThreshold": 8,
+      "seasonalModifiers": {
+        "spring": 1.06,
+        "summer": 1.22,
+        "autumn": 0.86,
+        "winter": 0.69
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A river valley producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0004.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0004.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A river valley producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "hollow-steppe-0005",
+    "scientificName": "Nanocrystalis dendroensis",
+    "commonName": "Valley Weaver",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Cristalloforma",
+      "class": "CrisAuctorae",
+      "order": "Pelagiales",
+      "family": "HollowFloraidae",
+      "genus": "Nanocrystalis"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "hollow-steppe-0015",
+        "hollow-steppe-0016",
+        "hollow-steppe-0019"
+      ],
+      "habitat": {
+        "biome": "open-grassland",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 15940.28,
+        "length": 38.8,
+        "height": 30.72
+      },
+      "morphology": "Procedurally generated producer with adaptive features for open grassland environment.",
+      "coloration": {
+        "primary": "#C4B896",
+        "secondary": "#7A9A5C",
+        "pattern": "Adaptive coloration for open grassland camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.018,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 0,
+        "hollow-steppe-region-2": 0,
+        "hollow-steppe-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.93,
+        "summer": 1.13,
+        "autumn": 0.93,
+        "winter": 0.74
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A open grassland producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0005.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0005.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A open grassland producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "hollow-steppe-0006",
+    "scientificName": "Lucmarinor fragilis",
+    "commonName": "Wandering Builder",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fauna",
+      "phylum": "Alaforma",
+      "class": "AlafAuctorae",
+      "order": "Arborales",
+      "family": "HollowFaunaidae",
+      "genus": "Lucmarinor"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "hollow-steppe-0017"
+      ],
+      "habitat": {
+        "biome": "rocky-outcrop",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 13554.13,
+        "length": 16.91,
+        "height": 15.15
+      },
+      "morphology": "Procedurally generated producer with adaptive features for rocky outcrop environment.",
+      "coloration": {
+        "primary": "#D4C8A6",
+        "secondary": "#9ABA7C",
+        "pattern": "Adaptive coloration for rocky outcrop camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "colony",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.026,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 0,
+        "hollow-steppe-region-2": 0,
+        "hollow-steppe-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.92,
+        "summer": 1.11,
+        "autumn": 1.1,
+        "winter": 0.68
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A rocky outcrop producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0006.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0006.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A rocky outcrop producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "hollow-steppe-0007",
+    "scientificName": "Glaciaquaon glaciicus",
+    "commonName": "Bright Crawler",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Natantia",
+      "class": "NataAuctorae",
+      "order": "Fossorales",
+      "family": "HollowFloraidae",
+      "genus": "Glaciaquaon"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "hollow-steppe-0014"
+      ],
+      "habitat": {
+        "biome": "river-valley",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.01,
+        "length": 0.14,
+        "height": 0.22
+      },
+      "morphology": "Procedurally generated producer with adaptive features for river valley environment.",
+      "coloration": {
+        "primary": "#B8A87A",
+        "secondary": "#6A8A4C",
+        "pattern": "Adaptive coloration for river valley camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "small-group",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.027,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 29248,
+        "hollow-steppe-region-2": 33783,
+        "hollow-steppe-region-3": 34107
+      },
+      "mvp": 4882,
+      "extinctionThreshold": 1464,
+      "seasonalModifiers": {
+        "spring": 1.08,
+        "summer": 1.16,
+        "autumn": 1.08,
+        "winter": 0.66
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A river valley producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0007.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0007.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A river valley producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "hollow-steppe-0008",
+    "scientificName": "Atratpedia annuus",
+    "commonName": "Iron Grazer",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Hexapoda",
+      "class": "HexaAuctorae",
+      "order": "Fossorales",
+      "family": "HollowFloraidae",
+      "genus": "Atratpedia"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "hollow-steppe-0018",
+        "hollow-steppe-0019"
+      ],
+      "habitat": {
+        "biome": "rolling-hills",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 2624.08,
+        "length": 21.68,
+        "height": 6.54
+      },
+      "morphology": "Procedurally generated producer with adaptive features for rolling hills environment.",
+      "coloration": {
+        "primary": "#D4C8A6",
+        "secondary": "#7A9A5C",
+        "pattern": "Adaptive coloration for rolling hills camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "colony",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.01,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 1,
+        "hollow-steppe-region-2": 1,
+        "hollow-steppe-region-3": 1
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.15,
+        "summer": 1.09,
+        "autumn": 1.0,
+        "winter": 0.88
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A rolling hills producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0008.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0008.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A rolling hills producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "hollow-steppe-0009",
+    "scientificName": "Marinaquaon hypogensis",
+    "commonName": "Rustling Hunter",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Natantia",
+      "class": "NataAuctorae",
+      "order": "Pelagiales",
+      "family": "HollowFloraidae",
+      "genus": "Marinaquaon"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "hollow-steppe-0015"
+      ],
+      "habitat": {
+        "biome": "river-valley",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 34949.02,
+        "length": 17.77,
+        "height": 23.29
+      },
+      "morphology": "Procedurally generated producer with adaptive features for river valley environment.",
+      "coloration": {
+        "primary": "#B8A87A",
+        "secondary": "#9ABA7C",
+        "pattern": "Adaptive coloration for river valley camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "small-group",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.014,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 0,
+        "hollow-steppe-region-2": 0,
+        "hollow-steppe-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.18,
+        "summer": 1.21,
+        "autumn": 0.84,
+        "winter": 0.61
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A river valley producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0009.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0009.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A river valley producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "hollow-steppe-0010",
+    "scientificName": "Grandisporiis giganteus",
+    "commonName": "Golden Nibbler",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Mycelida",
+      "class": "MyceAuctorae",
+      "order": "Pelagiales",
+      "family": "HollowFloraidae",
+      "genus": "Grandisporiis"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "hollow-steppe-0012",
+        "hollow-steppe-0013",
+        "hollow-steppe-0019"
+      ],
+      "habitat": {
+        "biome": "rocky-outcrop",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 13109.92,
+        "length": 23.41,
+        "height": 29.35
+      },
+      "morphology": "Procedurally generated producer with adaptive features for rocky outcrop environment.",
+      "coloration": {
+        "primary": "#B8A87A",
+        "secondary": "#8AAA6C",
+        "pattern": "Adaptive coloration for rocky outcrop camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.02,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 0,
+        "hollow-steppe-region-2": 0,
+        "hollow-steppe-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.95,
+        "summer": 1.21,
+        "autumn": 0.91,
+        "winter": 0.61
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A rocky outcrop producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0010.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0010.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A rocky outcrop producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "hollow-steppe-0011",
+    "scientificName": "Modestfungiis rarus",
+    "commonName": "Prairie Walker",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Mycelida",
+      "class": "MyceAuctorae",
+      "order": "Mediales",
+      "family": "HollowFungal-analogidae",
+      "genus": "Modestfungiis"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "hollow-steppe-0012",
+        "hollow-steppe-0017"
+      ],
+      "habitat": {
+        "biome": "rolling-hills",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 29.51,
+        "length": 1.54,
+        "height": 4.31
+      },
+      "morphology": "Procedurally generated producer with adaptive features for rolling hills environment.",
+      "coloration": {
+        "primary": "#D4C8A6",
+        "secondary": "#7A9A5C",
+        "pattern": "Adaptive coloration for rolling hills camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "small-group",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.041,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 62,
+        "hollow-steppe-region-2": 79,
+        "hollow-steppe-region-3": 72
+      },
+      "mvp": 11,
+      "extinctionThreshold": 3,
+      "seasonalModifiers": {
+        "spring": 1.03,
+        "summer": 1.3,
+        "autumn": 0.83,
+        "winter": 0.87
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A rolling hills producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0011.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0011.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A rolling hills producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "hollow-steppe-0012",
+    "scientificName": "Tetramacroes fortis",
+    "commonName": "Hollow Browser",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Quadrupeda",
+      "class": "QuadHerbivora",
+      "order": "Mediales",
+      "family": "HollowFloraidae",
+      "genus": "Tetramacroes"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "hollow-steppe-0010",
+        "hollow-steppe-0011",
+        "hollow-steppe-0002"
+      ],
+      "predators": [
+        "hollow-steppe-0023"
+      ],
+      "habitat": {
+        "biome": "rolling-hills",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 3.95,
+        "length": 1.46,
+        "height": 1.73
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for rolling hills environment.",
+      "coloration": {
+        "primary": "#A89870",
+        "secondary": "#8AAA6C",
+        "pattern": "Adaptive coloration for rolling hills camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "solitary",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 7.64,
+        "run": 22.88
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.027,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 134,
+        "hollow-steppe-region-2": 105,
+        "hollow-steppe-region-3": 120
+      },
+      "mvp": 19,
+      "extinctionThreshold": 5,
+      "seasonalModifiers": {
+        "spring": 1.07,
+        "summer": 1.2,
+        "autumn": 0.94,
+        "winter": 0.73
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A rolling hills herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0012.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0012.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A rolling hills herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "hollow-steppe-0013",
+    "scientificName": "Nemormycoon communis",
+    "commonName": "prowl-Borer",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Mycelida",
+      "class": "MyceHerbivora",
+      "order": "Fossorales",
+      "family": "HollowMicrobialidae",
+      "genus": "Nemormycoon"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "hollow-steppe-0010",
+        "hollow-steppe-0001",
+        "hollow-steppe-0000"
+      ],
+      "predators": [
+        "hollow-steppe-0020",
+        "hollow-steppe-0023"
+      ],
+      "habitat": {
+        "biome": "rolling-hills",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 2.94,
+        "length": 2.03,
+        "height": 1.66
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for rolling hills environment.",
+      "coloration": {
+        "primary": "#A89870",
+        "secondary": "#6A8A4C",
+        "pattern": "Adaptive coloration for rolling hills camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "colony",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 1.4,
+        "run": 25.52
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.038,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 443,
+        "hollow-steppe-region-2": 354,
+        "hollow-steppe-region-3": 447
+      },
+      "mvp": 59,
+      "extinctionThreshold": 17,
+      "seasonalModifiers": {
+        "spring": 1.04,
+        "summer": 1.17,
+        "autumn": 1.08,
+        "winter": 0.64
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A rolling hills herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0013.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0013.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A rolling hills herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "hollow-steppe-0014",
+    "scientificName": "Octopodmodestes minutus",
+    "commonName": "Jade Strider",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fauna",
+      "phylum": "Octopoda",
+      "class": "OctoHerbivora",
+      "order": "Pelagiales",
+      "family": "HollowFaunaidae",
+      "genus": "Octopodmodestes"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "hollow-steppe-0004",
+        "hollow-steppe-0007",
+        "hollow-steppe-0000"
+      ],
+      "predators": [
+        "hollow-steppe-0022"
+      ],
+      "habitat": {
+        "biome": "rolling-hills",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.58,
+        "length": 1.49,
+        "height": 1.02
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for rolling hills environment.",
+      "coloration": {
+        "primary": "#A89870",
+        "secondary": "#9ABA7C",
+        "pattern": "Adaptive coloration for rolling hills camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "herd",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 3.1
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.038,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 752,
+        "hollow-steppe-region-2": 785,
+        "hollow-steppe-region-3": 948
+      },
+      "mvp": 132,
+      "extinctionThreshold": 39,
+      "seasonalModifiers": {
+        "spring": 0.92,
+        "summer": 1.12,
+        "autumn": 0.96,
+        "winter": 0.72
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A rolling hills herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0014.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0014.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A rolling hills herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "hollow-steppe-0015",
+    "scientificName": "Supraserpenson nocturnus",
+    "commonName": "Mesa Nibbler",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fauna",
+      "phylum": "Longiforma",
+      "class": "LongHerbivora",
+      "order": "Fossorales",
+      "family": "HollowFaunaidae",
+      "genus": "Supraserpenson"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "hollow-steppe-0009",
+        "hollow-steppe-0005",
+        "hollow-steppe-0002"
+      ],
+      "predators": [
+        "hollow-steppe-0021",
+        "hollow-steppe-0023"
+      ],
+      "habitat": {
+        "biome": "rolling-hills",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1.19,
+        "length": 0.94,
+        "height": 0.73
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for rolling hills environment.",
+      "coloration": {
+        "primary": "#A89870",
+        "secondary": "#8AAA6C",
+        "pattern": "Adaptive coloration for rolling hills camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "small-group",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 6.66
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.011,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 214,
+        "hollow-steppe-region-2": 184,
+        "hollow-steppe-region-3": 227
+      },
+      "mvp": 32,
+      "extinctionThreshold": 9,
+      "seasonalModifiers": {
+        "spring": 1.02,
+        "summer": 1.17,
+        "autumn": 0.81,
+        "winter": 0.79
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A rolling hills herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0015.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0015.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A rolling hills herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "hollow-steppe-0016",
+    "scientificName": "Prasinterraa cinereescens",
+    "commonName": "Rust Crawler",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fauna",
+      "phylum": "Fossoria",
+      "class": "FossHerbivora",
+      "order": "Mediales",
+      "family": "HollowFaunaidae",
+      "genus": "Prasinterraa"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "hollow-steppe-0001",
+        "hollow-steppe-0004",
+        "hollow-steppe-0005"
+      ],
+      "predators": [
+        "hollow-steppe-0020",
+        "hollow-steppe-0021",
+        "hollow-steppe-0022"
+      ],
+      "habitat": {
+        "biome": "open-grassland",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.17,
+        "length": 0.76,
+        "height": 0.79
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for open grassland environment.",
+      "coloration": {
+        "primary": "#B8A87A",
+        "secondary": "#6A8A4C",
+        "pattern": "Adaptive coloration for open grassland camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "herd",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 0.52
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.038,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 859,
+        "hollow-steppe-region-2": 825,
+        "hollow-steppe-region-3": 714
+      },
+      "mvp": 120,
+      "extinctionThreshold": 36,
+      "seasonalModifiers": {
+        "spring": 1.13,
+        "summer": 1.05,
+        "autumn": 0.98,
+        "winter": 0.82
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A open grassland herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0016.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0016.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A open grassland herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "hollow-steppe-0017",
+    "scientificName": "Predatcanopor timidus",
+    "commonName": "Silken Builder",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Quadrupeda",
+      "class": "QuadHerbivora",
+      "order": "Pelagiales",
+      "family": "HollowMicrobialidae",
+      "genus": "Predatcanopor"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "hollow-steppe-0011",
+        "hollow-steppe-0006",
+        "hollow-steppe-0002"
+      ],
+      "predators": [
+        "hollow-steppe-0022"
+      ],
+      "habitat": {
+        "biome": "river-valley",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1.94,
+        "length": 2.17,
+        "height": 1.26
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for river valley environment.",
+      "coloration": {
+        "primary": "#A89870",
+        "secondary": "#9ABA7C",
+        "pattern": "Adaptive coloration for river valley camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 4.66
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.035,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 592,
+        "hollow-steppe-region-2": 442,
+        "hollow-steppe-region-3": 621
+      },
+      "mvp": 78,
+      "extinctionThreshold": 23,
+      "seasonalModifiers": {
+        "spring": 1.15,
+        "summer": 1.21,
+        "autumn": 0.93,
+        "winter": 0.82
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A river valley herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0017.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0017.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A river valley herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "hollow-steppe-0018",
+    "scientificName": "Flavtestudoa perennis",
+    "commonName": "Flat Strider",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Testaforma",
+      "class": "TestHerbivora",
+      "order": "Litorales",
+      "family": "HollowFungal-analogidae",
+      "genus": "Flavtestudoa"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "hollow-steppe-0003",
+        "hollow-steppe-0002",
+        "hollow-steppe-0008"
+      ],
+      "predators": [
+        "hollow-steppe-0020",
+        "hollow-steppe-0021",
+        "hollow-steppe-0024"
+      ],
+      "habitat": {
+        "biome": "open-grassland",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 214.08,
+        "length": 9.04,
+        "height": 3.92
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for open grassland environment.",
+      "coloration": {
+        "primary": "#D4C8A6",
+        "secondary": "#8AAA6C",
+        "pattern": "Adaptive coloration for open grassland camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "herd",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 1.3
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.04,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 14,
+        "hollow-steppe-region-2": 18,
+        "hollow-steppe-region-3": 16
+      },
+      "mvp": 2,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.11,
+        "summer": 1.19,
+        "autumn": 0.95,
+        "winter": 0.84
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A open grassland herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0018.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0018.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A open grassland herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "hollow-steppe-0019",
+    "scientificName": "Rotundgrandies rarus",
+    "commonName": "Sage Hunter",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Sphaeroforma",
+      "class": "SphaHerbivora",
+      "order": "Mediales",
+      "family": "HollowFloraidae",
+      "genus": "Rotundgrandies"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "hollow-steppe-0005",
+        "hollow-steppe-0008",
+        "hollow-steppe-0010"
+      ],
+      "predators": [
+        "hollow-steppe-0024"
+      ],
+      "habitat": {
+        "biome": "scattered-woodland",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.22,
+        "length": 0.39,
+        "height": 0.19
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for scattered woodland environment.",
+      "coloration": {
+        "primary": "#D4C8A6",
+        "secondary": "#8AAA6C",
+        "pattern": "Adaptive coloration for scattered woodland camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "herd",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 6.2,
+        "run": 37.08
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.017,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 936,
+        "hollow-steppe-region-2": 978,
+        "hollow-steppe-region-3": 993
+      },
+      "mvp": 167,
+      "extinctionThreshold": 50,
+      "seasonalModifiers": {
+        "spring": 0.9,
+        "summer": 1.16,
+        "autumn": 0.88,
+        "winter": 0.89
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A scattered woodland herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0019.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0019.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A scattered woodland herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "hollow-steppe-0020",
+    "scientificName": "Campplation phagans",
+    "commonName": "Iron Glider",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fauna",
+      "phylum": "Planiforma",
+      "class": "PlanCarnivora",
+      "order": "Mediales",
+      "family": "HollowFaunaidae",
+      "genus": "Campplation"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "hollow-steppe-0016",
+        "hollow-steppe-0018",
+        "hollow-steppe-0013"
+      ],
+      "predators": [
+        "hollow-steppe-0024"
+      ],
+      "habitat": {
+        "biome": "rolling-hills",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1.13,
+        "length": 0.77,
+        "height": 0.53
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for rolling hills environment.",
+      "coloration": {
+        "primary": "#B8A87A",
+        "secondary": "#6A8A4C",
+        "pattern": "Adaptive coloration for rolling hills camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 7.53,
+        "run": 21.21
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.05,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 508,
+        "hollow-steppe-region-2": 507,
+        "hollow-steppe-region-3": 593
+      },
+      "mvp": 77,
+      "extinctionThreshold": 23,
+      "seasonalModifiers": {
+        "spring": 0.99,
+        "summer": 1.19,
+        "autumn": 0.98,
+        "winter": 0.82
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A rolling hills predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0020.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0020.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A rolling hills predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "hollow-steppe-0021",
+    "scientificName": "Xanthorotunda communis",
+    "commonName": "Scaled Strider",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Sphaeroforma",
+      "class": "SphaCarnivora",
+      "order": "Fossorales",
+      "family": "HollowFloraidae",
+      "genus": "Xanthorotunda"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "hollow-steppe-0016",
+        "hollow-steppe-0018",
+        "hollow-steppe-0015"
+      ],
+      "predators": [
+        "hollow-steppe-0024"
+      ],
+      "habitat": {
+        "biome": "river-valley",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1.1,
+        "length": 1.2,
+        "height": 1.05
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for river valley environment.",
+      "coloration": {
+        "primary": "#A89870",
+        "secondary": "#6A8A4C",
+        "pattern": "Adaptive coloration for river valley camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "small-group",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 2.36
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.034,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 269,
+        "hollow-steppe-region-2": 258,
+        "hollow-steppe-region-3": 350
+      },
+      "mvp": 47,
+      "extinctionThreshold": 14,
+      "seasonalModifiers": {
+        "spring": 1.15,
+        "summer": 1.28,
+        "autumn": 0.93,
+        "winter": 0.74
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A river valley predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0021.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0021.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A river valley predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "hollow-steppe-0022",
+    "scientificName": "Hexapredatus rarus",
+    "commonName": "stalk-Strider",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Hexapoda",
+      "class": "HexaCarnivora",
+      "order": "Pelagiales",
+      "family": "HollowMicrobialidae",
+      "genus": "Hexapredatus"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "hollow-steppe-0016",
+        "hollow-steppe-0017",
+        "hollow-steppe-0014"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "open-grassland",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 138.58,
+        "length": 4.47,
+        "height": 2.24
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for open grassland environment.",
+      "coloration": {
+        "primary": "#A89870",
+        "secondary": "#7A9A5C",
+        "pattern": "Adaptive coloration for open grassland camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "colony",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 4.62
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.026,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 10,
+        "hollow-steppe-region-2": 9,
+        "hollow-steppe-region-3": 9
+      },
+      "mvp": 1,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.05,
+        "summer": 1.2,
+        "autumn": 0.92,
+        "winter": 0.83
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A open grassland predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0022.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0022.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A open grassland predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "hollow-steppe-0023",
+    "scientificName": "Vorglacior modestus",
+    "commonName": "Plated Strider",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Mycelida",
+      "class": "MyceCarnivora",
+      "order": "Terrales",
+      "family": "HollowFloraidae",
+      "genus": "Vorglacior"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "hollow-steppe-0013",
+        "hollow-steppe-0015",
+        "hollow-steppe-0012"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "rocky-outcrop",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 10.31,
+        "length": 4.1,
+        "height": 1.4
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for rocky outcrop environment.",
+      "coloration": {
+        "primary": "#C4B896",
+        "secondary": "#8AAA6C",
+        "pattern": "Adaptive coloration for rocky outcrop camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "herd",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 4.95
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.032,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 176,
+        "hollow-steppe-region-2": 151,
+        "hollow-steppe-region-3": 145
+      },
+      "mvp": 25,
+      "extinctionThreshold": 7,
+      "seasonalModifiers": {
+        "spring": 1.07,
+        "summer": 1.03,
+        "autumn": 1.1,
+        "winter": 0.87
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A rocky outcrop predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0023.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0023.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A rocky outcrop predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "hollow-steppe-0024",
+    "scientificName": "Pusilllaminais giganteus",
+    "commonName": "Flat Nibbler",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Planiforma",
+      "class": "PlanDominantia",
+      "order": "Arborales",
+      "family": "HollowFungal-analogidae",
+      "genus": "Pusilllaminais"
+    },
+    "ecology": {
+      "trophicLevel": "apex-predator",
+      "diet": [
+        "hollow-steppe-0021",
+        "hollow-steppe-0020",
+        "hollow-steppe-0018",
+        "hollow-steppe-0019"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "scattered-woodland",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 57.99,
+        "length": 2.16,
+        "height": 4.56
+      },
+      "morphology": "Procedurally generated apex-predator with adaptive features for scattered woodland environment.",
+      "coloration": {
+        "primary": "#A89870",
+        "secondary": "#8AAA6C",
+        "pattern": "Adaptive coloration for scattered woodland camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "herd",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 1.7,
+        "run": 16.2
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.032,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 11,
+        "hollow-steppe-region-2": 10,
+        "hollow-steppe-region-3": 11
+      },
+      "mvp": 1,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.04,
+        "summer": 1.1,
+        "autumn": 0.86,
+        "winter": 0.81
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "An apex predator of the scattered woodland biome, with no natural enemies and significant ecological impact."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0024.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0024.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "An apex predator of the scattered woodland biome, with no natural enemies and significant ecological impact."
+  },
+  {
+    "id": "hollow-steppe-0025",
+    "scientificName": "Platidecompus pusillimus",
+    "commonName": "browse-Glider",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Planiforma",
+      "class": "PlanSaprophyta",
+      "order": "Terrales",
+      "family": "HollowMicrobialidae",
+      "genus": "Platidecompus"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "scattered-woodland",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.0,
+        "length": 0.23,
+        "height": 0.23
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for scattered woodland environment.",
+      "coloration": {
+        "primary": "#C4B896",
+        "secondary": "#7A9A5C",
+        "pattern": "Adaptive coloration for scattered woodland camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "solitary",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.044,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 49148,
+        "hollow-steppe-region-2": 52893,
+        "hollow-steppe-region-3": 52904
+      },
+      "mvp": 6955,
+      "extinctionThreshold": 2086,
+      "seasonalModifiers": {
+        "spring": 1.01,
+        "summer": 1.09,
+        "autumn": 1.02,
+        "winter": 0.83
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the scattered woodland biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0025.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0025.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the scattered woodland biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "hollow-steppe-0026",
+    "scientificName": "Pedacolosses singularis",
+    "commonName": "Flat Grazer",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Quadrupeda",
+      "class": "QuadSaprophyta",
+      "order": "Mediales",
+      "family": "HollowMicrobialidae",
+      "genus": "Pedacolosses"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "rolling-hills",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.0,
+        "length": 0.1,
+        "height": 0.04
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for rolling hills environment.",
+      "coloration": {
+        "primary": "#A89870",
+        "secondary": "#6A8A4C",
+        "pattern": "Adaptive coloration for rolling hills camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "small-group",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.034,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 69623,
+        "hollow-steppe-region-2": 56597,
+        "hollow-steppe-region-3": 56468
+      },
+      "mvp": 9735,
+      "extinctionThreshold": 2920,
+      "seasonalModifiers": {
+        "spring": 1.01,
+        "summer": 1.2,
+        "autumn": 0.95,
+        "winter": 0.77
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the rolling hills biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0026.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0026.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the rolling hills biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "hollow-steppe-0027",
+    "scientificName": "Fulvtetraa tardus",
+    "commonName": "browse-Weaver",
+    "world": "hollow-steppe",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Quadrupeda",
+      "class": "QuadSaprophyta",
+      "order": "Fossorales",
+      "family": "HollowFloraidae",
+      "genus": "Fulvtetraa"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "open-grassland",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.05,
+        "length": 0.52,
+        "height": 0.27
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for open grassland environment.",
+      "coloration": {
+        "primary": "#A89870",
+        "secondary": "#6A8A4C",
+        "pattern": "Adaptive coloration for open grassland camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "colony",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.036,
+      "carryingCapacity": {
+        "hollow-steppe-region-1": 7128,
+        "hollow-steppe-region-2": 5467,
+        "hollow-steppe-region-3": 7093
+      },
+      "mvp": 893,
+      "extinctionThreshold": 267,
+      "seasonalModifiers": {
+        "spring": 0.98,
+        "summer": 1.17,
+        "autumn": 1.01,
+        "winter": 0.82
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the open grassland biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/hollow-steppe-0027.glb",
+      "texturePath": "textures/creatures/hollow-steppe-0027.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the open grassland biome, recycling nutrients back into the ecosystem."
+  }
+]

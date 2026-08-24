@@ -1,0 +1,2868 @@
+[
+  {
+    "id": "vantauri-deep-0000",
+    "scientificName": "Chemocanopor niveatus",
+    "commonName": "Reef Builder",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "flora",
+      "phylum": "Octopoda",
+      "class": "OctoAuctorae",
+      "order": "Fossorales",
+      "family": "VantauriFloraidae",
+      "genus": "Chemocanopor"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "vantauri-deep-0012",
+        "vantauri-deep-0016"
+      ],
+      "habitat": {
+        "biome": "sunlit-shallows",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.07,
+        "length": 0.52,
+        "height": 0.57
+      },
+      "morphology": "Procedurally generated producer with adaptive features for sunlit shallows environment.",
+      "coloration": {
+        "primary": "#1A3A5A",
+        "secondary": "#D6754A",
+        "pattern": "Adaptive coloration for sunlit shallows camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "small-group",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.014,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 2108,
+        "vantauri-deep-region-2": 2328,
+        "vantauri-deep-region-3": 2268
+      },
+      "mvp": 298,
+      "extinctionThreshold": 89,
+      "seasonalModifiers": {
+        "spring": 1.12,
+        "summer": 1.06,
+        "autumn": 0.88,
+        "winter": 0.8
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A sunlit shallows producer that forms the base of the food web through thermovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0000.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0000.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A sunlit shallows producer that forms the base of the food web through thermovore metabolism."
+  },
+  {
+    "id": "vantauri-deep-0001",
+    "scientificName": "Archaeoalais giganteus",
+    "commonName": "Flicker-Stalker",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "microbial",
+      "phylum": "Alaforma",
+      "class": "AlafAuctorae",
+      "order": "Litorales",
+      "family": "VantauriMicrobialidae",
+      "genus": "Archaeoalais"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "vantauri-deep-0010",
+        "vantauri-deep-0015",
+        "vantauri-deep-0017"
+      ],
+      "habitat": {
+        "biome": "coral-reef",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 98.74,
+        "length": 7.34,
+        "height": 1.45
+      },
+      "morphology": "Procedurally generated producer with adaptive features for coral reef environment.",
+      "coloration": {
+        "primary": "#3A5A7A",
+        "secondary": "#E6855A",
+        "pattern": "Adaptive coloration for coral reef camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "small-group",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.042,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 11,
+        "vantauri-deep-region-2": 13,
+        "vantauri-deep-region-3": 11
+      },
+      "mvp": 1,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.12,
+        "summer": 1.23,
+        "autumn": 0.9,
+        "winter": 0.66
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A coral reef producer that forms the base of the food web through thermovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0001.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0001.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A coral reef producer that forms the base of the food web through thermovore metabolism."
+  },
+  {
+    "id": "vantauri-deep-0002",
+    "scientificName": "Nivalipteroon minutus",
+    "commonName": "Reef Scrapper",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "flora",
+      "phylum": "Alaforma",
+      "class": "AlafAuctorae",
+      "order": "Pelagiales",
+      "family": "VantauriFloraidae",
+      "genus": "Nivalipteroon"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "vantauri-deep-0010",
+        "vantauri-deep-0016",
+        "vantauri-deep-0017"
+      ],
+      "habitat": {
+        "biome": "sunlit-shallows",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1319.75,
+        "length": 18.89,
+        "height": 6.19
+      },
+      "morphology": "Procedurally generated producer with adaptive features for sunlit shallows environment.",
+      "coloration": {
+        "primary": "#1A3A5A",
+        "secondary": "#C6653A",
+        "pattern": "Adaptive coloration for sunlit shallows camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "solitary",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.032,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 1,
+        "vantauri-deep-region-2": 0,
+        "vantauri-deep-region-3": 1
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.09,
+        "summer": 1.02,
+        "autumn": 0.81,
+        "winter": 0.85
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A sunlit shallows producer that forms the base of the food web through thermovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0002.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0002.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A sunlit shallows producer that forms the base of the food web through thermovore metabolism."
+  },
+  {
+    "id": "vantauri-deep-0003",
+    "scientificName": "Polioannulia chloroescens",
+    "commonName": "Benthic Walker",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Segmentata",
+      "class": "SegmAuctorae",
+      "order": "Litorales",
+      "family": "VantauriFungal-analogidae",
+      "genus": "Polioannulia"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "vantauri-deep-0012",
+        "vantauri-deep-0014"
+      ],
+      "habitat": {
+        "biome": "thermal-vent",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 33541.63,
+        "length": 19.27,
+        "height": 45.2
+      },
+      "morphology": "Procedurally generated producer with adaptive features for thermal vent environment.",
+      "coloration": {
+        "primary": "#2A4A6A",
+        "secondary": "#F6956A",
+        "pattern": "Adaptive coloration for thermal vent camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "colony",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.046,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 0,
+        "vantauri-deep-region-2": 0,
+        "vantauri-deep-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.93,
+        "summer": 1.03,
+        "autumn": 0.84,
+        "winter": 0.66
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A thermal vent producer that forms the base of the food web through thermovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0003.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0003.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A thermal vent producer that forms the base of the food web through thermovore metabolism."
+  },
+  {
+    "id": "vantauri-deep-0004",
+    "scientificName": "Nanohydrois elegans",
+    "commonName": "Midwater Swimmer",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "microbial",
+      "phylum": "Natantia",
+      "class": "NataAuctorae",
+      "order": "Fossorales",
+      "family": "VantauriMicrobialidae",
+      "genus": "Nanohydrois"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "vantauri-deep-0015"
+      ],
+      "habitat": {
+        "biome": "thermal-vent",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 92.28,
+        "length": 8.23,
+        "height": 4.35
+      },
+      "morphology": "Procedurally generated producer with adaptive features for thermal vent environment.",
+      "coloration": {
+        "primary": "#1A3A5A",
+        "secondary": "#E6855A",
+        "pattern": "Adaptive coloration for thermal vent camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.047,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 15,
+        "vantauri-deep-region-2": 15,
+        "vantauri-deep-region-3": 15
+      },
+      "mvp": 1,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.97,
+        "summer": 1.27,
+        "autumn": 1.01,
+        "winter": 0.77
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A thermal vent producer that forms the base of the food web through thermovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0004.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0004.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A thermal vent producer that forms the base of the food web through thermovore metabolism."
+  },
+  {
+    "id": "vantauri-deep-0005",
+    "scientificName": "Megapediis oceanicus",
+    "commonName": "Spark-Browser",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fauna",
+      "phylum": "Hexapoda",
+      "class": "HexaAuctorae",
+      "order": "Litorales",
+      "family": "VantauriFaunaidae",
+      "genus": "Megapediis"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "vantauri-deep-0011"
+      ],
+      "habitat": {
+        "biome": "thermal-vent",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 548.59,
+        "length": 8.29,
+        "height": 11.46
+      },
+      "morphology": "Procedurally generated producer with adaptive features for thermal vent environment.",
+      "coloration": {
+        "primary": "#3A5A7A",
+        "secondary": "#C6653A",
+        "pattern": "Adaptive coloration for thermal vent camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.034,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 2,
+        "vantauri-deep-region-2": 2,
+        "vantauri-deep-region-3": 2
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.08,
+        "summer": 1.18,
+        "autumn": 1.09,
+        "winter": 0.7
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A thermal vent producer that forms the base of the food web through thermovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0005.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0005.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A thermal vent producer that forms the base of the food web through thermovore metabolism."
+  },
+  {
+    "id": "vantauri-deep-0006",
+    "scientificName": "Chemomarinor leucoatus",
+    "commonName": "Flash-Grazer",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fauna",
+      "phylum": "Quadrupeda",
+      "class": "QuadAuctorae",
+      "order": "Arborales",
+      "family": "VantauriFaunaidae",
+      "genus": "Chemomarinor"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "vantauri-deep-0011",
+        "vantauri-deep-0013",
+        "vantauri-deep-0016"
+      ],
+      "habitat": {
+        "biome": "twilight-zone",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 18189.57,
+        "length": 23.87,
+        "height": 19.48
+      },
+      "morphology": "Procedurally generated producer with adaptive features for twilight zone environment.",
+      "coloration": {
+        "primary": "#2A4A6A",
+        "secondary": "#C6653A",
+        "pattern": "Adaptive coloration for twilight zone camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "colony",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.027,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 0,
+        "vantauri-deep-region-2": 0,
+        "vantauri-deep-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.07,
+        "summer": 1.15,
+        "autumn": 0.83,
+        "winter": 0.63
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A twilight zone producer that forms the base of the food web through thermovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0006.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0006.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A twilight zone producer that forms the base of the food web through thermovore metabolism."
+  },
+  {
+    "id": "vantauri-deep-0007",
+    "scientificName": "Radiomarinor singularis",
+    "commonName": "Bronze Nibbler",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "microbial",
+      "phylum": "Cristalloforma",
+      "class": "CrisAuctorae",
+      "order": "Terrales",
+      "family": "VantauriMicrobialidae",
+      "genus": "Radiomarinor"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "vantauri-deep-0014",
+        "vantauri-deep-0015",
+        "vantauri-deep-0017"
+      ],
+      "habitat": {
+        "biome": "coral-reef",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 5.35,
+        "length": 1.74,
+        "height": 2.22
+      },
+      "morphology": "Procedurally generated producer with adaptive features for coral reef environment.",
+      "coloration": {
+        "primary": "#3A5A7A",
+        "secondary": "#F6956A",
+        "pattern": "Adaptive coloration for coral reef camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "small-group",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.034,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 43,
+        "vantauri-deep-region-2": 43,
+        "vantauri-deep-region-3": 50
+      },
+      "mvp": 7,
+      "extinctionThreshold": 2,
+      "seasonalModifiers": {
+        "spring": 0.96,
+        "summer": 1.03,
+        "autumn": 0.89,
+        "winter": 0.88
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A coral reef producer that forms the base of the food web through thermovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0007.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0007.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A coral reef producer that forms the base of the food web through thermovore metabolism."
+  },
+  {
+    "id": "vantauri-deep-0008",
+    "scientificName": "Crystalmacroes magnificus",
+    "commonName": "Shimmer-Browser",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "microbial",
+      "phylum": "Cristalloforma",
+      "class": "CrisAuctorae",
+      "order": "Terrales",
+      "family": "VantauriMicrobialidae",
+      "genus": "Crystalmacroes"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "vantauri-deep-0010",
+        "vantauri-deep-0011",
+        "vantauri-deep-0013"
+      ],
+      "habitat": {
+        "biome": "thermal-vent",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.01,
+        "length": 0.14,
+        "height": 0.13
+      },
+      "morphology": "Procedurally generated producer with adaptive features for thermal vent environment.",
+      "coloration": {
+        "primary": "#1A3A5A",
+        "secondary": "#C6653A",
+        "pattern": "Adaptive coloration for thermal vent camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.032,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 24639,
+        "vantauri-deep-region-2": 24196,
+        "vantauri-deep-region-3": 25490
+      },
+      "mvp": 3564,
+      "extinctionThreshold": 1069,
+      "seasonalModifiers": {
+        "spring": 1.19,
+        "summer": 1.14,
+        "autumn": 1.01,
+        "winter": 0.73
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A thermal vent producer that forms the base of the food web through thermovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0008.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0008.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A thermal vent producer that forms the base of the food web through thermovore metabolism."
+  },
+  {
+    "id": "vantauri-deep-0009",
+    "scientificName": "Chrysofossaa nocturnus",
+    "commonName": "Benthic Grazer",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fauna",
+      "phylum": "Fossoria",
+      "class": "FossAuctorae",
+      "order": "Arborales",
+      "family": "VantauriFaunaidae",
+      "genus": "Chrysofossaa"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "vantauri-deep-0012",
+        "vantauri-deep-0013"
+      ],
+      "habitat": {
+        "biome": "kelp-forest",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 832.06,
+        "length": 8.17,
+        "height": 8.4
+      },
+      "morphology": "Procedurally generated producer with adaptive features for kelp forest environment.",
+      "coloration": {
+        "primary": "#1A3A5A",
+        "secondary": "#E6855A",
+        "pattern": "Adaptive coloration for kelp forest camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "herd",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.049,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 3,
+        "vantauri-deep-region-2": 4,
+        "vantauri-deep-region-3": 3
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.1,
+        "summer": 1.12,
+        "autumn": 1.03,
+        "winter": 0.89
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A kelp forest producer that forms the base of the food web through thermovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0009.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0009.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A kelp forest producer that forms the base of the food web through thermovore metabolism."
+  },
+  {
+    "id": "vantauri-deep-0010",
+    "scientificName": "Caerurotunda melanescens",
+    "commonName": "Deep Climber",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Sphaeroforma",
+      "class": "SphaHerbivora",
+      "order": "Terrales",
+      "family": "VantauriFungal-analogidae",
+      "genus": "Caerurotunda"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "vantauri-deep-0002",
+        "vantauri-deep-0001",
+        "vantauri-deep-0008"
+      ],
+      "predators": [
+        "vantauri-deep-0019",
+        "vantauri-deep-0024"
+      ],
+      "habitat": {
+        "biome": "hadal-trench",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1.31,
+        "length": 1.47,
+        "height": 1.59
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for hadal trench environment.",
+      "coloration": {
+        "primary": "#0A2A4A",
+        "secondary": "#D6754A",
+        "pattern": "Adaptive coloration for hadal trench camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "herd",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 7.55,
+        "run": 8.99
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.038,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 598,
+        "vantauri-deep-region-2": 504,
+        "vantauri-deep-region-3": 498
+      },
+      "mvp": 91,
+      "extinctionThreshold": 27,
+      "seasonalModifiers": {
+        "spring": 0.91,
+        "summer": 1.1,
+        "autumn": 0.83,
+        "winter": 0.84
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A hadal trench herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0010.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0010.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A hadal trench herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "vantauri-deep-0011",
+    "scientificName": "Octopodmicroes vulgaris",
+    "commonName": "Abyssal Digger",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Octopoda",
+      "class": "OctoHerbivora",
+      "order": "Pelagiales",
+      "family": "VantauriFungal-analogidae",
+      "genus": "Octopodmicroes"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "vantauri-deep-0005",
+        "vantauri-deep-0008",
+        "vantauri-deep-0006"
+      ],
+      "predators": [
+        "vantauri-deep-0018",
+        "vantauri-deep-0020",
+        "vantauri-deep-0024"
+      ],
+      "habitat": {
+        "biome": "kelp-forest",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 988.07,
+        "length": 17.21,
+        "height": 10.13
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for kelp forest environment.",
+      "coloration": {
+        "primary": "#1A3A5A",
+        "secondary": "#F6956A",
+        "pattern": "Adaptive coloration for kelp forest camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "colony",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 0.29
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.02,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 4,
+        "vantauri-deep-region-2": 4,
+        "vantauri-deep-region-3": 4
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.16,
+        "summer": 1.16,
+        "autumn": 0.99,
+        "winter": 0.78
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A kelp forest herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0011.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0011.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A kelp forest herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "vantauri-deep-0012",
+    "scientificName": "Mesofungiis canopicus",
+    "commonName": "Reef Nibbler",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "flora",
+      "phylum": "Mycelida",
+      "class": "MyceHerbivora",
+      "order": "Litorales",
+      "family": "VantauriFloraidae",
+      "genus": "Mesofungiis"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "vantauri-deep-0009",
+        "vantauri-deep-0003",
+        "vantauri-deep-0000"
+      ],
+      "predators": [
+        "vantauri-deep-0018",
+        "vantauri-deep-0019",
+        "vantauri-deep-0022"
+      ],
+      "habitat": {
+        "biome": "aphotic-deep",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 2.34,
+        "length": 1.48,
+        "height": 1.18
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for aphotic deep environment.",
+      "coloration": {
+        "primary": "#0A2A4A",
+        "secondary": "#C6653A",
+        "pattern": "Adaptive coloration for aphotic deep camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "herd",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 1.77,
+        "run": 19.32
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.023,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 538,
+        "vantauri-deep-region-2": 524,
+        "vantauri-deep-region-3": 451
+      },
+      "mvp": 79,
+      "extinctionThreshold": 23,
+      "seasonalModifiers": {
+        "spring": 1.04,
+        "summer": 1.02,
+        "autumn": 0.91,
+        "winter": 0.6
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A aphotic deep herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0012.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0012.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A aphotic deep herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "vantauri-deep-0013",
+    "scientificName": "Grazmarinor communis",
+    "commonName": "Reef Builder",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fauna",
+      "phylum": "Quadrupeda",
+      "class": "QuadHerbivora",
+      "order": "Litorales",
+      "family": "VantauriFaunaidae",
+      "genus": "Grazmarinor"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "vantauri-deep-0006",
+        "vantauri-deep-0008",
+        "vantauri-deep-0009"
+      ],
+      "predators": [
+        "vantauri-deep-0019",
+        "vantauri-deep-0020",
+        "vantauri-deep-0021"
+      ],
+      "habitat": {
+        "biome": "open-pelagic",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.05,
+        "length": 0.43,
+        "height": 0.56
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for open pelagic environment.",
+      "coloration": {
+        "primary": "#2A4A6A",
+        "secondary": "#F6956A",
+        "pattern": "Adaptive coloration for open pelagic camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 12.16,
+        "run": 19.67
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.014,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 1397,
+        "vantauri-deep-region-2": 1308,
+        "vantauri-deep-region-3": 1536
+      },
+      "mvp": 192,
+      "extinctionThreshold": 57,
+      "seasonalModifiers": {
+        "spring": 1.15,
+        "summer": 1.23,
+        "autumn": 0.89,
+        "winter": 0.9
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A open pelagic herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0013.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0013.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A open pelagic herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "vantauri-deep-0014",
+    "scientificName": "Pendugigantes erythroatus",
+    "commonName": "Shimmer-Builder",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "flora",
+      "phylum": "Pelagoforma",
+      "class": "PelaHerbivora",
+      "order": "Terrales",
+      "family": "VantauriFloraidae",
+      "genus": "Pendugigantes"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "vantauri-deep-0008",
+        "vantauri-deep-0007",
+        "vantauri-deep-0003"
+      ],
+      "predators": [
+        "vantauri-deep-0022",
+        "vantauri-deep-0023"
+      ],
+      "habitat": {
+        "biome": "aphotic-deep",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 11127.42,
+        "length": 37.72,
+        "height": 26.27
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for aphotic deep environment.",
+      "coloration": {
+        "primary": "#0A2A4A",
+        "secondary": "#D6754A",
+        "pattern": "Adaptive coloration for aphotic deep camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "herd",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 0.76,
+        "run": 7.09
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.026,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 0,
+        "vantauri-deep-region-2": 0,
+        "vantauri-deep-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.92,
+        "summer": 1.08,
+        "autumn": 1.0,
+        "winter": 0.81
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A aphotic deep herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0014.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0014.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A aphotic deep herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "vantauri-deep-0015",
+    "scientificName": "Vitrigigantes phagans",
+    "commonName": "Lantern-Grazer",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "microbial",
+      "phylum": "Cristalloforma",
+      "class": "CrisHerbivora",
+      "order": "Terrales",
+      "family": "VantauriMicrobialidae",
+      "genus": "Vitrigigantes"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "vantauri-deep-0007",
+        "vantauri-deep-0004",
+        "vantauri-deep-0001"
+      ],
+      "predators": [
+        "vantauri-deep-0020",
+        "vantauri-deep-0021",
+        "vantauri-deep-0023"
+      ],
+      "habitat": {
+        "biome": "thermal-vent",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 39.28,
+        "length": 5.65,
+        "height": 4.61
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for thermal vent environment.",
+      "coloration": {
+        "primary": "#2A4A6A",
+        "secondary": "#D6754A",
+        "pattern": "Adaptive coloration for thermal vent camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "solitary",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 5.01,
+        "run": 2.22
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.026,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 45,
+        "vantauri-deep-region-2": 47,
+        "vantauri-deep-region-3": 46
+      },
+      "mvp": 6,
+      "extinctionThreshold": 1,
+      "seasonalModifiers": {
+        "spring": 1.19,
+        "summer": 1.25,
+        "autumn": 0.95,
+        "winter": 0.7
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A thermal vent herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0015.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0015.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A thermal vent herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "vantauri-deep-0016",
+    "scientificName": "Nivemycoa albiescens",
+    "commonName": "Shimmer-Swimmer",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fauna",
+      "phylum": "Mycelida",
+      "class": "MyceHerbivora",
+      "order": "Pelagiales",
+      "family": "VantauriFaunaidae",
+      "genus": "Nivemycoa"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "vantauri-deep-0006",
+        "vantauri-deep-0000",
+        "vantauri-deep-0002"
+      ],
+      "predators": [
+        "vantauri-deep-0018",
+        "vantauri-deep-0021",
+        "vantauri-deep-0022"
+      ],
+      "habitat": {
+        "biome": "open-pelagic",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1.68,
+        "length": 2.05,
+        "height": 1.76
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for open pelagic environment.",
+      "coloration": {
+        "primary": "#1A3A5A",
+        "secondary": "#E6855A",
+        "pattern": "Adaptive coloration for open pelagic camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 0.93,
+        "run": 15.44
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.014,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 488,
+        "vantauri-deep-region-2": 493,
+        "vantauri-deep-region-3": 435
+      },
+      "mvp": 67,
+      "extinctionThreshold": 20,
+      "seasonalModifiers": {
+        "spring": 0.93,
+        "summer": 1.06,
+        "autumn": 0.82,
+        "winter": 0.78
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A open pelagic herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0016.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0016.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A open pelagic herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "vantauri-deep-0017",
+    "scientificName": "Parvitetrais modestus",
+    "commonName": "Quartz Crawler",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fauna",
+      "phylum": "Quadrupeda",
+      "class": "QuadHerbivora",
+      "order": "Litorales",
+      "family": "VantauriFaunaidae",
+      "genus": "Parvitetrais"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "vantauri-deep-0001",
+        "vantauri-deep-0007",
+        "vantauri-deep-0002"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "coral-reef",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 103.42,
+        "length": 6.78,
+        "height": 2.76
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for coral reef environment.",
+      "coloration": {
+        "primary": "#0A2A4A",
+        "secondary": "#D6754A",
+        "pattern": "Adaptive coloration for coral reef camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "solitary",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 2.25,
+        "run": 8.38
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.014,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 15,
+        "vantauri-deep-region-2": 16,
+        "vantauri-deep-region-3": 11
+      },
+      "mvp": 2,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.13,
+        "summer": 1.18,
+        "autumn": 0.92,
+        "winter": 0.89
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A coral reef herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0017.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0017.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A coral reef herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "vantauri-deep-0018",
+    "scientificName": "Carnignisor singularis",
+    "commonName": "Reef Climber",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "flora",
+      "phylum": "Alaforma",
+      "class": "AlafCarnivora",
+      "order": "Fossorales",
+      "family": "VantauriFloraidae",
+      "genus": "Carnignisor"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "vantauri-deep-0012",
+        "vantauri-deep-0011",
+        "vantauri-deep-0016"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "twilight-zone",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 41.04,
+        "length": 1.91,
+        "height": 1.27
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for twilight zone environment.",
+      "coloration": {
+        "primary": "#1A3A5A",
+        "secondary": "#F6956A",
+        "pattern": "Adaptive coloration for twilight zone camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "colony",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 0.51,
+        "run": 0.52
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.032,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 21,
+        "vantauri-deep-region-2": 26,
+        "vantauri-deep-region-3": 22
+      },
+      "mvp": 3,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.95,
+        "summer": 1.14,
+        "autumn": 1.1,
+        "winter": 0.62
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A twilight zone predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0018.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0018.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A twilight zone predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "vantauri-deep-0019",
+    "scientificName": "Sporigigantes carnans",
+    "commonName": "Shimmer-Crawler",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fauna",
+      "phylum": "Mycelida",
+      "class": "MyceCarnivora",
+      "order": "Litorales",
+      "family": "VantauriFaunaidae",
+      "genus": "Sporigigantes"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "vantauri-deep-0012",
+        "vantauri-deep-0010",
+        "vantauri-deep-0013"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "hadal-trench",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 289.56,
+        "length": 7.66,
+        "height": 6.69
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for hadal trench environment.",
+      "coloration": {
+        "primary": "#1A3A5A",
+        "secondary": "#C6653A",
+        "pattern": "Adaptive coloration for hadal trench camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 4.16
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.036,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 5,
+        "vantauri-deep-region-2": 5,
+        "vantauri-deep-region-3": 5
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.99,
+        "summer": 1.13,
+        "autumn": 1.09,
+        "winter": 0.67
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A hadal trench predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0019.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0019.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A hadal trench predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "vantauri-deep-0020",
+    "scientificName": "Hexamicroes modestus",
+    "commonName": "Moss Grazer",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Hexapoda",
+      "class": "HexaCarnivora",
+      "order": "Pelagiales",
+      "family": "VantauriFungal-analogidae",
+      "genus": "Hexamicroes"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "vantauri-deep-0011",
+        "vantauri-deep-0015",
+        "vantauri-deep-0013"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "aphotic-deep",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 228.15,
+        "length": 9.96,
+        "height": 8.24
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for aphotic deep environment.",
+      "coloration": {
+        "primary": "#2A4A6A",
+        "secondary": "#D6754A",
+        "pattern": "Adaptive coloration for aphotic deep camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 3.43
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.033,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 12,
+        "vantauri-deep-region-2": 11,
+        "vantauri-deep-region-3": 15
+      },
+      "mvp": 2,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.92,
+        "summer": 1.14,
+        "autumn": 0.91,
+        "winter": 0.75
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A aphotic deep predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0020.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0020.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A aphotic deep predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "vantauri-deep-0021",
+    "scientificName": "Hexaphagus glaucatus",
+    "commonName": "Copper Hunter",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "microbial",
+      "phylum": "Hexapoda",
+      "class": "HexaCarnivora",
+      "order": "Pelagiales",
+      "family": "VantauriMicrobialidae",
+      "genus": "Hexaphagus"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "vantauri-deep-0013",
+        "vantauri-deep-0016",
+        "vantauri-deep-0015"
+      ],
+      "predators": [
+        "vantauri-deep-0025"
+      ],
+      "habitat": {
+        "biome": "twilight-zone",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 4.56,
+        "length": 1.32,
+        "height": 1.61
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for twilight zone environment.",
+      "coloration": {
+        "primary": "#3A5A7A",
+        "secondary": "#E6855A",
+        "pattern": "Adaptive coloration for twilight zone camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "colony",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 6.59,
+        "run": 3.45
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.026,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 41,
+        "vantauri-deep-region-2": 47,
+        "vantauri-deep-region-3": 38
+      },
+      "mvp": 7,
+      "extinctionThreshold": 2,
+      "seasonalModifiers": {
+        "spring": 1.16,
+        "summer": 1.26,
+        "autumn": 1.03,
+        "winter": 0.69
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A twilight zone predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0021.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0021.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A twilight zone predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "vantauri-deep-0022",
+    "scientificName": "Nivalidiscoon timidus",
+    "commonName": "Benthic Drifter",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Planiforma",
+      "class": "PlanCarnivora",
+      "order": "Pelagiales",
+      "family": "VantauriFungal-analogidae",
+      "genus": "Nivalidiscoon"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "vantauri-deep-0012",
+        "vantauri-deep-0016",
+        "vantauri-deep-0014"
+      ],
+      "predators": [
+        "vantauri-deep-0025"
+      ],
+      "habitat": {
+        "biome": "twilight-zone",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 165.08,
+        "length": 8.37,
+        "height": 4.03
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for twilight zone environment.",
+      "coloration": {
+        "primary": "#1A3A5A",
+        "secondary": "#D6754A",
+        "pattern": "Adaptive coloration for twilight zone camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "colony",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 4.08,
+        "run": 0.31
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.02,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 19,
+        "vantauri-deep-region-2": 15,
+        "vantauri-deep-region-3": 18
+      },
+      "mvp": 2,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.05,
+        "summer": 1.02,
+        "autumn": 1.1,
+        "winter": 0.81
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A twilight zone predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0022.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0022.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A twilight zone predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "vantauri-deep-0023",
+    "scientificName": "Minutarthrois arborensis",
+    "commonName": "Gleam-Strider",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "microbial",
+      "phylum": "Segmentata",
+      "class": "SegmCarnivora",
+      "order": "Pelagiales",
+      "family": "VantauriMicrobialidae",
+      "genus": "Minutarthrois"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "vantauri-deep-0014",
+        "vantauri-deep-0012",
+        "vantauri-deep-0015"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "coral-reef",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 156.56,
+        "length": 6.33,
+        "height": 7.01
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for coral reef environment.",
+      "coloration": {
+        "primary": "#0A2A4A",
+        "secondary": "#C6653A",
+        "pattern": "Adaptive coloration for coral reef camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 1.59
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.014,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 8,
+        "vantauri-deep-region-2": 5,
+        "vantauri-deep-region-3": 7
+      },
+      "mvp": 1,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.93,
+        "summer": 1.13,
+        "autumn": 0.89,
+        "winter": 0.64
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A coral reef predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0023.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0023.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A coral reef predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "vantauri-deep-0024",
+    "scientificName": "Pendunanoes magnificus",
+    "commonName": "Beacon-Browser",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fauna",
+      "phylum": "Pelagoforma",
+      "class": "PelaCarnivora",
+      "order": "Pelagiales",
+      "family": "VantauriFaunaidae",
+      "genus": "Pendunanoes"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "vantauri-deep-0011",
+        "vantauri-deep-0010",
+        "vantauri-deep-0013"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "hadal-trench",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 3.94,
+        "length": 1.66,
+        "height": 1.66
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for hadal trench environment.",
+      "coloration": {
+        "primary": "#0A2A4A",
+        "secondary": "#D6754A",
+        "pattern": "Adaptive coloration for hadal trench camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "colony",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 6.69
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.014,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 390,
+        "vantauri-deep-region-2": 349,
+        "vantauri-deep-region-3": 348
+      },
+      "mvp": 51,
+      "extinctionThreshold": 15,
+      "seasonalModifiers": {
+        "spring": 0.93,
+        "summer": 1.24,
+        "autumn": 0.84,
+        "winter": 0.62
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A hadal trench predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0024.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0024.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A hadal trench predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "vantauri-deep-0025",
+    "scientificName": "Flotaphagus prasinatus",
+    "commonName": "Shallow Scrapper",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "flora",
+      "phylum": "Pelagoforma",
+      "class": "PelaDominantia",
+      "order": "Litorales",
+      "family": "VantauriFloraidae",
+      "genus": "Flotaphagus"
+    },
+    "ecology": {
+      "trophicLevel": "apex-predator",
+      "diet": [
+        "vantauri-deep-0022",
+        "vantauri-deep-0021",
+        "vantauri-deep-0015",
+        "vantauri-deep-0016"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "thermal-vent",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 147.6,
+        "length": 3.07,
+        "height": 3.3
+      },
+      "morphology": "Procedurally generated apex-predator with adaptive features for thermal vent environment.",
+      "coloration": {
+        "primary": "#3A5A7A",
+        "secondary": "#C6653A",
+        "pattern": "Adaptive coloration for thermal vent camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "herd",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 3.44
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.021,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 9,
+        "vantauri-deep-region-2": 9,
+        "vantauri-deep-region-3": 11
+      },
+      "mvp": 1,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.03,
+        "summer": 1.04,
+        "autumn": 0.98,
+        "winter": 0.79
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "An apex predator of the thermal vent biome, with no natural enemies and significant ecological impact."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0025.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0025.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "An apex predator of the thermal vent biome, with no natural enemies and significant ecological impact."
+  },
+  {
+    "id": "vantauri-deep-0026",
+    "scientificName": "Decompignisor tardus",
+    "commonName": "Beacon-Borer",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Mycelida",
+      "class": "MyceSaprophyta",
+      "order": "Fossorales",
+      "family": "VantauriFungal-analogidae",
+      "genus": "Decompignisor"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "hadal-trench",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.0,
+        "length": 0.19,
+        "height": 0.08
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for hadal trench environment.",
+      "coloration": {
+        "primary": "#0A2A4A",
+        "secondary": "#E6855A",
+        "pattern": "Adaptive coloration for hadal trench camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.021,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 14288,
+        "vantauri-deep-region-2": 11164,
+        "vantauri-deep-region-3": 15463
+      },
+      "mvp": 2063,
+      "extinctionThreshold": 618,
+      "seasonalModifiers": {
+        "spring": 1.14,
+        "summer": 1.14,
+        "autumn": 0.91,
+        "winter": 0.78
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the hadal trench biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0026.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0026.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the hadal trench biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "vantauri-deep-0027",
+    "scientificName": "Macrolongiis modestus",
+    "commonName": "Slate Borer",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "microbial",
+      "phylum": "Longiforma",
+      "class": "LongSaprophyta",
+      "order": "Litorales",
+      "family": "VantauriMicrobialidae",
+      "genus": "Macrolongiis"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "aphotic-deep",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.0,
+        "length": 0.1,
+        "height": 0.17
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for aphotic deep environment.",
+      "coloration": {
+        "primary": "#2A4A6A",
+        "secondary": "#E6855A",
+        "pattern": "Adaptive coloration for aphotic deep camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "solitary",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.031,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 36862,
+        "vantauri-deep-region-2": 39373,
+        "vantauri-deep-region-3": 39130
+      },
+      "mvp": 6613,
+      "extinctionThreshold": 1983,
+      "seasonalModifiers": {
+        "spring": 0.9,
+        "summer": 1.28,
+        "autumn": 0.86,
+        "winter": 0.64
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the aphotic deep biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0027.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0027.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the aphotic deep biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "vantauri-deep-0028",
+    "scientificName": "Camppedaon magnificus",
+    "commonName": "Reef Weaver",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Quadrupeda",
+      "class": "QuadSaprophyta",
+      "order": "Mediales",
+      "family": "VantauriFungal-analogidae",
+      "genus": "Camppedaon"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "aphotic-deep",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.21,
+        "length": 0.46,
+        "height": 0.41
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for aphotic deep environment.",
+      "coloration": {
+        "primary": "#1A3A5A",
+        "secondary": "#C6653A",
+        "pattern": "Adaptive coloration for aphotic deep camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "colony",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.037,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 2253,
+        "vantauri-deep-region-2": 2038,
+        "vantauri-deep-region-3": 1838
+      },
+      "mvp": 292,
+      "extinctionThreshold": 87,
+      "seasonalModifiers": {
+        "spring": 1.14,
+        "summer": 1.11,
+        "autumn": 1.02,
+        "winter": 0.69
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the aphotic deep biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0028.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0028.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the aphotic deep biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "vantauri-deep-0029",
+    "scientificName": "Minutlaminais magnificus",
+    "commonName": "Reef Walker",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Planiforma",
+      "class": "PlanSaprophyta",
+      "order": "Mediales",
+      "family": "VantauriFungal-analogidae",
+      "genus": "Minutlaminais"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "kelp-forest",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.0,
+        "length": 0.2,
+        "height": 0.15
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for kelp forest environment.",
+      "coloration": {
+        "primary": "#2A4A6A",
+        "secondary": "#C6653A",
+        "pattern": "Adaptive coloration for kelp forest camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.025,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 19184,
+        "vantauri-deep-region-2": 17920,
+        "vantauri-deep-region-3": 17013
+      },
+      "mvp": 3187,
+      "extinctionThreshold": 956,
+      "seasonalModifiers": {
+        "spring": 1.12,
+        "summer": 1.29,
+        "autumn": 1.07,
+        "winter": 0.75
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the kelp forest biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0029.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0029.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the kelp forest biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "vantauri-deep-0030",
+    "scientificName": "Tetranecrous saprophagans",
+    "commonName": "Midwater Builder",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Quadrupeda",
+      "class": "QuadMicrobiota",
+      "order": "Litorales",
+      "family": "VantauriFungal-analogidae",
+      "genus": "Tetranecrous"
+    },
+    "ecology": {
+      "trophicLevel": "microbial",
+      "diet": [],
+      "predators": [],
+      "habitat": {
+        "biome": "kelp-forest",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 4.26,
+        "length": 1.38,
+        "height": 0.58
+      },
+      "morphology": "Procedurally generated microbial with adaptive features for kelp forest environment.",
+      "coloration": {
+        "primary": "#2A4A6A",
+        "secondary": "#F6956A",
+        "pattern": "Adaptive coloration for kelp forest camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.034,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 328,
+        "vantauri-deep-region-2": 295,
+        "vantauri-deep-region-3": 322
+      },
+      "mvp": 45,
+      "extinctionThreshold": 13,
+      "seasonalModifiers": {
+        "spring": 1.03,
+        "summer": 1.02,
+        "autumn": 0.9,
+        "winter": 0.89
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A microbial organism in the kelp forest biome, playing a role in decomposition and nutrient cycling."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0030.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0030.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A microbial organism in the kelp forest biome, playing a role in decomposition and nutrient cycling."
+  },
+  {
+    "id": "vantauri-deep-0031",
+    "scientificName": "Serpensnecrous giganteus",
+    "commonName": "Iron Swimmer",
+    "world": "vantauri-deep",
+    "taxonomy": {
+      "metabolicDomain": "thermovore",
+      "kingdom": "fauna",
+      "phylum": "Longiforma",
+      "class": "LongMicrobiota",
+      "order": "Fossorales",
+      "family": "VantauriFaunaidae",
+      "genus": "Serpensnecrous"
+    },
+    "ecology": {
+      "trophicLevel": "microbial",
+      "diet": [],
+      "predators": [],
+      "habitat": {
+        "biome": "open-pelagic",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.92,
+        "length": 1.17,
+        "height": 0.56
+      },
+      "morphology": "Procedurally generated microbial with adaptive features for open pelagic environment.",
+      "coloration": {
+        "primary": "#1A3A5A",
+        "secondary": "#F6956A",
+        "pattern": "Adaptive coloration for open pelagic camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "colony",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.014,
+      "carryingCapacity": {
+        "vantauri-deep-region-1": 384,
+        "vantauri-deep-region-2": 399,
+        "vantauri-deep-region-3": 426
+      },
+      "mvp": 60,
+      "extinctionThreshold": 18,
+      "seasonalModifiers": {
+        "spring": 1.06,
+        "summer": 1.06,
+        "autumn": 1.07,
+        "winter": 0.71
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A microbial organism in the open pelagic biome, playing a role in decomposition and nutrient cycling."
+    },
+    "assets": {
+      "modelPath": "models/creatures/vantauri-deep-0031.glb",
+      "texturePath": "textures/creatures/vantauri-deep-0031.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A microbial organism in the open pelagic biome, playing a role in decomposition and nutrient cycling."
+  }
+]

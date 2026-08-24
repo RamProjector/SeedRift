@@ -1,0 +1,2857 @@
+[
+  {
+    "id": "kharon-bloomfields-0000",
+    "scientificName": "Heliomarinor nocturnus",
+    "commonName": "Canopy Grazer",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fauna",
+      "phylum": "Fossoria",
+      "class": "FossAuctorae",
+      "order": "Pelagiales",
+      "family": "KharonFaunaidae",
+      "genus": "Heliomarinor"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "kharon-bloomfields-0013"
+      ],
+      "habitat": {
+        "biome": "ground-layer",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.06,
+        "length": 0.77,
+        "height": 0.27
+      },
+      "morphology": "Procedurally generated producer with adaptive features for ground layer environment.",
+      "coloration": {
+        "primary": "#4A3A2A",
+        "secondary": "#7A9A6C",
+        "pattern": "Adaptive coloration for ground layer camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "solitary",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.019,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 1121,
+        "kharon-bloomfields-region-2": 995,
+        "kharon-bloomfields-region-3": 1133
+      },
+      "mvp": 145,
+      "extinctionThreshold": 43,
+      "seasonalModifiers": {
+        "spring": 0.92,
+        "summer": 1.25,
+        "autumn": 1.07,
+        "winter": 0.69
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A ground layer producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0000.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0000.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A ground layer producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "kharon-bloomfields-0001",
+    "scientificName": "Radioarboror fortis",
+    "commonName": "Canopy Climber",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Alaforma",
+      "class": "AlafAuctorae",
+      "order": "Litorales",
+      "family": "KharonMicrobialidae",
+      "genus": "Radioarboror"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [],
+      "habitat": {
+        "biome": "stalk-interior",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1.39,
+        "length": 1.02,
+        "height": 1.63
+      },
+      "morphology": "Procedurally generated producer with adaptive features for stalk interior environment.",
+      "coloration": {
+        "primary": "#5A4A3A",
+        "secondary": "#8AAA7C",
+        "pattern": "Adaptive coloration for stalk interior camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "solitary",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.048,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 608,
+        "kharon-bloomfields-region-2": 709,
+        "kharon-bloomfields-region-3": 731
+      },
+      "mvp": 112,
+      "extinctionThreshold": 33,
+      "seasonalModifiers": {
+        "spring": 1.16,
+        "summer": 1.03,
+        "autumn": 1.01,
+        "winter": 0.76
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A stalk interior producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0001.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0001.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A stalk interior producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "kharon-bloomfields-0002",
+    "scientificName": "Sporinanoes chrysoatus",
+    "commonName": "Copper Mycelium-runner",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Mycelida",
+      "class": "MyceAuctorae",
+      "order": "Mediales",
+      "family": "KharonFungal-analogidae",
+      "genus": "Sporinanoes"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "kharon-bloomfields-0014",
+        "kharon-bloomfields-0017"
+      ],
+      "habitat": {
+        "biome": "upper-canopy",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1179.63,
+        "length": 7.86,
+        "height": 3.74
+      },
+      "morphology": "Procedurally generated producer with adaptive features for upper canopy environment.",
+      "coloration": {
+        "primary": "#3A2A1A",
+        "secondary": "#9ABA8C",
+        "pattern": "Adaptive coloration for upper canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "colony",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.032,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 2,
+        "kharon-bloomfields-region-2": 3,
+        "kharon-bloomfields-region-3": 3
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.14,
+        "summer": 1.03,
+        "autumn": 1.06,
+        "winter": 0.64
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A upper canopy producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0002.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0002.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A upper canopy producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "kharon-bloomfields-0003",
+    "scientificName": "Hydroactinous nanoimus",
+    "commonName": "Spore-scratch",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fauna",
+      "phylum": "Natantia",
+      "class": "NataAuctorae",
+      "order": "Arborales",
+      "family": "KharonFaunaidae",
+      "genus": "Hydroactinous"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "kharon-bloomfields-0012",
+        "kharon-bloomfields-0013",
+        "kharon-bloomfields-0015"
+      ],
+      "habitat": {
+        "biome": "spore-fog-zone",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 48762.89,
+        "length": 41.61,
+        "height": 36.18
+      },
+      "morphology": "Procedurally generated producer with adaptive features for spore fog zone environment.",
+      "coloration": {
+        "primary": "#5A4A3A",
+        "secondary": "#6A8A5C",
+        "pattern": "Adaptive coloration for spore fog zone camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "solitary",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.028,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 0,
+        "kharon-bloomfields-region-2": 0,
+        "kharon-bloomfields-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.17,
+        "summer": 1.1,
+        "autumn": 0.84,
+        "winter": 0.64
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A spore fog zone producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0003.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0003.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A spore fog zone producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "kharon-bloomfields-0004",
+    "scientificName": "Nivegloba robustus",
+    "commonName": "Spore-scout",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Sphaeroforma",
+      "class": "SphaAuctorae",
+      "order": "Mediales",
+      "family": "KharonFungal-analogidae",
+      "genus": "Nivegloba"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "kharon-bloomfields-0014",
+        "kharon-bloomfields-0017",
+        "kharon-bloomfields-0019"
+      ],
+      "habitat": {
+        "biome": "spore-fog-zone",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 194.01,
+        "length": 5.86,
+        "height": 6.25
+      },
+      "morphology": "Procedurally generated producer with adaptive features for spore fog zone environment.",
+      "coloration": {
+        "primary": "#5A4A3A",
+        "secondary": "#8AAA7C",
+        "pattern": "Adaptive coloration for spore fog zone camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "solitary",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.04,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 8,
+        "kharon-bloomfields-region-2": 8,
+        "kharon-bloomfields-region-3": 9
+      },
+      "mvp": 1,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.01,
+        "summer": 1.04,
+        "autumn": 0.82,
+        "winter": 0.89
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A spore fog zone producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0004.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0004.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A spore fog zone producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "kharon-bloomfields-0005",
+    "scientificName": "Prativitrion velox",
+    "commonName": "Spore-browse",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Cristalloforma",
+      "class": "CrisAuctorae",
+      "order": "Litorales",
+      "family": "KharonFungal-analogidae",
+      "genus": "Prativitrion"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "kharon-bloomfields-0015",
+        "kharon-bloomfields-0016"
+      ],
+      "habitat": {
+        "biome": "lower-canopy",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.06,
+        "length": 0.72,
+        "height": 0.28
+      },
+      "morphology": "Procedurally generated producer with adaptive features for lower canopy environment.",
+      "coloration": {
+        "primary": "#3A2A1A",
+        "secondary": "#9ABA8C",
+        "pattern": "Adaptive coloration for lower canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.037,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 4378,
+        "kharon-bloomfields-region-2": 4731,
+        "kharon-bloomfields-region-3": 4482
+      },
+      "mvp": 641,
+      "extinctionThreshold": 192,
+      "seasonalModifiers": {
+        "spring": 1.07,
+        "summer": 1.18,
+        "autumn": 1.0,
+        "winter": 0.81
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A lower canopy producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0005.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0005.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A lower canopy producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "kharon-bloomfields-0006",
+    "scientificName": "Minutpedais vulgaris",
+    "commonName": "Iron Gill-grazer",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Quadrupeda",
+      "class": "QuadAuctorae",
+      "order": "Litorales",
+      "family": "KharonFungal-analogidae",
+      "genus": "Minutpedais"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "kharon-bloomfields-0012",
+        "kharon-bloomfields-0019"
+      ],
+      "habitat": {
+        "biome": "mid-canopy",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 38.93,
+        "length": 2.23,
+        "height": 3.73
+      },
+      "morphology": "Procedurally generated producer with adaptive features for mid canopy environment.",
+      "coloration": {
+        "primary": "#4A3A2A",
+        "secondary": "#9ABA8C",
+        "pattern": "Adaptive coloration for mid canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "colony",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.013,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 49,
+        "kharon-bloomfields-region-2": 62,
+        "kharon-bloomfields-region-3": 46
+      },
+      "mvp": 8,
+      "extinctionThreshold": 2,
+      "seasonalModifiers": {
+        "spring": 1.03,
+        "summer": 1.13,
+        "autumn": 0.98,
+        "winter": 0.72
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A mid canopy producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0006.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0006.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A mid canopy producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "kharon-bloomfields-0007",
+    "scientificName": "Microsexais vulgaris",
+    "commonName": "Spore-browse",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fauna",
+      "phylum": "Hexapoda",
+      "class": "HexaAuctorae",
+      "order": "Fossorales",
+      "family": "KharonFaunaidae",
+      "genus": "Microsexais"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "kharon-bloomfields-0012"
+      ],
+      "habitat": {
+        "biome": "lower-canopy",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 563.95,
+        "length": 11.03,
+        "height": 7.99
+      },
+      "morphology": "Procedurally generated producer with adaptive features for lower canopy environment.",
+      "coloration": {
+        "primary": "#6A5A4A",
+        "secondary": "#8AAA7C",
+        "pattern": "Adaptive coloration for lower canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "small-group",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.043,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 1,
+        "kharon-bloomfields-region-2": 2,
+        "kharon-bloomfields-region-3": 2
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.14,
+        "summer": 1.02,
+        "autumn": 1.06,
+        "winter": 0.61
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A lower canopy producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0007.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0007.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A lower canopy producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "kharon-bloomfields-0008",
+    "scientificName": "Sphaerlucus chemoans",
+    "commonName": "Canopy Spinner",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fauna",
+      "phylum": "Sphaeroforma",
+      "class": "SphaAuctorae",
+      "order": "Fossorales",
+      "family": "KharonFaunaidae",
+      "genus": "Sphaerlucus"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "kharon-bloomfields-0013",
+        "kharon-bloomfields-0014",
+        "kharon-bloomfields-0018"
+      ],
+      "habitat": {
+        "biome": "stalk-interior",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 5036.65,
+        "length": 11.99,
+        "height": 8.94
+      },
+      "morphology": "Procedurally generated producer with adaptive features for stalk interior environment.",
+      "coloration": {
+        "primary": "#3A2A1A",
+        "secondary": "#7A9A6C",
+        "pattern": "Adaptive coloration for stalk interior camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "solitary",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.035,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 0,
+        "kharon-bloomfields-region-2": 1,
+        "kharon-bloomfields-region-3": 0
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.06,
+        "summer": 1.06,
+        "autumn": 1.03,
+        "winter": 0.71
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A stalk interior producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0008.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0008.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A stalk interior producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "kharon-bloomfields-0009",
+    "scientificName": "Terracolosses minutus",
+    "commonName": "Ochre Spore-drifter",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Fossoria",
+      "class": "FossAuctorae",
+      "order": "Fossorales",
+      "family": "KharonMicrobialidae",
+      "genus": "Terracolosses"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "kharon-bloomfields-0015",
+        "kharon-bloomfields-0016"
+      ],
+      "habitat": {
+        "biome": "lower-canopy",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 72.61,
+        "length": 4.83,
+        "height": 5.23
+      },
+      "morphology": "Procedurally generated producer with adaptive features for lower canopy environment.",
+      "coloration": {
+        "primary": "#6A5A4A",
+        "secondary": "#6A8A5C",
+        "pattern": "Adaptive coloration for lower canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "small-group",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.028,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 33,
+        "kharon-bloomfields-region-2": 30,
+        "kharon-bloomfields-region-3": 26
+      },
+      "mvp": 4,
+      "extinctionThreshold": 1,
+      "seasonalModifiers": {
+        "spring": 0.91,
+        "summer": 1.11,
+        "autumn": 0.89,
+        "winter": 0.79
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A lower canopy producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0009.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0009.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A lower canopy producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "kharon-bloomfields-0010",
+    "scientificName": "Parvisegmenis lucans",
+    "commonName": "Jade Spore-drifter",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Segmentata",
+      "class": "SegmAuctorae",
+      "order": "Terrales",
+      "family": "KharonFloraidae",
+      "genus": "Parvisegmenis"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "kharon-bloomfields-0018",
+        "kharon-bloomfields-0019"
+      ],
+      "habitat": {
+        "biome": "upper-canopy",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.74,
+        "length": 0.56,
+        "height": 0.99
+      },
+      "morphology": "Procedurally generated producer with adaptive features for upper canopy environment.",
+      "coloration": {
+        "primary": "#5A4A3A",
+        "secondary": "#7A9A6C",
+        "pattern": "Adaptive coloration for upper canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "small-group",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.042,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 426,
+        "kharon-bloomfields-region-2": 414,
+        "kharon-bloomfields-region-3": 460
+      },
+      "mvp": 66,
+      "extinctionThreshold": 19,
+      "seasonalModifiers": {
+        "spring": 1.09,
+        "summer": 1.02,
+        "autumn": 0.83,
+        "winter": 0.8
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A upper canopy producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0010.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0010.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A upper canopy producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "kharon-bloomfields-0011",
+    "scientificName": "Lithohypogor magnificus",
+    "commonName": "Canopy Spinner",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Octopoda",
+      "class": "OctoAuctorae",
+      "order": "Arborales",
+      "family": "KharonFungal-analogidae",
+      "genus": "Lithohypogor"
+    },
+    "ecology": {
+      "trophicLevel": "producer",
+      "diet": [],
+      "predators": [
+        "kharon-bloomfields-0016"
+      ],
+      "habitat": {
+        "biome": "spore-fog-zone",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.62,
+        "length": 1.19,
+        "height": 0.41
+      },
+      "morphology": "Procedurally generated producer with adaptive features for spore fog zone environment.",
+      "coloration": {
+        "primary": "#4A3A2A",
+        "secondary": "#9ABA8C",
+        "pattern": "Adaptive coloration for spore fog zone camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "colony",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.019,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 332,
+        "kharon-bloomfields-region-2": 442,
+        "kharon-bloomfields-region-3": 372
+      },
+      "mvp": 56,
+      "extinctionThreshold": 16,
+      "seasonalModifiers": {
+        "spring": 0.94,
+        "summer": 1.02,
+        "autumn": 1.05,
+        "winter": 0.63
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A spore fog zone producer that forms the base of the food web through photovore metabolism."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0011.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0011.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A spore fog zone producer that forms the base of the food web through photovore metabolism."
+  },
+  {
+    "id": "kharon-bloomfields-0012",
+    "scientificName": "Polioaquaa communis",
+    "commonName": "Iron Mycelium-runner",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Natantia",
+      "class": "NataHerbivora",
+      "order": "Mediales",
+      "family": "KharonMicrobialidae",
+      "genus": "Polioaquaa"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "kharon-bloomfields-0006",
+        "kharon-bloomfields-0007",
+        "kharon-bloomfields-0003"
+      ],
+      "predators": [
+        "kharon-bloomfields-0020",
+        "kharon-bloomfields-0023"
+      ],
+      "habitat": {
+        "biome": "spore-fog-zone",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1.87,
+        "length": 0.77,
+        "height": 0.61
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for spore fog zone environment.",
+      "coloration": {
+        "primary": "#4A3A2A",
+        "secondary": "#8AAA7C",
+        "pattern": "Adaptive coloration for spore fog zone camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "colony",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 8.61,
+        "run": 11.94
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.042,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 280,
+        "kharon-bloomfields-region-2": 328,
+        "kharon-bloomfields-region-3": 312
+      },
+      "mvp": 41,
+      "extinctionThreshold": 12,
+      "seasonalModifiers": {
+        "spring": 0.94,
+        "summer": 1.08,
+        "autumn": 0.99,
+        "winter": 0.86
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A spore fog zone herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0012.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0012.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A spore fog zone herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "kharon-bloomfields-0013",
+    "scientificName": "Luteflotaa robustus",
+    "commonName": "Ochre Cap-glider",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Pelagoforma",
+      "class": "PelaHerbivora",
+      "order": "Mediales",
+      "family": "KharonFungal-analogidae",
+      "genus": "Luteflotaa"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "kharon-bloomfields-0008",
+        "kharon-bloomfields-0003",
+        "kharon-bloomfields-0000"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "upper-canopy",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.01,
+        "length": 0.17,
+        "height": 0.16
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for upper canopy environment.",
+      "coloration": {
+        "primary": "#3A2A1A",
+        "secondary": "#7A9A6C",
+        "pattern": "Adaptive coloration for upper canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "solitary",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 17.47,
+        "run": 40.53
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.016,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 4793,
+        "kharon-bloomfields-region-2": 5931,
+        "kharon-bloomfields-region-3": 5650
+      },
+      "mvp": 786,
+      "extinctionThreshold": 235,
+      "seasonalModifiers": {
+        "spring": 1.11,
+        "summer": 1.13,
+        "autumn": 0.8,
+        "winter": 0.62
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A upper canopy herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0013.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0013.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A upper canopy herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "kharon-bloomfields-0014",
+    "scientificName": "Prasinalaa perennis",
+    "commonName": "Iron Bracket-sitter",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Alaforma",
+      "class": "AlafHerbivora",
+      "order": "Arborales",
+      "family": "KharonMicrobialidae",
+      "genus": "Prasinalaa"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "kharon-bloomfields-0002",
+        "kharon-bloomfields-0008",
+        "kharon-bloomfields-0004"
+      ],
+      "predators": [
+        "kharon-bloomfields-0021",
+        "kharon-bloomfields-0023"
+      ],
+      "habitat": {
+        "biome": "ground-layer",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 62.68,
+        "length": 3.45,
+        "height": 1.25
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for ground layer environment.",
+      "coloration": {
+        "primary": "#4A3A2A",
+        "secondary": "#6A8A5C",
+        "pattern": "Adaptive coloration for ground layer camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "small-group",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 1.37
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.031,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 25,
+        "kharon-bloomfields-region-2": 36,
+        "kharon-bloomfields-region-3": 25
+      },
+      "mvp": 4,
+      "extinctionThreshold": 1,
+      "seasonalModifiers": {
+        "spring": 1.05,
+        "summer": 1.3,
+        "autumn": 0.97,
+        "winter": 0.72
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A ground layer herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0014.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0014.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A ground layer herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "kharon-bloomfields-0015",
+    "scientificName": "Pelagimacroes modestus",
+    "commonName": "Canopy Weaver",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Natantia",
+      "class": "NataHerbivora",
+      "order": "Mediales",
+      "family": "KharonFloraidae",
+      "genus": "Pelagimacroes"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "kharon-bloomfields-0003",
+        "kharon-bloomfields-0009",
+        "kharon-bloomfields-0005"
+      ],
+      "predators": [
+        "kharon-bloomfields-0022",
+        "kharon-bloomfields-0025",
+        "kharon-bloomfields-0026"
+      ],
+      "habitat": {
+        "biome": "stalk-interior",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.02,
+        "length": 0.53,
+        "height": 0.11
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for stalk interior environment.",
+      "coloration": {
+        "primary": "#3A2A1A",
+        "secondary": "#9ABA8C",
+        "pattern": "Adaptive coloration for stalk interior camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "small-group",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 13.58
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.047,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 4801,
+        "kharon-bloomfields-region-2": 5166,
+        "kharon-bloomfields-region-3": 4796
+      },
+      "mvp": 880,
+      "extinctionThreshold": 264,
+      "seasonalModifiers": {
+        "spring": 1.05,
+        "summer": 1.3,
+        "autumn": 0.96,
+        "winter": 0.68
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A stalk interior herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0015.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0015.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A stalk interior herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "kharon-bloomfields-0016",
+    "scientificName": "Bathyalterraon canopicus",
+    "commonName": "Spore-browse",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Fossoria",
+      "class": "FossHerbivora",
+      "order": "Arborales",
+      "family": "KharonMicrobialidae",
+      "genus": "Bathyalterraon"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "kharon-bloomfields-0009",
+        "kharon-bloomfields-0011",
+        "kharon-bloomfields-0005"
+      ],
+      "predators": [
+        "kharon-bloomfields-0020",
+        "kharon-bloomfields-0022",
+        "kharon-bloomfields-0024"
+      ],
+      "habitat": {
+        "biome": "stalk-interior",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 4.57,
+        "length": 2.41,
+        "height": 2.06
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for stalk interior environment.",
+      "coloration": {
+        "primary": "#5A4A3A",
+        "secondary": "#6A8A5C",
+        "pattern": "Adaptive coloration for stalk interior camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "solitary",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 7.91
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.028,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 97,
+        "kharon-bloomfields-region-2": 108,
+        "kharon-bloomfields-region-3": 106
+      },
+      "mvp": 17,
+      "extinctionThreshold": 5,
+      "seasonalModifiers": {
+        "spring": 1.12,
+        "summer": 1.05,
+        "autumn": 0.93,
+        "winter": 0.73
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A stalk interior herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0016.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0016.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A stalk interior herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "kharon-bloomfields-0017",
+    "scientificName": "Predatpratior giganteus",
+    "commonName": "Copper Cap-crawler",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Longiforma",
+      "class": "LongHerbivora",
+      "order": "Terrales",
+      "family": "KharonFungal-analogidae",
+      "genus": "Predatpratior"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "kharon-bloomfields-0003",
+        "kharon-bloomfields-0004",
+        "kharon-bloomfields-0002"
+      ],
+      "predators": [
+        "kharon-bloomfields-0021",
+        "kharon-bloomfields-0023",
+        "kharon-bloomfields-0025"
+      ],
+      "habitat": {
+        "biome": "ground-layer",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 2.31,
+        "length": 2.19,
+        "height": 1.51
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for ground layer environment.",
+      "coloration": {
+        "primary": "#6A5A4A",
+        "secondary": "#8AAA7C",
+        "pattern": "Adaptive coloration for ground layer camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "colony",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 5.07,
+        "run": 20.79
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.026,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 255,
+        "kharon-bloomfields-region-2": 237,
+        "kharon-bloomfields-region-3": 233
+      },
+      "mvp": 34,
+      "extinctionThreshold": 10,
+      "seasonalModifiers": {
+        "spring": 1.09,
+        "summer": 1.07,
+        "autumn": 0.83,
+        "winter": 0.82
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A ground layer herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0017.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0017.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A ground layer herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "kharon-bloomfields-0018",
+    "scientificName": "Prasinaquaa pyroicus",
+    "commonName": "Spore-browse",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Natantia",
+      "class": "NataHerbivora",
+      "order": "Terrales",
+      "family": "KharonFungal-analogidae",
+      "genus": "Prasinaquaa"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "kharon-bloomfields-0010",
+        "kharon-bloomfields-0008",
+        "kharon-bloomfields-0003"
+      ],
+      "predators": [
+        "kharon-bloomfields-0020",
+        "kharon-bloomfields-0021",
+        "kharon-bloomfields-0022"
+      ],
+      "habitat": {
+        "biome": "spore-fog-zone",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 1811.71,
+        "length": 11.46,
+        "height": 17.83
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for spore fog zone environment.",
+      "coloration": {
+        "primary": "#3A2A1A",
+        "secondary": "#8AAA7C",
+        "pattern": "Adaptive coloration for spore fog zone camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "colony",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 2.32,
+        "run": 6.88
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.042,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 1,
+        "kharon-bloomfields-region-2": 1,
+        "kharon-bloomfields-region-3": 1
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.91,
+        "summer": 1.17,
+        "autumn": 0.91,
+        "winter": 0.84
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A spore fog zone herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0018.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0018.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A spore fog zone herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "kharon-bloomfields-0019",
+    "scientificName": "Flavsubtera predatans",
+    "commonName": "Spore-stalk",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Fossoria",
+      "class": "FossHerbivora",
+      "order": "Mediales",
+      "family": "KharonFloraidae",
+      "genus": "Flavsubtera"
+    },
+    "ecology": {
+      "trophicLevel": "primary-consumer",
+      "diet": [
+        "kharon-bloomfields-0006",
+        "kharon-bloomfields-0004",
+        "kharon-bloomfields-0010"
+      ],
+      "predators": [
+        "kharon-bloomfields-0024",
+        "kharon-bloomfields-0025"
+      ],
+      "habitat": {
+        "biome": "upper-canopy",
+        "stratum": "mid-story",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 4.7,
+        "length": 2.4,
+        "height": 1.73
+      },
+      "morphology": "Procedurally generated primary-consumer with adaptive features for upper canopy environment.",
+      "coloration": {
+        "primary": "#3A2A1A",
+        "secondary": "#9ABA8C",
+        "pattern": "Adaptive coloration for upper canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "colony",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 7.22
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.038,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 56,
+        "kharon-bloomfields-region-2": 57,
+        "kharon-bloomfields-region-3": 61
+      },
+      "mvp": 9,
+      "extinctionThreshold": 2,
+      "seasonalModifiers": {
+        "spring": 1.0,
+        "summer": 1.28,
+        "autumn": 1.07,
+        "winter": 0.85
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A upper canopy herbivore that feeds on local producers, serving as prey for higher trophic levels."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0019.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0019.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A upper canopy herbivore that feeds on local producers, serving as prey for higher trophic levels."
+  },
+  {
+    "id": "kharon-bloomfields-0020",
+    "scientificName": "Graznemoror prasinescens",
+    "commonName": "Golden Cap-glider",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Cristalloforma",
+      "class": "CrisCarnivora",
+      "order": "Pelagiales",
+      "family": "KharonMicrobialidae",
+      "genus": "Graznemoror"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "kharon-bloomfields-0012",
+        "kharon-bloomfields-0016",
+        "kharon-bloomfields-0018"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "mid-canopy",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 21.66,
+        "length": 5.42,
+        "height": 1.26
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for mid canopy environment.",
+      "coloration": {
+        "primary": "#5A4A3A",
+        "secondary": "#9ABA8C",
+        "pattern": "Adaptive coloration for mid canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "colony",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 4.08
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.038,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 34,
+        "kharon-bloomfields-region-2": 29,
+        "kharon-bloomfields-region-3": 30
+      },
+      "mvp": 4,
+      "extinctionThreshold": 1,
+      "seasonalModifiers": {
+        "spring": 0.95,
+        "summer": 1.12,
+        "autumn": 0.94,
+        "winter": 0.7
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A mid canopy predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0020.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0020.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A mid canopy predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "kharon-bloomfields-0021",
+    "scientificName": "Modestserpensis cyanatus",
+    "commonName": "Canopy Drifter",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Longiforma",
+      "class": "LongCarnivora",
+      "order": "Terrales",
+      "family": "KharonFloraidae",
+      "genus": "Modestserpensis"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "kharon-bloomfields-0014",
+        "kharon-bloomfields-0017",
+        "kharon-bloomfields-0018"
+      ],
+      "predators": [
+        "kharon-bloomfields-0026"
+      ],
+      "habitat": {
+        "biome": "spore-fog-zone",
+        "stratum": "ground",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 316.39,
+        "length": 6.16,
+        "height": 6.8
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for spore fog zone environment.",
+      "coloration": {
+        "primary": "#5A4A3A",
+        "secondary": "#8AAA7C",
+        "pattern": "Adaptive coloration for spore fog zone camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "small-group",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 3.06
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.03,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 3,
+        "kharon-bloomfields-region-2": 2,
+        "kharon-bloomfields-region-3": 3
+      },
+      "mvp": 0,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.93,
+        "summer": 1.12,
+        "autumn": 0.94,
+        "winter": 0.67
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A spore fog zone predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0021.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0021.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A spore fog zone predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "kharon-bloomfields-0022",
+    "scientificName": "Aerigrazus timidus",
+    "commonName": "Dark Mycelium-runner",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fungal-analog",
+      "phylum": "Pelagoforma",
+      "class": "PelaCarnivora",
+      "order": "Litorales",
+      "family": "KharonFungal-analogidae",
+      "genus": "Aerigrazus"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "kharon-bloomfields-0018",
+        "kharon-bloomfields-0016",
+        "kharon-bloomfields-0015"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "upper-canopy",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 3.67,
+        "length": 1.92,
+        "height": 0.54
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for upper canopy environment.",
+      "coloration": {
+        "primary": "#3A2A1A",
+        "secondary": "#7A9A6C",
+        "pattern": "Adaptive coloration for upper canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "small-group",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {
+        "walk": 3.27
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.015,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 253,
+        "kharon-bloomfields-region-2": 235,
+        "kharon-bloomfields-region-3": 233
+      },
+      "mvp": 33,
+      "extinctionThreshold": 9,
+      "seasonalModifiers": {
+        "spring": 0.93,
+        "summer": 1.11,
+        "autumn": 1.1,
+        "winter": 0.77
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A upper canopy predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0022.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0022.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A upper canopy predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "kharon-bloomfields-0023",
+    "scientificName": "Caerusegmena giganteus",
+    "commonName": "Spore-nip",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Segmentata",
+      "class": "SegmCarnivora",
+      "order": "Pelagiales",
+      "family": "KharonMicrobialidae",
+      "genus": "Caerusegmena"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "kharon-bloomfields-0012",
+        "kharon-bloomfields-0014",
+        "kharon-bloomfields-0017"
+      ],
+      "predators": [
+        "kharon-bloomfields-0026"
+      ],
+      "habitat": {
+        "biome": "stalk-interior",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 24.42,
+        "length": 2.17,
+        "height": 3.03
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for stalk interior environment.",
+      "coloration": {
+        "primary": "#3A2A1A",
+        "secondary": "#8AAA7C",
+        "pattern": "Adaptive coloration for stalk interior camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {
+        "walk": 3.0
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.046,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 30,
+        "kharon-bloomfields-region-2": 34,
+        "kharon-bloomfields-region-3": 33
+      },
+      "mvp": 5,
+      "extinctionThreshold": 1,
+      "seasonalModifiers": {
+        "spring": 1.16,
+        "summer": 1.19,
+        "autumn": 0.98,
+        "winter": 0.68
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A stalk interior predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0023.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0023.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A stalk interior predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "kharon-bloomfields-0024",
+    "scientificName": "Phagpyroor magnificus",
+    "commonName": "Canopy Spinner",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Hexapoda",
+      "class": "HexaCarnivora",
+      "order": "Pelagiales",
+      "family": "KharonMicrobialidae",
+      "genus": "Phagpyroor"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "kharon-bloomfields-0018",
+        "kharon-bloomfields-0019",
+        "kharon-bloomfields-0016"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "stalk-interior",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 76.06,
+        "length": 8.09,
+        "height": 2.65
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for stalk interior environment.",
+      "coloration": {
+        "primary": "#5A4A3A",
+        "secondary": "#6A8A5C",
+        "pattern": "Adaptive coloration for stalk interior camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "crepuscular",
+      "movementSpeed": {
+        "walk": 3.71,
+        "run": 10.38
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.031,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 19,
+        "kharon-bloomfields-region-2": 23,
+        "kharon-bloomfields-region-3": 19
+      },
+      "mvp": 3,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 1.06,
+        "summer": 1.2,
+        "autumn": 1.06,
+        "winter": 0.8
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A stalk interior predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0024.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0024.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A stalk interior predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "kharon-bloomfields-0025",
+    "scientificName": "Cryosubteron modestus",
+    "commonName": "Spore-browse",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Fossoria",
+      "class": "FossCarnivora",
+      "order": "Fossorales",
+      "family": "KharonMicrobialidae",
+      "genus": "Cryosubteron"
+    },
+    "ecology": {
+      "trophicLevel": "secondary-consumer",
+      "diet": [
+        "kharon-bloomfields-0017",
+        "kharon-bloomfields-0019",
+        "kharon-bloomfields-0015"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "mid-canopy",
+        "stratum": "subterranean",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 142.59,
+        "length": 2.96,
+        "height": 7.12
+      },
+      "morphology": "Procedurally generated secondary-consumer with adaptive features for mid canopy environment.",
+      "coloration": {
+        "primary": "#4A3A2A",
+        "secondary": "#7A9A6C",
+        "pattern": "Adaptive coloration for mid canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 4.53,
+        "run": 4.03
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.029,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 15,
+        "kharon-bloomfields-region-2": 16,
+        "kharon-bloomfields-region-3": 15
+      },
+      "mvp": 2,
+      "extinctionThreshold": 0,
+      "seasonalModifiers": {
+        "spring": 0.96,
+        "summer": 1.16,
+        "autumn": 1.08,
+        "winter": 0.81
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A mid canopy predator that hunts primary consumers, playing a key role in population control."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0025.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0025.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A mid canopy predator that hunts primary consumers, playing a key role in population control."
+  },
+  {
+    "id": "kharon-bloomfields-0026",
+    "scientificName": "Cyantetraa timidus",
+    "commonName": "Canopy Weaver",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Quadrupeda",
+      "class": "QuadDominantia",
+      "order": "Pelagiales",
+      "family": "KharonMicrobialidae",
+      "genus": "Cyantetraa"
+    },
+    "ecology": {
+      "trophicLevel": "apex-predator",
+      "diet": [
+        "kharon-bloomfields-0023",
+        "kharon-bloomfields-0021",
+        "kharon-bloomfields-0016",
+        "kharon-bloomfields-0015"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "mid-canopy",
+        "stratum": "deep-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 34.54,
+        "length": 2.51,
+        "height": 3.86
+      },
+      "morphology": "Procedurally generated apex-predator with adaptive features for mid canopy environment.",
+      "coloration": {
+        "primary": "#4A3A2A",
+        "secondary": "#6A8A5C",
+        "pattern": "Adaptive coloration for mid canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "solitary",
+      "activityCycle": "diurnal",
+      "movementSpeed": {
+        "walk": 5.66
+      }
+    },
+    "population": {
+      "baseGrowthRate": 0.031,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 54,
+        "kharon-bloomfields-region-2": 39,
+        "kharon-bloomfields-region-3": 48
+      },
+      "mvp": 7,
+      "extinctionThreshold": 2,
+      "seasonalModifiers": {
+        "spring": 1.12,
+        "summer": 1.28,
+        "autumn": 1.07,
+        "winter": 0.65
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "An apex predator of the mid canopy biome, with no natural enemies and significant ecological impact."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0026.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0026.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "An apex predator of the mid canopy biome, with no natural enemies and significant ecological impact."
+  },
+  {
+    "id": "kharon-bloomfields-0027",
+    "scientificName": "Necropyroor minutus",
+    "commonName": "Canopy Strider",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Testaforma",
+      "class": "TestSaprophyta",
+      "order": "Arborales",
+      "family": "KharonFloraidae",
+      "genus": "Necropyroor"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "stalk-interior",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "deep-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.0,
+        "length": 0.1,
+        "height": 0.17
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for stalk interior environment.",
+      "coloration": {
+        "primary": "#6A5A4A",
+        "secondary": "#6A8A5C",
+        "pattern": "Adaptive coloration for stalk interior camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "skittish",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.023,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 54863,
+        "kharon-bloomfields-region-2": 56320,
+        "kharon-bloomfields-region-3": 41725
+      },
+      "mvp": 7768,
+      "extinctionThreshold": 2330,
+      "seasonalModifiers": {
+        "spring": 0.99,
+        "summer": 1.2,
+        "autumn": 0.86,
+        "winter": 0.78
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the stalk interior biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0027.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0027.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the stalk interior biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "kharon-bloomfields-0028",
+    "scientificName": "Megalongiis timidus",
+    "commonName": "Spore-forage",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "flora",
+      "phylum": "Longiforma",
+      "class": "LongSaprophyta",
+      "order": "Arborales",
+      "family": "KharonFloraidae",
+      "genus": "Megalongiis"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "upper-canopy",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "partial-shade"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.14,
+        "length": 0.63,
+        "height": 0.44
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for upper canopy environment.",
+      "coloration": {
+        "primary": "#3A2A1A",
+        "secondary": "#7A9A6C",
+        "pattern": "Adaptive coloration for upper canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "territorial",
+      "socialStructure": "herd",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.046,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 1986,
+        "kharon-bloomfields-region-2": 2470,
+        "kharon-bloomfields-region-3": 2688
+      },
+      "mvp": 344,
+      "extinctionThreshold": 103,
+      "seasonalModifiers": {
+        "spring": 1.13,
+        "summer": 1.21,
+        "autumn": 0.99,
+        "winter": 0.88
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the upper canopy biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0028.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0028.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the upper canopy biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "kharon-bloomfields-0029",
+    "scientificName": "Necroterror giganteus",
+    "commonName": "Spore-browse",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fauna",
+      "phylum": "Fossoria",
+      "class": "FossSaprophyta",
+      "order": "Arborales",
+      "family": "KharonFaunaidae",
+      "genus": "Necroterror"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "spore-fog-zone",
+        "stratum": "canopy",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.78,
+        "length": 0.64,
+        "height": 0.74
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for spore fog zone environment.",
+      "coloration": {
+        "primary": "#6A5A4A",
+        "secondary": "#8AAA7C",
+        "pattern": "Adaptive coloration for spore fog zone camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "colony",
+      "activityCycle": "cathemeral",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.044,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 964,
+        "kharon-bloomfields-region-2": 1111,
+        "kharon-bloomfields-region-3": 948
+      },
+      "mvp": 164,
+      "extinctionThreshold": 49,
+      "seasonalModifiers": {
+        "spring": 1.03,
+        "summer": 1.2,
+        "autumn": 1.02,
+        "winter": 0.75
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the spore fog zone biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0029.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0029.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the spore fog zone biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "kharon-bloomfields-0030",
+    "scientificName": "Solumsporion cinereescens",
+    "commonName": "Rough Gill-grazer",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "fauna",
+      "phylum": "Mycelida",
+      "class": "MyceSaprophyta",
+      "order": "Litorales",
+      "family": "KharonFaunaidae",
+      "genus": "Solumsporion"
+    },
+    "ecology": {
+      "trophicLevel": "decomposer",
+      "diet": [
+        "dead-organic-matter"
+      ],
+      "predators": [],
+      "habitat": {
+        "biome": "ground-layer",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "bioluminescent-only"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 4.69,
+        "length": 3.01,
+        "height": 2.31
+      },
+      "morphology": "Procedurally generated decomposer with adaptive features for ground layer environment.",
+      "coloration": {
+        "primary": "#5A4A3A",
+        "secondary": "#6A8A5C",
+        "pattern": "Adaptive coloration for ground layer camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "aggressive",
+      "socialStructure": "solitary",
+      "activityCycle": "nocturnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.026,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 244,
+        "kharon-bloomfields-region-2": 346,
+        "kharon-bloomfields-region-3": 239
+      },
+      "mvp": 44,
+      "extinctionThreshold": 13,
+      "seasonalModifiers": {
+        "spring": 1.13,
+        "summer": 1.23,
+        "autumn": 1.09,
+        "winter": 0.79
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "low",
+      "fieldLogEntry": "A decomposer that breaks down organic matter in the ground layer biome, recycling nutrients back into the ecosystem."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0030.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0030.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A decomposer that breaks down organic matter in the ground layer biome, recycling nutrients back into the ecosystem."
+  },
+  {
+    "id": "kharon-bloomfields-0031",
+    "scientificName": "Glacimycoon cinereatus",
+    "commonName": "Spore-scratch",
+    "world": "kharon-bloomfields",
+    "taxonomy": {
+      "metabolicDomain": "photovore",
+      "kingdom": "microbial",
+      "phylum": "Mycelida",
+      "class": "MyceMicrobiota",
+      "order": "Litorales",
+      "family": "KharonMicrobialidae",
+      "genus": "Glacimycoon"
+    },
+    "ecology": {
+      "trophicLevel": "microbial",
+      "diet": [],
+      "predators": [],
+      "habitat": {
+        "biome": "lower-canopy",
+        "stratum": "shallow-water",
+        "preferredConditions": {
+          "temperature": {
+            "min": -10,
+            "max": 40
+          },
+          "humidity": {
+            "min": 0.2,
+            "max": 0.8
+          },
+          "light": "full-sun"
+        }
+      }
+    },
+    "physical": {
+      "size": {
+        "mass": 0.01,
+        "length": 0.12,
+        "height": 0.06
+      },
+      "morphology": "Procedurally generated microbial with adaptive features for lower canopy environment.",
+      "coloration": {
+        "primary": "#3A2A1A",
+        "secondary": "#7A9A6C",
+        "pattern": "Adaptive coloration for lower canopy camouflage."
+      }
+    },
+    "behavior": {
+      "temperament": "docile",
+      "socialStructure": "pair-bonded",
+      "activityCycle": "diurnal",
+      "movementSpeed": {}
+    },
+    "population": {
+      "baseGrowthRate": 0.045,
+      "carryingCapacity": {
+        "kharon-bloomfields-region-1": 13904,
+        "kharon-bloomfields-region-2": 12178,
+        "kharon-bloomfields-region-3": 12366
+      },
+      "mvp": 2119,
+      "extinctionThreshold": 635,
+      "seasonalModifiers": {
+        "spring": 1.13,
+        "summer": 1.01,
+        "autumn": 1.0,
+        "winter": 0.78
+      }
+    },
+    "gameplay": {
+      "splicePotential": [],
+      "observationDifficulty": "medium",
+      "sampleDifficulty": "medium",
+      "dangerLevel": "moderate",
+      "fieldLogEntry": "A microbial organism in the lower canopy biome, playing a role in decomposition and nutrient cycling."
+    },
+    "assets": {
+      "modelPath": "models/creatures/kharon-bloomfields-0031.glb",
+      "texturePath": "textures/creatures/kharon-bloomfields-0031.png",
+      "audioPaths": {},
+      "conceptArtPath": null
+    },
+    "description": "A microbial organism in the lower canopy biome, playing a role in decomposition and nutrient cycling."
+  }
+]
