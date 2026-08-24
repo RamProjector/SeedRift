@@ -9,6 +9,7 @@ import { encounterSystem } from './systems/encounters.js';
 import { storageSystem } from './systems/storage.js';
 import { WorldEngine } from './engine/world.js';
 import { SkyboxEngine } from './engine/skybox.js';
+import { VoxelEngine } from './engine/voxel.js';
 import { EntityManager } from './engine/entities.js';
 import { PlayerController } from './engine/player.js';
 import { BuildingManager } from './engine/building.js';
@@ -32,6 +33,7 @@ class Game {
     this.container = document.getElementById('canvasContainer');
     this.worldEngine = new WorldEngine(this.container);
     this.skyboxEngine = new SkyboxEngine(this.worldEngine.scene);
+    this.voxelEngine = new VoxelEngine(this.worldEngine.scene, this.worldEngine);
     this.entityManager = new EntityManager(this.worldEngine.scene, this.worldEngine);
     this.player = new PlayerController(this.worldEngine.scene, this.worldEngine.camera, this.worldEngine);
     this.buildingManager = new BuildingManager(this.worldEngine.scene, this.worldEngine);
@@ -107,6 +109,7 @@ class Game {
     storageSystem.update(deltaSeconds);
     this.weatherSystem.update(deltaSeconds);
     this.skyboxEngine.update(deltaSeconds);
+    this.voxelEngine.updateChunkLoading(this.player.position);
     wardenProgress.checkRankUpgrade();
 
     const colliders = this.entityManager.getColliders();
