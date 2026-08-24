@@ -6,6 +6,7 @@ import { loreSystem } from './systems/lore.js';
 import { wardenProgress } from './systems/codex.js';
 import { biosecuritySystem } from './systems/contamination.js';
 import { encounterSystem } from './systems/encounters.js';
+import { storageSystem } from './systems/storage.js';
 import { WorldEngine } from './engine/world.js';
 import { SkyboxEngine } from './engine/skybox.js';
 import { EntityManager } from './engine/entities.js';
@@ -40,6 +41,7 @@ class Game {
   }
 
   init() {
+    storageSystem.load();
     ecologySim.init();
 
     weaveUI.init();
@@ -93,6 +95,7 @@ class Game {
     vitalsSystem.update(deltaSeconds);
     eventSystem.update(deltaSeconds);
     encounterSystem.update(deltaSeconds);
+    storageSystem.update(deltaSeconds);
     this.weatherSystem.update(deltaSeconds);
     this.skyboxEngine.update(deltaSeconds);
     wardenProgress.checkRankUpgrade();
