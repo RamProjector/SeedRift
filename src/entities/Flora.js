@@ -3,7 +3,7 @@ import { BaseEntity } from './BaseEntity.js';
 
 export class FloraEntity extends BaseEntity {
   constructor(id, type, pos, scale = 1.0) {
-    super(id, `Wild Flora (${type})`, pos, 1.2 * scale);
+    super(id, `Wild Flora (${type})`, pos, 1.4 * scale);
     this.type = type;
     this.scale = scale;
     this.harvested = false;
@@ -15,6 +15,19 @@ export class FloraEntity extends BaseEntity {
   buildModel() {
     const scale = this.scale;
 
+    // 1. Root System Lattice Anchoring Plant to Planetary Crust
+    const rootMat = new THREE.MeshStandardMaterial({ color: '#1f2d1e', roughness: 0.9 });
+    for (let i = 0; i < 4; i++) {
+      const rootGeo = new THREE.CylinderGeometry(0.15 * scale, 0.35 * scale, 1.8 * scale, 8);
+      const root = new THREE.Mesh(rootGeo, rootMat);
+      const angle = (i / 4) * Math.PI * 2;
+      root.position.set(Math.cos(angle) * 0.8 * scale, -0.4 * scale, Math.sin(angle) * 0.8 * scale);
+      root.rotation.z = Math.cos(angle) * 0.5;
+      root.rotation.x = Math.sin(angle) * 0.5;
+      this.group.add(root);
+    }
+
+    // 2. Trunk & Canopy / Crystal / Vent Structure
     if (this.type === 'sporeStalk') {
       const trunkGeo = new THREE.CylinderGeometry(0.4 * scale, 0.8 * scale, 12 * scale, 12);
       const trunkMat = new THREE.MeshStandardMaterial({ color: '#2a442e', roughness: 0.8 });
@@ -32,6 +45,15 @@ export class FloraEntity extends BaseEntity {
       const cap = new THREE.Mesh(capGeo, capMat);
       cap.position.y = 12 * scale;
       this.group.add(cap);
+
+      for (let i = 0; i < 3; i++) {
+        const bracketGeo = new THREE.CylinderGeometry(1.2 * scale, 0.2 * scale, 0.3 * scale, 8, 1, false, 0, Math.PI);
+        const bracketMat = new THREE.MeshStandardMaterial({ color: '#88b577', roughness: 0.6 });
+        const bracket = new THREE.Mesh(bracketGeo, bracketMat);
+        bracket.position.y = (3 + i * 3) * scale;
+        bracket.rotation.y = (i * 1.5);
+        this.group.add(bracket);
+      }
 
     } else if (this.type === 'crystalNode' || this.type === 'glowCrystal') {
       const crystalGeo = new THREE.ConeGeometry(1.5 * scale, 5 * scale, 6);
@@ -58,8 +80,14 @@ export class FloraEntity extends BaseEntity {
   update(deltaSeconds, worldEngine) {
     super.update(deltaSeconds, worldEngine);
 
-    // Wind Sway Animation
-    const sway = Math.sin(this.animTime * 1.5) * 0.05;
+    // Anchor strictly to terrain height at current X,Z
+    if (worldEngine) {
+      const terrainH = worldEngine.getTerrainHeight(this.group.position.x, this.group.position.z);
+      this.group.position.y = terrainH;
+    }
+
+    // Gentle wind sway
+    const sway = Math.sin(this.animTime * 1.5) * 0.04;
     this.group.rotation.z = sway;
   }
 }

@@ -8,6 +8,7 @@ export class GliderEntity extends BaseEntity {
     this.speed = 2.5;
     this.wanderTimer = Math.random() * 5;
     this.targetPos = pos.clone();
+    this.hoverAltitude = 5.0 + Math.random() * 3.0;
 
     this.buildModel();
     this.updateBoundingBox();
@@ -33,13 +34,11 @@ export class GliderEntity extends BaseEntity {
       emissiveIntensity: 1.0
     });
 
-    // Thorax
     const thoraxGeo = new THREE.ConeGeometry(height * 0.35, length, 12);
     thoraxGeo.rotateX(Math.PI / 2);
     const thorax = new THREE.Mesh(thoraxGeo, mat);
     this.group.add(thorax);
 
-    // Bioluminescent Wings
     const wingShape = new THREE.Shape();
     wingShape.moveTo(0, 0);
     wingShape.quadraticCurveTo(length * 0.8, height * 1.6, length * 1.6, height * 0.9);
@@ -64,7 +63,6 @@ export class GliderEntity extends BaseEntity {
     this.wingR.rotation.x = -Math.PI / 6;
     this.group.add(this.wingR);
 
-    // Antennae
     const antGeo = new THREE.CylinderGeometry(0.02, 0.04, height * 0.9);
     const antL = new THREE.Mesh(antGeo, glowMat);
     antL.position.set(0.1, height * 0.2, length * 0.4);
@@ -80,24 +78,32 @@ export class GliderEntity extends BaseEntity {
   update(deltaSeconds, worldEngine) {
     super.update(deltaSeconds, worldEngine);
 
+    if (worldEngine) {
+      const terrainH = worldEngine.getTerrainHeight(this.group.position.x, this.group.position.z);
+      this.group.position.y = terrainH + this.hoverAltitude + Math.sin(this.animTime * 2.0) * 0.5;
+    }
+
     this.wanderTimer -= deltaSeconds;
     if (this.wanderTimer <= 0) {
       const rx = this.group.position.x + (Math.random() - 0.5) * 35;
       const rz = this.group.position.z + (Math.random() - 0.5) * 35;
-      const ry = worldEngine.getTerrainHeight(rx, rz) + 4.0 + Math.random() * 6.0;
 
-      this.targetPos.set(rx, ry, rz);
+      this.targetPos.set(rx, 0, rz);
       this.wanderTimer = Math.random() * 6 + 4;
     }
 
-    const dir = new THREE.Vector3().subVectors(this.targetPos, this.group.position);
+    const dir = new THREE.Vector3(
+      this.targetPos.x - this.group.position.x,
+      0,
+      this.targetPos.z - this.group.position.z
+    );
+
     if (dir.length() > 0.2) {
       dir.normalize();
       this.group.position.addScaledVector(dir, this.speed * deltaSeconds);
       this.group.rotation.y = Math.atan2(dir.x, dir.z);
     }
 
-    // Wing Flap Animation
     if (this.wingL && this.wingR) {
       const flap = Math.sin(this.animTime * 10.0) * 0.45;
       this.wingL.rotation.z = flap;

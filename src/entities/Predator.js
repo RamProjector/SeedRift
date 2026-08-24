@@ -33,20 +33,17 @@ export class PredatorEntity extends BaseEntity {
       emissiveIntensity: 1.2
     });
 
-    // Body
     const bodyGeo = new THREE.BoxGeometry(length * 0.45, height * 0.45, length * 1.1);
     const body = new THREE.Mesh(bodyGeo, mat);
     body.position.y = height * 0.55;
     this.group.add(body);
 
-    // Head
     const headGeo = new THREE.ConeGeometry(height * 0.35, length * 0.55, 8);
     headGeo.rotateX(-Math.PI / 2);
     const head = new THREE.Mesh(headGeo, mat);
     head.position.set(0, height * 0.55, length * 0.65);
     this.group.add(head);
 
-    // Glowing Eyes
     const eyeGeo = new THREE.SphereGeometry(length * 0.07, 8, 8);
     const eyeL = new THREE.Mesh(eyeGeo, glowMat);
     eyeL.position.set(length * 0.14, height * 0.65, length * 0.75);
@@ -55,7 +52,6 @@ export class PredatorEntity extends BaseEntity {
     this.group.add(eyeL);
     this.group.add(eyeR);
 
-    // 4 Jointed Legs
     this.legs = [];
     for (let i = 0; i < 4; i++) {
       const legGroup = new THREE.Group();
@@ -76,17 +72,23 @@ export class PredatorEntity extends BaseEntity {
   update(deltaSeconds, worldEngine) {
     super.update(deltaSeconds, worldEngine);
 
+    if (worldEngine) {
+      const terrainH = worldEngine.getTerrainHeight(this.group.position.x, this.group.position.z);
+      this.group.position.y = terrainH;
+    }
+
     this.wanderTimer -= deltaSeconds;
     if (this.wanderTimer <= 0) {
       const rx = this.group.position.x + (Math.random() - 0.5) * 35;
       const rz = this.group.position.z + (Math.random() - 0.5) * 35;
-      const ry = worldEngine.getTerrainHeight(rx, rz);
+      const ry = worldEngine ? worldEngine.getTerrainHeight(rx, rz) : 0;
 
       this.targetPos.set(rx, ry, rz);
       this.wanderTimer = Math.random() * 5 + 3;
     }
 
     const dir = new THREE.Vector3().subVectors(this.targetPos, this.group.position);
+    dir.y = 0;
     const dist = dir.length();
     let isRunning = false;
 
@@ -97,7 +99,6 @@ export class PredatorEntity extends BaseEntity {
       this.group.rotation.y = Math.atan2(dir.x, dir.z);
     }
 
-    // Predatory Leg Stride Animation
     if (this.legs && this.legs.length === 4) {
       const stride = Math.sin(this.animTime * 12.0) * (isRunning ? 0.55 : 0.1);
       this.legs[0].rotation.x = stride;
