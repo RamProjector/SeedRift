@@ -35,12 +35,15 @@ export class EntityManager {
       meshGroup.position.set(x, y, z);
       this.scene.add(meshGroup);
 
+      const trophic = speciesData.ecology?.trophicLevel || 'producer';
+
       this.entities.push({
         id: speciesData.id,
         data: speciesData,
+        trophic,
         group: meshGroup,
         targetPos: new THREE.Vector3(x, y, z),
-        speed: Math.random() * 1.2 + 0.8,
+        speed: trophic === 'predator' || trophic === 'secondary' ? 2.2 : 1.2,
         wanderTimer: Math.random() * 5
       });
     }
@@ -55,7 +58,7 @@ export class EntityManager {
 
       floraMesh.position.set(x, y, z);
       this.scene.add(floraMesh);
-      this.flora.push({ group: floraMesh, type });
+      this.flora.push({ group: floraMesh, type, pos: new THREE.Vector3(x, y, z) });
     }
 
     const ruinGroup = ProceduralMeshGenerator.createFirstseedMonolith(worldData.ruinType);
@@ -74,7 +77,37 @@ export class EntityManager {
   }
 
   update(deltaSeconds, playerPos) {
-    this.entities.forEach(e => {
+    // Dynamic Predator-Prey Pursuit AI
+    for (let i = 0; i < this.entities.length; i++) {
+      const e = this.entities[i];
+
+      // Check predator pursuit
+      if (e.trophic === 'predator' || e.trophic === 'secondary') {
+        let nearestPrey = null;
+        let minDist = 12.0;
+
+        for (let j = 0; j < this.entities.length; j++) {
+          const prey = this.entities[j];
+          if (prey.trophic === 'producer' || prey.trophic === 'primary' || prey.trophic === 'herbivore') {
+            const dist = e.group.position.distanceTo(prey.group.position);
+            if (dist < minDist) {
+              nearestPrey = prey;
+              minDist = dist;
+            }
+          }
+        }
+
+        if (nearestPrey) {
+          // Pursue prey
+          e.targetPos.copy(nearestPrey.group.position);
+          // Prey flees
+          nearestPrey.targetPos.addScaledVector(
+            new THREE.Vector3().subVectors(nearestPrey.group.position, e.group.position).normalize(),
+            4.0
+          );
+        }
+      }
+
       e.wanderTimer -= deltaSeconds;
       if (e.wanderTimer <= 0) {
         const rx = e.group.position.x + (Math.random() - 0.5) * 20;
@@ -105,7 +138,7 @@ export class EntityManager {
         wingL.rotation.z = flap;
         wingR.rotation.z = -flap;
       }
-    });
+    }
 
     if (this.ruinMonolith) {
       const ring1 = this.ruinMonolith.group.getObjectByName('glyphRing1');
