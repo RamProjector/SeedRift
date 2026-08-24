@@ -55,6 +55,7 @@ export class BuildingManager {
     const structureObj = {
       id: `struct_${Date.now()}`,
       type: this.selectedType,
+      cropType: 'frostmoss',
       worldId: gameState.currentWorldId,
       pos: new THREE.Vector3(x, y, z),
       mesh: realMesh,
@@ -105,7 +106,13 @@ export class BuildingManager {
         st.yieldTimer += deltaSeconds;
         if (st.yieldTimer >= 10.0) {
           st.yieldTimer = 0;
-          gameState.extractedResources.organics += 2.0;
+          if (st.cropType === 'sporestalk') {
+            gameState.extractedResources.spores += 4.0;
+          } else if (st.cropType === 'crystal') {
+            gameState.extractedResources.crystal += 2.0;
+          } else {
+            gameState.extractedResources.organics += 3.0;
+          }
         }
       }
 
@@ -152,7 +159,6 @@ export class BuildingManager {
       group.add(ring);
 
     } else if (type === 'decon') {
-      // Decontamination Cleansing Chamber Arch
       const archGeo = new THREE.TorusGeometry(3.0, 0.4, 8, 16);
       const arch = new THREE.Mesh(archGeo, mat);
       arch.position.y = 3.0;
