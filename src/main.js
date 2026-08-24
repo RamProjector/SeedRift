@@ -2,12 +2,15 @@ import { gameState } from './systems/state.js';
 import { vitalsSystem } from './systems/vitals.js';
 import { eventSystem } from './systems/events.js';
 import { ecologySim } from './systems/ecology.js';
+import { loreSystem } from './systems/lore.js';
+import { wardenProgress } from './systems/codex.js';
 import { WorldEngine } from './engine/world.js';
 import { EntityManager } from './engine/entities.js';
 import { PlayerController } from './engine/player.js';
 import { BuildingManager } from './engine/building.js';
 import { RivalManager } from './engine/rivals.js';
 import { HaulingManager } from './engine/hauling.js';
+import { WeatherSystem } from './engine/weather.js';
 import { HUDManager } from './ui/hud.js';
 import { weaveUI } from './ui/weave.js';
 import { shipUI } from './ui/ship.js';
@@ -23,6 +26,7 @@ class Game {
     this.buildingManager = new BuildingManager(this.worldEngine.scene, this.worldEngine);
     this.rivalManager = new RivalManager(this.worldEngine.scene, this.worldEngine);
     this.haulingManager = new HaulingManager(this.worldEngine.scene, this.worldEngine);
+    this.weatherSystem = new WeatherSystem(this.worldEngine);
 
     this.hud = new HUDManager();
     this.buildUI = new BuildUI(this.buildingManager);
@@ -77,6 +81,8 @@ class Game {
     ecologySim.update(deltaSeconds);
     vitalsSystem.update(deltaSeconds);
     eventSystem.update(deltaSeconds);
+    this.weatherSystem.update(deltaSeconds);
+    wardenProgress.checkRankUpgrade();
 
     this.player.update(deltaSeconds);
     this.entityManager.update(deltaSeconds, this.player.position);

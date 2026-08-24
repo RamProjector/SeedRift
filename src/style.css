@@ -944,3 +944,19 @@ kbd {
   background: var(--accent);
   color: #10150F;
 }
+
+/* Warden Rank Banner */
+.warden-rank-banner {
+  background: var(--bg-card-active);
+  border: 1px solid var(--border-active);
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-primary);
+  flex-wrap: wrap;
+  gap: 8px;
+}

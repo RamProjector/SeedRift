@@ -4,6 +4,8 @@ import { SPECIES_BY_WORLD, ALL_SPECIES } from '../data/speciesData.js';
 import { ProceduralMeshGenerator } from '../engine/procedural.js';
 import { gameState } from '../systems/state.js';
 import { soundEngine } from '../audio/sound.js';
+import { FIRSTSEED_THEORIES, loreSystem } from '../systems/lore.js';
+import { wardenProgress } from '../systems/codex.js';
 
 export class ShipUI {
   constructor() {
@@ -30,6 +32,7 @@ export class ShipUI {
             <button class="ship-tab active" data-tab="starmap">🪐 Star Map</button>
             <button class="ship-tab" data-tab="biolab">🔬 Bio-Lab</button>
             <button class="ship-tab" data-tab="codex">📖 Species Codex (${ALL_SPECIES.length})</button>
+            <button class="ship-tab" data-tab="archives">📜 Firstseed Theory Archives</button>
             <button class="ship-tab" data-tab="logistics">⚙️ Logistics & Hauling</button>
           </div>
           <button class="btn-close-modal" id="closeShipBtn">✕ Close Command Hub</button>
@@ -80,6 +83,8 @@ export class ShipUI {
       this.renderBioLab(container);
     } else if (this.activeTab === 'codex') {
       this.renderCodex(container);
+    } else if (this.activeTab === 'archives') {
+      this.renderArchives(container);
     } else if (this.activeTab === 'logistics') {
       this.renderLogistics(container);
     }
@@ -87,7 +92,15 @@ export class ShipUI {
 
   renderStarMap(container) {
     const currentW = gameState.getCurrentWorld();
+    const rank = wardenProgress.getRank();
+    const scanned = wardenProgress.getScannedCount();
+
     let html = `
+      <div class="warden-rank-banner">
+        <div>🎖️ Warden Title: <strong>${rank.title}</strong> (Level ${rank.level})</div>
+        <div>Survey Completion: <strong>${scanned} / ${ALL_SPECIES.length} species cataloged</strong> &nbsp;·&nbsp; Weave Slots: <strong>${gameState.maxCapacity}</strong></div>
+      </div>
+
       <div class="starmap-grid">
         <div class="world-list">
     `;
@@ -188,6 +201,39 @@ export class ShipUI {
               `;
             }).join('')}
           </div>
+        </div>
+      </div>
+    `;
+    container.innerHTML = html;
+  }
+
+  renderArchives(container) {
+    let html = `
+      <div class="logistics-screen">
+        <h3>Firstseed Theory Research Archives</h3>
+        <p>Decoded research transcripts from Firstseed ancient ruin spires exploring the three mystery theories.</p>
+
+        <div class="build-grid" style="grid-template-columns:1fr;">
+          ${Object.values(FIRSTSEED_THEORIES).map(theory => `
+            <div class="build-card" style="border-left:4px solid var(--accent);">
+              <div class="build-card-top">
+                <span class="build-title">📜 ${theory.name}</span>
+              </div>
+              <p>${theory.summary}</p>
+
+              <div class="samples-list" style="margin-top:10px;">
+                ${theory.fragments.map(f => `
+                  <div class="sample-item">
+                    <div>
+                      <strong>${f.title}</strong> (${f.world})
+                      <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">"${f.text}"</div>
+                    </div>
+                    <span class="badge-current">DECODED</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
         </div>
       </div>
     `;
