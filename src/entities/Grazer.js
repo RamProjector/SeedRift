@@ -1,13 +1,14 @@
 import * as THREE from 'three';
 import { BaseEntity } from './BaseEntity.js';
 import { physicsEngine } from '../engine/physics.js';
+import { ProceduralLegIK, GaitConductor } from '../engine/ik.js';
 
 export class GrazerEntity extends BaseEntity {
   constructor(id, speciesData, pos) {
     super(id, speciesData.commonName, pos, 1.4);
     this.data = speciesData;
     this.speed = 1.5;
-    this.actionState = 'IDLE'; // IDLE, GRAZING, WALKING
+    this.actionState = 'IDLE';
     this.actionTimer = Math.random() * 4;
     this.targetPos = pos.clone();
 
@@ -42,14 +43,13 @@ export class GrazerEntity extends BaseEntity {
       roughness: 0.1
     });
 
-    // Torso Capsule
+    // Body
     const bodyGeo = new THREE.CapsuleGeometry(height * 0.38, length * 0.65, 8, 16);
     bodyGeo.rotateX(Math.PI / 2);
     const body = new THREE.Mesh(bodyGeo, mat);
     body.position.y = height * 0.55;
     this.group.add(body);
 
-    // Segmented Shell Armor Plates
     for (let p = 0; p < 3; p++) {
       const plateGeo = new THREE.CylinderGeometry(height * 0.42, height * 0.45, length * 0.2, 8);
       plateGeo.rotateX(Math.PI / 2);
@@ -58,7 +58,7 @@ export class GrazerEntity extends BaseEntity {
       this.group.add(plate);
     }
 
-    // Head with Chewing Mandibles
+    // Head
     const headGeo = new THREE.SphereGeometry(height * 0.32, 12, 12);
     this.head = new THREE.Mesh(headGeo, mat);
     this.head.position.set(0, height * 0.7, length * 0.48);
@@ -74,16 +74,8 @@ export class GrazerEntity extends BaseEntity {
     this.mandR.position.set(-0.12, -0.1, 0.25);
     this.head.add(this.mandR);
 
-    const eyeGeo = new THREE.SphereGeometry(0.06, 8, 8);
-    const eyeL = new THREE.Mesh(eyeGeo, glowMat);
-    eyeL.position.set(0.15, 0.1, 0.2);
-    const eyeR = new THREE.Mesh(eyeGeo, glowMat);
-    eyeR.position.set(-0.15, 0.1, 0.2);
-    this.head.add(eyeL);
-    this.head.add(eyeR);
-
-    // 4 Multi-Jointed Legs (Hip, Knee, Hoof)
-    this.legs = [];
+    // Procedural IK Legs with World Space Foot Anchoring
+    this.ikLegs = [];
     for (let i = 0; i < 4; i++) {
       const legGroup = new THREE.Group();
 
@@ -104,17 +96,21 @@ export class GrazerEntity extends BaseEntity {
 
       const side = (i % 2 === 0) ? 1 : -1;
       const front = (i < 2) ? 1 : -1;
-      legGroup.position.set(side * height * 0.32, height * 0.55, front * length * 0.32);
+      const hipOffset = new THREE.Vector3(side * height * 0.32, height * 0.55, front * length * 0.32);
 
       this.group.add(legGroup);
-      this.legs.push(legGroup);
+
+      const legIK = new ProceduralLegIK(legGroup, hipOffset, height * 1.2);
+      this.ikLegs.push(legIK);
     }
+
+    this.gaitConductor = new GaitConductor(this.ikLegs);
+    this.gaitConductor.init(this.group.position, this.group.rotation.y, null);
   }
 
   update(deltaSeconds, worldEngine) {
     super.update(deltaSeconds, worldEngine);
 
-    // 1. Action State AI
     this.actionTimer -= deltaSeconds;
     if (this.actionTimer <= 0) {
       const states = ['IDLE', 'GRAZING', 'WALKING', 'WALKING'];
@@ -128,18 +124,17 @@ export class GrazerEntity extends BaseEntity {
       }
     }
 
-    // 2. Movement & Position Update BEFORE Terrain Height Evaluation
     const dir = new THREE.Vector3().subVectors(this.targetPos, this.group.position);
     dir.y = 0;
     const dist = dir.length();
+    const isMoving = (this.actionState === 'WALKING' && dist > 0.2);
 
-    if (this.actionState === 'WALKING' && dist > 0.2) {
+    if (isMoving) {
       dir.normalize();
       this.group.position.addScaledVector(dir, this.speed * deltaSeconds);
       this.group.rotation.y = Math.atan2(dir.x, dir.z);
     }
 
-    // 3. Terrain Height Ground Contact & Smooth Normal Alignment (Zero Glitch)
     if (worldEngine) {
       const terrainH = worldEngine.getTerrainHeight(this.group.position.x, this.group.position.z);
       this.group.position.y = terrainH;
@@ -148,7 +143,9 @@ export class GrazerEntity extends BaseEntity {
       physicsEngine.alignToTerrainNormal(this.group, this.group.position, yaw, worldEngine);
     }
 
-    // 4. Expressive Animations
+    // Gait Conductor Update with World Space Foot Anchoring (Zero Foot Sliding)
+    this.gaitConductor.update(deltaSeconds, this.group.position, this.group.rotation.y, isMoving, this.speed, worldEngine);
+
     if (this.actionState === 'GRAZING') {
       if (this.head) {
         this.head.position.y = 0.3 + Math.sin(this.animTime * 6.0) * 0.08;
@@ -164,15 +161,6 @@ export class GrazerEntity extends BaseEntity {
         this.head.position.y = 0.8 + Math.sin(this.animTime * 3.0) * 0.03;
         this.head.rotation.x = 0;
       }
-    }
-
-    if (this.legs && this.legs.length === 4) {
-      const isWalking = (this.actionState === 'WALKING' && dist > 0.2);
-      const walkCycle = Math.sin(this.animTime * (isWalking ? 9.0 : 2.0)) * (isWalking ? 0.45 : 0.04);
-      this.legs[0].rotation.x = walkCycle;
-      this.legs[1].rotation.x = -walkCycle;
-      this.legs[2].rotation.x = -walkCycle;
-      this.legs[3].rotation.x = walkCycle;
     }
   }
 }

@@ -4,10 +4,17 @@ import { gameState } from '../systems/state.js';
 export class PhysicsEngine {
   constructor() {
     this.gravityBase = 18.0;
-    this.substeps = 4; // 4 Sub-stepping solver iterations per frame
+    this.fixedTimeStep = 1.0 / 60.0; // 60Hz Deterministic Physics Tick
+    this.accumulator = 0.0;
+    this.alpha = 1.0; // Physics interpolation ratio for rendering
+    this.substeps = 4;
     this.dynamicFriction = 0.85;
     this.staticFriction = 0.95;
-    this.restitution = 0.05; // Low bounciness stops ground jitter
+    this.restitution = 0.05;
+
+    // Pelvis Suspension Spring Physics Constants
+    this.springStiffness = 180.0;
+    this.springDamping = 18.0;
   }
 
   getGravity() {
@@ -59,25 +66,31 @@ export class PhysicsEngine {
     objectGroup.quaternion.slerp(finalQuaternion, 0.2);
   }
 
-  // Continuous Collision Detection (CCD) Raycast Path Solver
+  // Critically Damped Pelvis Spring Suspension
+  applyPelvisSpringSuspension(currentY, targetY, currentVelY, deltaSeconds) {
+    const displacement = currentY - targetY;
+    const springForce = -this.springStiffness * displacement - this.springDamping * currentVelY;
+    const newVelY = currentVelY + springForce * deltaSeconds;
+    const newY = currentY + newVelY * deltaSeconds;
+
+    return { y: newY, velY: newVelY };
+  }
+
   applyContinuousCollisionDetection(prevPos, nextPos, worldEngine) {
     if (!worldEngine) return nextPos;
 
-    // Raycast path vector from prevPos to nextPos
     const rayDir = new THREE.Vector3().subVectors(nextPos, prevPos);
     const rayLength = rayDir.length();
 
     if (rayLength > 0.001) {
       rayDir.normalize();
 
-      // Check sub-step points along motion path
       const steps = 4;
       for (let i = 1; i <= steps; i++) {
         const t = i / steps;
         const testPoint = new THREE.Vector3().lerpVectors(prevPos, nextPos, t);
         const groundY = worldEngine.getTerrainHeight(testPoint.x, testPoint.z);
 
-        // Tunneling prevention: if sub-step penetrates below terrain, clamp immediately
         if (testPoint.y < groundY) {
           nextPos.y = groundY;
           break;
