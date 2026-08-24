@@ -10,14 +10,15 @@ export class RivalManager {
   }
 
   populateRivals(worldData) {
-    this.drones.forEach(d => this.scene.remove(d.group));
+    this.drones.forEach(d => {
+      this.scene.remove(d.group);
+      if (d.laserTarget) this.scene.remove(d.laserTarget);
+    });
     this.drones = [];
 
-    // Spawn 2 Meridian Combine survey drones per world
     for (let i = 0; i < 2; i++) {
       const droneGroup = new THREE.Group();
 
-      // Sleek angular industrial body (Meridian yellow/charcoal chassis)
       const bodyGeo = new THREE.OctahedronGeometry(1.0);
       const bodyMat = new THREE.MeshStandardMaterial({
         color: '#e6a855',
@@ -27,24 +28,27 @@ export class RivalManager {
       const body = new THREE.Mesh(bodyGeo, bodyMat);
       droneGroup.add(body);
 
-      // Scanning Laser Light
       const laserLight = new THREE.SpotLight('#ff3300', 2.0, 15, Math.PI / 6, 0.5);
       laserLight.position.set(0, 0, 0);
-      laserLight.target.position.set(0, -5, 0);
       droneGroup.add(laserLight);
-      droneGroup.add(laserLight.target);
 
-      // Random position
+      const targetObj = new THREE.Object3D();
+      targetObj.position.set(0, -5, 0);
+      this.scene.add(targetObj);
+      laserLight.target = targetObj;
+
       const x = (Math.random() - 0.5) * 50 + 10;
       const z = (Math.random() - 0.5) * 50 - 10;
       const y = this.worldEngine.getTerrainHeight(x, z) + 3.0;
 
       droneGroup.position.set(x, y, z);
+      targetObj.position.set(x, y - 5, z);
       this.scene.add(droneGroup);
 
       this.drones.push({
         id: `drone_${i}`,
         group: droneGroup,
+        laserTarget: targetObj,
         targetPos: new THREE.Vector3(x, y, z),
         speed: 2.0,
         wanderTimer: Math.random() * 4
@@ -70,9 +74,12 @@ export class RivalManager {
         d.group.position.addScaledVector(dir, d.speed * deltaSeconds);
       }
 
-      // Gentle floating bob
       d.group.position.y += Math.sin(Date.now() * 0.003) * 0.01;
       d.group.rotation.y += deltaSeconds * 0.8;
+
+      if (d.laserTarget) {
+        d.laserTarget.position.set(d.group.position.x, d.group.position.y - 5, d.group.position.z);
+      }
     });
   }
 

@@ -28,7 +28,7 @@ class Game {
   }
 
   init() {
-    // 1. Initialize Ecology & Systems
+    // 1. Initialize Systems
     ecologySim.init();
 
     // 2. Initialize UI Modals
@@ -108,5 +108,21 @@ class Game {
   }
 }
 
-const game = new Game();
-game.init();
+function start() {
+  try {
+    const game = new Game();
+    game.init();
+  } catch (err) {
+    console.error("Game Init Failed:", err);
+    var errBox = document.getElementById('debugErrorBox') || document.createElement('div');
+    errBox.style.cssText = 'position:fixed;top:10px;left:10px;right:10px;z-index:99999;background:rgba(180,20,20,0.95);color:#fff;padding:16px;border-radius:8px;font-family:monospace;font-size:13px;white-space:pre-wrap;';
+    errBox.textContent = "⚠️ Game Engine Initialization Error:\n" + (err.stack || err.message || err);
+    document.body.appendChild(errBox);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', start);
+} else {
+  start();
+}

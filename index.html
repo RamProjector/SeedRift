@@ -10,7 +10,15 @@
   <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
+  <!-- 3D WebGL Canvas Container -->
   <div id="canvasContainer"></div>
+
+  <!-- Fallback WebGL Warning (hidden unless WebGL fails) -->
+  <div id="webglErrorFallback" class="webgl-error-card hidden">
+    <h3>⚠️ WebGL Context Notice</h3>
+    <p>3D WebGL rendering is currently running in fallback mode. You can still navigate worlds, manage Weave suit splices, view species in the Codex, and collect planetary samples!</p>
+  </div>
+
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>
