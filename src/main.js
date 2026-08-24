@@ -5,6 +5,7 @@ import { ecologySim } from './systems/ecology.js';
 import { loreSystem } from './systems/lore.js';
 import { wardenProgress } from './systems/codex.js';
 import { WorldEngine } from './engine/world.js';
+import { SkyboxEngine } from './engine/skybox.js';
 import { EntityManager } from './engine/entities.js';
 import { PlayerController } from './engine/player.js';
 import { BuildingManager } from './engine/building.js';
@@ -21,6 +22,7 @@ class Game {
   constructor() {
     this.container = document.getElementById('canvasContainer');
     this.worldEngine = new WorldEngine(this.container);
+    this.skyboxEngine = new SkyboxEngine(this.worldEngine.scene);
     this.entityManager = new EntityManager(this.worldEngine.scene, this.worldEngine);
     this.player = new PlayerController(this.worldEngine.scene, this.worldEngine.camera, this.worldEngine);
     this.buildingManager = new BuildingManager(this.worldEngine.scene, this.worldEngine);
@@ -82,6 +84,7 @@ class Game {
     vitalsSystem.update(deltaSeconds);
     eventSystem.update(deltaSeconds);
     this.weatherSystem.update(deltaSeconds);
+    this.skyboxEngine.update(deltaSeconds);
     wardenProgress.checkRankUpgrade();
 
     this.player.update(deltaSeconds);

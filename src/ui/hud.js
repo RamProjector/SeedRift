@@ -109,12 +109,10 @@ export class HUDManager {
 
     document.body.appendChild(this.hudContainer);
 
-    // Nav button events
     document.getElementById('btnOpenBuild').onclick = () => { if (this.onBuildToggleCallback) this.onBuildToggleCallback(); };
     document.getElementById('btnOpenWeave').onclick = () => weaveUI.toggle();
     document.getElementById('btnOpenShip').onclick = () => shipUI.toggle();
 
-    // Key shortcut listeners
     window.addEventListener('keydown', (e) => {
       if (e.code === 'KeyB') {
         if (this.onBuildToggleCallback) this.onBuildToggleCallback();
@@ -146,6 +144,10 @@ export class HUDManager {
 
     window.addEventListener('seedrift-event-end', (e) => {
       this.showToast(`Signature event ${e.detail.name} concluded.`, 'info');
+    });
+
+    window.addEventListener('seedrift-rank-up', (e) => {
+      this.showToast(`🎖️ WARDEN RANK UPGRADED! Title: ${e.detail.title} (+1 Weave Slot)`, 'event');
     });
   }
 
@@ -187,7 +189,11 @@ export class HUDManager {
       this.scannableTarget = scannable;
     } else {
       reticle.classList.remove('locked');
-      prompt.innerHTML = `<kbd>E</kbd> Bio-Scanner &nbsp;·&nbsp; <kbd>B</kbd> Build &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Command Hub`;
+      let extraKeys = '';
+      if (gameState.hasSplice('s6')) extraKeys += ' &nbsp;·&nbsp; <kbd>C</kbd> Tunnel';
+      if (gameState.hasSplice('s8')) extraKeys += ' &nbsp;·&nbsp; <kbd>Q</kbd> Shockwave';
+
+      prompt.innerHTML = `<kbd>E</kbd> Scan &nbsp;·&nbsp; <kbd>B</kbd> Build &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Hub${extraKeys}`;
       this.scannableTarget = null;
     }
   }

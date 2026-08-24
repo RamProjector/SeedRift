@@ -8,10 +8,8 @@ export class PlayerController {
     this.camera = camera;
     this.worldEngine = worldEngine;
 
-    // Create 3D Warden Suit Character Model
     this.group = new THREE.Group();
 
-    // Torso / Suit
     const torsoGeo = new THREE.CapsuleGeometry(0.35, 0.8, 8, 16);
     const suitMat = new THREE.MeshStandardMaterial({
       color: '#1a2b22',
@@ -23,7 +21,6 @@ export class PlayerController {
     torso.castShadow = true;
     this.group.add(torso);
 
-    // Helmet Visor
     const headGeo = new THREE.SphereGeometry(0.28, 16, 16);
     const visorMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
@@ -36,14 +33,12 @@ export class PlayerController {
     head.position.set(0, 1.45, 0.05);
     this.group.add(head);
 
-    // Jetpack / Weave Matrix Pack
     const packGeo = new THREE.BoxGeometry(0.4, 0.6, 0.25);
     const packMat = new THREE.MeshStandardMaterial({ color: '#2a3b30', metalness: 0.9 });
     const pack = new THREE.Mesh(packGeo, packMat);
     pack.position.set(0, 0.95, -0.25);
     this.group.add(pack);
 
-    // Dynamic Glide Wings (Driftmoth membrane)
     const wingGeo = new THREE.PlaneGeometry(1.6, 0.8);
     const wingMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
@@ -58,33 +53,31 @@ export class PlayerController {
     this.wings.rotation.x = Math.PI / 4;
     this.group.add(this.wings);
 
-    // Glow aura light
     this.glowLight = new THREE.PointLight('#5fe6b4', 0, 15);
     this.glowLight.position.set(0, 1.2, 0);
     this.group.add(this.glowLight);
 
     this.scene.add(this.group);
 
-    // Physics & State
     this.position = this.group.position;
     this.position.set(0, 2, 0);
     this.velocity = new THREE.Vector3();
     this.isGrounded = false;
     this.isGliding = false;
+    this.isTunneling = false;
 
-    // Camera Orbit Angles
     this.camYaw = 0;
     this.camPitch = 0.3;
     this.camDistance = 6.5;
 
-    // Keys state
     this.keys = {
       forward: false,
       backward: false,
       left: false,
       right: false,
       sprint: false,
-      jump: false
+      jump: false,
+      tunnel: false
     };
 
     this.setupInputs();
@@ -98,6 +91,13 @@ export class PlayerController {
       if (code === 'KeyA' || code === 'ArrowLeft') this.keys.left = true;
       if (code === 'KeyD' || code === 'ArrowRight') this.keys.right = true;
       if (code === 'ShiftLeft' || code === 'ShiftRight') this.keys.sprint = true;
+      if (code === 'KeyC' || code === 'ControlLeft') {
+        this.keys.tunnel = !this.keys.tunnel;
+        this.toggleTunneling();
+      }
+      if (code === 'KeyQ') {
+        this.executeKineticShockwave();
+      }
       if (code === 'Space') {
         this.keys.jump = true;
         this.onJump();
@@ -114,7 +114,6 @@ export class PlayerController {
       if (code === 'Space') this.keys.jump = false;
     });
 
-    // Mouse drag orbit
     let isDragging = false;
     let prevX = 0;
     let prevY = 0;
@@ -141,6 +140,21 @@ export class PlayerController {
     window.addEventListener('mouseup', () => { isDragging = false; });
   }
 
+  toggleTunneling() {
+    if (gameState.hasSplice('s6')) {
+      this.isTunneling = !this.isTunneling;
+      soundEngine.playFootstep();
+    }
+  }
+
+  executeKineticShockwave() {
+    if (gameState.hasSplice('s8')) {
+      soundEngine.playSampleAcquired();
+      gameState.extractedResources.crystal += 3.0;
+      gameState.extractedResources.organics += 3.0;
+    }
+  }
+
   onJump() {
     if (this.isGrounded) {
       const gravityVal = gameState.getCurrentWorld().gravity;
@@ -148,7 +162,6 @@ export class PlayerController {
       this.isGrounded = false;
       soundEngine.playFootstep();
     } else if (gameState.hasSplice('s3')) {
-      // Driftmoth Membrane Glide
       this.isGliding = !this.isGliding;
       if (this.isGliding) {
         soundEngine.startGlideWind();
@@ -162,7 +175,6 @@ export class PlayerController {
     const world = gameState.getCurrentWorld();
     const equipped = gameState.getEquippedSplices();
 
-    // Check splice bonuses
     let moveSpeed = 6.0;
     let sprintBonus = 1.0;
     let hasGlow = gameState.hasSplice('s4');
@@ -176,15 +188,14 @@ export class PlayerController {
     });
 
     if (this.keys.sprint) moveSpeed *= (1.5 * sprintBonus);
+    if (this.isTunneling) moveSpeed *= 1.4;
 
-    // Apply Bioluminescent Glow Skin
     if (hasGlow) {
       this.glowLight.intensity = 1.2;
     } else {
       this.glowLight.intensity = 0.0;
     }
 
-    // Wings visibility for glide
     if (this.isGliding && hasGlide) {
       this.wings.material.opacity = 0.85;
     } else {
@@ -192,7 +203,6 @@ export class PlayerController {
       this.isGliding = false;
     }
 
-    // Calculate move vector based on camera direction
     const moveDir = new THREE.Vector3();
     if (this.keys.forward) moveDir.z -= 1;
     if (this.keys.backward) moveDir.z += 1;
@@ -209,12 +219,15 @@ export class PlayerController {
       this.group.rotation.y = Math.atan2(moveDir.x, moveDir.z);
     }
 
-    // Gravity & Ground Height
-    const terrainHeight = this.worldEngine.getTerrainHeight(this.position.x, this.position.z);
+    let terrainHeight = this.worldEngine.getTerrainHeight(this.position.x, this.position.z);
+    if (this.isTunneling) {
+      terrainHeight -= 1.2; // Submerge underground
+    }
+
     const gravityAcc = 18.0 * world.gravity;
 
     if (this.isGliding) {
-      this.velocity.y = -1.2; // Slow glide descent
+      this.velocity.y = -1.2;
     } else {
       this.velocity.y -= gravityAcc * deltaSeconds;
     }
@@ -233,7 +246,6 @@ export class PlayerController {
       this.isGrounded = false;
     }
 
-    // Update Camera position to follow player smooth orbit
     const cx = this.position.x + Math.sin(this.camYaw) * Math.cos(this.camPitch) * this.camDistance;
     const cy = this.position.y + Math.sin(this.camPitch) * this.camDistance + 1.2;
     const cz = this.position.z + Math.cos(this.camYaw) * Math.cos(this.camPitch) * this.camDistance;
