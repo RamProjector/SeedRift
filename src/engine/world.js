@@ -24,7 +24,7 @@ export class WorldEngine {
       try {
         this.renderer = new THREE.WebGLRenderer({
           canvas: testCanvas,
-          antialias: false,
+          antialias: true,
           alpha: false,
           powerPreference: "default"
         });
@@ -47,13 +47,13 @@ export class WorldEngine {
       container.appendChild(this.canvas2D);
     }
 
-    this.hemiLight = new THREE.HemisphereLight('#ffffff', '#445544', 1.4);
+    this.hemiLight = new THREE.HemisphereLight('#ffffff', '#445544', 1.6);
     this.scene.add(this.hemiLight);
 
-    this.ambientLight = new THREE.AmbientLight('#ffffff', 1.2);
+    this.ambientLight = new THREE.AmbientLight('#ffffff', 1.4);
     this.scene.add(this.ambientLight);
 
-    this.sunLight = new THREE.DirectionalLight('#ffffff', 2.8);
+    this.sunLight = new THREE.DirectionalLight('#ffffff', 3.0);
     this.sunLight.position.set(30, 120, 20);
     this.scene.add(this.sunLight);
 
@@ -113,6 +113,15 @@ export class WorldEngine {
     return height;
   }
 
+  getTerrainHeight(x, z) {
+    const world = gameState.getCurrentWorld();
+    const rawH = this.getMultiOctaveNoise(x, z, world.id);
+    const radius = 800.0;
+    const distSq = x * x + z * z;
+    const curvatureDrop = distSq / (2.0 * radius);
+    return rawH - curvatureDrop; // Exactly matches 3D visual terrain surface!
+  }
+
   buildWorld(worldData) {
     if (this.terrainMesh) this.scene.remove(this.terrainMesh);
     if (this.waterMesh) this.scene.remove(this.waterMesh);
@@ -133,17 +142,12 @@ export class WorldEngine {
       geometry.rotateX(-Math.PI / 2);
 
       const pos = geometry.attributes.position;
-      const radius = 800.0;
 
       for (let i = 0; i < pos.count; i++) {
         const x = pos.getX(i);
         const z = pos.getZ(i);
-
-        let h = this.getMultiOctaveNoise(x, z, worldData.id);
-
-        const distFromCenter = Math.sqrt(x * x + z * z);
-        const curvatureDrop = (distFromCenter * distFromCenter) / (2.0 * radius);
-        pos.setY(i, h - curvatureDrop);
+        const h = this.getTerrainHeight(x, z);
+        pos.setY(i, h);
       }
       geometry.computeVertexNormals();
 
@@ -228,9 +232,9 @@ export class WorldEngine {
 
     const dayRatio = Math.max(0.0, Math.sin(sunAngle));
 
-    this.sunLight.intensity = Math.max(0.4, dayRatio * 2.8);
-    this.hemiLight.intensity = Math.max(0.4, dayRatio * 1.4);
-    this.ambientLight.intensity = Math.max(0.3, dayRatio * 1.2);
+    this.sunLight.intensity = Math.max(0.5, dayRatio * 3.0);
+    this.hemiLight.intensity = Math.max(0.5, dayRatio * 1.6);
+    this.ambientLight.intensity = Math.max(0.4, dayRatio * 1.4);
 
     const dayColor = new THREE.Color(worldData.daySkyColor || '#528bb8');
     const nightColor = new THREE.Color(worldData.nightSkyColor || '#0f1724');
@@ -260,11 +264,6 @@ export class WorldEngine {
       }
       pos.needsUpdate = true;
     }
-  }
-
-  getTerrainHeight(x, z) {
-    const world = gameState.getCurrentWorld();
-    return this.getMultiOctaveNoise(x, z, world.id);
   }
 
   onWindowResize() {

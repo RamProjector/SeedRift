@@ -12,70 +12,85 @@ export class PlayerController {
 
     this.group = new THREE.Group();
 
-    // Torso
-    const torsoGeo = new THREE.CapsuleGeometry(0.35, 0.8, 8, 16);
+    // Vibrant Metallic Emerald Warden Suit Armor
     const suitMat = new THREE.MeshStandardMaterial({
-      color: '#1a2b22',
-      roughness: 0.3,
-      metalness: 0.8
+      color: '#2e7a5c',
+      roughness: 0.25,
+      metalness: 0.7,
+      emissive: '#134030',
+      emissiveIntensity: 0.2
     });
+
+    const trimMat = new THREE.MeshStandardMaterial({
+      color: '#88cca8',
+      roughness: 0.2,
+      metalness: 0.9
+    });
+
+    const glowCoreMat = new THREE.MeshStandardMaterial({
+      color: '#5fe6b4',
+      emissive: '#5fe6b4',
+      emissiveIntensity: 1.5,
+      roughness: 0.1
+    });
+
+    // Torso Capsule
+    const torsoGeo = new THREE.CapsuleGeometry(0.38, 0.85, 8, 16);
     const torso = new THREE.Mesh(torsoGeo, suitMat);
     torso.position.y = 0.85;
     torso.castShadow = true;
     this.group.add(torso);
 
-    // Visor
+    // Glowing Chest Core Indicator
+    const coreGeo = new THREE.OctahedronGeometry(0.12);
+    const core = new THREE.Mesh(coreGeo, glowCoreMat);
+    core.position.set(0, 1.05, 0.38);
+    this.group.add(core);
+
+    // Visor Helmet
     const headGeo = new THREE.SphereGeometry(0.28, 16, 16);
-    const visorMat = new THREE.MeshStandardMaterial({
-      color: '#5fe6b4',
-      emissive: '#5fe6b4',
-      emissiveIntensity: 0.9,
-      roughness: 0.1,
-      metalness: 0.9
-    });
-    this.head = new THREE.Mesh(headGeo, visorMat);
-    this.head.position.set(0, 1.45, 0.05);
+    this.head = new THREE.Mesh(headGeo, glowCoreMat);
+    this.head.position.set(0, 1.48, 0.05);
     this.group.add(this.head);
 
-    // Backpack
-    const packGeo = new THREE.BoxGeometry(0.4, 0.6, 0.25);
-    const packMat = new THREE.MeshStandardMaterial({ color: '#2a3b30', metalness: 0.9 });
-    const pack = new THREE.Mesh(packGeo, packMat);
-    pack.position.set(0, 0.95, -0.25);
+    // Backpack Thruster Rig
+    const packGeo = new THREE.BoxGeometry(0.42, 0.65, 0.28);
+    const pack = new THREE.Mesh(packGeo, trimMat);
+    pack.position.set(0, 0.95, -0.28);
     this.group.add(pack);
 
-    // Wings
+    // Glide Wings
     const wingGeo = new THREE.PlaneGeometry(1.6, 0.8);
     const wingMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
       emissive: '#5fe6b4',
-      emissiveIntensity: 0.6,
+      emissiveIntensity: 0.8,
       transparent: true,
       opacity: 0.0,
       side: THREE.DoubleSide
     });
     this.wings = new THREE.Mesh(wingGeo, wingMat);
-    this.wings.position.set(0, 1.0, -0.3);
+    this.wings.position.set(0, 1.0, -0.32);
     this.wings.rotation.x = Math.PI / 4;
     this.group.add(this.wings);
 
-    // Arms
+    // Jointed Arms with Pauldrons
     this.armL = new THREE.Group();
     const armGeo = new THREE.CylinderGeometry(0.08, 0.06, 0.6);
     const armLMesh = new THREE.Mesh(armGeo, suitMat);
     armLMesh.position.y = -0.3;
     this.armL.add(armLMesh);
-    this.armL.position.set(0.42, 1.15, 0);
+    this.armL.position.set(0.44, 1.15, 0);
     this.group.add(this.armL);
 
     this.armR = new THREE.Group();
     const armRMesh = new THREE.Mesh(armGeo, suitMat);
     armRMesh.position.y = -0.3;
     this.armR.add(armRMesh);
-    this.armR.position.set(-0.42, 1.15, 0);
+    this.armR.position.set(-0.44, 1.15, 0);
     this.group.add(this.armR);
 
-    // Legs
+    // Jointed Legs
     this.legL = new THREE.Group();
     const legGeo = new THREE.CylinderGeometry(0.1, 0.07, 0.65);
     const legLMesh = new THREE.Mesh(legGeo, suitMat);
@@ -286,7 +301,6 @@ export class PlayerController {
     this.position.x += this.velocity.x * deltaSeconds;
     this.position.z += this.velocity.z * deltaSeconds;
 
-    // Resolve Bounding Box Collisions against world objects & structures
     collisionEngine.resolveCollisions(this.position, colliders);
 
     let terrainHeight = this.worldEngine.getTerrainHeight(this.position.x, this.position.z);
@@ -321,7 +335,6 @@ export class PlayerController {
       this.isGrounded = false;
     }
 
-    // Player Limb Skeletal Animations (Walk/Run Swing & Gliding pose)
     if (this.armL && this.armR && this.legL && this.legR) {
       const swingFreq = this.keys.sprint ? 14.0 : 9.0;
       const swing = Math.sin(this.animTime * swingFreq) * (isMoving ? 0.6 : 0.04);
@@ -341,7 +354,7 @@ export class PlayerController {
       }
 
       if (this.head) {
-        this.head.position.y = 1.45 + Math.sin(this.animTime * 4.0) * 0.02;
+        this.head.position.y = 1.48 + Math.sin(this.animTime * 4.0) * 0.02;
       }
     }
 
