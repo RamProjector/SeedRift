@@ -29,6 +29,15 @@ export class BuildUI {
             <button class="btn-select-build">Build Ghost Structure</button>
           </div>
 
+          <div class="build-card" data-type="decon">
+            <div class="build-card-top">
+              <span class="build-title">🧼 Biosecurity Decontamination Chamber</span>
+              <span class="build-cost">10 Organics · 8 Crystals</span>
+            </div>
+            <p>Cleanses suit cross-contamination level to 0%, neutralizing invasive spore risk between world hops.</p>
+            <button class="btn-select-build">Build Ghost Structure</button>
+          </div>
+
           <div class="build-card" data-type="farm">
             <div class="build-card-top">
               <span class="build-title">🌾 Organic Cultivation Farm Plot</span>

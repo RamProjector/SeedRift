@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { gameState } from '../systems/state.js';
 import { soundEngine } from '../audio/sound.js';
+import { biosecuritySystem } from '../systems/contamination.js';
 
 export class BuildingManager {
   constructor(scene, worldEngine) {
@@ -33,14 +34,12 @@ export class BuildingManager {
   confirmPlacement(playerPos, playerYaw) {
     if (!this.isPlacing || !this.previewMesh) return false;
 
-    // Cost check
     const cost = this.getStructureCost(this.selectedType);
     if (gameState.extractedResources.organics < cost.organics || gameState.extractedResources.crystal < cost.crystal) {
       soundEngine.playWarning();
       return { success: false, msg: `Insufficient resources! Needs ${cost.organics} Organics & ${cost.crystal} Crystals.` };
     }
 
-    // Deduct resources
     gameState.extractedResources.organics -= cost.organics;
     gameState.extractedResources.crystal -= cost.crystal;
 
@@ -48,7 +47,6 @@ export class BuildingManager {
     const z = this.previewMesh.position.z;
     const y = this.worldEngine.getTerrainHeight(x, z);
 
-    // Create real structure
     const realMesh = this.createStructureMesh(this.selectedType, false);
     realMesh.position.set(x, y, z);
     realMesh.rotation.y = playerYaw;
@@ -65,7 +63,6 @@ export class BuildingManager {
 
     this.placedStructures.push(structureObj);
 
-    // Clear preview
     this.scene.remove(this.previewMesh);
     this.previewMesh = null;
     this.isPlacing = false;
@@ -78,7 +75,6 @@ export class BuildingManager {
   updatePreview(playerPos, playerYaw) {
     if (!this.isPlacing || !this.previewMesh) return;
 
-    // Offset in front of player
     const dist = 6.0;
     const px = playerPos.x - Math.sin(playerYaw) * dist;
     const pz = playerPos.z - Math.cos(playerYaw) * dist;
@@ -90,7 +86,6 @@ export class BuildingManager {
 
   updateStructures(deltaSeconds, playerPos) {
     this.placedStructures.forEach(st => {
-      // Biodome shell heals player when nearby
       if (st.type === 'biodome' && st.worldId === gameState.currentWorldId) {
         const dist = playerPos.distanceTo(st.pos);
         if (dist < 10.0) {
@@ -99,7 +94,13 @@ export class BuildingManager {
         }
       }
 
-      // Farm plot grows harvested species over time
+      if (st.type === 'decon' && st.worldId === gameState.currentWorldId) {
+        const dist = playerPos.distanceTo(st.pos);
+        if (dist < 8.0) {
+          biosecuritySystem.decontaminate();
+        }
+      }
+
       if (st.type === 'farm' && st.worldId === gameState.currentWorldId) {
         st.yieldTimer += deltaSeconds;
         if (st.yieldTimer >= 10.0) {
@@ -108,7 +109,6 @@ export class BuildingManager {
         }
       }
 
-      // Extractor collects crystals / spores
       if (st.type === 'extractor' && st.worldId === gameState.currentWorldId) {
         st.yieldTimer += deltaSeconds;
         if (st.yieldTimer >= 8.0) {
@@ -121,6 +121,7 @@ export class BuildingManager {
 
   getStructureCost(type) {
     if (type === 'biodome') return { organics: 15, crystal: 10 };
+    if (type === 'decon') return { organics: 10, crystal: 8 };
     if (type === 'farm') return { organics: 8, crystal: 4 };
     if (type === 'extractor') return { organics: 10, crystal: 12 };
     if (type === 'relay') return { organics: 5, crystal: 15 };
@@ -140,7 +141,6 @@ export class BuildingManager {
     });
 
     if (type === 'biodome') {
-      // Inflatable Glass Geodesic Biodome
       const domeGeo = new THREE.SphereGeometry(4.0, 16, 12, 0, Math.PI * 2, 0, Math.PI * 0.5);
       const dome = new THREE.Mesh(domeGeo, mat);
       dome.position.y = 0;
@@ -151,21 +151,25 @@ export class BuildingManager {
       ring.position.y = 0.25;
       group.add(ring);
 
+    } else if (type === 'decon') {
+      // Decontamination Cleansing Chamber Arch
+      const archGeo = new THREE.TorusGeometry(3.0, 0.4, 8, 16);
+      const arch = new THREE.Mesh(archGeo, mat);
+      arch.position.y = 3.0;
+      group.add(arch);
+
     } else if (type === 'farm') {
-      // Hydroponic Cultivation Plot
       const baseGeo = new THREE.BoxGeometry(5.0, 0.4, 5.0);
       const base = new THREE.Mesh(baseGeo, mat);
       base.position.y = 0.2;
       group.add(base);
 
-      // Light arches
       const archGeo = new THREE.TorusGeometry(2.5, 0.1, 8, 16, Math.PI);
       const arch = new THREE.Mesh(archGeo, mat);
       arch.position.y = 0.4;
       group.add(arch);
 
     } else if (type === 'extractor') {
-      // Deep Crust Extractor Rig
       const baseGeo = new THREE.CylinderGeometry(1.5, 2.0, 1.0, 8);
       const base = new THREE.Mesh(baseGeo, mat);
       base.position.y = 0.5;
@@ -177,7 +181,6 @@ export class BuildingManager {
       group.add(drill);
 
     } else if (type === 'relay') {
-      // Scanner Relay Antenna Tower
       const poleGeo = new THREE.CylinderGeometry(0.15, 0.3, 10.0, 8);
       const pole = new THREE.Mesh(poleGeo, mat);
       pole.position.y = 5.0;
