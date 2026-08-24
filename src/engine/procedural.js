@@ -53,28 +53,35 @@ export class ProceduralMeshGenerator {
     const color = phys.coloration || {};
     const primary = color.primary || '#5FE6B4';
     const secondary = color.secondary || '#4C9C7C';
-    const length = Math.max(0.5, Math.min(6.0, phys.size?.length || 1.2));
-    const height = Math.max(0.5, Math.min(5.0, phys.size?.height || 1.0));
+    const length = Math.max(0.8, Math.min(6.0, phys.size?.length || 1.4));
+    const height = Math.max(0.8, Math.min(4.0, phys.size?.height || 1.2));
+    const morphology = (phys.morphology || '').toLowerCase();
+    const name = speciesData.commonName.toLowerCase();
 
     const tex = createProceduralTexture(primary, secondary, color.pattern || 'striped');
     const mat = new THREE.MeshStandardMaterial({
       map: tex,
-      roughness: 0.4,
+      color: new THREE.Color(primary),
+      roughness: 0.35,
       metalness: 0.3,
       emissive: new THREE.Color(secondary),
-      emissiveIntensity: 0.3
+      emissiveIntensity: 0.25
+    });
+
+    const armorMat = new THREE.MeshStandardMaterial({
+      color: new THREE.Color('#2a4e3b'),
+      roughness: 0.2,
+      metalness: 0.7
     });
 
     const glowMat = new THREE.MeshStandardMaterial({
       color: new THREE.Color(secondary),
       emissive: new THREE.Color(secondary),
-      emissiveIntensity: 1.2,
-      roughness: 0.1,
-      metalness: 0.9
+      emissiveIntensity: 1.3,
+      roughness: 0.1
     });
 
-    const name = speciesData.commonName.toLowerCase();
-
+    // 1. Gliders / Flying Fauna
     if (name.includes('drift') || name.includes('moth') || name.includes('fin') || name.includes('flyer') || name.includes('flicker')) {
       const thoraxGeo = new THREE.ConeGeometry(height * 0.35, length, 12);
       thoraxGeo.rotateX(Math.PI / 2);
@@ -90,7 +97,7 @@ export class ProceduralMeshGenerator {
       const wingMat = new THREE.MeshStandardMaterial({
         color: new THREE.Color(secondary),
         emissive: new THREE.Color(secondary),
-        emissiveIntensity: 0.8,
+        emissiveIntensity: 0.9,
         transparent: true,
         opacity: 0.8,
         side: THREE.DoubleSide
@@ -118,9 +125,10 @@ export class ProceduralMeshGenerator {
       antR.rotation.z = 0.4;
       group.add(antR);
 
-    } else if (name.includes('burrower') || name.includes('shell') || name.includes('scrapper') || name.includes('geode')) {
+    // 2. Shelled Burrowers / Armored Scrappers
+    } else if (name.includes('burrower') || name.includes('shell') || name.includes('scrapper') || name.includes('geode') || morphology.includes('shell')) {
       const shellGeo = new THREE.SphereGeometry(length * 0.55, 16, 16, 0, Math.PI * 2, 0, Math.PI * 0.65);
-      const shell = new THREE.Mesh(shellGeo, mat);
+      const shell = new THREE.Mesh(shellGeo, armorMat);
       shell.position.y = height * 0.4;
       group.add(shell);
 
@@ -137,29 +145,31 @@ export class ProceduralMeshGenerator {
         group.add(node);
       }
 
-    } else if (name.includes('stalker') || name.includes('hunter') || name.includes('scout') || name.includes('runner')) {
+    // 3. Stalkers / Hunters / Predators
+    } else if (name.includes('stalker') || name.includes('hunter') || name.includes('scout') || name.includes('runner') || morphology.includes('predator')) {
       const bodyGeo = new THREE.BoxGeometry(length * 0.45, height * 0.45, length * 1.1);
       const body = new THREE.Mesh(bodyGeo, mat);
       body.position.y = height * 0.55;
       group.add(body);
 
-      const headGeo = new THREE.ConeGeometry(height * 0.35, length * 0.55, 8);
+      const headGeo = new THREE.ConeGeometry(height * 0.38, length * 0.6, 8);
       headGeo.rotateX(-Math.PI / 2);
-      const head = new THREE.Mesh(headGeo, mat);
+      const head = new THREE.Mesh(headGeo, armorMat);
       head.position.set(0, height * 0.55, length * 0.65);
       group.add(head);
 
-      const eyeGeo = new THREE.SphereGeometry(length * 0.07, 8, 8);
-      const eyeL = new THREE.Mesh(eyeGeo, glowMat);
-      eyeL.position.set(length * 0.14, height * 0.65, length * 0.75);
-      const eyeR = new THREE.Mesh(eyeGeo, glowMat);
-      eyeR.position.set(-length * 0.14, height * 0.65, length * 0.75);
-      group.add(eyeL);
-      group.add(eyeR);
+      for (let e = 0; e < 4; e++) {
+        const eyeGeo = new THREE.SphereGeometry(length * 0.05, 8, 8);
+        const eye = new THREE.Mesh(eyeGeo, glowMat);
+        const side = (e % 2 === 0) ? 1 : -1;
+        const heightOffset = (e < 2) ? 0.08 : -0.04;
+        eye.position.set(side * length * 0.14, heightOffset, length * 0.25);
+        head.add(eye);
+      }
 
       for (let i = 0; i < 4; i++) {
-        const legGeo = new THREE.CylinderGeometry(0.05, 0.03, height * 0.9);
-        const leg = new THREE.Mesh(legGeo, mat);
+        const legGeo = new THREE.CylinderGeometry(0.06, 0.03, height * 0.9);
+        const leg = new THREE.Mesh(legGeo, armorMat);
         const side = (i % 2 === 0) ? 1 : -1;
         const front = (i < 2) ? 1 : -1;
         leg.position.set(side * length * 0.28, height * 0.28, front * length * 0.35);
@@ -167,6 +177,7 @@ export class ProceduralMeshGenerator {
         group.add(leg);
       }
 
+    // 4. Quadruped Grazers / Megafauna
     } else {
       const bodyGeo = new THREE.CapsuleGeometry(height * 0.4, length * 0.65, 8, 16);
       bodyGeo.rotateX(Math.PI / 2);
@@ -181,7 +192,7 @@ export class ProceduralMeshGenerator {
 
       for (let i = 0; i < 4; i++) {
         const legGeo = new THREE.CylinderGeometry(0.07, 0.04, height * 0.65);
-        const leg = new THREE.Mesh(legGeo, mat);
+        const leg = new THREE.Mesh(legGeo, armorMat);
         const side = (i % 2 === 0) ? 1 : -1;
         const front = (i < 2) ? 1 : -1;
         leg.position.set(side * height * 0.32, height * 0.32, front * length * 0.32);
@@ -215,7 +226,7 @@ export class ProceduralMeshGenerator {
       const capMat = new THREE.MeshStandardMaterial({
         color: '#4ce0a5',
         emissive: '#33aa77',
-        emissiveIntensity: 0.7,
+        emissiveIntensity: 0.8,
         roughness: 0.3
       });
       const cap = new THREE.Mesh(capGeo, capMat);
@@ -236,7 +247,7 @@ export class ProceduralMeshGenerator {
       const crystalMat = new THREE.MeshStandardMaterial({
         color: '#5fe6d0',
         emissive: '#2cbda8',
-        emissiveIntensity: 1.0,
+        emissiveIntensity: 1.1,
         roughness: 0.1,
         metalness: 0.8,
         transparent: true,
@@ -255,33 +266,23 @@ export class ProceduralMeshGenerator {
         group.add(sub);
       }
 
-    } else if (type === 'ventBush') {
-      const ventGeo = new THREE.ConeGeometry(2.0 * scale, 3 * scale, 12, 1, true);
-      const ventMat = new THREE.MeshStandardMaterial({ color: '#1a100c', roughness: 0.9 });
-      const vent = new THREE.Mesh(ventGeo, ventMat);
-      vent.position.y = 1.5 * scale;
-      group.add(vent);
-
-      const lavaGeo = new THREE.CylinderGeometry(0.8 * scale, 0.5 * scale, 0.2 * scale, 10);
-      const lavaMat = new THREE.MeshStandardMaterial({
-        color: '#ff4500',
-        emissive: '#ff2a00',
-        emissiveIntensity: 1.2
+    } else if (type === 'seaWeed' || type === 'reefCoral') {
+      // Oceanic Reef Coral & Kelp
+      const stemGeo = new THREE.CylinderGeometry(0.15 * scale, 0.35 * scale, 6 * scale, 8);
+      const kelpMat = new THREE.MeshStandardMaterial({
+        color: '#106680',
+        emissive: '#1ca5cc',
+        emissiveIntensity: 0.8,
+        roughness: 0.3
       });
-      const lava = new THREE.Mesh(lavaGeo, lavaMat);
-      lava.position.y = 2.4 * scale;
-      group.add(lava);
-
-    } else if (type === 'reefCoral') {
-      const stemGeo = new THREE.CylinderGeometry(0.2 * scale, 0.4 * scale, 3 * scale, 8);
-      const coralMat = new THREE.MeshStandardMaterial({ color: '#106680', emissive: '#1ca5cc', emissiveIntensity: 0.7 });
-      for (let i = 0; i < 5; i++) {
-        const stem = new THREE.Mesh(stemGeo, coralMat);
-        const angle = (i / 5) * Math.PI * 2;
-        stem.position.set(Math.cos(angle) * 0.6 * scale, 1.5 * scale, Math.sin(angle) * 0.6 * scale);
-        stem.rotation.z = Math.cos(angle) * 0.4;
+      for (let i = 0; i < 6; i++) {
+        const stem = new THREE.Mesh(stemGeo, kelpMat);
+        const angle = (i / 6) * Math.PI * 2;
+        stem.position.set(Math.cos(angle) * 0.8 * scale, 3 * scale, Math.sin(angle) * 0.8 * scale);
+        stem.rotation.z = Math.cos(angle) * 0.3;
         group.add(stem);
       }
+
     } else {
       const bushGeo = new THREE.DodecahedronGeometry(1.2 * scale);
       const bushMat = new THREE.MeshStandardMaterial({ color: '#8a9e42', roughness: 0.8 });
@@ -317,7 +318,7 @@ export class ProceduralMeshGenerator {
     const ringMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
       emissive: '#5fe6b4',
-      emissiveIntensity: 1.2
+      emissiveIntensity: 1.4
     });
 
     const ring1 = new THREE.Mesh(ringGeo, ringMat);
@@ -337,7 +338,7 @@ export class ProceduralMeshGenerator {
     const coreMat = new THREE.MeshStandardMaterial({
       color: '#ffc857',
       emissive: '#ff9f1c',
-      emissiveIntensity: 1.4
+      emissiveIntensity: 1.5
     });
     const core = new THREE.Mesh(coreGeo, coreMat);
     core.position.y = 2.5;

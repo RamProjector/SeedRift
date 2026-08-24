@@ -30,11 +30,12 @@ export class EntityManager {
 
     const speciesList = SPECIES_BY_WORLD[worldData.id] || [];
 
-    const countToSpawn = Math.min(24, speciesList.length);
+    // Spawn 36 active creature entities across expanded open world
+    const countToSpawn = Math.min(36, speciesList.length);
     for (let i = 0; i < countToSpawn; i++) {
       const speciesData = speciesList[i % speciesList.length];
-      const x = (Math.random() - 0.5) * 160;
-      const z = (Math.random() - 0.5) * 160;
+      const x = (Math.random() - 0.5) * 220;
+      const z = (Math.random() - 0.5) * 220;
       const y = this.worldEngine.getTerrainHeight(x, z);
       const pos = new THREE.Vector3(x, y, z);
 
@@ -53,11 +54,12 @@ export class EntityManager {
       this.entities.push(entity);
     }
 
+    // Spawn 60 flora elements across open terrain & seabed
     const floraTypes = worldData.floraTypes || ['goldenGrass'];
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 60; i++) {
       const type = floraTypes[i % floraTypes.length];
-      const x = (Math.random() - 0.5) * 180;
-      const z = (Math.random() - 0.5) * 180;
+      const x = (Math.random() - 0.5) * 240;
+      const z = (Math.random() - 0.5) * 240;
       const y = this.worldEngine.getTerrainHeight(x, z);
       const pos = new THREE.Vector3(x, y, z);
 
@@ -72,9 +74,9 @@ export class EntityManager {
     this.ruinMonolith = new RuinEntity(`ruin_${worldData.id}`, worldData.ruinType, new THREE.Vector3(rx, ry, rz));
     this.scene.add(this.ruinMonolith.group);
 
-    for (let d = 0; d < 2; d++) {
-      const dx = (Math.random() - 0.5) * 60 + 10;
-      const dz = (Math.random() - 0.5) * 60 - 10;
+    for (let d = 0; d < 3; d++) {
+      const dx = (Math.random() - 0.5) * 80 + 10;
+      const dz = (Math.random() - 0.5) * 80 - 10;
       const dy = this.worldEngine.getTerrainHeight(dx, dz) + 3.0;
       const drone = new RivalDroneEntity(`drone_${d}`, new THREE.Vector3(dx, dy, dz));
       this.scene.add(drone.group);
