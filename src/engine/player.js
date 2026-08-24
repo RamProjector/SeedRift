@@ -15,7 +15,7 @@ export class PlayerController {
 
     this.group = new THREE.Group();
 
-    // Vibrant Metallic Emerald Warden Suit Armor
+    // High-Fidelity Warden Armor Materials
     const suitMat = new THREE.MeshStandardMaterial({
       color: '#2e7a5c',
       roughness: 0.25,
@@ -25,39 +25,92 @@ export class PlayerController {
     });
 
     const trimMat = new THREE.MeshStandardMaterial({
-      color: '#88cca8',
+      color: '#1a2922',
       roughness: 0.2,
-      metalness: 0.9
+      metalness: 0.95
     });
 
     const glowCoreMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
       emissive: '#5fe6b4',
-      emissiveIntensity: 1.8,
+      emissiveIntensity: 2.0,
       roughness: 0.1
     });
 
+    const flameMat = new THREE.MeshStandardMaterial({
+      color: '#ff9f1c',
+      emissive: '#ff7733',
+      emissiveIntensity: 2.5,
+      transparent: true,
+      opacity: 0.9
+    });
+
+    // 1. Torso & Layered Armor Plates
     const torsoGeo = new THREE.CapsuleGeometry(0.38, 0.85, 8, 16);
     this.torso = new THREE.Mesh(torsoGeo, suitMat);
     this.torso.position.y = 0.85;
     this.torso.castShadow = true;
     this.group.add(this.torso);
 
+    // Chest Plate Armor
+    const chestPlateGeo = new THREE.BoxGeometry(0.55, 0.45, 0.18);
+    const chestPlate = new THREE.Mesh(chestPlateGeo, trimMat);
+    chestPlate.position.set(0, 1.05, 0.28);
+    this.group.add(chestPlate);
+
+    // Glowing Chest Power Core
     const coreGeo = new THREE.OctahedronGeometry(0.12);
     const core = new THREE.Mesh(coreGeo, glowCoreMat);
     core.position.set(0, 1.05, 0.38);
     this.group.add(core);
 
+    // Visor Helmet with Pauldrons
     const headGeo = new THREE.SphereGeometry(0.28, 16, 16);
     this.head = new THREE.Mesh(headGeo, glowCoreMat);
     this.head.position.set(0, 1.48, 0.05);
     this.group.add(this.head);
 
-    const packGeo = new THREE.BoxGeometry(0.42, 0.65, 0.28);
-    const pack = new THREE.Mesh(packGeo, trimMat);
-    pack.position.set(0, 0.95, -0.28);
-    this.group.add(pack);
+    // Shoulder Pauldrons
+    for (let s = 0; s < 2; s++) {
+      const pauldronGeo = new THREE.DodecahedronGeometry(0.18);
+      const pauldron = new THREE.Mesh(pauldronGeo, trimMat);
+      const side = (s === 0) ? 1 : -1;
+      pauldron.position.set(side * 0.48, 1.25, 0);
+      this.group.add(pauldron);
+    }
 
+    // 2. High-Detail Dual Nozzle Jetpack Thruster Rig
+    const packBodyGeo = new THREE.BoxGeometry(0.42, 0.65, 0.25);
+    const packBody = new THREE.Mesh(packBodyGeo, trimMat);
+    packBody.position.set(0, 0.95, -0.28);
+    this.group.add(packBody);
+
+    // Dual Cylindrical Thruster Exhaust Nozzles
+    this.thrusters = [];
+    this.flames = [];
+
+    for (let t = 0; t < 2; t++) {
+      const side = (t === 0) ? 1 : -1;
+
+      // Outer Metallic Nozzle
+      const nozzleGeo = new THREE.CylinderGeometry(0.08, 0.12, 0.35, 12);
+      const nozzle = new THREE.Mesh(nozzleGeo, trimMat);
+      nozzle.position.set(side * 0.16, 0.75, -0.38);
+      nozzle.rotation.x = Math.PI / 8;
+      this.group.add(nozzle);
+      this.thrusters.push(nozzle);
+
+      // Plasma Exhaust Flame Cone
+      const flameGeo = new THREE.ConeGeometry(0.1, 0.6, 12);
+      flameGeo.rotateX(Math.PI);
+      const flame = new THREE.Mesh(flameGeo, flameMat);
+      flame.position.set(side * 0.16, 0.45, -0.42);
+      flame.visible = false; // Triggered during jump/glide/sprint!
+      this.group.add(flame);
+      this.flames.push(flame);
+    }
+
+    // 3. Gliding Wings
     const wingGeo = new THREE.PlaneGeometry(1.6, 0.8);
     const wingMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
@@ -72,6 +125,7 @@ export class PlayerController {
     this.wings.rotation.x = Math.PI / 4;
     this.group.add(this.wings);
 
+    // Jointed Arms & Legs with Gauntlets/Boots
     this.armL = new THREE.Group();
     const armGeo = new THREE.CylinderGeometry(0.08, 0.06, 0.6);
     const armLMesh = new THREE.Mesh(armGeo, suitMat);
@@ -123,8 +177,7 @@ export class PlayerController {
     this.maxCamDistance = 5.8;
     this.currentCamDistance = 5.8;
     this.shoulderOffset = 1.2;
-
-    this.worldLimit = 300.0; // 600x600 unit planet bound
+    this.worldLimit = 300.0;
 
     this.keys = {
       forward: false,
@@ -273,6 +326,15 @@ export class PlayerController {
     if (this.keys.sprint) targetSpeed *= (1.5 * sprintBonus);
     if (this.isTunneling) targetSpeed *= 1.4;
 
+    // Trigger Jetpack Plasma Flames during Jump, Glide, or Sprint!
+    const isJetpackActive = (!this.isGrounded || this.isGliding || this.keys.sprint);
+    this.flames.forEach(f => {
+      f.visible = isJetpackActive;
+      if (isJetpackActive) {
+        f.scale.set(1.0, 1.0 + Math.sin(this.animTime * 20.0) * 0.3, 1.0);
+      }
+    });
+
     if (hasGlow) {
       this.glowLight.intensity = 1.2;
     } else {
@@ -322,7 +384,6 @@ export class PlayerController {
 
     physicsEngine.applyContinuousCollisionDetection(prevPos, this.position, this.worldEngine);
 
-    // Columbus Toroidal World Loop Wrapping (Walking in a straight line circles the round planet!)
     if (this.position.x > this.worldLimit) {
       this.position.x = -this.worldLimit + (this.position.x - this.worldLimit);
     } else if (this.position.x < -this.worldLimit) {
