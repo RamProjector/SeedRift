@@ -4,6 +4,8 @@ import { eventSystem } from './systems/events.js';
 import { ecologySim } from './systems/ecology.js';
 import { loreSystem } from './systems/lore.js';
 import { wardenProgress } from './systems/codex.js';
+import { biosecuritySystem } from './systems/contamination.js';
+import { encounterSystem } from './systems/encounters.js';
 import { WorldEngine } from './engine/world.js';
 import { SkyboxEngine } from './engine/skybox.js';
 import { EntityManager } from './engine/entities.js';
@@ -65,6 +67,7 @@ class Game {
   }
 
   onWorldChange(newWorldData) {
+    biosecuritySystem.checkContaminationOnWorldChange(newWorldData.id);
     this.worldEngine.buildWorld(newWorldData);
     this.entityManager.populateWorld(newWorldData);
     this.rivalManager.populateRivals(newWorldData);
@@ -83,6 +86,7 @@ class Game {
     ecologySim.update(deltaSeconds);
     vitalsSystem.update(deltaSeconds);
     eventSystem.update(deltaSeconds);
+    encounterSystem.update(deltaSeconds);
     this.weatherSystem.update(deltaSeconds);
     this.skyboxEngine.update(deltaSeconds);
     wardenProgress.checkRankUpgrade();

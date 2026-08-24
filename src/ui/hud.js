@@ -2,6 +2,7 @@ import { gameState } from '../systems/state.js';
 import { soundEngine } from '../audio/sound.js';
 import { weaveUI } from './weave.js';
 import { shipUI } from './ship.js';
+import { encounterSystem } from '../systems/encounters.js';
 
 export class HUDManager {
   constructor() {
@@ -148,6 +149,14 @@ export class HUDManager {
 
     window.addEventListener('seedrift-rank-up', (e) => {
       this.showToast(`🎖️ WARDEN RANK UPGRADED! Title: ${e.detail.title} (+1 Weave Slot)`, 'event');
+    });
+
+    window.addEventListener('seedrift-contamination', (e) => {
+      this.showToast(e.detail.msg, 'warn');
+    });
+
+    window.addEventListener('seedrift-encounter', (e) => {
+      this.showToast(`📡 DYNAMIC ENCOUNTER: ${e.detail.title} (${e.detail.reward})`, 'event');
     });
   }
 
