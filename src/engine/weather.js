@@ -13,17 +13,21 @@ export class WeatherSystem {
     this.weatherTimer -= deltaSeconds;
     if (this.weatherTimer <= 0) {
       this.shiftWeather();
-      this.weatherTimer = 60 + Math.random() * 60; // Shift weather every 1-2 mins
+      this.weatherTimer = 60 + Math.random() * 60;
     }
 
     const world = gameState.getCurrentWorld();
 
-    // Modulate particle system based on active weather intensity
     if (this.worldEngine.particleSystem) {
       const pMat = this.worldEngine.particleSystem.material;
       if (pMat) {
-        pMat.size = 0.35 + Math.sin(Date.now() * 0.002) * 0.15;
-        pMat.opacity = 0.6 + Math.cos(Date.now() * 0.003) * 0.2;
+        if (this.currentWeather === 'storm') {
+          pMat.size = 0.6 + Math.sin(Date.now() * 0.005) * 0.2;
+          pMat.opacity = 0.9;
+        } else {
+          pMat.size = 0.35 + Math.sin(Date.now() * 0.002) * 0.15;
+          pMat.opacity = 0.6 + Math.cos(Date.now() * 0.003) * 0.2;
+        }
       }
     }
   }
