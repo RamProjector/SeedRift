@@ -63,8 +63,7 @@ export class PlayerController {
     this.position = this.group.position;
     this.position.set(0, 2, 0);
 
-    // Physics Velocity Vector
-    this.velocity = new THREE.Vector3();
+    this.velocity = new THREE.Vector3(0, 0, 0);
     this.isGrounded = false;
     this.isGliding = false;
     this.isTunneling = false;
@@ -86,7 +85,21 @@ export class PlayerController {
     this.setupInputs();
   }
 
+  resetKeys() {
+    this.keys.forward = false;
+    this.keys.backward = false;
+    this.keys.left = false;
+    this.keys.right = false;
+    this.keys.sprint = false;
+    this.keys.jump = false;
+    this.velocity.x = 0;
+    this.velocity.z = 0;
+  }
+
   setupInputs() {
+    window.addEventListener('blur', () => this.resetKeys());
+    window.addEventListener('focus', () => this.resetKeys());
+
     window.addEventListener('keydown', (e) => {
       const code = e.code;
       if (code === 'KeyW' || code === 'ArrowUp') this.keys.forward = true;
@@ -95,7 +108,6 @@ export class PlayerController {
       if (code === 'KeyD' || code === 'ArrowRight') this.keys.right = true;
       if (code === 'ShiftLeft' || code === 'ShiftRight') this.keys.sprint = true;
       if (code === 'KeyC' || code === 'ControlLeft') {
-        this.keys.tunnel = !this.keys.tunnel;
         this.toggleTunneling();
       }
       if (code === 'KeyQ') {
@@ -162,11 +174,9 @@ export class PlayerController {
     const isWater = physicsEngine.isUnderwater(this.position);
 
     if (isWater) {
-      // Hydrodynamic Swim Ascend
       this.velocity.y = 5.0;
     } else if (this.isGrounded) {
       const gravityVal = gameState.getCurrentWorld().gravity;
-      // Gravity-scaled jump physics
       this.velocity.y = 8.5 * (1 / Math.sqrt(gravityVal));
       this.isGrounded = false;
       soundEngine.playFootstep();
@@ -184,7 +194,7 @@ export class PlayerController {
     const world = gameState.getCurrentWorld();
     const equipped = gameState.getEquippedSplices();
 
-    let targetSpeed = 6.5;
+    let targetSpeed = 7.0;
     let sprintBonus = 1.0;
     let hasGlow = gameState.hasSplice('s4');
     let hasGlide = gameState.hasSplice('s3');
@@ -212,8 +222,8 @@ export class PlayerController {
       this.isGliding = false;
     }
 
-    // Directional input acceleration vector
-    const moveInput = new THREE.Vector3();
+    // Directional input
+    const moveInput = new THREE.Vector3(0, 0, 0);
     if (this.keys.forward) moveInput.z -= 1;
     if (this.keys.backward) moveInput.z += 1;
     if (this.keys.left) moveInput.x -= 1;
@@ -223,46 +233,40 @@ export class PlayerController {
       moveInput.normalize();
       moveInput.applyAxisAngle(new THREE.Vector3(0, 1, 0), this.camYaw);
 
-      // Smooth acceleration physics
-      this.velocity.x += moveInput.x * targetSpeed * 12.0 * deltaSeconds;
-      this.velocity.z += moveInput.z * targetSpeed * 12.0 * deltaSeconds;
+      // Direct, crisp velocity response (zero drift when key released!)
+      this.velocity.x = moveInput.x * targetSpeed;
+      this.velocity.z = moveInput.z * targetSpeed;
 
       this.group.rotation.y = Math.atan2(moveInput.x, moveInput.z);
+    } else {
+      // Immediate full stop when no direction keys are pressed
+      this.velocity.x = 0;
+      this.velocity.z = 0;
     }
-
-    // Ground & Viscous Friction Deceleration
-    const isWater = physicsEngine.isUnderwater(this.position);
-    const friction = isWater ? 0.82 : 0.88;
-
-    this.velocity.x *= friction;
-    this.velocity.z *= friction;
 
     this.position.x += this.velocity.x * deltaSeconds;
     this.position.z += this.velocity.z * deltaSeconds;
 
-    // Gravity, Buoyancy & Updraft Physics
     let terrainHeight = this.worldEngine.getTerrainHeight(this.position.x, this.position.z);
     if (this.isTunneling) {
       terrainHeight -= 1.2;
     }
 
+    const isWater = physicsEngine.isUnderwater(this.position);
+
     if (isWater) {
-      // Underwater hydrostatic pressure buoyancy physics
-      if (this.keys.tunnel) this.velocity.y -= 4.0 * deltaSeconds; // Swim dive
-      this.velocity.y *= 0.90; // Water drag
+      if (this.keys.tunnel) this.velocity.y -= 4.0 * deltaSeconds;
+      this.velocity.y *= 0.90;
     } else if (this.isGliding) {
-      // Gliding aerodynamic lift & thermal updrafts
       const updraft = physicsEngine.getThermalUpdraft(this.position);
       this.velocity.y = -1.2 + updraft;
     } else {
-      // Planetary Gravity Acceleration
       const gravityAcc = physicsEngine.getGravity();
       this.velocity.y -= gravityAcc * deltaSeconds;
     }
 
     this.position.y += this.velocity.y * deltaSeconds;
 
-    // Terrain Snapping & Footstep Collision
     if (!isWater && this.position.y <= terrainHeight) {
       this.position.y = terrainHeight;
       this.velocity.y = 0;
@@ -275,7 +279,6 @@ export class PlayerController {
       this.isGrounded = false;
     }
 
-    // Camera Orbit Follow Vector
     const cx = this.position.x + Math.sin(this.camYaw) * Math.cos(this.camPitch) * this.camDistance;
     const cy = this.position.y + Math.sin(this.camPitch) * this.camDistance + 1.2;
     const cz = this.position.z + Math.cos(this.camYaw) * Math.cos(this.camPitch) * this.camDistance;

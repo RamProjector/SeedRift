@@ -47,7 +47,6 @@ export class WorldEngine {
       container.appendChild(this.canvas2D);
     }
 
-    // Hemispheric & Ambient Lighting
     this.hemiLight = new THREE.HemisphereLight('#ffffff', '#445544', 1.4);
     this.scene.add(this.hemiLight);
 
@@ -58,7 +57,6 @@ export class WorldEngine {
     this.sunLight.position.set(30, 120, 20);
     this.scene.add(this.sunLight);
 
-    // Physical 3D Sun Mesh
     const sunGeo = new THREE.SphereGeometry(10, 24, 24);
     const sunMat = new THREE.MeshStandardMaterial({
       color: '#ffea9f',
@@ -73,7 +71,6 @@ export class WorldEngine {
     this.terrainMesh = null;
     this.waterMesh = null;
     this.particleSystem = null;
-    this.lastChunkCenter = new THREE.Vector2(0, 0);
 
     if (window.ResizeObserver && container) {
       const ro = new ResizeObserver(() => this.onWindowResize());
@@ -82,38 +79,32 @@ export class WorldEngine {
     window.addEventListener('resize', () => this.onWindowResize());
   }
 
-  // Multi-Octave Fractal Noise for Dynamic Open-World Terrain
   getMultiOctaveNoise(x, z, worldId) {
     let height = 0;
 
     if (worldId === 'kharon-bloomfields') {
-      // Tall spore plateaus & deep fungal hollows
       const continental = this.noise2D(x * 0.005, z * 0.005) * 18.0;
       const hills = this.noise2D(x * 0.02, z * 0.02) * 6.0;
       const detail = this.noise2D(x * 0.08, z * 0.08) * 1.5;
       height = continental + hills + detail;
 
     } else if (worldId === 'ashfields-coreth') {
-      // Cratered volcanic ridges & sharp lava tubes
       const craters = Math.abs(this.noise2D(x * 0.008, z * 0.008)) * 22.0 - 4.0;
       const ridges = Math.sin(this.noise2D(x * 0.03, z * 0.03) * Math.PI) * 8.0;
       const detail = this.noise2D(x * 0.1, z * 0.1) * 1.8;
       height = craters + ridges + detail;
 
     } else if (worldId === 'hollow-steppe') {
-      // Rolling golden grassland hills & sweeping valleys
       const rollingHills = this.noise2D(x * 0.006, z * 0.006) * 12.0;
       const dunes = this.noise2D(x * 0.025, z * 0.025) * 3.5;
       height = rollingHills + dunes;
 
     } else if (worldId === 'pallid-reach') {
-      // Irradiated ice plateaus & jagged crystal crags
       const plateaus = Math.floor(this.noise2D(x * 0.007, z * 0.007) * 4.0) * 4.0;
       const crags = this.noise2D(x * 0.04, z * 0.04) * 7.0;
       height = plateaus + crags;
 
     } else if (worldId === 'vantauri-deep') {
-      // Oceanic abyssal trench floor & underwater coral ridges
       const trench = this.noise2D(x * 0.005, z * 0.005) * 15.0 - 8.0;
       const ridges = this.noise2D(x * 0.03, z * 0.03) * 4.0;
       height = trench + ridges;
@@ -136,14 +127,13 @@ export class WorldEngine {
     this.sunMesh.material.emissive.set(worldData.sunLight || '#ffea9f');
 
     if (this.hasWebGL) {
-      // Extended Vast Planetary Grid (500 x 500 units)
       const size = 500;
       const segments = 128;
       const geometry = new THREE.PlaneGeometry(size, size, segments, segments);
       geometry.rotateX(-Math.PI / 2);
 
       const pos = geometry.attributes.position;
-      const radius = 800.0; // Round planet horizon curvature radius
+      const radius = 800.0;
 
       for (let i = 0; i < pos.count; i++) {
         const x = pos.getX(i);
@@ -151,7 +141,6 @@ export class WorldEngine {
 
         let h = this.getMultiOctaveNoise(x, z, worldData.id);
 
-        // Planetary Horizon Curvature Math: curve terrain downward at distance
         const distFromCenter = Math.sqrt(x * x + z * z);
         const curvatureDrop = (distFromCenter * distFromCenter) / (2.0 * radius);
         pos.setY(i, h - curvatureDrop);
@@ -165,10 +154,10 @@ export class WorldEngine {
       });
 
       this.terrainMesh = new THREE.Mesh(geometry, terrainMat);
+      this.terrainMesh.position.set(0, 0, 0); // Anchored at origin to prevent noise morphing!
       this.terrainMesh.receiveShadow = true;
       this.scene.add(this.terrainMesh);
 
-      // Ocean Surface Plane for Vantauri Deep
       if (worldData.id === 'vantauri-deep') {
         const waterGeo = new THREE.PlaneGeometry(size, size);
         waterGeo.rotateX(-Math.PI / 2);
@@ -180,7 +169,7 @@ export class WorldEngine {
           metalness: 0.8
         });
         this.waterMesh = new THREE.Mesh(waterGeo, waterMat);
-        this.waterMesh.position.y = 3.0;
+        this.waterMesh.position.set(0, 3.0, 0);
         this.scene.add(this.waterMesh);
       }
     }
@@ -250,19 +239,6 @@ export class WorldEngine {
     this.scene.background = currentSkyColor;
     if (this.scene.fog) {
       this.scene.fog.color = currentSkyColor;
-    }
-
-    // Dynamic Terrain Center Shifting for Seamless Infinite Planetary Navigation
-    if (this.terrainMesh && playerPos) {
-      if (Math.abs(playerPos.x - this.lastChunkCenter.x) > 60 || Math.abs(playerPos.z - this.lastChunkCenter.y) > 60) {
-        this.terrainMesh.position.x = playerPos.x;
-        this.terrainMesh.position.z = playerPos.z;
-        if (this.waterMesh) {
-          this.waterMesh.position.x = playerPos.x;
-          this.waterMesh.position.z = playerPos.z;
-        }
-        this.lastChunkCenter.set(playerPos.x, playerPos.z);
-      }
     }
 
     if (this.particleSystem) {
