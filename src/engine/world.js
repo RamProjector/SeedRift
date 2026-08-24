@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { createNoise2D } from 'simplex-noise';
 import { gameState } from '../systems/state.js';
+import { createWaterShaderMaterial } from './shaders.js';
 
 export class WorldEngine {
   constructor(container) {
@@ -71,7 +72,7 @@ export class WorldEngine {
     this.terrainMesh = null;
     this.waterMesh = null;
     this.particleSystem = null;
-    this.surfaceDecorations = [];
+    this.waterMat = null;
 
     if (window.ResizeObserver && container) {
       const ro = new ResizeObserver(() => this.onWindowResize());
@@ -81,19 +82,34 @@ export class WorldEngine {
   }
 
   getMultiOctaveNoise(x, z, worldId) {
-    const smoothValley = this.noise2D(x * 0.004, z * 0.004) * 6.0;
-    const rawRidge = Math.abs(this.noise2D(x * 0.012, z * 0.012));
-    const ridgeMask = Math.pow(rawRidge, 2.5);
-    const jaggedCrag = this.noise2D(x * 0.05, z * 0.05) * 22.0;
+    let height = 0;
 
-    let height = smoothValley + (ridgeMask * jaggedCrag);
+    if (worldId === 'kharon-bloomfields') {
+      const continental = this.noise2D(x * 0.005, z * 0.005) * 18.0;
+      const hills = this.noise2D(x * 0.02, z * 0.02) * 6.0;
+      const detail = this.noise2D(x * 0.08, z * 0.08) * 1.5;
+      height = continental + hills + detail;
 
-    if (worldId === 'ashfields-coreth') {
-      height += Math.abs(this.noise2D(x * 0.02, z * 0.02)) * 8.0 - 2.0;
-    } else if (worldId === 'thessyras-veil') {
-      height += Math.floor(this.noise2D(x * 0.015, z * 0.015) * 3.0) * 3.0;
+    } else if (worldId === 'ashfields-coreth') {
+      const craters = Math.abs(this.noise2D(x * 0.008, z * 0.008)) * 22.0 - 4.0;
+      const ridges = Math.sin(this.noise2D(x * 0.03, z * 0.03) * Math.PI) * 8.0;
+      const detail = this.noise2D(x * 0.1, z * 0.1) * 1.8;
+      height = craters + ridges + detail;
+
+    } else if (worldId === 'hollow-steppe') {
+      const rollingHills = this.noise2D(x * 0.006, z * 0.006) * 12.0;
+      const dunes = this.noise2D(x * 0.025, z * 0.025) * 3.5;
+      height = rollingHills + dunes;
+
+    } else if (worldId === 'pallid-reach') {
+      const plateaus = Math.floor(this.noise2D(x * 0.007, z * 0.007) * 4.0) * 4.0;
+      const crags = this.noise2D(x * 0.04, z * 0.04) * 7.0;
+      height = plateaus + crags;
+
     } else if (worldId === 'vantauri-deep') {
-      height -= 12.0;
+      const trench = this.noise2D(x * 0.005, z * 0.005) * 15.0 - 8.0;
+      const ridges = this.noise2D(x * 0.03, z * 0.03) * 4.0;
+      height = trench + ridges;
     }
 
     return height;
@@ -112,8 +128,6 @@ export class WorldEngine {
     if (this.terrainMesh) this.scene.remove(this.terrainMesh);
     if (this.waterMesh) this.scene.remove(this.waterMesh);
     if (this.particleSystem) this.scene.remove(this.particleSystem);
-    this.surfaceDecorations.forEach(d => this.scene.remove(d));
-    this.surfaceDecorations = [];
 
     this.scene.background = new THREE.Color(worldData.daySkyColor || '#528bb8');
     this.scene.fog = new THREE.FogExp2(worldData.fogColor || '#456a73', 0.0018);
@@ -150,32 +164,11 @@ export class WorldEngine {
       this.terrainMesh.receiveShadow = true;
       this.scene.add(this.terrainMesh);
 
-      // Populate Surface Rocks & Fallen Boulders
-      const rockMat = new THREE.MeshStandardMaterial({ color: '#2a3b32', roughness: 0.8 });
-      for (let r = 0; r < 50; r++) {
-        const rx = (Math.random() - 0.5) * 220;
-        const rz = (Math.random() - 0.5) * 220;
-        const ry = this.getTerrainHeight(rx, rz);
-
-        const rockGeo = new THREE.DodecahedronGeometry(Math.random() * 0.8 + 0.4);
-        const rock = new THREE.Mesh(rockGeo, rockMat);
-        rock.position.set(rx, ry + 0.2, rz);
-        rock.rotation.set(Math.random(), Math.random(), Math.random());
-        this.scene.add(rock);
-        this.surfaceDecorations.push(rock);
-      }
-
       if (worldData.id === 'vantauri-deep' || worldData.id === 'thessyras-veil') {
-        const waterGeo = new THREE.PlaneGeometry(size, size);
+        const waterGeo = new THREE.PlaneGeometry(size, size, 64, 64);
         waterGeo.rotateX(-Math.PI / 2);
-        const waterMat = new THREE.MeshStandardMaterial({
-          color: worldData.id === 'thessyras-veil' ? '#2a5a73' : '#105577',
-          transparent: true,
-          opacity: 0.65,
-          roughness: 0.1,
-          metalness: 0.8
-        });
-        this.waterMesh = new THREE.Mesh(waterGeo, waterMat);
+        this.waterMat = createWaterShaderMaterial();
+        this.waterMesh = new THREE.Mesh(waterGeo, this.waterMat);
         this.waterMesh.position.set(0, 3.0, 0);
         this.scene.add(this.waterMesh);
       }
@@ -218,6 +211,10 @@ export class WorldEngine {
   update(deltaSeconds, playerPos) {
     const worldData = gameState.getCurrentWorld();
     const time = gameState.timeOfDay;
+
+    if (this.waterMat) {
+      this.waterMat.uniforms.time.value += deltaSeconds;
+    }
 
     const sunAngle = ((time - 6) / 24) * Math.PI * 2;
     const sunDistance = 280;
@@ -267,6 +264,11 @@ export class WorldEngine {
       }
       pos.needsUpdate = true;
     }
+  }
+
+  getTerrainHeight(x, z) {
+    const world = gameState.getCurrentWorld();
+    return this.getMultiOctaveNoise(x, z, world.id);
   }
 
   onWindowResize() {
