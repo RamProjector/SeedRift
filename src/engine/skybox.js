@@ -5,6 +5,7 @@ export class SkyboxEngine {
   constructor(scene) {
     this.scene = scene;
     this.group = new THREE.Group();
+    this.showMoons = true;
 
     // Starfield Points
     const starCount = 600;
@@ -39,7 +40,7 @@ export class SkyboxEngine {
     this.stars = new THREE.Points(geometry, starMat);
     this.group.add(this.stars);
 
-    // Solid Celestial Moons (Non-wireframe, fully solid with crater shading)
+    // Celestial Moons (Sovereign Natural Satellites driving orbital tides)
     const moon1Geo = new THREE.SphereGeometry(14, 24, 24);
     const moon1Mat = new THREE.MeshStandardMaterial({
       color: '#8ce6f0',
@@ -65,6 +66,12 @@ export class SkyboxEngine {
     this.group.add(this.moon2);
 
     this.scene.add(this.group);
+  }
+
+  toggleMoons(visible) {
+    this.showMoons = visible;
+    this.moon1.visible = visible;
+    this.moon2.visible = visible;
   }
 
   update(deltaSeconds) {
