@@ -147,6 +147,14 @@ export class BuildingManager {
       metalness: 0.8
     });
 
+    const beaconMat = new THREE.MeshStandardMaterial({
+      color: '#5fe6b4',
+      emissive: '#5fe6b4',
+      emissiveIntensity: 2.0,
+      transparent: true,
+      opacity: 0.7
+    });
+
     if (type === 'biodome') {
       const domeGeo = new THREE.SphereGeometry(4.0, 16, 12, 0, Math.PI * 2, 0, Math.PI * 0.5);
       const dome = new THREE.Mesh(domeGeo, mat);
@@ -197,6 +205,12 @@ export class BuildingManager {
       dish.position.y = 9.5;
       dish.rotation.x = -Math.PI / 4;
       group.add(dish);
+
+      // Skyward Vertical Beacon Beam
+      const beaconGeo = new THREE.CylinderGeometry(0.2, 0.6, 60.0, 12);
+      const beacon = new THREE.Mesh(beaconGeo, beaconMat);
+      beacon.position.y = 39.5;
+      group.add(beacon);
     }
 
     return group;
