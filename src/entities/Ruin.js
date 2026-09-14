@@ -32,28 +32,41 @@ export class RuinEntity extends BaseEntity {
     const coreMat = new THREE.MeshStandardMaterial({
       color: '#ffc857',
       emissive: '#ff9f1c',
-      emissiveIntensity: 1.6
+      emissiveIntensity: 1.8
     });
 
-    // 1. Carved Firstseed Stone Foundation Plaza (16x16 Flat Ground Base)
+    const beamMat = new THREE.MeshStandardMaterial({
+      color: '#ffc857',
+      emissive: '#ff9f1c',
+      emissiveIntensity: 2.2,
+      transparent: true,
+      opacity: 0.65
+    });
+
+    // 1. Carved Firstseed Stone Foundation Plaza
     const plazaGeo = new THREE.BoxGeometry(18, 0.8, 18);
     const plaza = new THREE.Mesh(plazaGeo, stoneMat);
     plaza.position.y = 0.4;
     plaza.receiveShadow = true;
     this.group.add(plaza);
 
-    // Carved Glyph Step Inset
     const stepGeo = new THREE.BoxGeometry(12, 0.4, 12);
     const step = new THREE.Mesh(stepGeo, mat);
     step.position.y = 0.9;
     this.group.add(step);
 
-    // 2. Central Ancient Obelisk Monolith
+    // 2. Central Obelisk Monolith
     const monolithGeo = new THREE.ConeGeometry(2.5, 14, 4);
     const pillar = new THREE.Mesh(monolithGeo, mat);
     pillar.position.y = 8.0;
     pillar.rotation.y = Math.PI / 4;
     this.group.add(pillar);
+
+    // Skyward Firstseed Energy Beam
+    const beamGeo = new THREE.CylinderGeometry(0.3, 0.8, 80.0, 12);
+    const beam = new THREE.Mesh(beamGeo, beamMat);
+    beam.position.y = 48.0;
+    this.group.add(beam);
 
     // Rotating Firstseed Glyph Rings
     const ringGeo = new THREE.TorusGeometry(2.2, 0.14, 16, 32);
@@ -75,7 +88,7 @@ export class RuinEntity extends BaseEntity {
     this.core.position.y = 2.6;
     this.group.add(this.core);
 
-    // 3. Surrounding Ancient Ruin Pillars & Archways
+    // 3. Surrounding Ancient Ruin Pillars
     this.pedestalCores = [];
     for (let i = 0; i < 4; i++) {
       const angle = (i / 4) * Math.PI * 2 + Math.PI / 4;
@@ -83,13 +96,11 @@ export class RuinEntity extends BaseEntity {
       const px = Math.cos(angle) * radius;
       const pz = Math.sin(angle) * radius;
 
-      // Ancient Carved Pillar
       const pillarGeo = new THREE.CylinderGeometry(0.8, 1.1, 7.0, 8);
       const ruinPillar = new THREE.Mesh(pillarGeo, stoneMat);
       ruinPillar.position.set(px, 3.9, pz);
       this.group.add(ruinPillar);
 
-      // Glowing Pedestal Core atop pillar
       const pedCoreGeo = new THREE.OctahedronGeometry(0.4);
       const pedCore = new THREE.Mesh(pedCoreGeo, ringMat);
       pedCore.position.set(px, 8.0, pz);
