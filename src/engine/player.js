@@ -15,7 +15,6 @@ export class PlayerController {
 
     this.group = new THREE.Group();
 
-    // High-Fidelity Warden Armor Materials
     this.suitMat = new THREE.MeshStandardMaterial({
       color: '#2e7a5c',
       roughness: 0.25,
@@ -45,32 +44,27 @@ export class PlayerController {
       opacity: 0.9
     });
 
-    // 1. Torso & Layered Armor Plates
     const torsoGeo = new THREE.CapsuleGeometry(0.38, 0.85, 8, 16);
     this.torso = new THREE.Mesh(torsoGeo, this.suitMat);
     this.torso.position.y = 0.85;
     this.torso.castShadow = true;
     this.group.add(this.torso);
 
-    // Chest Plate Armor
     const chestPlateGeo = new THREE.BoxGeometry(0.55, 0.45, 0.18);
     const chestPlate = new THREE.Mesh(chestPlateGeo, this.trimMat);
     chestPlate.position.set(0, 1.05, 0.28);
     this.group.add(chestPlate);
 
-    // Glowing Chest Power Core
     const coreGeo = new THREE.OctahedronGeometry(0.12);
     const core = new THREE.Mesh(coreGeo, this.glowCoreMat);
     core.position.set(0, 1.05, 0.38);
     this.group.add(core);
 
-    // Visor Helmet
     const headGeo = new THREE.SphereGeometry(0.28, 16, 16);
     this.head = new THREE.Mesh(headGeo, this.glowCoreMat);
     this.head.position.set(0, 1.48, 0.05);
     this.group.add(this.head);
 
-    // Shoulder Pauldrons
     this.pauldrons = [];
     for (let s = 0; s < 2; s++) {
       const pauldronGeo = new THREE.DodecahedronGeometry(0.18);
@@ -81,7 +75,6 @@ export class PlayerController {
       this.pauldrons.push(pauldron);
     }
 
-    // 2. High-Detail Dual Nozzle Jetpack Thruster Rig
     const packBodyGeo = new THREE.BoxGeometry(0.42, 0.65, 0.25);
     const packBody = new THREE.Mesh(packBodyGeo, this.trimMat);
     packBody.position.set(0, 0.95, -0.28);
@@ -109,7 +102,6 @@ export class PlayerController {
       this.flames.push(flame);
     }
 
-    // 3. Gliding Wings
     const wingGeo = new THREE.PlaneGeometry(1.6, 0.8);
     const wingMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
@@ -124,7 +116,20 @@ export class PlayerController {
     this.wings.rotation.x = Math.PI / 4;
     this.group.add(this.wings);
 
-    // Jointed Arms & Legs
+    // 3D Bioluminescent Suit Aura Ring Mesh
+    const auraGeo = new THREE.TorusGeometry(0.9, 0.04, 8, 32);
+    const auraMat = new THREE.MeshStandardMaterial({
+      color: '#5fe6b4',
+      emissive: '#5fe6b4',
+      emissiveIntensity: 2.0,
+      transparent: true,
+      opacity: 0.0
+    });
+    this.auraRing = new THREE.Mesh(auraGeo, auraMat);
+    this.auraRing.rotation.x = Math.PI / 2;
+    this.auraRing.position.y = 0.2;
+    this.group.add(this.auraRing);
+
     this.armL = new THREE.Group();
     const armGeo = new THREE.CylinderGeometry(0.08, 0.06, 0.6);
     const armLMesh = new THREE.Mesh(armGeo, this.suitMat);
@@ -315,7 +320,6 @@ export class PlayerController {
     let hasGlow = gameState.hasSplice('s4');
     let hasGlide = gameState.hasSplice('s3');
 
-    // Dynamic Suit Armor Skin Adaptations
     if (gameState.hasSplice('s1')) {
       this.glowCoreMat.color.set('#8ce6f0');
       this.glowCoreMat.emissive.set('#8ce6f0');
@@ -347,8 +351,10 @@ export class PlayerController {
 
     if (hasGlow) {
       this.glowLight.intensity = 1.2;
+      this.auraRing.material.opacity = 0.75 + Math.sin(this.animTime * 4.0) * 0.25;
     } else {
       this.glowLight.intensity = 0.0;
+      this.auraRing.material.opacity = 0.0;
     }
 
     if (this.isGliding && hasGlide) {
