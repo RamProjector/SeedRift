@@ -31,17 +31,23 @@ export class GliderEntity extends BaseEntity {
     const glowMat = new THREE.MeshStandardMaterial({
       color: new THREE.Color(secondary),
       emissive: new THREE.Color(secondary),
-      emissiveIntensity: 1.2,
+      emissiveIntensity: 1.4,
       roughness: 0.1
     });
 
-    // Sleek Aerodynamic Thorax aligned along Z-axis (Forward is -Z)
+    // Sleek Aerodynamic Thorax
     const thoraxGeo = new THREE.ConeGeometry(height * 0.35, length, 12);
-    thoraxGeo.rotateX(-Math.PI / 2); // Cone tip points FORWARD along -Z
+    thoraxGeo.rotateX(-Math.PI / 2);
     const thorax = new THREE.Mesh(thoraxGeo, mat);
     this.group.add(thorax);
 
-    // Bilateral Wings extending along X-axis (Left +X, Right -X)
+    // Glowing Bioluminescent Abdomen Pod
+    const abGeo = new THREE.SphereGeometry(height * 0.28, 12, 12);
+    const ab = new THREE.Mesh(abGeo, glowMat);
+    ab.position.set(0, 0, length * 0.5);
+    this.group.add(ab);
+
+    // Bilateral Wings
     const wingShape = new THREE.Shape();
     wingShape.moveTo(0, 0);
     wingShape.quadraticCurveTo(height * 1.5, length * 0.4, height * 2.0, -length * 0.2);
@@ -57,18 +63,25 @@ export class GliderEntity extends BaseEntity {
       side: THREE.DoubleSide
     });
 
-    // Left Wing (+X)
     this.wingL = new THREE.Mesh(wingGeo, wingMat);
     this.wingL.position.set(0.1, 0, 0);
     this.group.add(this.wingL);
 
-    // Right Wing (-X)
     this.wingR = new THREE.Mesh(wingGeo, wingMat);
     this.wingR.scale.x = -1;
     this.wingR.position.set(-0.1, 0, 0);
     this.group.add(this.wingR);
 
-    // Forward Antennae (projecting along -Z)
+    // Fluttering Tail Streamer Ribbons
+    this.ribbonL = new THREE.Mesh(new THREE.PlaneGeometry(0.1, length * 0.8), wingMat);
+    this.ribbonL.position.set(0.12, -0.05, length * 0.8);
+    this.group.add(this.ribbonL);
+
+    this.ribbonR = new THREE.Mesh(new THREE.PlaneGeometry(0.1, length * 0.8), wingMat);
+    this.ribbonR.position.set(-0.12, -0.05, length * 0.8);
+    this.group.add(this.ribbonR);
+
+    // Forward Antennae
     const antGeo = new THREE.CylinderGeometry(0.02, 0.04, height * 0.9);
     antGeo.rotateX(Math.PI / 3);
 
@@ -81,15 +94,6 @@ export class GliderEntity extends BaseEntity {
     antR.position.set(-0.12, height * 0.2, -length * 0.4);
     antR.rotation.y = 0.2;
     this.group.add(antR);
-
-    // Delicate Landing Legs
-    for (let i = 0; i < 2; i++) {
-      const legGeo = new THREE.CylinderGeometry(0.03, 0.02, height * 0.5);
-      const leg = new THREE.Mesh(legGeo, mat);
-      const side = (i === 0) ? 1 : -1;
-      leg.position.set(side * 0.15, -height * 0.25, 0);
-      this.group.add(leg);
-    }
   }
 
   update(deltaSeconds, worldEngine) {
@@ -119,19 +123,23 @@ export class GliderEntity extends BaseEntity {
       dir.normalize();
       this.group.position.addScaledVector(dir, this.speed * deltaSeconds);
 
-      // Point head/nose (-Z) directly toward movement direction
       const forwardAngle = Math.atan2(dir.x, dir.z) + Math.PI;
       this.group.rotation.y = forwardAngle;
 
-      // Add banking roll into flight turns
       this.group.rotation.z = Math.sin(this.animTime * 3.0) * 0.1;
     }
 
-    // High-Frequency Flapping Wing Animation
+    // High-Frequency Flapping Wings & Tail Streamer Motion
     if (this.wingL && this.wingR) {
       const flap = Math.sin(this.animTime * 12.0) * 0.45;
       this.wingL.rotation.z = flap;
       this.wingR.rotation.z = -flap;
+    }
+
+    if (this.ribbonL && this.ribbonR) {
+      const wave = Math.sin(this.animTime * 8.0) * 0.2;
+      this.ribbonL.rotation.x = wave;
+      this.ribbonR.rotation.x = -wave;
     }
   }
 }
