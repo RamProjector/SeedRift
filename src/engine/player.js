@@ -315,13 +315,11 @@ export class PlayerController {
     let hasGlow = gameState.hasSplice('s4');
     let hasGlide = gameState.hasSplice('s3');
 
-    // Dynamic Suit Armor Skin Adaptations from Equipped Splices
+    // Dynamic Suit Armor Skin Adaptations
     if (gameState.hasSplice('s1')) {
-      // Frostmoss Weave: Frost Cyan Suit Seams
       this.glowCoreMat.color.set('#8ce6f0');
       this.glowCoreMat.emissive.set('#8ce6f0');
     } else if (gameState.hasSplice('s8')) {
-      // Feldspar Carapace: Magma Orange Power Core
       this.glowCoreMat.color.set('#ff7733');
       this.glowCoreMat.emissive.set('#ff7733');
     } else {
