@@ -4,7 +4,7 @@ import { WORLDS } from '../data/worlds.js';
 class GameState {
   constructor() {
     this.currentWorldId = 'kharon-bloomfields';
-    this.timeOfDay = 8.0; // 0 to 24 hours
+    this.timeOfDay = 8.0;
     this.dayCount = 1;
     this.season = 'Spring';
     
@@ -14,16 +14,16 @@ class GameState {
     this.vitals = {
       health: 100,
       maxHealth: 100,
-      temp: 37, // Celsius
-      tempStatus: 'safe', // safe, warning, critical
-      atmosphere: 100, // oxygen/filter
+      temp: 37,
+      tempStatus: 'safe',
+      atmosphere: 100,
       hydration: 100,
-      radiation: 0, // 0-100
-      pressure: 1, // atmosphere pressure unit
+      radiation: 0,
+      pressure: 1,
       battery: 100
     };
 
-    this.samplesCollected = {}; // { speciesId: count }
+    this.samplesCollected = {};
     this.scannedSpecies = new Set();
     this.extractedResources = {
       spores: 15,
@@ -48,6 +48,7 @@ class GameState {
       'vantauri-deep': false
     };
 
+    this.customWaypoint = null; // { x, z }
     this.eventActive = false;
     this.eventTimer = 0;
     this.listeners = [];
@@ -99,7 +100,6 @@ class GameState {
     this.samplesCollected[id] = (this.samplesCollected[id] || 0) + 1;
     this.scannedSpecies.add(id);
 
-    // Check if this unlocks any splice
     let unlockedNew = false;
     let unlockedName = '';
 
@@ -122,6 +122,7 @@ class GameState {
   setWorld(worldId) {
     if (WORLDS[worldId]) {
       this.currentWorldId = worldId;
+      this.customWaypoint = null;
       this.notify();
       return true;
     }
@@ -138,7 +139,6 @@ class GameState {
     }
   }
 
-  // Update automated extractor yields over time
   updateExtractors(deltaSeconds) {
     Object.keys(this.extractors).forEach(wId => {
       const ext = this.extractors[wId];
