@@ -3921,7 +3921,7 @@ void main() {
           <h2>Warden Ship Command Hub</h2>
           <div class="ship-tabs">
             <button class="ship-tab active" data-tab="starmap">🪐 Star Map</button>
-            <button class="ship-tab" data-tab="biolab">🔬 Bio-Lab</button>
+            <button class="ship-tab" data-tab="biolab">🔬 Bio-Lab & Synthesis</button>
             <button class="ship-tab" data-tab="codex">📖 Species Codex (${s.length})</button>
             <button class="ship-tab" data-tab="archives">📜 Firstseed Theory Archives</button>
             <button class="ship-tab" data-tab="logistics">⚙️ Logistics & Hauling</button>
@@ -3974,16 +3974,33 @@ void main() {
           </button>
         </div>
       </div>
-    `,e.innerHTML=c,e.querySelectorAll(`.world-card`).forEach(t=>{t.onclick=()=>{let i=t.dataset.id;n.setWorld(i),r.playChirp(),this.renderStarMap(e)}});let l=document.getElementById(`travelBtn`);l&&!l.disabled&&(l.onclick=()=>{r.playSampleAcquired(),this.onWorldChangeCallback&&this.onWorldChangeCallback(n.getCurrentWorld()),this.close()})}renderBioLab(e){let t=n.samplesCollected,r=n.splices.filter(e=>e.unlocked);e.innerHTML=`
+    `,e.innerHTML=c,e.querySelectorAll(`.world-card`).forEach(t=>{t.onclick=()=>{let i=t.dataset.id;n.setWorld(i),r.playChirp(),this.renderStarMap(e)}});let l=document.getElementById(`travelBtn`);l&&!l.disabled&&(l.onclick=()=>{r.playSampleAcquired(),this.onWorldChangeCallback&&this.onWorldChangeCallback(n.getCurrentWorld()),this.close()})}renderBioLab(e){let t=n.samplesCollected,i=n.splices.filter(e=>e.unlocked),a=n.splices.filter(e=>!e.unlocked),o=n.extractedResources;e.innerHTML=`
       <div class="biolab-container">
         <div class="biolab-section">
-          <h3>Synthesized Suit Splices (${r.length} Unlocked / ${n.splices.length} Total)</h3>
+          <h3>Synthesized Suit Splices (${i.length} Unlocked / ${n.splices.length} Total)</h3>
           <div class="splice-grid">
-            ${r.map(e=>`
+            ${i.map(e=>`
               <div class="biolab-card unlocked">
                 <span class="splice-title">${e.name}</span>
                 <span class="splice-cat">${e.category}</span>
                 <p>${e.effect}</p>
+              </div>
+            `).join(``)}
+          </div>
+        </div>
+
+        <div class="biolab-section">
+          <h3>Synthesize Locked Bio-Splices (${a.length} Remaining)</h3>
+          <div class="splice-grid">
+            ${a.length===0?`<p class="empty-msg">All suit splices unlocked!</p>`:``}
+            ${a.map(e=>`
+              <div class="biolab-card">
+                <span class="splice-title">${e.name}</span>
+                <span class="splice-cat">${e.category}</span>
+                <p>${e.effect}</p>
+                <button class="btn-travel btn-craft-splice" data-id="${e.id}" style="margin-top:8px;padding:8px;">
+                  🔬 Synthesize Trait (Needs 10 Organics + 5 Crystals)
+                </button>
               </div>
             `).join(``)}
           </div>
@@ -4002,7 +4019,7 @@ void main() {
           </div>
         </div>
       </div>
-    `}renderArchives(e){e.innerHTML=`
+    `,e.querySelectorAll(`.btn-craft-splice`).forEach(t=>{t.onclick=()=>{let i=t.dataset.id;if(o.organics>=10&&o.crystal>=5){o.organics-=10,o.crystal-=5;let t=n.splices.find(e=>e.id===i);t&&(t.unlocked=!0,r.playSampleAcquired(),this.renderBioLab(e))}else r.playWarning()}})}renderArchives(e){e.innerHTML=`
       <div class="logistics-screen">
         <h3>Firstseed Theory Research Archives</h3>
         <p>Decoded research transcripts from Firstseed ancient ruin spires exploring the three mystery theories.</p>
