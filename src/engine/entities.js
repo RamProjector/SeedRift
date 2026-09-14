@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { SPECIES_BY_WORLD } from '../data/speciesData.js';
+import { gameState } from '../systems/state.js';
 import { GrazerEntity } from '../entities/Grazer.js';
 import { GliderEntity } from '../entities/Glider.js';
 import { PredatorEntity } from '../entities/Predator.js';
@@ -96,7 +97,6 @@ export class EntityManager {
       this.drones.push(drone);
     }
 
-    // 3D Custom Navigation Waypoint Light Beacon Mesh
     const beaconGeo = new THREE.CylinderGeometry(0.3, 0.8, 80.0, 12);
     const beaconMat = new THREE.MeshStandardMaterial({
       color: '#ffea9f',
@@ -133,7 +133,6 @@ export class EntityManager {
     this.drones.forEach(d => d.update(deltaSeconds, this.worldEngine));
     if (this.ruinMonolith) this.ruinMonolith.update(deltaSeconds, this.worldEngine);
 
-    // Update 3D Custom Navigation Waypoint Light Beacon Position
     if (this.waypointBeacon) {
       const wp = gameState.customWaypoint;
       if (wp) {
