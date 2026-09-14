@@ -31,7 +31,7 @@ export class ShipUI {
           <h2>Warden Ship Command Hub</h2>
           <div class="ship-tabs">
             <button class="ship-tab active" data-tab="starmap">🪐 Star Map</button>
-            <button class="ship-tab" data-tab="biolab">🔬 Bio-Lab</button>
+            <button class="ship-tab" data-tab="biolab">🔬 Bio-Lab & Synthesis</button>
             <button class="ship-tab" data-tab="codex">📖 Species Codex (${ALL_SPECIES.length})</button>
             <button class="ship-tab" data-tab="archives">📜 Firstseed Theory Archives</button>
             <button class="ship-tab" data-tab="logistics">⚙️ Logistics & Hauling</button>
@@ -172,6 +172,8 @@ export class ShipUI {
   renderBioLab(container) {
     const samples = gameState.samplesCollected;
     const unlocked = gameState.splices.filter(s => s.unlocked);
+    const locked = gameState.splices.filter(s => !s.unlocked);
+    const res = gameState.extractedResources;
 
     let html = `
       <div class="biolab-container">
@@ -183,6 +185,23 @@ export class ShipUI {
                 <span class="splice-title">${s.name}</span>
                 <span class="splice-cat">${s.category}</span>
                 <p>${s.effect}</p>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="biolab-section">
+          <h3>Synthesize Locked Bio-Splices (${locked.length} Remaining)</h3>
+          <div class="splice-grid">
+            ${locked.length === 0 ? '<p class="empty-msg">All suit splices unlocked!</p>' : ''}
+            ${locked.map(s => `
+              <div class="biolab-card">
+                <span class="splice-title">${s.name}</span>
+                <span class="splice-cat">${s.category}</span>
+                <p>${s.effect}</p>
+                <button class="btn-travel btn-craft-splice" data-id="${s.id}" style="margin-top:8px;padding:8px;">
+                  🔬 Synthesize Trait (Needs 10 Organics + 5 Crystals)
+                </button>
               </div>
             `).join('')}
           </div>
@@ -206,6 +225,24 @@ export class ShipUI {
       </div>
     `;
     container.innerHTML = html;
+
+    container.querySelectorAll('.btn-craft-splice').forEach(btn => {
+      btn.onclick = () => {
+        const sId = btn.dataset.id;
+        if (res.organics >= 10 && res.crystal >= 5) {
+          res.organics -= 10;
+          res.crystal -= 5;
+          const target = gameState.splices.find(x => x.id === sId);
+          if (target) {
+            target.unlocked = true;
+            soundEngine.playSampleAcquired();
+            this.renderBioLab(container);
+          }
+        } else {
+          soundEngine.playWarning();
+        }
+      };
+    });
   }
 
   renderArchives(container) {
