@@ -15,6 +15,7 @@ export class EntityManager {
     this.flora = [];
     this.drones = [];
     this.ruinMonolith = null;
+    this.waypointBeacon = null;
     this.worldLimit = 300.0;
   }
 
@@ -23,6 +24,7 @@ export class EntityManager {
     this.flora.forEach(f => this.scene.remove(f.group));
     this.drones.forEach(d => this.scene.remove(d.group));
     if (this.ruinMonolith) this.scene.remove(this.ruinMonolith.group);
+    if (this.waypointBeacon) this.scene.remove(this.waypointBeacon);
 
     this.entities = [];
     this.flora = [];
@@ -31,12 +33,10 @@ export class EntityManager {
 
     const speciesList = SPECIES_BY_WORLD[worldData.id] || [];
 
-    // 1. Immediate Starting Cluster (12 creatures spawned right in front of Warden spawn point!)
     const countToSpawn = Math.min(36, speciesList.length);
     for (let i = 0; i < countToSpawn; i++) {
       const speciesData = speciesList[i % speciesList.length];
 
-      // First 12 creatures spawn within 35 meters of player spawn point!
       let x = (Math.random() - 0.5) * 60;
       let z = (Math.random() - 0.5) * 60;
       if (i >= 12) {
@@ -62,7 +62,6 @@ export class EntityManager {
       this.entities.push(entity);
     }
 
-    // 2. Spawn 60 Flora Elements (Trees, Spore Stalks, Crystal Nodes)
     const floraTypes = worldData.floraTypes || ['goldenGrass'];
     for (let i = 0; i < 60; i++) {
       const type = floraTypes[i % floraTypes.length];
@@ -82,14 +81,12 @@ export class EntityManager {
       this.flora.push(floraEntity);
     }
 
-    // 3. Firstseed Monolith Ruin Plaza
     const rx = 25;
     const rz = -30;
     const ry = this.worldEngine.getTerrainHeight(rx, rz);
     this.ruinMonolith = new RuinEntity(`ruin_${worldData.id}`, worldData.ruinType, new THREE.Vector3(rx, ry, rz));
     this.scene.add(this.ruinMonolith.group);
 
-    // 4. Meridian Combine Drones
     for (let d = 0; d < 3; d++) {
       const dx = (Math.random() - 0.5) * 60 + 10;
       const dz = (Math.random() - 0.5) * 60 - 10;
@@ -98,6 +95,19 @@ export class EntityManager {
       this.scene.add(drone.group);
       this.drones.push(drone);
     }
+
+    // 3D Custom Navigation Waypoint Light Beacon Mesh
+    const beaconGeo = new THREE.CylinderGeometry(0.3, 0.8, 80.0, 12);
+    const beaconMat = new THREE.MeshStandardMaterial({
+      color: '#ffea9f',
+      emissive: '#ffea9f',
+      emissiveIntensity: 2.5,
+      transparent: true,
+      opacity: 0.75
+    });
+    this.waypointBeacon = new THREE.Mesh(beaconGeo, beaconMat);
+    this.waypointBeacon.visible = false;
+    this.scene.add(this.waypointBeacon);
   }
 
   getColliders() {
@@ -113,7 +123,6 @@ export class EntityManager {
     this.entities.forEach(e => {
       e.update(deltaSeconds, this.worldEngine);
 
-      // Columbus Toroidal World Loop Wrapping for Entities
       if (e.group.position.x > this.worldLimit) e.group.position.x = -this.worldLimit;
       if (e.group.position.x < -this.worldLimit) e.group.position.x = this.worldLimit;
       if (e.group.position.z > this.worldLimit) e.group.position.z = -this.worldLimit;
@@ -123,6 +132,18 @@ export class EntityManager {
     this.flora.forEach(f => f.update(deltaSeconds, this.worldEngine));
     this.drones.forEach(d => d.update(deltaSeconds, this.worldEngine));
     if (this.ruinMonolith) this.ruinMonolith.update(deltaSeconds, this.worldEngine);
+
+    // Update 3D Custom Navigation Waypoint Light Beacon Position
+    if (this.waypointBeacon) {
+      const wp = gameState.customWaypoint;
+      if (wp) {
+        const wy = this.worldEngine.getTerrainHeight(wp.x, wp.z);
+        this.waypointBeacon.position.set(wp.x, wy + 40.0, wp.z);
+        this.waypointBeacon.visible = true;
+      } else {
+        this.waypointBeacon.visible = false;
+      }
+    }
   }
 
   getNearestScannable(playerPos) {
