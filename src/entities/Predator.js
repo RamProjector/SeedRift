@@ -7,7 +7,7 @@ export class PredatorEntity extends BaseEntity {
     super(id, speciesData.commonName, pos, 1.4);
     this.data = speciesData;
     this.speed = 3.2;
-    this.actionState = 'STALKING'; // IDLE, STALKING, PURSUIT
+    this.actionState = 'STALKING';
     this.actionTimer = Math.random() * 4;
     this.targetPos = pos.clone();
 
@@ -42,13 +42,13 @@ export class PredatorEntity extends BaseEntity {
       roughness: 0.1
     });
 
-    // Sleek Quad Chassis
+    // Sleek Raptor Quad Chassis
     const bodyGeo = new THREE.BoxGeometry(length * 0.45, height * 0.45, length * 1.1);
     const body = new THREE.Mesh(bodyGeo, mat);
     body.position.y = height * 0.55;
     this.group.add(body);
 
-    // Spine Plates
+    // Dorsal Spine Spikes
     for (let p = 0; p < 4; p++) {
       const spGeo = new THREE.ConeGeometry(0.08, height * 0.35, 4);
       const sp = new THREE.Mesh(spGeo, glowMat);
@@ -56,14 +56,14 @@ export class PredatorEntity extends BaseEntity {
       this.group.add(sp);
     }
 
-    // Predatory Head & Snapping Jaws
+    // Predatory Head
     const headGeo = new THREE.ConeGeometry(height * 0.38, length * 0.6, 8);
     headGeo.rotateX(-Math.PI / 2);
     this.head = new THREE.Mesh(headGeo, armorMat);
     this.head.position.set(0, height * 0.55, length * 0.65);
     this.group.add(this.head);
 
-    // Lower Jaw
+    // Snapping Lower Jaw
     const jawGeo = new THREE.BoxGeometry(height * 0.22, 0.08, length * 0.4);
     this.jaw = new THREE.Mesh(jawGeo, mat);
     this.jaw.position.set(0, -0.15, 0.1);
@@ -118,14 +118,6 @@ export class PredatorEntity extends BaseEntity {
   update(deltaSeconds, worldEngine) {
     super.update(deltaSeconds, worldEngine);
 
-    if (worldEngine) {
-      const terrainH = worldEngine.getTerrainHeight(this.group.position.x, this.group.position.z);
-      this.group.position.y = terrainH;
-
-      const yaw = this.group.rotation.y;
-      physicsEngine.alignToTerrainNormal(this.group, this.group.position, yaw, worldEngine);
-    }
-
     this.actionTimer -= deltaSeconds;
     if (this.actionTimer <= 0) {
       const states = ['IDLE', 'STALKING', 'PURSUIT'];
@@ -135,8 +127,7 @@ export class PredatorEntity extends BaseEntity {
       if (this.actionState !== 'IDLE') {
         const rx = this.group.position.x + (Math.random() - 0.5) * 35;
         const rz = this.group.position.z + (Math.random() - 0.5) * 35;
-        const ry = worldEngine ? worldEngine.getTerrainHeight(rx, rz) : 0;
-        this.targetPos.set(rx, ry, rz);
+        this.targetPos.set(rx, 0, rz);
       }
     }
 
@@ -153,19 +144,25 @@ export class PredatorEntity extends BaseEntity {
       this.group.rotation.y = Math.atan2(dir.x, dir.z);
     }
 
-    // Whip Tail Sway Animation
+    if (worldEngine) {
+      const terrainH = worldEngine.getTerrainHeight(this.group.position.x, this.group.position.z);
+      this.group.position.y = terrainH;
+
+      const yaw = this.group.rotation.y;
+      physicsEngine.alignToTerrainNormal(this.group, this.group.position, yaw, worldEngine);
+    }
+
     if (this.tail) {
       this.tail.rotation.y = Math.sin(this.animTime * 6.0) * 0.35;
     }
 
-    // Jaw Snapping in Pursuit
     if (this.jaw && this.actionState === 'PURSUIT') {
       this.jaw.rotation.x = Math.sin(this.animTime * 14.0) * 0.25;
     }
 
     if (this.legs && this.legs.length === 4) {
       const strideFreq = (this.actionState === 'PURSUIT') ? 16.0 : 9.0;
-      const stride = Math.sin(this.animTime * strideFreq) * (isMoving ? 0.6 : 0.05);
+      const stride = Math.sin(this.animTime * strideFreq) * (isMoving ? 0.55 : 0.05);
       this.legs[0].rotation.x = stride;
       this.legs[1].rotation.x = -stride;
       this.legs[2].rotation.x = -stride;
