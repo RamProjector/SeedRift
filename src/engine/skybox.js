@@ -40,6 +40,21 @@ export class SkyboxEngine {
     this.stars = new THREE.Points(geometry, starMat);
     this.group.add(this.stars);
 
+    // Rotating Atmospheric Cloud Ring Layer
+    const cloudGeo = new THREE.TorusGeometry(180, 25, 12, 48);
+    this.cloudMat = new THREE.MeshStandardMaterial({
+      color: '#88aacc',
+      emissive: '#223344',
+      emissiveIntensity: 0.2,
+      transparent: true,
+      opacity: 0.35,
+      roughness: 0.9
+    });
+    this.cloudRing = new THREE.Mesh(cloudGeo, this.cloudMat);
+    this.cloudRing.rotation.x = Math.PI / 2.3;
+    this.cloudRing.position.y = 80;
+    this.group.add(this.cloudRing);
+
     // Solid Celestial Moons
     const moon1Geo = new THREE.SphereGeometry(14, 24, 24);
     const moon1Mat = new THREE.MeshStandardMaterial({
@@ -76,10 +91,12 @@ export class SkyboxEngine {
 
   update(deltaSeconds) {
     this.group.rotation.y += deltaSeconds * 0.01;
+    this.cloudRing.rotation.z += deltaSeconds * 0.015;
     this.moon1.rotation.y += deltaSeconds * 0.02;
 
     const time = gameState.timeOfDay;
     const isNight = time < 6 || time > 18;
     this.stars.material.opacity = isNight ? 0.95 : 0.15;
+    this.cloudMat.opacity = isNight ? 0.18 : 0.40;
   }
 }

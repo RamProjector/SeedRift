@@ -38,7 +38,7 @@ export class FloraEntity extends BaseEntity {
       const capMat = new THREE.MeshStandardMaterial({
         color: '#4ce0a5',
         emissive: '#33aa77',
-        emissiveIntensity: 0.7,
+        emissiveIntensity: 0.8,
         roughness: 0.3
       });
       const cap = new THREE.Mesh(capGeo, capMat);
@@ -59,9 +59,11 @@ export class FloraEntity extends BaseEntity {
       const crystalMat = new THREE.MeshStandardMaterial({
         color: '#5fe6d0',
         emissive: '#2cbda8',
-        emissiveIntensity: 1.0,
+        emissiveIntensity: 1.1,
         roughness: 0.1,
-        metalness: 0.8
+        metalness: 0.8,
+        transparent: true,
+        opacity: 0.9
       });
       const main = new THREE.Mesh(crystalGeo, crystalMat);
       main.position.y = 2.5 * scale;
@@ -87,7 +89,10 @@ export class FloraEntity extends BaseEntity {
       physicsEngine.alignToTerrainNormal(this.group, this.group.position, yaw, worldEngine);
     }
 
-    const sway = Math.sin(this.animTime * 1.5) * 0.04;
-    this.group.rotation.z = sway;
+    // Dynamic Multi-Harmonic Wind Sway Animation
+    const swayZ = Math.sin(this.animTime * 2.0) * 0.06 + Math.cos(this.animTime * 1.3) * 0.03;
+    const swayX = Math.cos(this.animTime * 1.8) * 0.04;
+    this.group.rotation.z = swayZ;
+    this.group.rotation.x = swayX;
   }
 }
