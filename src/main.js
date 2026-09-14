@@ -135,7 +135,7 @@ class Game {
     );
     this.hud.updateScannable(scannable, this.buildingManager.isPlacing);
 
-    this.hud.update(deltaSeconds);
+    this.hud.update(deltaSeconds, this.player.group.rotation.y);
 
     this.worldEngine.render(
       this.player.position,

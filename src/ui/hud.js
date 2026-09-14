@@ -26,6 +26,11 @@ export class HUDManager {
     this.hudContainer.innerHTML = `
       <div class="vitals-vignette-overlay" id="vignetteOverlay"></div>
 
+      <!-- Top Center 3D Compass Bar -->
+      <div class="hud-compass-bar">
+        <div class="compass-ticks" id="compassTicks">N · 0°</div>
+      </div>
+
       <!-- Vitals Panel (Top-Left) -->
       <div class="hud-vitals-panel">
         <div class="vital-row" id="vitalTemp" title="Core Temperature">
@@ -375,9 +380,25 @@ export class HUDManager {
     }
   }
 
-  update(deltaSeconds) {
+  update(deltaSeconds, playerYaw = 0) {
     const v = gameState.vitals;
     const world = gameState.getCurrentWorld();
+
+    // Update 3D Compass Bar
+    const compassTicks = document.getElementById('compassTicks');
+    if (compassTicks) {
+      const deg = Math.round(((-playerYaw * 180 / Math.PI) % 360 + 360) % 360);
+      let cardinal = 'N';
+      if (deg >= 23 && deg < 68) cardinal = 'NE';
+      else if (deg >= 68 && deg < 113) cardinal = 'E';
+      else if (deg >= 113 && deg < 158) cardinal = 'SE';
+      else if (deg >= 158 && deg < 203) cardinal = 'S';
+      else if (deg >= 203 && deg < 248) cardinal = 'SW';
+      else if (deg >= 248 && deg < 293) cardinal = 'W';
+      else if (deg >= 293 && deg < 338) cardinal = 'NW';
+
+      compassTicks.textContent = `${cardinal} · ${deg}°`;
+    }
 
     document.getElementById('valTemp').textContent = `${Math.round(v.temp)}°C`;
     document.getElementById('barTemp').style.width = `${Math.min(100, Math.max(0, (v.temp / 60) * 100))}%`;

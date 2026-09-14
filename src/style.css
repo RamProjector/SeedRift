@@ -1000,3 +1000,22 @@ kbd {
 button, .btn-nav, .ship-tab, .card, .world-card {
   min-height: 44px;
 }
+
+/* Top Center 3D Compass Bar */
+.hud-compass-bar {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(23, 30, 25, 0.85);
+  border: 1px solid var(--border-active);
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 1px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(95, 230, 180, 0.2);
+  pointer-events: auto;
+}
