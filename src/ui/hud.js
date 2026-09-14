@@ -221,7 +221,12 @@ export class HUDManager {
       if (gameState.hasSplice('s6')) extraKeys += ' &nbsp;·&nbsp; <kbd>C</kbd> Tunnel';
       if (gameState.hasSplice('s8')) extraKeys += ' &nbsp;·&nbsp; <kbd>Q</kbd> Shockwave';
 
-      prompt.innerHTML = `<kbd>E</kbd> Scan &nbsp;·&nbsp; <kbd>V</kbd> View &nbsp;·&nbsp; <kbd>B</kbd> Build &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Hub &nbsp;·&nbsp; <kbd>O</kbd> Opt${extraKeys}`;
+      let wpText = '';
+      if (gameState.customWaypoint) {
+        wpText = ' &nbsp;·&nbsp; 📍 Waypoint Active';
+      }
+
+      prompt.innerHTML = `<kbd>E</kbd> Scan &nbsp;·&nbsp; <kbd>V</kbd> View &nbsp;·&nbsp; <kbd>B</kbd> Build &nbsp;·&nbsp; <kbd>Tab</kbd> Weave &nbsp;·&nbsp; <kbd>M</kbd> Hub${wpText}${extraKeys}`;
       this.scannableTarget = null;
     }
   }
@@ -384,7 +389,6 @@ export class HUDManager {
     const v = gameState.vitals;
     const world = gameState.getCurrentWorld();
 
-    // Update 3D Compass Bar
     const compassTicks = document.getElementById('compassTicks');
     if (compassTicks) {
       const deg = Math.round(((-playerYaw * 180 / Math.PI) % 360 + 360) % 360);
