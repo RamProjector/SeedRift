@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { gameState } from '../systems/state.js';
 import { soundEngine } from '../audio/sound.js';
 import { biosecuritySystem } from '../systems/contamination.js';
+import { ProceduralMeshGenerator } from './procedural.js';
 
 export class BuildingManager {
   constructor(scene, worldEngine) {
@@ -55,12 +56,21 @@ export class BuildingManager {
     const structureObj = {
       id: `struct_${Date.now()}`,
       type: this.selectedType,
-      cropType: 'frostmoss',
+      cropType: 'sporeStalk',
       worldId: gameState.currentWorldId,
       pos: new THREE.Vector3(x, y, z),
       mesh: realMesh,
+      cropMesh: null,
       yieldTimer: 0
     };
+
+    // If Farm Plot, attach initial 3D crop mesh above base!
+    if (this.selectedType === 'farm') {
+      const cropMesh = ProceduralMeshGenerator.createFloraMesh('sporeStalk', 0.5);
+      cropMesh.position.set(0, 0.4, 0);
+      realMesh.add(cropMesh);
+      structureObj.cropMesh = cropMesh;
+    }
 
     this.placedStructures.push(structureObj);
 
@@ -104,6 +114,12 @@ export class BuildingManager {
 
       if (st.type === 'farm' && st.worldId === gameState.currentWorldId) {
         st.yieldTimer += deltaSeconds;
+        // Animate crop growth scale
+        if (st.cropMesh) {
+          const growthScale = 0.4 + Math.min(0.6, (st.yieldTimer / 10.0) * 0.6);
+          st.cropMesh.scale.set(growthScale, growthScale, growthScale);
+        }
+
         if (st.yieldTimer >= 10.0) {
           st.yieldTimer = 0;
           if (st.cropType === 'sporestalk') {
@@ -206,7 +222,6 @@ export class BuildingManager {
       dish.rotation.x = -Math.PI / 4;
       group.add(dish);
 
-      // Skyward Vertical Beacon Beam
       const beaconGeo = new THREE.CylinderGeometry(0.2, 0.6, 60.0, 12);
       const beacon = new THREE.Mesh(beaconGeo, beaconMat);
       beacon.position.y = 39.5;
