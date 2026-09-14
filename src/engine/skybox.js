@@ -40,6 +40,20 @@ export class SkyboxEngine {
     this.stars = new THREE.Points(geometry, starMat);
     this.group.add(this.stars);
 
+    // Atmospheric Horizon Rim Glow Ring
+    const rimGeo = new THREE.RingGeometry(220, 240, 64);
+    this.rimMat = new THREE.MeshStandardMaterial({
+      color: '#5fe6b4',
+      emissive: '#5fe6b4',
+      emissiveIntensity: 0.8,
+      transparent: true,
+      opacity: 0.25,
+      side: THREE.DoubleSide
+    });
+    this.rimRing = new THREE.Mesh(rimGeo, this.rimMat);
+    this.rimRing.rotation.x = Math.PI / 2;
+    this.group.add(this.rimRing);
+
     // Rotating Atmospheric Cloud Ring Layer
     const cloudGeo = new THREE.TorusGeometry(180, 25, 12, 48);
     this.cloudMat = new THREE.MeshStandardMaterial({
@@ -90,6 +104,19 @@ export class SkyboxEngine {
   }
 
   update(deltaSeconds) {
+    const world = gameState.getCurrentWorld();
+
+    if (world.id === 'ashfields-coreth') {
+      this.rimMat.color.set('#ff6b35');
+      this.rimMat.emissive.set('#ff6b35');
+    } else if (world.id === 'pallid-reach') {
+      this.rimMat.color.set('#5fe6d0');
+      this.rimMat.emissive.set('#5fe6d0');
+    } else {
+      this.rimMat.color.set('#5fe6b4');
+      this.rimMat.emissive.set('#5fe6b4');
+    }
+
     this.group.rotation.y += deltaSeconds * 0.01;
     this.cloudRing.rotation.z += deltaSeconds * 0.015;
     this.moon1.rotation.y += deltaSeconds * 0.02;
