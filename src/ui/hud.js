@@ -4,6 +4,7 @@ import { weaveUI } from './weave.js';
 import { shipUI } from './ship.js';
 import { helpUI } from './helpModal.js';
 import { settingsUI } from './settingsModal.js';
+import { loreSystem } from '../systems/lore.js';
 
 export class HUDManager {
   constructor() {
@@ -276,7 +277,6 @@ export class HUDManager {
   openFloraReadout(floraObj) {
     soundEngine.playChirp();
     const readout = document.getElementById('scannerReadout');
-    const world = gameState.getCurrentWorld();
 
     document.getElementById('readoutTitle').textContent = `Wild Flora: ${floraObj.type}`;
     document.getElementById('readoutSciName').textContent = "Photosynthetic Alien Flora";
@@ -371,6 +371,15 @@ export class HUDManager {
         soundEngine.playSampleAcquired();
         this.showToast(`⚡ FIRSTSEED ARCHIVE DECODED! Unlocked ${splice.name}`, 'event');
       }
+
+      // Auto-unlock corresponding lore fragment
+      const wId = gameState.currentWorldId;
+      if (wId === 'kharon-bloomfields') loreSystem.unlockFragment('frag_w1');
+      if (wId === 'hollow-steppe') loreSystem.unlockFragment('frag_w2');
+      if (wId === 'ashfields-coreth') loreSystem.unlockFragment('frag_c1');
+      if (wId === 'pallid-reach') loreSystem.unlockFragment('frag_c2');
+      if (wId === 'vantauri-deep') loreSystem.unlockFragment('frag_a1');
+
       return;
     }
 
