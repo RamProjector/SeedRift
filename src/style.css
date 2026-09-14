@@ -1,15 +1,16 @@
 :root {
-  --bg: #10150F;
-  --bg-card: #171E19;
-  --bg-card-active: #1A2820;
-  --border: #2A332C;
-  --border-active: #4C9C7C;
-  --text-primary: #ECE9E0;
-  --text-secondary: #9CA79C;
-  --text-muted: #62695F;
-  --accent: #5FE6B4;
-  --warn: #E6A855;
-  --radius: 14px;
+  --bg: #0d120d;
+  --bg-card: rgba(23, 30, 25, 0.78);
+  --bg-card-active: rgba(26, 40, 32, 0.92);
+  --border: rgba(42, 51, 44, 0.8);
+  --border-active: #5fe6b4;
+  --text-primary: #f2f0e9;
+  --text-secondary: #a3b0a3;
+  --text-muted: #6b756b;
+  --accent: #5fe6b4;
+  --accent-glow: rgba(95, 230, 180, 0.35);
+  --warn: #e6a855;
+  --radius: 16px;
 }
 
 * {
@@ -48,15 +49,16 @@ canvas {
   height: 100%;
 }
 
-/* Modal Overlay System */
+/* Glassmorphism Modal System */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(16, 21, 15, 0.88);
-  backdrop-filter: blur(8px);
+  background: rgba(13, 18, 13, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   z-index: 100;
   display: flex;
   justify-content: center;
@@ -71,23 +73,23 @@ canvas {
   pointer-events: none;
 }
 
-/* Weave Screen Modal */
 .weave-screen {
   width: 100%;
-  max-width: 480px;
+  max-width: 500px;
   max-height: 90vh;
-  background: var(--bg);
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: 1px solid var(--border-active);
   border-radius: var(--radius);
-  padding: 24px 20px;
+  padding: 26px 22px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.8), 0 0 25px var(--accent-glow);
+  backdrop-filter: blur(16px);
 }
 
 .modal-header {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .header-row {
@@ -98,36 +100,39 @@ canvas {
 }
 
 .title {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   margin: 0;
   color: var(--text-primary);
+  letter-spacing: 0.5px;
 }
 
 .capacity-value {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 15px;
   color: var(--accent);
+  text-shadow: 0 0 8px var(--accent-glow);
 }
 
 .cells {
   display: flex;
-  gap: 5px;
-  margin-bottom: 6px;
+  gap: 6px;
+  margin-bottom: 8px;
 }
 
 .cell {
   flex: 1;
   height: 14px;
-  border-radius: 4px;
-  background: var(--bg-card);
+  border-radius: 6px;
+  background: rgba(23, 30, 25, 0.9);
   border: 1px solid var(--border);
-  transition: background .3s ease, border-color .3s ease;
+  transition: all .3s ease;
 }
 
 .cell.filled {
   background: var(--accent);
   border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
 }
 
 .capacity-warning {
@@ -146,8 +151,8 @@ canvas {
 .splice-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 12px;
+  gap: 12px;
+  margin-top: 14px;
 }
 
 .card {
@@ -156,20 +161,26 @@ canvas {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 14px 16px;
+  padding: 16px;
   font-family: inherit;
   color: inherit;
   cursor: pointer;
-  transition: background .2s ease, border-color .2s ease;
+  transition: all .2s ease;
 }
 
 .card:hover {
   border-color: var(--border-active);
+  box-shadow: 0 4px 20px rgba(95,230,180,0.15);
+}
+
+.card:active {
+  transform: scale(0.98);
 }
 
 .card.equipped {
   background: var(--bg-card-active);
   border-color: var(--border-active);
+  box-shadow: 0 0 15px var(--accent-glow);
 }
 
 .card-top {
@@ -180,7 +191,7 @@ canvas {
 }
 
 .card-name {
-  font-size: 15px;
+  font-size: 15.5px;
   font-weight: 600;
 }
 
@@ -196,12 +207,13 @@ canvas {
   border: 1.5px solid var(--border);
   margin-top: 3px;
   flex-shrink: 0;
-  transition: background .2s ease, border-color .2s ease;
+  transition: all .2s ease;
 }
 
 .card.equipped .dot {
   background: var(--accent);
   border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
 }
 
 .card-source {
@@ -240,33 +252,36 @@ canvas {
 
 .btn-close-modal {
   margin-top: 20px;
-  padding: 12px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text-primary);
+  padding: 12px 20px;
+  background: var(--bg-card-active);
+  border: 1px solid var(--border-active);
+  border-radius: 20px;
+  color: var(--accent);
   font-weight: 600;
+  font-size: 13.5px;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .btn-close-modal:hover {
-  background: var(--bg-card-active);
-  border-color: var(--accent);
+  background: var(--accent);
+  color: #10150F;
+  box-shadow: 0 0 15px var(--accent-glow);
 }
 
 /* Ship Command Hub Screen */
 .ship-screen {
-  width: 90vw;
-  max-width: 960px;
-  height: 85vh;
-  background: var(--bg);
-  border: 1px solid var(--border);
+  width: 92vw;
+  max-width: 980px;
+  height: 86vh;
+  background: var(--bg-card);
+  border: 1px solid var(--border-active);
   border-radius: var(--radius);
-  padding: 24px;
+  padding: 26px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.8), 0 0 25px var(--accent-glow);
+  backdrop-filter: blur(16px);
 }
 
 .ship-header {
@@ -282,8 +297,9 @@ canvas {
 
 .ship-header h2 {
   margin: 0;
-  font-size: 20px;
+  font-size: 21px;
   color: var(--accent);
+  letter-spacing: 0.5px;
 }
 
 .ship-tabs {
@@ -292,12 +308,13 @@ canvas {
 }
 
 .ship-tab {
-  background: var(--bg-card);
+  background: rgba(23, 30, 25, 0.9);
   border: 1px solid var(--border);
   color: var(--text-secondary);
-  padding: 8px 14px;
-  border-radius: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
   font-size: 13.5px;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -306,272 +323,12 @@ canvas {
   background: var(--bg-card-active);
   border-color: var(--accent);
   color: var(--text-primary);
+  box-shadow: 0 0 10px var(--accent-glow);
 }
 
 .ship-body {
   flex: 1;
   overflow-y: auto;
-}
-
-/* Star Map */
-.starmap-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  height: 100%;
-}
-
-@media (max-width: 768px) {
-  .starmap-grid { grid-template-columns: 1fr; }
-}
-
-.world-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  overflow-y: auto;
-}
-
-.world-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px;
-  cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease;
-}
-
-.world-card:hover, .world-card.active-world {
-  border-color: var(--border-active);
-  background: var(--bg-card-active);
-}
-
-.world-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.world-name {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.badge-current {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  background: var(--accent);
-  color: #10150F;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.world-type {
-  font-size: 12.5px;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-
-.world-desc {
-  font-size: 13px;
-  color: var(--text-secondary);
-  margin: 8px 0;
-  line-height: 1.35;
-}
-
-.world-specs {
-  display: flex;
-  gap: 12px;
-  font-size: 11.5px;
-  color: var(--text-muted);
-  font-family: 'IBM Plex Mono', monospace;
-}
-
-.starmap-preview {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.hazard-summary {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px;
-  margin: 14px 0;
-  font-size: 13px;
-}
-
-.hazard-summary ul {
-  margin: 8px 0 0 16px;
-  padding: 0;
-}
-
-.btn-travel {
-  background: var(--accent);
-  color: #10150F;
-  border: none;
-  border-radius: var(--radius);
-  padding: 14px;
-  font-weight: 600;
-  font-size: 15px;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.btn-travel:hover { opacity: 0.9; }
-.btn-travel:disabled { background: var(--bg-card-active); color: var(--text-muted); cursor: not-allowed; }
-
-/* Species Codex */
-.codex-grid {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 20px;
-  height: 100%;
-}
-
-@media (max-width: 768px) {
-  .codex-grid { grid-template-columns: 1fr; }
-}
-
-.codex-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  height: 100%;
-}
-
-.codex-input {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  padding: 10px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-}
-
-.codex-list {
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.codex-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.codex-item:hover, .codex-item.selected {
-  border-color: var(--border-active);
-  background: var(--bg-card-active);
-}
-
-.codex-item-name {
-  font-size: 13.5px;
-  font-weight: 600;
-}
-
-.codex-item-sci {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-.codex-detail {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.specimen-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.specimen-header h2 { margin: 0; font-size: 22px; }
-.sci-name { font-size: 13px; color: var(--text-secondary); }
-
-.domain-tag {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  background: var(--bg-card-active);
-  color: var(--accent);
-  border: 1px solid var(--border-active);
-  padding: 4px 10px;
-  border-radius: 6px;
-}
-
-.specimen-3d-viewport {
-  width: 100%;
-  height: 200px;
-  background: #10150F;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.data-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  font-size: 13px;
-}
-
-.field-entry {
-  background: var(--bg);
-  border-left: 3px solid var(--accent);
-  padding: 10px 14px;
-  border-radius: 4px;
-  font-size: 12.5px;
-  color: var(--text-secondary);
-}
-
-/* Logistics */
-.logistics-screen { display: flex; flex-direction: column; gap: 16px; }
-.resource-counter { display: flex; gap: 12px; flex-wrap: wrap; }
-.res-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-size: 13px;
-}
-
-.extractor-list { display: flex; flex-direction: column; gap: 10px; }
-.extractor-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.btn-toggle-ext {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  cursor: pointer;
 }
 
 /* In-Game HUD Overlay */
@@ -586,7 +343,7 @@ canvas {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 16px;
+  padding: 18px;
 }
 
 /* Vitals Top-Left */
@@ -594,13 +351,14 @@ canvas {
   pointer-events: auto;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  background: rgba(23, 30, 25, 0.85);
+  gap: 8px;
+  background: var(--bg-card);
   border: 1px solid var(--border);
-  padding: 10px 14px;
-  border-radius: 12px;
-  width: 180px;
-  backdrop-filter: blur(4px);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  width: 190px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
 }
 
 .vital-row {
@@ -623,6 +381,7 @@ canvas {
   height: 100%;
   background: var(--accent);
   width: 100%;
+  box-shadow: 0 0 8px var(--accent);
   transition: width 0.2s ease, background 0.3s ease;
 }
 
@@ -637,15 +396,16 @@ canvas {
 /* Time Panel Top-Right */
 .hud-time-panel {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 18px;
+  right: 18px;
   pointer-events: auto;
-  background: rgba(23, 30, 25, 0.85);
+  background: var(--bg-card);
   border: 1px solid var(--border);
-  padding: 8px 14px;
-  border-radius: 12px;
+  padding: 10px 16px;
+  border-radius: var(--radius);
   text-align: right;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
 }
 
 .time-clock {
@@ -661,119 +421,23 @@ canvas {
   margin-top: 2px;
 }
 
-.event-badge {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  color: var(--warn);
-  margin-top: 4px;
-  animation: pulse 1s infinite alternate;
-}
-
-@keyframes pulse {
-  from { opacity: 0.6; }
-  to { opacity: 1.0; }
-}
-
-/* Scanner Reticle */
-.scanner-reticle {
+/* Top Center 3D Compass Bar */
+.hud-compass-bar {
   position: absolute;
-  top: 50%;
+  top: 18px;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 48px;
-  height: 48px;
-  pointer-events: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.reticle-ring {
-  position: absolute;
-  width: 36px;
-  height: 36px;
-  border: 1.5px dashed var(--text-muted);
-  border-radius: 50%;
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-
-.scanner-reticle.locked .reticle-ring {
-  border-color: var(--accent);
-  border-style: solid;
-  transform: scale(1.25);
-}
-
-.reticle-dot {
-  width: 4px;
-  height: 4px;
-  background: var(--accent);
-  border-radius: 50%;
-}
-
-/* Scanner Readout Panel */
-.scanner-readout-panel {
-  position: absolute;
-  right: 20px;
-  top: 90px;
-  width: 320px;
-  background: rgba(23, 30, 25, 0.92);
+  transform: translateX(-50%);
+  background: var(--bg-card);
   border: 1px solid var(--border-active);
-  border-radius: var(--radius);
-  padding: 16px;
-  pointer-events: auto;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.scanner-readout-panel.hidden {
-  display: none !important;
-  opacity: 0;
-  transform: translateX(20px);
-  pointer-events: none;
-}
-
-.readout-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 8px;
-}
-
-.readout-header h3 { margin: 0; font-size: 16px; }
-
-.readout-badge {
+  padding: 8px 24px;
+  border-radius: 24px;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  background: var(--bg-card-active);
-  color: var(--accent);
-  border: 1px solid var(--border-active);
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.readout-body .sci-name { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
-.readout-body p { font-size: 12.5px; color: var(--text-primary); line-height: 1.35; margin: 6px 0; }
-
-.readout-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-  font-size: 11.5px;
-  color: var(--text-muted);
-  margin: 10px 0;
-}
-
-.btn-sample {
-  width: 100%;
-  background: var(--accent);
-  color: #10150F;
-  border: none;
-  padding: 10px;
-  border-radius: 8px;
-  font-weight: 600;
   font-size: 13px;
-  cursor: pointer;
+  color: var(--accent);
+  letter-spacing: 1px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 20px var(--accent-glow);
+  pointer-events: auto;
 }
 
 /* Bottom Bar */
@@ -785,21 +449,21 @@ canvas {
 }
 
 .context-prompt {
-  background: rgba(23, 30, 25, 0.85);
+  background: var(--bg-card);
   border: 1px solid var(--border);
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-size: 12.5px;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 13px;
   color: var(--text-primary);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(12px);
 }
 
 kbd {
   background: var(--bg-card-active);
   border: 1px solid var(--border-active);
   color: var(--accent);
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 2px 7px;
+  border-radius: 6px;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
 }
@@ -810,27 +474,28 @@ kbd {
 }
 
 .btn-nav {
-  background: rgba(23, 30, 25, 0.85);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   color: var(--text-primary);
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-size: 12.5px;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  backdrop-filter: blur(4px);
-  transition: border-color 0.2s ease, background 0.2s ease;
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
 }
 
 .btn-nav:hover {
   border-color: var(--accent);
   background: var(--bg-card-active);
+  box-shadow: 0 0 12px var(--accent-glow);
 }
 
 /* Toast Notifications */
 .notification-container {
   position: absolute;
-  top: 20px;
+  top: 24px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -845,177 +510,14 @@ kbd {
   background: rgba(26, 40, 32, 0.95);
   border: 1px solid var(--border-active);
   color: var(--text-primary);
-  padding: 10px 18px;
-  border-radius: 8px;
+  padding: 10px 20px;
+  border-radius: 20px;
   font-size: 13.5px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.5), 0 0 15px var(--accent-glow);
+  transition: all 0.3s ease;
 }
 
-.toast-event {
-  border-color: var(--accent);
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.toast-warn {
-  border-color: var(--warn);
-  color: var(--warn);
-}
-
-.toast.fade-out {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-/* Construction Modal */
-.build-screen {
-  width: 90vw;
-  max-width: 800px;
-  max-height: 85vh;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.7);
-  overflow-y: auto;
-}
-
-.build-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 16px;
-}
-
-@media (max-width: 768px) {
-  .build-grid { grid-template-columns: 1fr; }
-}
-
-.build-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.build-card:hover {
-  border-color: var(--border-active);
-  background: var(--bg-card-active);
-}
-
-.build-card-top {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.build-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.build-cost {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  color: var(--accent);
-}
-
-.btn-select-build {
-  background: var(--bg);
-  border: 1px solid var(--border-active);
-  color: var(--accent);
-  padding: 10px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-select-build:hover {
-  background: var(--accent);
-  color: #10150F;
-}
-
-/* Warden Rank Banner */
-.warden-rank-banner {
-  background: var(--bg-card-active);
-  border: 1px solid var(--border-active);
-  border-radius: 8px;
-  padding: 10px 16px;
-  margin-bottom: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-  color: var(--text-primary);
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-/* Accessibility & Reduced Motion Support (Research Spec Section 1) */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-    animation: none !important;
-  }
-}
-
-/* Vitals Screen Vignette Overlay */
-.vitals-vignette-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0);
-  transition: box-shadow 0.4s ease;
-  z-index: 5;
-}
-
-.vitals-vignette-overlay.active-warning {
-  box-shadow: inset 0 0 80px rgba(230, 168, 85, 0.4);
-}
-
-.vitals-vignette-overlay.active-critical {
-  box-shadow: inset 0 0 120px rgba(230, 50, 50, 0.65);
-  animation: vignettePulse 0.8s infinite alternate;
-}
-
-@keyframes vignettePulse {
-  from { opacity: 0.6; }
-  to { opacity: 1.0; }
-}
-
-/* Touch Targets ≥44px (WCAG Accessibility Compliance) */
+/* WCAG Touch Targets */
 button, .btn-nav, .ship-tab, .card, .world-card {
   min-height: 44px;
-}
-
-/* Top Center 3D Compass Bar */
-.hud-compass-bar {
-  position: absolute;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(23, 30, 25, 0.85);
-  border: 1px solid var(--border-active);
-  padding: 6px 20px;
-  border-radius: 20px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
-  color: var(--accent);
-  letter-spacing: 1px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 15px rgba(95, 230, 180, 0.2);
-  pointer-events: auto;
 }
