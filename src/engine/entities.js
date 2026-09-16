@@ -51,9 +51,7 @@ export class EntityManager {
       const name = speciesData.commonName.toLowerCase();
       let entity = null;
 
-      if (name.includes('swim')) {
-        entity = new GliderEntity(speciesData.id, speciesData, pos, true);
-      } else if (name.includes('drift') || name.includes('moth') || name.includes('fin') || name.includes('flyer')) {
+      if (name.includes('drift') || name.includes('moth') || name.includes('fin') || name.includes('flyer')) {
         entity = new GliderEntity(speciesData.id, speciesData, pos);
       } else if (name.includes('stalker') || name.includes('hunter') || name.includes('scout') || name.includes('runner')) {
         entity = new PredatorEntity(speciesData.id, speciesData, pos);
