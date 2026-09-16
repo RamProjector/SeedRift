@@ -50,6 +50,15 @@ export class RuinEntity extends BaseEntity {
     plaza.receiveShadow = true;
     this.group.add(plaza);
 
+    // Glowing Glyph Channels on Plaza Base
+    for (let g = 0; g < 4; g++) {
+      const glyphChannelGeo = new THREE.BoxGeometry(16, 0.05, 0.3);
+      const glyphChannel = new THREE.Mesh(glyphChannelGeo, ringMat);
+      glyphChannel.position.y = 0.82;
+      glyphChannel.rotation.y = (g * Math.PI) / 4;
+      this.group.add(glyphChannel);
+    }
+
     const stepGeo = new THREE.BoxGeometry(12, 0.4, 12);
     const step = new THREE.Mesh(stepGeo, mat);
     step.position.y = 0.9;
