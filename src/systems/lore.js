@@ -18,6 +18,12 @@ export const FIRSTSEED_THEORIES = {
         world: "The Hollow Steppe",
         title: "Obelisk Navigation Log 04",
         text: "Log 912-A: Magnetic guide obelisks aligned to continental migration routes. Stellar departure sequence initiated."
+      },
+      {
+        id: "frag_w3",
+        world: "Thessyra's Veil",
+        title: "Bio-Archive Preservation Log 06",
+        text: "Log 601-B: Twilight-belt bio-archive sealed ahead of stellar departure. Salt-reef genetic backups stored for eventual re-seeding. Vault integrity nominal."
       }
     ]
   },
