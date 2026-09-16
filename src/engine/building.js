@@ -64,7 +64,6 @@ export class BuildingManager {
       yieldTimer: 0
     };
 
-    // If Farm Plot, attach initial 3D crop mesh above base!
     if (this.selectedType === 'farm') {
       const cropMesh = ProceduralMeshGenerator.createFloraMesh('sporeStalk', 0.5);
       cropMesh.position.set(0, 0.4, 0);
@@ -114,7 +113,6 @@ export class BuildingManager {
 
       if (st.type === 'farm' && st.worldId === gameState.currentWorldId) {
         st.yieldTimer += deltaSeconds;
-        // Animate crop growth scale
         if (st.cropMesh) {
           const growthScale = 0.4 + Math.min(0.6, (st.yieldTimer / 10.0) * 0.6);
           st.cropMesh.scale.set(growthScale, growthScale, growthScale);
@@ -171,6 +169,14 @@ export class BuildingManager {
       opacity: 0.7
     });
 
+    const laserDrillMat = new THREE.MeshStandardMaterial({
+      color: '#ff9f1c',
+      emissive: '#ff7733',
+      emissiveIntensity: 2.5,
+      transparent: true,
+      opacity: 0.85
+    });
+
     if (type === 'biodome') {
       const domeGeo = new THREE.SphereGeometry(4.0, 16, 12, 0, Math.PI * 2, 0, Math.PI * 0.5);
       const dome = new THREE.Mesh(domeGeo, mat);
@@ -209,6 +215,12 @@ export class BuildingManager {
       const drill = new THREE.Mesh(drillGeo, mat);
       drill.position.y = 2.5;
       group.add(drill);
+
+      // Deep Crust Laser Drill Beam
+      const laserGeo = new THREE.CylinderGeometry(0.12, 0.12, 6.0, 8);
+      const laser = new THREE.Mesh(laserGeo, laserDrillMat);
+      laser.position.y = -1.5;
+      group.add(laser);
 
     } else if (type === 'relay') {
       const poleGeo = new THREE.CylinderGeometry(0.15, 0.3, 10.0, 8);
