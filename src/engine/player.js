@@ -3,6 +3,7 @@ import { gameState } from '../systems/state.js';
 import { soundEngine } from '../audio/sound.js';
 import { physicsEngine } from './physics.js';
 import { collisionEngine } from './collision.js';
+import { wardenProgress } from '../systems/codex.js';
 
 export class PlayerController {
   constructor(scene, camera, worldEngine) {
@@ -15,7 +16,6 @@ export class PlayerController {
 
     this.group = new THREE.Group();
 
-    // High-Fidelity Warden Armor Materials
     this.suitMat = new THREE.MeshStandardMaterial({
       color: '#2e7a5c',
       roughness: 0.25,
@@ -45,7 +45,6 @@ export class PlayerController {
       opacity: 0.9
     });
 
-    // 1. Torso & Layered Chest Armor Plates
     const torsoGeo = new THREE.CapsuleGeometry(0.38, 0.85, 8, 16);
     this.torso = new THREE.Mesh(torsoGeo, this.suitMat);
     this.torso.position.y = 0.85;
@@ -62,16 +61,11 @@ export class PlayerController {
     core.position.set(0, 1.05, 0.38);
     this.group.add(core);
 
-    // Visor Helmet (Supports Head IK Target Locking)
-    this.headGroup = new THREE.Group();
-    this.headGroup.position.set(0, 1.48, 0.05);
-
     const headGeo = new THREE.SphereGeometry(0.28, 16, 16);
     this.head = new THREE.Mesh(headGeo, this.glowCoreMat);
-    this.headGroup.add(this.head);
-    this.group.add(this.headGroup);
+    this.head.position.set(0, 1.48, 0.05);
+    this.group.add(this.head);
 
-    // Shoulder Pauldrons
     this.pauldrons = [];
     for (let s = 0; s < 2; s++) {
       const pauldronGeo = new THREE.DodecahedronGeometry(0.18);
@@ -82,16 +76,10 @@ export class PlayerController {
       this.pauldrons.push(pauldron);
     }
 
-    // 2. High-Detail Dual Nozzle Jetpack Thruster Rig
     const packBodyGeo = new THREE.BoxGeometry(0.42, 0.65, 0.25);
     const packBody = new THREE.Mesh(packBodyGeo, this.trimMat);
     packBody.position.set(0, 0.95, -0.28);
     this.group.add(packBody);
-
-    // Mounted Cargo Sample Vials on Backpack
-    this.cargoVial = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.3), this.glowCoreMat);
-    this.cargoVial.position.set(0.12, 1.1, -0.4);
-    this.group.add(this.cargoVial);
 
     this.thrusters = [];
     this.flames = [];
@@ -115,7 +103,6 @@ export class PlayerController {
       this.flames.push(flame);
     }
 
-    // 3. Gliding Wings
     const wingGeo = new THREE.PlaneGeometry(1.6, 0.8);
     const wingMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
@@ -130,7 +117,6 @@ export class PlayerController {
     this.wings.rotation.x = Math.PI / 4;
     this.group.add(this.wings);
 
-    // 3D Bioluminescent Suit Aura Ring
     const auraGeo = new THREE.TorusGeometry(0.9, 0.04, 8, 32);
     const auraMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
@@ -144,7 +130,6 @@ export class PlayerController {
     this.auraRing.position.y = 0.2;
     this.group.add(this.auraRing);
 
-    // Jointed Arms & Legs
     this.armL = new THREE.Group();
     const armGeo = new THREE.CylinderGeometry(0.08, 0.06, 0.6);
     const armLMesh = new THREE.Mesh(armGeo, this.suitMat);
@@ -325,33 +310,40 @@ export class PlayerController {
     }
   }
 
-  update(deltaSeconds, colliders = [], scannableTarget = null) {
+  update(deltaSeconds, colliders = []) {
     this.animTime += deltaSeconds;
     const world = gameState.getCurrentWorld();
     const equipped = gameState.getEquippedSplices();
+    const rank = wardenProgress.getRank();
+
+    // High Warden Rank 4 Prestige Obsidian Gold Armor Skin
+    if (rank.level >= 4) {
+      this.suitMat.color.set('#0d131a');
+      this.glowCoreMat.color.set('#ffc857');
+      this.glowCoreMat.emissive.set('#ff9f1c');
+    } else {
+      if (gameState.hasSplice('s1')) {
+        this.glowCoreMat.color.set('#8ce6f0');
+        this.glowCoreMat.emissive.set('#8ce6f0');
+      } else if (gameState.hasSplice('s8')) {
+        this.glowCoreMat.color.set('#ff7733');
+        this.glowCoreMat.emissive.set('#ff7733');
+      } else if (gameState.hasSplice('s2')) {
+        this.glowCoreMat.color.set('#4ce0d2');
+        this.glowCoreMat.emissive.set('#4ce0d2');
+      } else if (gameState.hasSplice('s10')) {
+        this.glowCoreMat.color.set('#d946ef');
+        this.glowCoreMat.emissive.set('#d946ef');
+      } else {
+        this.glowCoreMat.color.set('#5fe6b4');
+        this.glowCoreMat.emissive.set('#5fe6b4');
+      }
+    }
 
     let targetSpeed = 7.0;
     let sprintBonus = 1.0;
     let hasGlow = gameState.hasSplice('s4');
     let hasGlide = gameState.hasSplice('s3');
-
-    // Dynamic Suit Armor Skin Adaptations
-    if (gameState.hasSplice('s1')) {
-      this.glowCoreMat.color.set('#8ce6f0');
-      this.glowCoreMat.emissive.set('#8ce6f0');
-    } else if (gameState.hasSplice('s8')) {
-      this.glowCoreMat.color.set('#ff7733');
-      this.glowCoreMat.emissive.set('#ff7733');
-    } else if (gameState.hasSplice('s2')) {
-      this.glowCoreMat.color.set('#4ce0d2');
-      this.glowCoreMat.emissive.set('#4ce0d2');
-    } else if (gameState.hasSplice('s10')) {
-      this.glowCoreMat.color.set('#d946ef');
-      this.glowCoreMat.emissive.set('#d946ef');
-    } else {
-      this.glowCoreMat.color.set('#5fe6b4');
-      this.glowCoreMat.emissive.set('#5fe6b4');
-    }
 
     equipped.forEach(s => {
       if (s.statBonus) {
@@ -384,17 +376,6 @@ export class PlayerController {
     } else {
       this.wings.material.opacity = 0.0;
       this.isGliding = false;
-    }
-
-    // Head IK Target Locking toward Scannable Targets
-    if (scannableTarget && this.headGroup) {
-      const targetPos = scannableTarget.entity?.group?.position || scannableTarget.monolith?.group?.position || scannableTarget.drone?.group?.position;
-      if (targetPos) {
-        const localTarget = this.group.worldToLocal(targetPos.clone());
-        this.headGroup.lookAt(localTarget);
-      }
-    } else if (this.headGroup) {
-      this.headGroup.rotation.set(0, 0, 0);
     }
 
     const moveInput = new THREE.Vector3(0, 0, 0);
@@ -500,6 +481,10 @@ export class PlayerController {
         this.armR.rotation.x = -strideAngle;
         this.legL.rotation.x = -strideAngle;
         this.legR.rotation.x = strideAngle;
+      }
+
+      if (this.head) {
+        this.head.position.y = 1.48 + verticalWeightDip + Math.sin(this.animTime * 4.0) * 0.02;
       }
     }
 
