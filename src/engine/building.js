@@ -216,7 +216,6 @@ export class BuildingManager {
       drill.position.y = 2.5;
       group.add(drill);
 
-      // Deep Crust Laser Drill Beam
       const laserGeo = new THREE.CylinderGeometry(0.12, 0.12, 6.0, 8);
       const laser = new THREE.Mesh(laserGeo, laserDrillMat);
       laser.position.y = -1.5;
