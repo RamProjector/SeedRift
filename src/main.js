@@ -109,8 +109,13 @@ class Game {
     this.skyboxEngine.update(deltaSeconds);
     wardenProgress.checkRankUpgrade();
 
+    const scannable = this.entityManager.getNearestScannable(
+      this.player.position,
+      this.rivalManager
+    );
+
     const colliders = this.entityManager.getColliders();
-    this.player.update(deltaSeconds, colliders);
+    this.player.update(deltaSeconds, colliders, scannable);
     this.entityManager.update(deltaSeconds);
     this.rivalManager.update(deltaSeconds);
     this.haulingManager.update(deltaSeconds);
@@ -129,10 +134,6 @@ class Game {
     }
     this.buildingManager.updateStructures(deltaSeconds, this.player.position);
 
-    const scannable = this.entityManager.getNearestScannable(
-      this.player.position,
-      this.rivalManager
-    );
     this.hud.updateScannable(scannable, this.buildingManager.isPlacing);
 
     this.hud.update(deltaSeconds, this.player.group.rotation.y);
