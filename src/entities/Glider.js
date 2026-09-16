@@ -2,9 +2,10 @@ import * as THREE from 'three';
 import { BaseEntity } from './BaseEntity.js';
 
 export class GliderEntity extends BaseEntity {
-  constructor(id, speciesData, pos) {
+  constructor(id, speciesData, pos, isAquatic = false) {
     super(id, speciesData.commonName, pos, 1.0);
     this.data = speciesData;
+    this.isAquatic = isAquatic;
     this.speed = 2.8;
     this.wanderTimer = Math.random() * 5;
     this.targetPos = pos.clone();
@@ -101,7 +102,23 @@ export class GliderEntity extends BaseEntity {
 
     if (worldEngine) {
       const terrainH = worldEngine.getTerrainHeight(this.group.position.x, this.group.position.z);
-      this.group.position.y = terrainH + this.hoverAltitude + Math.sin(this.animTime * 2.5) * 0.4;
+
+      if (this.isAquatic && worldEngine.waterMesh) {
+        // Swim mid-water where there's room to; in shallow/emergent patches (reef
+        // peaks breaking the surface) rest near the bottom instead of forcing an
+        // underwater position that doesn't exist at this spot.
+        const waterY = worldEngine.waterMesh.position.y;
+        const availableDepth = waterY - terrainH;
+
+        if (availableDepth > 1.5) {
+          const swimDepth = Math.min(this.hoverAltitude * 0.4, availableDepth - 0.5);
+          this.group.position.y = (waterY - swimDepth) + Math.sin(this.animTime * 2.5) * 0.4;
+        } else {
+          this.group.position.y = terrainH + 0.3 + Math.sin(this.animTime * 2.5) * 0.2;
+        }
+      } else {
+        this.group.position.y = terrainH + this.hoverAltitude + Math.sin(this.animTime * 2.5) * 0.4;
+      }
     }
 
     this.wanderTimer -= deltaSeconds;
