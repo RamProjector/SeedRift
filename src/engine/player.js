@@ -116,7 +116,6 @@ export class PlayerController {
     this.wings.rotation.x = Math.PI / 4;
     this.group.add(this.wings);
 
-    // 3D Bioluminescent Suit Aura Ring Mesh
     const auraGeo = new THREE.TorusGeometry(0.9, 0.04, 8, 32);
     const auraMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
@@ -320,12 +319,19 @@ export class PlayerController {
     let hasGlow = gameState.hasSplice('s4');
     let hasGlide = gameState.hasSplice('s3');
 
+    // Dynamic Suit Armor Skin Adaptations
     if (gameState.hasSplice('s1')) {
       this.glowCoreMat.color.set('#8ce6f0');
       this.glowCoreMat.emissive.set('#8ce6f0');
     } else if (gameState.hasSplice('s8')) {
       this.glowCoreMat.color.set('#ff7733');
       this.glowCoreMat.emissive.set('#ff7733');
+    } else if (gameState.hasSplice('s2')) {
+      this.glowCoreMat.color.set('#4ce0d2');
+      this.glowCoreMat.emissive.set('#4ce0d2');
+    } else if (gameState.hasSplice('s10')) {
+      this.glowCoreMat.color.set('#d946ef');
+      this.glowCoreMat.emissive.set('#d946ef');
     } else {
       this.glowCoreMat.color.set('#5fe6b4');
       this.glowCoreMat.emissive.set('#5fe6b4');
