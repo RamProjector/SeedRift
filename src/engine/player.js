@@ -3,6 +3,7 @@ import { gameState } from '../systems/state.js';
 import { soundEngine } from '../audio/sound.js';
 import { physicsEngine } from './physics.js';
 import { collisionEngine } from './collision.js';
+import { wardenProgress } from '../systems/codex.js';
 
 export class PlayerController {
   constructor(scene, camera, worldEngine) {
@@ -30,67 +31,107 @@ export class PlayerController {
       metalness: 0.95
     });
 
+    this.goldTrimMat = new THREE.MeshStandardMaterial({
+      color: '#ffc857',
+      roughness: 0.3,
+      metalness: 0.8
+    });
+
     this.glowCoreMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
       emissive: '#5fe6b4',
-      emissiveIntensity: 2.0,
+      emissiveIntensity: 2.2,
       roughness: 0.1
     });
 
     const flameMat = new THREE.MeshStandardMaterial({
       color: '#ff9f1c',
       emissive: '#ff7733',
-      emissiveIntensity: 2.5,
+      emissiveIntensity: 2.8,
       transparent: true,
       opacity: 0.9
     });
 
-    // 1. Torso & Layered Chest Armor
+    // 1. Torso & Chiseled Layered Cuirass
     const torsoGeo = new THREE.CapsuleGeometry(0.38, 0.85, 8, 16);
     this.torso = new THREE.Mesh(torsoGeo, this.suitMat);
     this.torso.position.y = 0.85;
     this.torso.castShadow = true;
     this.group.add(this.torso);
 
-    const chestPlateGeo = new THREE.BoxGeometry(0.55, 0.45, 0.18);
+    // Chiseled Chest Armor Plate
+    const chestPlateGeo = new THREE.BoxGeometry(0.58, 0.48, 0.2);
     const chestPlate = new THREE.Mesh(chestPlateGeo, this.trimMat);
     chestPlate.position.set(0, 1.05, 0.28);
     this.group.add(chestPlate);
 
-    const coreGeo = new THREE.OctahedronGeometry(0.12);
+    // Glowing Power Core
+    const coreGeo = new THREE.OctahedronGeometry(0.14);
     const core = new THREE.Mesh(coreGeo, this.glowCoreMat);
     core.position.set(0, 1.05, 0.38);
     this.group.add(core);
 
-    // Visor Helmet (Supports Head IK Target Locking)
+    // 2. Faceted Helmet & Visor (Supports Head IK Target Locking)
     this.headGroup = new THREE.Group();
     this.headGroup.position.set(0, 1.48, 0.05);
 
-    const headGeo = new THREE.SphereGeometry(0.28, 16, 16);
-    this.head = new THREE.Mesh(headGeo, this.glowCoreMat);
+    // Helmet Shell
+    const helmGeo = new THREE.DodecahedronGeometry(0.32);
+    const helm = new THREE.Mesh(helmGeo, this.trimMat);
+    this.headGroup.add(helm);
+
+    // Visor Shield
+    const visorGeo = new THREE.SphereGeometry(0.25, 16, 16, 0, Math.PI * 2, 0, Math.PI * 0.5);
+    visorGeo.rotateX(Math.PI / 2);
+    this.head = new THREE.Mesh(visorGeo, this.glowCoreMat);
+    this.head.position.set(0, 0.02, 0.12);
     this.headGroup.add(this.head);
+
+    // Helmet Side Antennae
+    for (let a = 0; a < 2; a++) {
+      const antGeo = new THREE.CylinderGeometry(0.015, 0.03, 0.35);
+      const ant = new THREE.Mesh(antGeo, this.trimMat);
+      const side = (a === 0) ? 1 : -1;
+      ant.position.set(side * 0.32, 0.1, -0.05);
+      ant.rotation.z = -side * 0.3;
+      this.headGroup.add(ant);
+    }
     this.group.add(this.headGroup);
 
-    // Shoulder Pauldrons
+    // 3. Faceted Shoulder Pauldrons
     this.pauldrons = [];
     for (let s = 0; s < 2; s++) {
-      const pauldronGeo = new THREE.DodecahedronGeometry(0.18);
+      const pauldronGeo = new THREE.DodecahedronGeometry(0.2);
       const pauldron = new THREE.Mesh(pauldronGeo, this.trimMat);
       const side = (s === 0) ? 1 : -1;
-      pauldron.position.set(side * 0.48, 1.25, 0);
+      pauldron.position.set(side * 0.52, 1.25, 0);
       this.group.add(pauldron);
       this.pauldrons.push(pauldron);
     }
 
-    // 2. Dual-Nozzle Jetpack Thruster Rig (Vertical Launch Engine)
-    const packBodyGeo = new THREE.BoxGeometry(0.42, 0.65, 0.25);
+    // 4. Utility Belt & Pouches
+    const beltGeo = new THREE.TorusGeometry(0.4, 0.05, 8, 16);
+    const belt = new THREE.Mesh(beltGeo, this.trimMat);
+    belt.rotation.x = Math.PI / 2;
+    belt.position.y = 0.55;
+    this.group.add(belt);
+
+    for (let p = 0; p < 2; p++) {
+      const pouchGeo = new THREE.BoxGeometry(0.12, 0.15, 0.1);
+      const pouch = new THREE.Mesh(pouchGeo, this.trimMat);
+      const side = (p === 0) ? 1 : -1;
+      pouch.position.set(side * 0.38, 0.55, 0.1);
+      this.group.add(pouch);
+    }
+
+    // 5. Dual-Nozzle Jetpack Thruster Rig & Mounted Sample Canister
+    const packBodyGeo = new THREE.BoxGeometry(0.44, 0.68, 0.28);
     const packBody = new THREE.Mesh(packBodyGeo, this.trimMat);
     packBody.position.set(0, 0.95, -0.28);
     this.group.add(packBody);
 
-    // Mounted Cargo Sample Vials on Backpack
-    this.cargoVial = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.3), this.glowCoreMat);
-    this.cargoVial.position.set(0.12, 1.1, -0.4);
+    this.cargoVial = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.32), this.glowCoreMat);
+    this.cargoVial.position.set(0.12, 1.1, -0.42);
     this.group.add(this.cargoVial);
 
     this.thrusters = [];
@@ -99,23 +140,23 @@ export class PlayerController {
     for (let t = 0; t < 2; t++) {
       const side = (t === 0) ? 1 : -1;
 
-      const nozzleGeo = new THREE.CylinderGeometry(0.08, 0.12, 0.35, 12);
+      const nozzleGeo = new THREE.CylinderGeometry(0.08, 0.12, 0.38, 12);
       const nozzle = new THREE.Mesh(nozzleGeo, this.trimMat);
-      nozzle.position.set(side * 0.16, 0.75, -0.38);
+      nozzle.position.set(side * 0.16, 0.72, -0.4);
       nozzle.rotation.x = Math.PI / 8;
       this.group.add(nozzle);
       this.thrusters.push(nozzle);
 
-      const flameGeo = new THREE.ConeGeometry(0.1, 0.6, 12);
+      const flameGeo = new THREE.ConeGeometry(0.12, 0.65, 12);
       flameGeo.rotateX(Math.PI);
       const flame = new THREE.Mesh(flameGeo, flameMat);
-      flame.position.set(side * 0.16, 0.45, -0.42);
+      flame.position.set(side * 0.16, 0.4, -0.44);
       flame.visible = false;
       this.group.add(flame);
       this.flames.push(flame);
     }
 
-    // 3. Organic Curved Driftmoth Gliding Wing Membrane (Horizontal Gliding)
+    // 6. Organic Curved Driftmoth Gliding Wing Membrane
     const wingMat = new THREE.MeshStandardMaterial({
       color: '#5fe6b4',
       emissive: '#5fe6b4',
@@ -155,27 +196,53 @@ export class PlayerController {
     this.auraRing.position.y = 0.2;
     this.group.add(this.auraRing);
 
-    // Jointed Arms & Legs
+    // 7. Articulated Arms with Gauntlets & Probe Tip
     this.armL = new THREE.Group();
     const armGeo = new THREE.CylinderGeometry(0.08, 0.06, 0.6);
     const armLMesh = new THREE.Mesh(armGeo, this.suitMat);
     armLMesh.position.y = -0.3;
     this.armL.add(armLMesh);
-    this.armL.position.set(0.44, 1.15, 0);
+
+    const gauntletL = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.25), this.trimMat);
+    gauntletL.position.y = -0.42;
+    this.armL.add(gauntletL);
+
+    this.armL.position.set(0.48, 1.15, 0);
     this.group.add(this.armL);
 
     this.armR = new THREE.Group();
     const armRMesh = new THREE.Mesh(armGeo, this.suitMat);
     armRMesh.position.y = -0.3;
     this.armR.add(armRMesh);
-    this.armR.position.set(-0.44, 1.15, 0);
+
+    const gauntletR = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.25), this.trimMat);
+    gauntletR.position.y = -0.42;
+    this.armR.add(gauntletR);
+
+    // Mounted Bio-Sampling Probe Tip on Right Arm
+    const probeTip = new THREE.Mesh(new THREE.ConeGeometry(0.03, 0.2, 6), this.glowCoreMat);
+    probeTip.position.set(0, -0.55, 0.06);
+    probeTip.rotation.x = Math.PI / 2;
+    this.armR.add(probeTip);
+
+    this.armR.position.set(-0.48, 1.15, 0);
     this.group.add(this.armR);
 
+    // 8. Articulated Legs with Knee Guards & Boots
     this.legL = new THREE.Group();
     const legGeo = new THREE.CylinderGeometry(0.1, 0.07, 0.65);
     const legLMesh = new THREE.Mesh(legGeo, this.suitMat);
     legLMesh.position.y = -0.32;
     this.legL.add(legLMesh);
+
+    const kneeL = new THREE.Mesh(new THREE.DodecahedronGeometry(0.11), this.trimMat);
+    kneeL.position.set(0, -0.32, 0.08);
+    this.legL.add(kneeL);
+
+    const bootL = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.12, 0.28), this.trimMat);
+    bootL.position.set(0, -0.62, 0.06);
+    this.legL.add(bootL);
+
     this.legL.position.set(0.18, 0.45, 0);
     this.group.add(this.legL);
 
@@ -183,6 +250,15 @@ export class PlayerController {
     const legRMesh = new THREE.Mesh(legGeo, this.suitMat);
     legRMesh.position.y = -0.32;
     this.legR.add(legRMesh);
+
+    const kneeR = new THREE.Mesh(new THREE.DodecahedronGeometry(0.11), this.trimMat);
+    kneeR.position.set(0, -0.32, 0.08);
+    this.legR.add(kneeR);
+
+    const bootR = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.12, 0.28), this.trimMat);
+    bootR.position.set(0, -0.62, 0.06);
+    this.legR.add(bootR);
+
     this.legR.position.set(-0.18, 0.45, 0);
     this.group.add(this.legR);
 
@@ -514,6 +590,10 @@ export class PlayerController {
         this.armR.rotation.x = -strideAngle;
         this.legL.rotation.x = -strideAngle;
         this.legR.rotation.x = strideAngle;
+      }
+
+      if (this.head) {
+        this.head.position.y = 1.48 + verticalWeightDip + Math.sin(this.animTime * 4.0) * 0.02;
       }
     }
 
