@@ -4,7 +4,6 @@ import { weaveUI } from './weave.js';
 import { shipUI } from './ship.js';
 import { helpUI } from './helpModal.js';
 import { settingsUI } from './settingsModal.js';
-import { loreSystem } from '../systems/lore.js';
 
 export class HUDManager {
   constructor() {
@@ -40,6 +39,7 @@ export class HUDManager {
             <div class="vital-bar" id="barTemp"></div>
           </div>
           <span class="vital-val" id="valTemp">37°C</span>
+          <span class="vital-splice-badge hidden" id="badgeTemp">🧬</span>
         </div>
 
         <div class="vital-row" id="vitalAtmo" title="Atmosphere / Oxygen Filter">
@@ -48,6 +48,7 @@ export class HUDManager {
             <div class="vital-bar" id="barAtmo"></div>
           </div>
           <span class="vital-val" id="valAtmo">100%</span>
+          <span class="vital-splice-badge hidden" id="badgeAtmo">🧬</span>
         </div>
 
         <div class="vital-row" id="vitalHydra" title="Suit Hydration">
@@ -56,6 +57,7 @@ export class HUDManager {
             <div class="vital-bar" id="barHydra"></div>
           </div>
           <span class="vital-val" id="valHydra">100%</span>
+          <span class="vital-splice-badge hidden" id="badgeHydra">🧬</span>
         </div>
 
         <div class="vital-row" id="vitalRad" title="Radiation / Pressure">
@@ -64,6 +66,7 @@ export class HUDManager {
             <div class="vital-bar" id="barRad"></div>
           </div>
           <span class="vital-val" id="valRad">Safe</span>
+          <span class="vital-splice-badge hidden" id="badgeRad">🧬</span>
         </div>
 
         <div class="vital-row" id="vitalHealth" title="Warden Suit Integrity">
@@ -277,6 +280,7 @@ export class HUDManager {
   openFloraReadout(floraObj) {
     soundEngine.playChirp();
     const readout = document.getElementById('scannerReadout');
+    const world = gameState.getCurrentWorld();
 
     document.getElementById('readoutTitle').textContent = `Wild Flora: ${floraObj.type}`;
     document.getElementById('readoutSciName').textContent = "Photosynthetic Alien Flora";
@@ -371,15 +375,6 @@ export class HUDManager {
         soundEngine.playSampleAcquired();
         this.showToast(`⚡ FIRSTSEED ARCHIVE DECODED! Unlocked ${splice.name}`, 'event');
       }
-
-      // Auto-unlock corresponding lore fragment
-      const wId = gameState.currentWorldId;
-      if (wId === 'kharon-bloomfields') loreSystem.unlockFragment('frag_w1');
-      if (wId === 'hollow-steppe') loreSystem.unlockFragment('frag_w2');
-      if (wId === 'ashfields-coreth') loreSystem.unlockFragment('frag_c1');
-      if (wId === 'pallid-reach') loreSystem.unlockFragment('frag_c2');
-      if (wId === 'vantauri-deep') loreSystem.unlockFragment('frag_a1');
-
       return;
     }
 
@@ -412,6 +407,19 @@ export class HUDManager {
 
       compassTicks.textContent = `${cardinal} · ${deg}°`;
     }
+
+    // Toggle Weave Splice Badges next to Vitals
+    const bTemp = document.getElementById('badgeTemp');
+    if (bTemp) bTemp.classList.toggle('hidden', !gameState.hasSplice('s1') && !gameState.hasSplice('s8'));
+
+    const bAtmo = document.getElementById('badgeAtmo');
+    if (bAtmo) bAtmo.classList.toggle('hidden', !gameState.hasSplice('s7'));
+
+    const bHydra = document.getElementById('badgeHydra');
+    if (bHydra) bHydra.classList.toggle('hidden', !gameState.hasSplice('s5'));
+
+    const bRad = document.getElementById('badgeRad');
+    if (bRad) bRad.classList.toggle('hidden', !gameState.hasSplice('s10') && !gameState.hasSplice('s2'));
 
     document.getElementById('valTemp').textContent = `${Math.round(v.temp)}°C`;
     document.getElementById('barTemp').style.width = `${Math.min(100, Math.max(0, (v.temp / 60) * 100))}%`;
